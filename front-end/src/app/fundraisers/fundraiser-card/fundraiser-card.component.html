@@ -12,7 +12,9 @@
     <div class="card-footer">
         <div class="d-flex justify-content-between">
             <small class="text-muted">Strangerea de fonduri a fost adaugata pe data {{fundraiser.createdAt}}</small>
-            <i (click)="addToFavorite()" class="fa fa-heart mr-3" aria-hidden="true"></i>
+            <div [ngClass]="{'red':flag,'normal':!flag}">
+                <i (click)="toggleFavourite()" class="fa fa-heart mr-3" aria-hidden="true"></i>
+            </div>
         </div>
 
     </div>

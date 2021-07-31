@@ -28,6 +28,7 @@ using API.Repositories.DemandRepository;
 using API.Repositories.DonationRepository;
 using API.Repositories.UserRatingRepository;
 using API.Repositories.FundraiserRepository;
+using API.Repositories.FavouriteListRepository;
 
 namespace API
 {
@@ -56,6 +57,7 @@ namespace API
             services.AddScoped<IFundraiserRepository, FundraiserRepository>();
             services.AddScoped<IDonationRepository, DonationRepository>();
             services.AddScoped<IUserRatingRepository,UserRatingRepository>();
+            services.AddScoped<IFavouriteListRepository, FavouriteListRepository>();
             services.Configure<EmailSettings>(_config.GetSection("EmailSettings"));
             services.AddTransient<IEmailService, EmailService>();
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);

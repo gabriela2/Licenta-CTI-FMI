@@ -29,6 +29,7 @@ namespace HelpAFamilyOfferAChance.API.Entities
         public ICollection<Donation> Donations { get; set; }
         public ICollection<UserRating> RatingReceived { get; set; }
         public ICollection<UserRating> RatingGiven { get; set; }
+        public ICollection<FavouriteList> FavouriteList { get; set; }
 
 
 

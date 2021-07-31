@@ -23,5 +23,6 @@ namespace API.Entities
         public ICollection<Photo>  Photos {get;set;}
          public ICollection<Ad_x_DeliveryType>  Ad_x_DeliveryType{get;set;}
          public ICollection<Demand> Demands { get; set; }
+         public ICollection<FavouriteList> FavouriteList { get; set; }
 
     }}

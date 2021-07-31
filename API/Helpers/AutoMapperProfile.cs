@@ -33,6 +33,7 @@ namespace API.Helpers
             CreateMap<Fundraiser,FundraiserDto>()
                 .ForMember(destination => destination.Url, options => options.MapFrom(source => source.Photos.FirstOrDefault(photo => photo.IsMain).Url));
             CreateMap<UserRating, UserRatingDto>();
+            CreateMap<FavouriteList,FavouriteListDto>();
             
 
 

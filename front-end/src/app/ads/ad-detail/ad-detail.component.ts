@@ -67,6 +67,12 @@ export class AdDetailComponent implements OnInit {
     this.phoneNumber = this.userOwner.phoneNumber;
   }
 
+  toggleFavourite(){
+    
+  }
+
+
+
   getImages(): NgxGalleryImage[] {
     const images = [];
     for (const photo of this.ad.photos) {
