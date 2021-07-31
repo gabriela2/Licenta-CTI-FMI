@@ -1,0 +1,37 @@
+[
+    {
+        "Name": "Ridicarea personala",
+        "Description": "Ridicarea personala se face de catre solicitant",
+        "Price": 0.0
+    },
+    {
+        "Name": "Livrare prin posta cu plata la solicitant",
+        "Description": "Livrarea se realizeaza prin Posta Romana, coletul necesitand o greutate de maxim 10 kg, incepand cu cel de-al 11-lea kg , se adauga o taxa de 1.2 lei/kg. Plata se realizeaza de catre solicitant",
+        "Price": 12.0
+    },
+    {
+        "Name": "Livrare prin posta",
+        "Description": "Livrarea se realizeaza prin Posta Romana, coletul necesitand o greutate de maxim 10 kg, incepand cu cel de-al 11-lea kg , se adauga o taxa de 1.2 lei/kg. Plata se realizeaza de catre solicitant",
+        "Price": 12.0
+    },
+    {
+        "Name": "Fan Courier cu plata la solicitant",
+        "Description": "Livrare standard.Plata se realizeaza de catre solicitant.",
+        "Price": 20.0
+    },
+    {
+        "Name": "Fan Courier",
+        "Description": "Livrare standard",
+        "Price": 20.0
+    },
+    {
+        "Name": "Cargus cu plata la solicitant",
+        "Description": "Livrare standard",
+        "Price": 37.0
+    },
+    {
+        "Name": "Cargus",
+        "Description": "Livrare standard.Plata se realizeaza de catre solicitant",
+        "Price": 37.0
+    }
+]

@@ -1,0 +1,27 @@
+.ngx-gallery { 
+    display: inline-block; 
+    margin-bottom: 20px; }
+.user{
+    display: flex;
+    flex-direction: row;
+    height: 70px;
+    
+  }
+.img-user{
+      width: 50px;
+      height: 50px;
+      margin-right: 14px;
+      border-radius: 50%;
+      box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.15);
+    ;
+}
+.info{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.name{
+      color: rgba(21, 28, 52, 0.5);
+      font-size: 14px;
+    }
+

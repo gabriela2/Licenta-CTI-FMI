@@ -1,0 +1,33 @@
+[
+    {
+        "Name":"Uniti pentru Miruna SMA1 Asociatia Noel",
+        "Description":"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+        "CreatedAt":"2021-07-27",
+        "CurrentAmount":10.0,
+        "TargetAmount":100.0,
+        "IsValidated":true,
+        "UserId":1,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627226376/474408141.pigna-caiet-a4-80-file-dictando-pigna-clasic-e467d_pti6oi.jpg",
+                "IsMain": true
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627226396/caiet_a4_48_file_dictando_pigna_clasic_1__v52p0m.jpg",
+                "IsMain": false
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627226407/papiro.ro-articole-scoala-caiete-caieta4-80file-dictando_awripk.jpg",
+                "IsMain": false
+            }
+        ],
+        "Donations": [
+            {
+                "CreatedAt": "2021-07-25",
+                "Amount": 10.0,
+                "UserId": 2
+            }]
+    }
+
+
+]

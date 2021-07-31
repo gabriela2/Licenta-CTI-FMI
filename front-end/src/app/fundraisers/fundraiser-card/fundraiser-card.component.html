@@ -1,0 +1,19 @@
+<div class="card mb-3">
+    <div class="card-horizontal">
+        <div class="img-square-wrapper">
+            <img class="" src="{{fundraiser.url || './assets/product.png'}}" alt="{{fundraiser.id}}" routerLink='/fundraisers-list/{{fundraiser.id}}'>
+        </div>
+        <div class="card-body">
+            <h2 class="card-title" routerLink='/fundraisers-list/{{fundraiser.id}}'><strong>{{fundraiser.name |titlecase}}</strong></h2>
+            <p class="card-text"><strong>Descriere</strong></p>
+            <p class="card-text">{{fundraiser.description}}</p>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="d-flex justify-content-between">
+            <small class="text-muted">Strangerea de fonduri a fost adaugata pe data {{fundraiser.createdAt}}</small>
+            <i (click)="addToFavorite()" class="fa fa-heart mr-3" aria-hidden="true"></i>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,13 @@
+img{
+    margin:10px;
+    width: 10vw;
+    height: 10vw;
+}
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+  }
+
+i:hover{
+    color: red;
+}

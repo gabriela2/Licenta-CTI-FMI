@@ -1,0 +1,46 @@
+[
+    {
+      
+        "Name": "Alimente",
+        "Description": "Aceasta categorie este gandita pentru a fi folosita atunci cand un produs poate face parte din categoria alimente"
+    },
+    {
+     
+        "Name": "Rechizite scolare",
+        "Description": "Aceasta categorie este gandita pentru a fi folosita atunci cand un produs poate face parte din categoria rechizite scolare"
+    },
+    {
+     
+        "Name": "Medicamente",
+        "Description": "Aceasta categorie este gandita pentru a fi folosita atunci cand un produs poate face parte din categoria medicamente"
+    },
+    {
+     
+        "Name": "Textile",
+        "Description": "Aceasta categorie este gandita pentru a fi folosita atunci cand un produs poate face parte din categoria textile"
+    },
+    {
+     
+        "Name": "Materiale de contructii",
+        "Description": "Aceasta categorie este gandita pentru a fi folosita atunci cand un produs poate face parte din categoria materiale de constructii"
+    },
+    {
+     
+        "Name": "Echipament IT",
+        "Description": "Aceasta categorie este gandita pentru a fi folosita atunci cand un produs poate face parte din categoria echipamente IT"
+    },
+    {
+     
+        "Name": "Electronica si electrocasnice",
+        "Description": "Aceasta categorie este gandita pentru a fi folosita atunci cand un produs poate face parte din categoria electronice si electrocasnice"
+    },
+    {
+     
+        "Name": "Mobilier",
+        "Description": "Aceasta categorie este gandita pentru a fi folosita atunci cand un produs poate face parte din categoria mobilier"
+    },
+    {
+        "Name": "Alta categorie",
+        "Description": "Aceasta categorie este gandita pentru a fi folosita atunci cand un produs nu se incadreaza in nicio categorie."
+      }
+    ]

@@ -1,0 +1,718 @@
+[
+    {
+        "Name": "Caiete A4 dictanto",
+        "Description": "Donez caiete A4 dictando. Aceste caiete sunt noi si imi doresc sa le fie de folos unor copii care au nevoie de ele. Fiecare caiet are cate 80 de file.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 100,
+        "ExistsLimit": true,
+        "Limit": 10,
+        "IsActive": true,
+        "UserId": 1,
+        "CategoryId": 2,
+        "UnitOfMeasureId": 6,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627226376/474408141.pigna-caiet-a4-80-file-dictando-pigna-clasic-e467d_pti6oi.jpg",
+                "IsMain": true
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627226396/caiet_a4_48_file_dictando_pigna_clasic_1__v52p0m.jpg",
+                "IsMain": false
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627226407/papiro.ro-articole-scoala-caiete-caieta4-80file-dictando_awripk.jpg",
+                "IsMain": false
+            }
+        ],
+        "Demands": [
+            {
+                "CreatedAt": "2021-07-25",
+                "QuantityRequested": 1,
+                "IsApproved": true,
+                "DeliveryTypeSelected": "Ridicarea personala",
+                "UserId": 2
+            },
+            {
+                "CreatedAt": "2021-07-25",
+                "QuantityRequested": 3,
+                "IsApproved": true,
+                "DeliveryTypeSelected": "Ridicarea personala",
+                "UserId": 3
+            }
+        
+        ]
+    },
+    {
+        "Name": "Caiete A4 matematica",
+        "Description": "Donez caiete A4 matematica. Aceste caiete sunt noi si imi doresc sa le fie de folos unor copii care au nevoie de ele. Fiecare caiet are cate 80 de file. Chiar daca au fost cumparate in luna februarie a anului acestuia, acestea nu s-au deteriorat. ",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 50,
+        "ExistsLimit": true,
+        "Limit": 5,
+        "IsActive": true,
+        "UserId": 1,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 2,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627226407/set-4-bucati-caiet-dictando-a4-cu-spira-dubla-100-file-coperta-carton-colorat-copie-354-9095_p7zyxq.jpg",
+                "IsMain": true
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627226396/caiet-a4-100-file-matematica-herlitz_wfoxbq.jpg",
+                "IsMain": false
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627226397/caiet-studentesc-cu-spira-a4-100-file-coperta-policromie-liniatura-matematica-sau-romana-arhidesign-papetarie-birotica-3ohvo_ul6cmk.jpg",
+                "IsMain": false
+            }
+        ]
+    },
+    {
+        "Name": "Flacon Moldamin",
+        "Description": "Donez 20 de flacoane de Moldamin, solutie injectabila. Cutiile de Moldamin au in componenta lor si prospectul medical, alaturi de instructiunile de administrare a solutiei. Acestea au fost achizitionate in iunie, 2020 si expira la data de 17 septembrie 2022. ",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 20,
+        "ExistsLimit": true,
+        "Limit": 20,
+        "IsActive": true,
+        "UserId": 1,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 3,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627227076/mol_fqm9rn.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "Euthyrox",
+        "Description": "Donez 4 cutii de Euthyrox. Eu le-am folosit la recomandarea medicului specialist si m-au ajutat foarte mult. Medicamentul este valabil pana in octombrie, 2023.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 4,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 1,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 3,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627227076/Eutirox-100-e1590062773847_slexbl.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "Siofor 500",
+        "Description": "Donez 10 cutii de Siofor 500. Medicamentul a fost adus din Germania de catre fiul meu la inceputul anului acestuia, deoarece in Romania se gaseste foarte greu sau deloc. Medicamentul a fost pastrat in conditiile recomandate in prospectul medical, iar termeneul de valabilitate este pana in ianuarie, 2024.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 10,
+        "ExistsLimit": true,
+        "Limit": 5,
+        "IsActive": true,
+        "UserId": 1,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 3,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627227076/OS-139_r1k8dd.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "Haine bebelus cu varsta intre 6 si 9 luni",
+        "Description": "Donez hainutele copilului meu. Acestea sunt pentru copii cu varsta intre 6 si 9 luni. O parte din hainute sunt pentru fetite, iar o alta pentru baietei. Majoritatea dintre ele nu au fost purtate mai mult de 3 ori.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 4,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229060/721-Set-haine-bebelusi-cu-4-piese-COD-HB47_q73h6e.jpg",
+                "IsMain": true
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229061/643-Set-3-piese-haine-bebelusi-COD-HN05_u0mgil.jpg",
+                "IsMain": false
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229061/3684-body-alb-maneca-lunga-1_z0zyis.png",
+                "IsMain": false
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229062/body-cu-maneca-lunga-3-600x600_ji8ydb.jpg",
+                "IsMain": false
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229062/compleu-marinar-alb-albastru-bebelusi-copii_zbs1gr.jpg",
+                "IsMain": false
+            }
+        ]
+    },
+    {
+        "Name": "Piept de pui",
+        "Description": "Donez 15 caserole de piept de pui congelat. Doresc sa il donez pentru ca ma voi muta intr-un alt oras. Mentionez faptul ca puiul face parte dintr-o gama alimentara bio.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 15,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 1,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229061/2458873_hd_1_jjehe4.jpg",
+                "IsMain": true
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229064/piept-de-pui-raw_eyni6l.jpg",
+                "IsMain": false
+            }
+        ]
+    },
+    {
+        "Name": "BCA",
+        "Description": "Donez jumatate de palet de BCA. Caramizile au stat la loc ferit de umezeala si pot fi folosite fara probleme in constructii.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 5,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229061/5e5cfa77440c4_20200302022215_elgx8k.png",
+                "IsMain": true
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229061/8606108501566-bca-60-x-20-x-15-nf-cm-ytong-9950_uatmay.jpg",
+                "IsMain": false
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229062/bca-252560-cm-macon_gtrwzj.jpg",
+                "IsMain": false
+            }
+        ]
+    },
+    {
+        "Name": "Alimente de baza",
+        "Description": "Donez o serie de alimente de baza achizitionate dintr-un lant de supermarketuri care vand angrou: zahar, faina, fasole alba, orez, malai, paste fainoase, pasta de rosii la borcan, conserve de fasole cu carnati, conserve de pateu din carne de pasare, conserve de pateu din carne de vita si conserve de pateu din carne de porc.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1100,
+        "ExistsLimit": true,
+        "Limit": 10,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 1,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229061/2019-11-29-14_12_PachetAlimentedebaza_2000x_vjff5j.png",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "Alimente de baza",
+        "Description": "Dau spre donatie cateva pachete de orez, paste, faina, malai si cateva sticle de ulei pe care le-am gasit in camara personala.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 20,
+        "ExistsLimit": true,
+        "Limit": 4,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 1,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229062/alimente-de-baza_brd9oq.png",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "caramida de constructii",
+        "Description": "Donez 2 paleti de caramida in stare perfecta, ramasi in urma incheierii unui proiect de constructie in zona sectorului 2 al Capitalei. ",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 3,
+        "CategoryId": 5,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229062/6049694_cq9q7t.jpg",
+                "IsMain": true
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229062/caramida-porotherm-25-30-light-plus-optim-300x250x238-buc_8284810_heky3b.jpg",
+                "IsMain": false
+            }
+        ]
+    },
+    {
+        "Name": "carucior bebelusi",
+        "Description": "Ofer un carucior de bebelusi extensibil acelora ce au nevoie de el. Caruciorul este in stare foarte buna si vine la pachet cu toate accesoriile necesare.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 9,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229062/carucior-bebe-cu-landou-reversibil-si-gentuta-121_qjoc9v.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "cos cu alimente",
+        "Description": "Am decis sa donez alimente de baza pentru cel putin o saptamana. Cosurile contin atat fructe, cat si legume, o serie de alimente neperisabile, lichide si cateva conserve. ",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 100,
+        "Limit": 1,
+        "ExistsLimit": true,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 1,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229062/alimente-de-baza-frentzy-600x315w_zgqimp.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "calculator",
+        "Description": "Ofer calculatorul copiilor mei cuiva care nu isi permite unul. Ai mei au crescut acum si folosesc mai mult laptopul, iar eu nu am ce face cu el. Pe langa unitate, vine la pachet si cu un monitor, tastatura si mouse.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 6,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229062/buying-your-first-desktop-computer_aao9ry.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "calculator",
+        "Description": "Parintii mei doneaza un calculator cu monitor, tastatura si mouse. Pentru ca ei nu folosesc foarte mult device-urile smart, am decis sa scriu eu acest anunt in numele lor.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "CategoryId": 6,
+        "UnitOfMeasureId": 6,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229063/download_xijb6s.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "carne de porc",
+        "Description": "Donez 15 caserole de carne de porc congelata. Doresc sa o donez deoarece congelatorul nostru s-a stricat si preferam sa o oferim cuiva care sa se bucure de ea, decat sa o aruncam.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 15,
+        "ExistsLimit": true,
+        "Limit": 3,
+        "IsActive": true,
+        "UserId": 2,
+        "CategoryId": 1,
+        "UnitOfMeasureId": 6,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229062/carne-congelata_gpgi8z.jpg",
+                "IsMain": true
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229063/download_2_s3ywfc.jpg",
+                "IsMain": false
+            }
+        ]
+    },
+    {
+        "Name": "mere",
+        "Description": "Familia noastra ofera 10000kg de mere verzi din productie proprie. Livada se afla in Vrancea, iar aceia interesati pot veni ei insisi sa culeaga merele, in functie de prorpiile nevoi si program.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 10000,
+        "ExistsLimit": true,
+        "Limit": 20,
+        "IsActive": true,
+        "UserId": 2,
+        "CategoryId": 1,
+        "UnitOfMeasureId": 4,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229064/livada-mere_qniv3i.jpg",
+                "IsMain": true
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229062/AgriLog_Macfrut_0.jpg-e1567449978185_yvclgu.png",
+                "IsMain": false
+            }
+        ]
+    },
+    {
+        "Name": "caise",
+        "Description": "Donez 200kg de caise proaspete, exclsuiv din recolta proprie. Motivul pentru care donez o asemenea cantitate este faptul ca sezonul acestora este aproape de sfarsit si, prin urmare, acestea trebuie culese cat de curand. Altminteri, caisele se vor strica, iar eu nu doresc sa le pastrez.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 200,
+        "ExistsLimit": true,
+        "Limit": 10,
+        "IsActive": true,
+        "UserId": 2,
+        "CategoryId": 1,
+        "UnitOfMeasureId": 4,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229064/Multiplele-beneficii-ale-consumului-de-caise-600x350_v46um8.jpg",
+                "IsMain": true
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229063/download_1_jifkwh.jpg",
+                "IsMain": false
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229065/sprzedam_fructe-proaspete-caise-_agro_market24_mi%C4%99dzynarodowa_gie%C5%82da_rolna-526138-65622_w5kos5.jpg",
+                "IsMain": false
+            }
+        ]
+    },
+    {
+        "Name": "oua",
+        "Description": "Donez 50 de cofraje de oua proaspete de la gainile bunicii mele de la tara, hranite bio.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 50,
+        "ExistsLimit": true,
+        "Limit": 2,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 1,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229064/oua-1_fkjro0.jpg",
+                "IsMain": true
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229064/ou-cofraj_47479300_ezim8f.jpg",
+                "IsMain": false
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229064/oua-1_fkjro0.jpg",
+                "IsMain": false
+            }
+        ]
+    },
+    {
+        "Name": "cos cu alimente",
+        "Description": "Am reusit sa strangem cateva alimente de baza pe care le vom darui la 10 familii cu situatie precara. Cosurile contin zahar, faina, orez, malai, ulei, lapte, oura, legume, lactate, carne, dar si altele.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 10,
+        "Limit": 1,
+        "ExistsLimit": true,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 1,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229063/cosul-de-alimente-de-baza-ce-contine_g9wcgr.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "laptop",
+        "Description": "Donez laptopul meu Dell unei persoane in nevoie. Eu l-am achizitionat in perioada facultatii, insa nu l-am folosit foarte mult. Inca este in garantie. ",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": true,
+        "Limit": 2,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 6,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229063/csm_dell_inspiron_15_5000_f9538f815a_brvddk.png",
+                "IsMain": true
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229063/csm_dell_inspiron_14_5000_93e474a884_ntl31j.jpg",
+                "IsMain": false
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229063/Laptop-Refurbished-Dell-Latitude-E7470--Intel-Core-i7-6600u--8GB-Ram-DDR4--240-256GB-SSD--COA--14-Inch--Ultra-Slim_wsjeon.jpg",
+                "IsMain": false
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229063/Laptop-Refurbished-Dell-Latitude-E7470--Intel-Core-i7-6600u--8GB-Ram-DDR4--240-256GB-SSD--COA--14-Inch--Ultra-Slim_gqw1-0f_jerdgc.jpg",
+                "IsMain": false
+            }
+        ]
+    },
+    {
+        "Name": "laptop",
+        "Description": "lDonez laptop HP primit de Craciun de la cativa prieteni din strainatate. Laptopul este nou, insa eu am deja unul si nu am de ce sa folosesc un al doilea.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": true,
+        "Limit": 2,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 6,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229063/Laptop-Ultrabook-HP-EliteBook-Folio-9470M--14--HD---i5-3427U-2-80-GHz--8-GB-DDR3--256-GB-SSD--WEBCAM_rxn6ax.jpg",
+                "IsMain": true
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229063/Laptop-Ultrabook-HP-EliteBook-Folio-9470M--14--HD---i5-3427U-2-80-GHz--8-GB-DDR3--256-GB-SSD--WEBCAM_if6j-sf_nttk-5s_lxifzg.jpg",
+                "IsMain": false
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229064/Laptop-Ultrabook-HP-EliteBook-Folio-9470M--14--HD---i5-3427U-2-80-GHz--8-GB-DDR3--256-GB-SSD--WEBCAM_ku6e-1f_dgtz-u6_rczjp1.jpg",
+                "IsMain": false
+            }
+        ]
+    },
+    {
+        "Name": "ghiozdan echipat",
+        "Description": "Ofer 10 ghiozdane echipate cu rechizite pentru scoala. Fiecare ghiozdan are in componenta sa 5 caiete dictando si 5 caiete de matematica, o trusa de geometrie, lipici, foarfeca, acuarele, pensule, un bloc de desen, pixuri, creioane, un stilou si un penar in care elevul le poate tine.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 10,
+        "ExistsLimit": true,
+        "Limit": 1,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 2,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229063/ghiozdan-echipat-pentru-clasele-5-8-model-pentru-baieti_forlm7.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "laptop",
+        "Description": "Donez laptop, procesor i5. Imi doresc ca laptopul sa vina in ajutorul unei familii cu copii, avand in vedere ca, pe timpul pandemiei, scoala se desfasoara online. ",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 6,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229063/Laptop-Refurbished-Dell-Latitude-E7470--Intel-Core-i7-6600u--8GB-Ram-DDR4--240-256GB-SSD--COA--14-Inch--Ultra-Slim_29gp-ye_g1exl9.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "faina",
+        "Description": "Donam 1000kg de faina proaspta macinata familiilor in nevoie, in cinstea renovarii morii din comuna noastra.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1000,
+        "ExistsLimit": true,
+        "Limit": 30,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 4,
+        "CategoryId": 1,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229064/psenicno_brasno_271017_tw1024-1024x768-1_qaeewn.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "tricouri",
+        "Description": "Donez tricouri unisex din bumbac, marimile XL si XXL. Hainele sunt noi, nepurtate, insa nu mai au eticheta.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 100,
+        "ExistsLimit": true,
+        "Limit": 5,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 4,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229065/tricouri-simple-bumbac-gildan-albastru-royal_w14ykn.jpg",
+                "IsMain": true
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229064/res_5f3397644609f37c200316d45667a8b3_srnxjx.webp",
+                "IsMain": false
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229064/res_33089e0840c801d8c4e5a5aa4cd72a29_rmmm6y.jpg",
+                "IsMain": false
+            }
+        ]
+    },
+    {
+        "Name": "plasa acoperit",
+        "Description": "Donez un sul de 100m de plasa de acoperit diverse suprafete. Eu am folosit-o pentru a acoperi un gard de sarma, insa nu mai am nevoie de ea.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 100,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 1,
+        "CategoryId": 5,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229065/unnamed_ikhq9h.jpg",
+                "IsMain": true
+            },
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229065/timthumb_pbqbln.jpg",
+                "IsMain": false
+            }
+        ]
+    },
+    {
+        "Name": "ghiozdan",
+        "Description": "Donez un ghiozdan folosit, dar in stare foarte buna oricarei persoane care si-l doreste. Ghiozdanul este destul de mare si de rezistent, dispunand si de un compartiment special cu protectie pentru laptop.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 2,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229064/res_ad72289aa03f7189c72bd904ac229a5d_iszzob.webp",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "patut bebe",
+        "Description": "Donez fostul patut al fiului nostru. Dimensiunile sale sunt de 115x65cm, iar acesta vine si cu un suport detasabil pe care bebelusul poate fi pus si schimbat. Suportul are dimensiunile urmatoare? 50x50cm.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 8,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229598/unnamed_1_wqgzqz.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "dormitor",
+        "Description": "Donez mobila din dormitorul meu cuiva care este interesat si are nevoie de ea. Eu am renovat camera si, prin urmare, nu voi mai avea nevoie de ea. Aceasta consta intr-un set format dintr-un pat cu dimensiune 160x200cm, un dulap cu dimensiunile 20x265cm si o comoda cu dimensiunile 50x100cm.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 8,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229598/image_oshmyh.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "dulap",
+        "Description": "Donez un dulap cu dimensiunile 180x110 cm, din lemn de stejar. Dulapul este in stare foarte buna si nu prezinta nicio zgarietura pe suprafata exterioara a acestuia.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 8,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229598/1237953_pddabk.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "pat",
+        "Description": "Donez un pat format din rama de lemn (alb) si saltea. Patul are dimensiunile 160x200 cm, iar salteaua este cu spuma de memorie.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 8,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229598/pat-lemn-masiv-alb-arlo-5_w3jcvc.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "mobila bucatarie",
+        "Description": "Donez mobila din fosta mea bucatarie, cu dimensiunile de 340x80cm. Aceasta constine atat sertare, cat si spatii mai mari, ce se deschid prin intermediul unor usi. De asemenea, mobia prezinta un decupaj pentru chiuveta de bucatarie, chiuveta pe care o pot oferi fara probleme, daca este necesar.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 8,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229598/donez-mobila-de-bucatarie-522926_csosjd.jpg",
+                "IsMain": true
+            }
+        ]
+    },
+    {
+        "Name": "canapea",
+        "Description": "Donez o canapea de sufragerie, nunanta gri, cu manere de piele neagra. Aceasta are dimensiunile 230x80cm si arata foarte bine, tinand cont de faptul ca a fost mereu acoperita de o husa de protectie.",
+        "CreatedAt": "2021-07-25",
+        "Quantity": 1,
+        "ExistsLimit": false,
+        "IsActive": true,
+        "UserId": 2,
+        "UnitOfMeasureId": 6,
+        "CategoryId": 8,
+        "Photos": [
+            {
+                "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627229598/IMG_20191006_215415_li0rg9.jpg",
+                "IsMain": true
+            }
+        ]
+    }
+]

@@ -1,0 +1,37 @@
+[
+    {
+        "Name": "Metru liniar",
+        "Abbreviation": "m",
+        "Description": "Metrul liniar este unitatea de masura standard, notata cu m, cu ajutorul careia se masoara lungimea."
+    },
+    {
+        
+        "Name": "Metru patrat",
+        "Abbreviation": "mp",
+        "Description": "Metru patrat este o unitate de masura pentru aria unei suprafete, avand valoarea ariei unui patrat cu lungimea laturii de un metru."
+    },
+    {
+        
+        "Name": "Metru cub",
+        "Abbreviation": "m-cub",
+        "Description": "Metru cub este o unitate derivată de masura pentru volume."
+    },
+    {
+        
+        "Name": "Kilogram",
+        "Abbreviation": "kg",
+        "Description": "Kilogram este unitatea de masura pentru masa."
+    },
+    {
+        
+        "Name": "Litru",
+        "Abbreviation": "l",
+        "Description": "Litrul este utilizat ca unitate de masura pentru volum (capacitate spatiala)."
+    },
+    {
+        
+        "Name": "Bucata",
+        "Abbreviation":"buc",
+        "Description": "Bucata este o unitate de masura care se foloseste in comertul cu amanuntulul. "
+    }
+]

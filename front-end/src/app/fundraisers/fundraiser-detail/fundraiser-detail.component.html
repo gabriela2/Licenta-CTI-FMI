@@ -1,0 +1,81 @@
+<div class="container" *ngIf="fundraiser && userOwner">
+    <div class="card">
+        <div class="row">
+            <aside class="col-sm-5 border-right">
+
+                <ngx-gallery [options]="galleryOptions" [images]="galleryImages" class="ngx-gallery ml-3 mt-4">
+                </ngx-gallery>
+
+            </aside>
+
+
+            <aside class="col-sm-7">
+                <article class="card-body p-5">
+                    <h2 class="title mb-3">{{fundraiser.name |titlecase}}</h2>
+                    <p><small>Adaugat la {{fundraiser.createdAt}}</small></p>
+                    <dl class="item-property">
+                        <dt>Descriere</dt>
+                        <dd>
+                            <p>{{fundraiser.description}} </p>
+                        </dd>
+                    </dl>
+                    <div class="d-flex align-items-center justify-content-center mt-5">
+                        <span><strong class="font-weight-bold text-primary" style="font-size:x-large;"> {{fundraiser.currentAmount| number:'.2'}} LEI</strong> stransi din {{fundraiser.targetAmount|number:'.2'}} LEI
+                        </span>
+                       
+                    </div>
+                    <dl class="item-property ml-3">
+                            <div class="progress">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                                    aria-valuenow="{{fundraiser.currentAmount}}" aria-valuemin="0"
+                                    aria-valuemax="{{fundraiser.targetAmount}}" [style.width.%]="procent"></div>
+
+                            </div>
+                    </dl>
+
+                    <div class="d-flex align-items-center justify-content-center">
+                        <button class="btn btn-info my-auto" (click)="doneaza()"><i class="fa fa-credit-card" aria-hidden="true"></i> Doneaza</button>
+                    </div>
+
+                </article>
+
+            </aside>
+        </div>
+    </div>
+    <hr>
+
+    <div>
+        <div class="card">
+            <div class="row ml-3 mt-3 mb-3">
+                <aside class="col-sm-5 border-right">
+                    <article class="mb-3">
+                        <div class="user">
+                            <img class="img-user" routerLink="/userProfile/{{userOwner.id}}"
+                                src="{{userOwner.photoUrl}}" alt="{{userOwner.firstName}} {{userOwner.lastName}}">
+                            <div class="info">
+                                <span id="name" routerLink="/userProfile/{{userOwner.id}}"><i class="fa fa-user"
+                                        aria-hidden="true"></i><Strong>{{userOwner.firstName|titlecase}}
+                                        {{userOwner.lastName |titlecase}}</Strong></span>
+                                <span id="info"><i class="fa fa-envelope" aria-hidden="true"></i>
+                                    {{userOwner.email}}</span>
+                                <span id="info" *ngIf="address"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    {{address.city}}, {{address.district}}, {{address.country}}</span>
+                            </div>
+                        </div>
+                    </article>
+                    <span class=" justify-content-center" *ngIf="userOwner">
+                        <app-rating-user [member]="userOwner"></app-rating-user>
+                    </span>
+                </aside>
+                <aside class="col-sm-7 d-flex align-items-center justify-content-center">
+                    <div>
+                        <button class="btn btn-info mr-3 my-auto"><i class="fa fa-comments" aria-hidden="true"></i> Trimite Mesaj</button>
+                        <button class="btn btn-info my-auto mr-3" (click)="showPhoneNumber()"> <i class="fa fa-phone" aria-hidden="true"></i> {{phoneNumber}}</button>
+                        <button class="btn btn-info my-auto" (click)="addToFavorite()"> <i class="fa fa-heart" aria-hidden="true"></i> Adauga la favorite</button>
+                    </div>
+                </aside>
+
+            </div>
+        </div>
+    </div>
+</div>

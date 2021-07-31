@@ -1,0 +1,53 @@
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <div class="container">
+        <img class="logo" src="https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1626633751/2409ceb101734723aa89fb78d4319cd2_1_s_z8soxw.png" />
+        <!-- <a class="navbar-brand" style='color: white;' routerLink='/'>Help a family. Offer a chance</a> -->
+        <ul class="navbar-nav mr-auto">
+            <ng-container *ngIf="authService.currentUser$ | async">
+                <li class="nav-item">
+                    <a routerLink="/about-us" class="nav-link" routerLinkActive='active'>Despre noi <i class="fa fa-building" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/members-list" class="nav-link" routerLinkActive='active'>members-list <i class="fa fa-building" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/ads-list" class="nav-link" routerLinkActive='active'>Anunturi <i class="fa fa-archive" aria-hidden="true"></i></a>
+                </li>
+
+                <li class="nav-item">
+                    <a routerLink="/fundraisers-list" class="nav-link" routerLinkActive='active'>Strangeri de fonduri <i class="fa fa-handshake-o" aria-hidden="true"></i></a>
+                </li>
+            </ng-container>
+            <li class="nav-item">
+                <a routerLink="/errors" class="nav-link" routerLinkActive='active'>Errors<i class="fa fa-building" aria-hidden="true"></i></a>
+            </li>
+            <ng-container *ngIf="(authService.currentUser$ | async)===null">
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="/login" routerLinkActive='active'>Login <i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                </li>
+            </ng-container>
+
+
+        </ul>
+
+        <div class="dropdown" *ngIf="(authService.currentUser$ | async) as user" dropdown>
+            <img class="userImage" src="{{user.photoUrl || './assets/user.png'}}" alt="{{user.username}}">
+            <a class="dropdown-toggle text-light ml-2" dropdownToggle>Bine ai venit {{user.username | titlecase}}</a>
+            <div class="dropdown-menu mt-3" *dropdownMenu>
+                <a routerLink='/member/edit' class="dropdown-item">Editare profil <i class="fa fa-user" aria-hidden="true"></i></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item">Anunturile mele <i class="fa fa-archive" aria-hidden="true"></i></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item">Strangerile mele <i class="fa fa-handshake-o" aria-hidden="true"></i></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item">Cererile mele <i class="fa fa-list" aria-hidden="true"></i></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item">Donatiile mele <i class="fa fa-gift" aria-hidden="true"></i></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item">Mesajele mele <i class="fa fa-comments-o" aria-hidden="true"></i></a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="logout()">Logout <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+</nav>

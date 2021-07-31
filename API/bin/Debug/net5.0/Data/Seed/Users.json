@@ -1,0 +1,222 @@
+[
+    {
+        "UserName": "Gabi",
+        "Email": "gabriela.vlr041@yahoo.com",
+        "LastName": "Spinu",
+        "FirstName": "Valeria Gabriela",
+        "PhoneNumber": "0720017947",
+        "CreatedAt": "2021-07-25",
+        "LastActivity": "2021-07-25",
+        "IsOrganisation":false,
+        "EmailConfirmed":true,
+        "Address":{
+            "HouseNumber":"5B",
+            "Street":"Strada florilor",
+            "City": "Sector 2",
+            "District":"Bucuresti",
+            "Country":"Romania",
+            "ZipCode":"12345"
+        },
+        "Photo": {
+            "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215313/pp_qsxedz.jpg",
+            "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215313/pp_qsxedz.jpg"
+        },
+        "RatingReceived":[
+            {
+                "Rating":4,
+                "Comment":"Produsele acestui user sunt de calitate",
+                "ReceiverId":1,
+                "SenderId":2
+            },
+            {
+                "Rating":5,
+                "Comment":"Am colaborat foarte bine cu acest user",
+                "ReceiverId":1,
+                "SenderId":3
+            },
+            {
+                "Rating":1,
+                "Comment":"Nu a raspuns la telefon",
+                "ReceiverId":1,
+                "SenderId":4
+            }
+        ],
+        "RatingGiven":[
+            {
+                "Rating":4,
+                "Comment":"Produsele foarte calitative",
+                "ReceiverId":2,
+                "SenderId":1
+            },
+            {
+                "Rating":5,
+                "Comment":"Un om extraordinar",
+                "ReceiverId":3,
+                "SenderId":1
+            },
+            {
+                "Rating":5,
+                "Comment":"Mi-a placut foarte mult sa colaborez cu dumneavoastra",
+                "ReceiverId":4,
+                "SenderId":1
+            }
+        ]
+        
+    },
+    {
+        "UserName": "valerie",
+        "Email": "gabriela.gabi842@gmail.com",
+        "LastName": "Valerie",
+        "FirstName": "Gabrielle",
+        "PhoneNumber": "0720017947",
+        "CreatedAt": "2021-07-19",
+        "LastActivity": "2021-07-24",
+        "IsOrganisation":false,
+        "EmailConfirmed":true,
+        "Address":{
+            "HouseNumber":"5B",
+            "Street":"Strada florilor",
+            "City": "Sector 1",
+            "District":"Bucuresti",
+            "Country":"Romania",
+            "ZipCode":"12345"
+        },
+        "Photo": {
+            "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
+            "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
+        },
+        "RatingReceived":[
+            {
+                "Rating":5,
+                "Comment":"Produsele acestui user sunt de calitate",
+                "ReceiverId":2,
+                "SenderId":3
+            },
+            {
+                "Rating":4,
+                "Comment":"Am colaborat foarte bine cu acest user",
+                "ReceiverId":2,
+                "SenderId":4
+            },
+            {
+                "Rating":4,
+                "Comment":"Un om minunat",
+                "ReceiverId":2,
+                "SenderId":5
+            }
+        ]
+    },
+    {
+        "UserName": "GradinaBunicii",
+        "Email": "gradina.bunicii@helpafamily.offerachance.com",
+        "LastName": "gradina",
+        "FirstName": "bunicii",
+        "CreatedAt": "2021-07-26",
+        "LastActivity": "2021-07-26",
+        "IsOrganisation":true,
+        "OrgOrganizationIdentificationNumber":"123abc",
+        "EmailConfirmed":false,
+        "Address":{
+            "HouseNumber":"5B",
+            "Street":"Strada florilor",
+            "City": "Sector 3",
+            "District":"Bucuresti",
+            "Country":"Romania",
+            "ZipCode":"12345"
+        },
+        "Photo": {
+            "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
+            "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
+        }
+    },
+    {
+        "UserName": "megaImage",
+        "Email": "mega.image@helpafamily.offerachance.com",
+        "LastName": "mega",
+        "FirstName": "image",
+        "CreatedAt": "2021-07-26",
+        "LastActivity": "2021-07-26",
+        "IsOrganisation":true,
+        "OrgOrganizationIdentificationNumber":"abc123",
+        "EmailConfirmed":false,
+        "Address":{
+            "HouseNumber":"5B",
+            "Street":"Strada florilor",
+            "City": "Sector 4",
+            "District":"Bucuresti",
+            "Country":"Romania",
+            "ZipCode":"12345"
+        },
+        "Photo": {
+            "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
+            "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
+        }
+    },
+    {
+        "UserName": "maria",
+        "Email": "maria.ionescu@helpafamily.offerachance.com",
+        "LastName": "ionescu",
+        "FirstName": "maria",
+        "CreatedAt": "2021-07-26",
+        "LastActivity": "2021-07-26",
+        "IsOrganisation":false,
+        "EmailConfirmed":true,
+        "Address":{
+            "HouseNumber":"5B",
+            "Street":"Strada florilor",
+            "City": "Sector 5",
+            "District":"Bucuresti",
+            "Country":"Romania",
+            "ZipCode":"12345"
+        },
+        "Photo": {
+            "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
+            "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
+        }
+    },
+
+    {
+        "UserName": "teodor",
+        "Email": "teodor.popescu@helpafamily.offerachance.com",
+        "LastName": "popescu",
+        "FirstName": "teodor",
+        "CreatedAt": "2021-07-26",
+        "LastActivity": "2021-07-26",
+        "IsOrganisation":false,
+        "EmailConfirmed":true,
+        "Address":{
+            "HouseNumber":"5B",
+            "Street":"Strada florilor",
+            "City": "Sector 6",
+            "District":"Bucuresti",
+            "Country":"Romania",
+            "ZipCode":"12345"
+        },
+        "Photo": {
+            "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
+            "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
+        }
+    },
+    {
+        "UserName": "andreea",
+        "Email": "andreea.popescu@helpafamily.offerachance.com",
+        "LastName": "popescu",
+        "FirstName": "andreea",
+        "CreatedAt": "2021-07-26",
+        "LastActivity": "2021-07-26",
+        "IsOrganisation":false,
+        "EmailConfirmed":true,
+        "Address":{
+            "HouseNumber":"5B",
+            "Street":"Strada florilor",
+            "City": "Sector 3",
+            "District":"Bucuresti",
+            "Country":"Romania",
+            "ZipCode":"12345"
+        },
+        "Photo": {
+            "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
+            "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
+        }
+    }
+]
