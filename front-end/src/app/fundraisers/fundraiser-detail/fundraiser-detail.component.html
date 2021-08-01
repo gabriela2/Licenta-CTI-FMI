@@ -70,8 +70,14 @@
                 <aside class="col-sm-7 d-flex align-items-center justify-content-center">
                     <div>
                         <button class="btn btn-info mr-3 my-auto"><i class="fa fa-comments" aria-hidden="true"></i> Trimite Mesaj</button>
+                        <button class="btn btn-info my-auto mr-3" (click)="toggleFavourite()"> 
+                            <div [ngClass]="{'red':flag,'normal':!flag}">
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            </div> 
+
+                        </button>
                         <button class="btn btn-info my-auto mr-3" (click)="showPhoneNumber()"> <i class="fa fa-phone" aria-hidden="true"></i> {{phoneNumber}}</button>
-                        <button class="btn btn-info my-auto" (click)="addToFavorite()"> <i class="fa fa-heart" aria-hidden="true"></i> Adauga la favorite</button>
+                        
                     </div>
                 </aside>
 

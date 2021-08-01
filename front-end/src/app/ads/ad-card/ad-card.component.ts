@@ -23,6 +23,7 @@ export class AdCardComponent implements OnInit {
       this.favouriteList=response;
       console.log(this.favouriteList, this.userId, this.ad);
       for(const item of response){
+        console.log('aici sosis',item);
         if(item.adId==this.ad.id){
           this.flag=true;
         }

@@ -10,6 +10,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AddressesService } from 'src/app/services/addresses.service';
 import { MembersService } from 'src/app/services/members.service';
 import { ProgressbarConfig } from 'ngx-bootstrap/progressbar';
+import { FavouriteList } from 'src/app/models/favouriteList';
+import { FavouriteListService } from 'src/app/services/favourite-list.service';
 
 
 @Component({
@@ -29,18 +31,25 @@ export class FundraiserDetailComponent implements OnInit {
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
   procent:number;
+  flag: boolean = false;
+  favorite: FavouriteList;
+  favouriteList: FavouriteList[];
+  currentUserLogged: number;
 
   constructor(
     private fundraiserService: FundraisersService,
     private route: ActivatedRoute,
     private addressService: AddressesService,
     private memberService: MembersService,
-    private config:ProgressbarConfig
+    private config:ProgressbarConfig,
+    private favouriteListService: FavouriteListService
   ) { 
     config.animate=true;
   }
 
   ngOnInit(): void {
+    this.currentUserLogged = parseInt(localStorage.getItem('userId'));
+    console.log("this.currentUserLogged = ", this.currentUserLogged);
     this.loadFundraiser();
     this.galleryOptions = [
       {
@@ -52,6 +61,27 @@ export class FundraiserDetailComponent implements OnInit {
         preview: false
       }
     ]
+  }
+
+  toggleFavourite() {
+    if (this.flag == true) {
+      console.log(this.currentUserLogged, this.fundraiser.id);
+      this.favouriteListService.getFavouriteFundraiser(this.currentUserLogged, this.fundraiser.id).subscribe(result => {
+        this.favorite = result;
+        this.favouriteListService.deleteFavouriteList(this.favorite.id).subscribe();
+        this.flag = false;
+      })
+    } else {
+      var favouriteList = {
+        id: 0,
+        fundraiserId: this.fundraiser.id,
+        userId: this.currentUserLogged,
+      };
+      console.log(favouriteList);
+      this.favouriteListService.postFavouriteList(favouriteList).subscribe();
+      this.flag = true;
+    }
+
   }
 
   showPhoneNumber() {
@@ -110,6 +140,14 @@ export class FundraiserDetailComponent implements OnInit {
       this.loadAddress();
       this.procent=(this.fundraiser.currentAmount/this.fundraiser.targetAmount)*100;
       console.log(this.procent);
+      this.favouriteListService.getFavouriteFundraiser(this.currentUserLogged, this.fundraiser.id).subscribe(result => {
+        this.favorite = result;
+        console.log(this.favorite);
+        if (this.favorite == null) {
+          this.flag = false;
+        }
+        else { this.flag = true }
+      })
     })
   }
 
