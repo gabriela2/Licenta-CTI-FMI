@@ -13,6 +13,9 @@ export class AdsService {
   getAds(){
     return this.http.get<Ad[]>(this.baseUrl+'ads');
   }
+  getAdsByUserId(id:number){
+    return this.http.get<Ad[]>(this.baseUrl+'ads/user-ads/'+id);
+  }
   getAd(id:number){
     return this.http.get<Ad>(this.baseUrl+'ads/'+id);
   }

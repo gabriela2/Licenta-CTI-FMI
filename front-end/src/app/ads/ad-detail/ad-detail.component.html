@@ -74,10 +74,10 @@
                 <aside class="col-sm-5 border-right">
                     <article class="mb-3">
                         <div class="user">
-                            <img class="img-user" routerLink="/userProfile/{{userOwner.id}}"
+                            <img class="img-user" routerLink="/member-profile/{{userOwner.id}}"
                                 src="{{userOwner.photoUrl}}" alt="{{userOwner.firstName}} {{userOwner.lastName}}">
                             <div class="info">
-                                <span id="name" routerLink="/userProfile/{{userOwner.id}}"><i class="fa fa-user"
+                                <span id="name" routerLink="/member-profile/{{userOwner.id}}"><i class="fa fa-user"
                                         aria-hidden="true"></i><Strong>{{userOwner.firstName|titlecase}}
                                         {{userOwner.lastName |titlecase}}</Strong></span>
                                 <span id="info"><i class="fa fa-envelope" aria-hidden="true"></i>
@@ -94,7 +94,8 @@
                 <aside class="col-sm-7 d-flex align-items-center justify-content-center">
                     <div>
                         <button class="btn btn-info mr-3 my-auto"><i class="fa fa-comments" aria-hidden="true"></i> Trimite Mesaj</button>
-                        <button class="btn btn-info my-auto mr-3" (click)="toggleFavourite()"> 
+                        <ng-template #tolTemplate>{{content}}</ng-template>
+                        <button class="btn btn-info my-auto mr-3" (click)="toggleFavourite()" [tooltip]="tolTemplate" placement="bottom"> 
                             <div [ngClass]="{'red':flag,'normal':!flag}">
                             <i class="fa fa-heart" aria-hidden="true"></i>
                             </div> 

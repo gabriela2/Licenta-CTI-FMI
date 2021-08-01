@@ -9,8 +9,6 @@ namespace API.Repositories.UserRatingRepository
     {
         void AddUserRating(UserRating userRating);
         void UpdateUserRating(UserRating userRating);
-        void DeleteUserRating(UserRating userRating);
-
         Task<IEnumerable<UserRatingDto>> GetUserRatingsAsync();
         Task<UserRatingDto> GetUserRatingDtoAsync(int id);
         Task<UserRating> GetUserRatingAsync(int id);

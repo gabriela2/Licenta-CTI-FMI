@@ -25,10 +25,6 @@ namespace API.Repositories.UserRatingRepository
             _context.UserRatings.Add(userRating);
         }
 
-        public void DeleteUserRating(UserRating userRating)
-        {
-            _context.UserRatings.Remove(userRating);
-        }
 
         public async Task<UserRating> GetUserRatingAsync(int id)
         {

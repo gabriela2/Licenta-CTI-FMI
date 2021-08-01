@@ -42,6 +42,7 @@ export class AdDetailComponent implements OnInit {
   favorite: FavouriteList;
   favouriteList: FavouriteList[];
   currentUserLogged: number;
+  content :string;
 
 
 
@@ -79,12 +80,14 @@ export class AdDetailComponent implements OnInit {
   toggleFavourite() {
     if (this.flag == true) {
       console.log(this.currentUserLogged, this.ad.id);
+      this.content = 'Adauga in lista de favorite.';
       this.favouriteListService.getFavouriteAd(this.currentUserLogged, this.ad.id).subscribe(result => {
         this.favorite = result;
         this.favouriteListService.deleteFavouriteList(this.favorite.id).subscribe();
         this.flag = false;
       })
     } else {
+      this.content = 'Elimina din lista de favorite.';
       var favouriteList = {
         id: 0,
         adId: this.ad.id,
@@ -158,8 +161,12 @@ export class AdDetailComponent implements OnInit {
         console.log(this.favorite);
         if (this.favorite == null) {
           this.flag = false;
+          this.content = 'Adauga in lista de favorite.';
         }
-        else { this.flag = true }
+        else { 
+          this.flag = true;
+          this.content = 'Elimina din lista de favorite.'; 
+        }
       })
     })
 

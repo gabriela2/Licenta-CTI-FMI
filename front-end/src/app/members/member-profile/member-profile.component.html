@@ -1,0 +1,94 @@
+<div class="container" *ngIf="member">
+    <div class="card">
+        <div class="row ml-3 mt-3 mb-3">
+            <aside class="col-sm-5 border-right">
+                <article class="mb-3">
+                    <div class="user">
+                        <img class="img-user" src="{{member.photoUrl}}" alt="{{member.firstName}} {{member.lastName}}">
+                        <div class="info">
+                            <span id="name"><i class="fa fa-user" aria-hidden="true"></i>
+                                <Strong>{{member.firstName|titlecase}} {{member.lastName |titlecase}}</Strong>
+                            </span>
+                            <span id="info"><i class="fa fa-envelope" aria-hidden="true"></i>{{member.email}}</span>
+                            <span id="info" *ngIf="address"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                                {{address.city}}, {{address.district}}, {{address.country}}
+                            </span>
+                        </div>
+                    </div>
+                </article>
+                <span class=" justify-content-center" *ngIf="member">
+                    <app-rating-user [member]="member"></app-rating-user>
+                </span>
+            </aside>
+            <aside class="col-sm-7 d-flex align-items-center justify-content-center">
+                <div>
+                    <button class="btn btn-info mr-3 my-auto"><i class="fa fa-comments" aria-hidden="true"></i> Trimite
+                        Mesaj</button>
+                    <button class="btn btn-info my-auto mr-3" (click)="showPhoneNumber()"> <i class="fa fa-phone"
+                            aria-hidden="true"></i> {{phoneNumber}}</button>
+                    <button class="btn btn-info my-auto mr-3"> <i class="fa fa-pencil"
+                            aria-hidden="true"></i> Adauga un review</button>
+
+
+                </div>
+            </aside>
+
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <tabset class="member-tabset">
+            <tab heading='Anunturi'>
+                <div class="column" *ngIf="ads">
+                    <div *ngFor="let ad of ads">
+                        <app-ad-card [ad]="ad"></app-ad-card>
+                    </div>
+                </div>
+                <div class="mt-5 mb-5" *ngIf="ads<1">
+                    <h2 class="d-flex align-items-center justify-content-center"><strong>Nu exista anunturi!</strong>
+                    </h2>
+                    <p class="d-flex align-items-center justify-content-center">Acest utilizator nu a adaugat niciun
+                        anunt pana in prezent.</p>
+
+                </div>
+            </tab>
+
+
+            <tab heading='Strangeri de fonduri'>
+                <div class="column" *ngIf="fundraisers">
+                    <div *ngFor="let fundraiser of fundraisers">
+                        <app-fundraiser-card [fundraiser]="fundraiser"></app-fundraiser-card>
+                    </div>
+                </div>
+                <div class="mt-5 mb-5" *ngIf="fundraisers<1">
+                    <h2 class="d-flex align-items-center justify-content-center"><strong>Nu exista strangeri de
+                            fonduri!</strong></h2>
+                    <p class="d-flex align-items-center justify-content-center">Acest utilizator nu a adaugat nicio
+                        strangere de fonduri pana in prezent.</p>
+
+                </div>
+
+            </tab>
+
+
+            <tab heading='Review-uri'>
+                <div class="column" *ngIf="ratings">
+                    <div *ngFor="let rating of ratings">
+                        <app-rating-card [rating]="rating"></app-rating-card>
+                    </div>
+                </div>
+                <div class="mt-5 mb-5" *ngIf="ratings<1">
+                    <h2 class="d-flex align-items-center justify-content-center"><strong>Nu exista review-uri pentru
+                            acest utilizator!</strong></h2>
+                    <p class="d-flex align-items-center justify-content-center">Fii prima persoana care adauga un review
+                        <span>
+                            <button class="btn btn-info ml-3"><i class="fa fa-pencil" aria-hidden="true"></i>Adauga un
+                                review</button>
+                        </span></p>
+
+                </div>
+
+            </tab>
+        </tabset>
+    </div>
+</div>

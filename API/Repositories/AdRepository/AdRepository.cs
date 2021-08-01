@@ -57,7 +57,7 @@ namespace API.Repositories.AdRepository
 
         public async Task<IEnumerable<AdDto>> GetAdsDtoByUserIdAsync(int id)
         {
-            return await _context.Ads.Where(ad => ad.Id == id).ProjectTo<AdDto>(_mapper.ConfigurationProvider).ToListAsync();
+            return await _context.Ads.Where(ad => ad.UserId == id).ProjectTo<AdDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
         public void AddAd(Ad ad)

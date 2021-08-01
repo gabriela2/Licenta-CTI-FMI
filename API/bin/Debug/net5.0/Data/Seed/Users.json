@@ -24,18 +24,24 @@
         "RatingReceived":[
             {
                 "Rating":4,
+                "Title":"Produse de calitate",
+                "CreatedAt":"2021-08-01",
                 "Comment":"Produsele acestui user sunt de calitate",
                 "ReceiverId":1,
                 "SenderId":2
             },
             {
                 "Rating":5,
+                "Title":"Colaborare",
+                "CreatedAt":"2021-07-30",
                 "Comment":"Am colaborat foarte bine cu acest user",
                 "ReceiverId":1,
                 "SenderId":3
             },
             {
                 "Rating":1,
+                "Title":"Dezamagitor",
+                "CreatedAt":"2021-05-10",
                 "Comment":"Nu a raspuns la telefon",
                 "ReceiverId":1,
                 "SenderId":4
@@ -44,18 +50,24 @@
         "RatingGiven":[
             {
                 "Rating":4,
+                "Title":"Produse de calitate",
+                "CreatedAt":"2021-07-01",
                 "Comment":"Produsele foarte calitative",
                 "ReceiverId":2,
                 "SenderId":1
             },
             {
                 "Rating":5,
+                "Title":"Un om extraordinar",
+                "CreatedAt":"2021-06-01",
                 "Comment":"Un om extraordinar",
                 "ReceiverId":3,
                 "SenderId":1
             },
             {
                 "Rating":5,
+                "Title":"Colaborarea",
+                "CreatedAt":"2021-06-21",
                 "Comment":"Mi-a placut foarte mult sa colaborez cu dumneavoastra",
                 "ReceiverId":4,
                 "SenderId":1
@@ -88,18 +100,24 @@
         "RatingReceived":[
             {
                 "Rating":5,
+                "Title":"Produse de calitate",
+                "CreatedAt":"2021-02-01",
                 "Comment":"Produsele acestui user sunt de calitate",
                 "ReceiverId":2,
                 "SenderId":3
             },
             {
                 "Rating":4,
+                "Title":"Colaborare",
+                "CreatedAt":"2021-04-01",
                 "Comment":"Am colaborat foarte bine cu acest user",
                 "ReceiverId":2,
                 "SenderId":4
             },
             {
                 "Rating":4,
+                "Title":"Un om minunat",
+                "CreatedAt":"2021-08-01",
                 "Comment":"Un om minunat",
                 "ReceiverId":2,
                 "SenderId":5

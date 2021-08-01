@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import {NgbRatingConfig} from '@ng-bootstrap/ng-bootstrap';
-import Member from '../models/member';
-import { UserRating } from '../models/userRating';
-import { UserRatingsService } from '../services/user-ratings.service';
+import Member from '../../models/member';
+import { UserRating } from '../../models/userRating';
+import { UserRatingsService } from '../../services/user-ratings.service';
 
 @Component({
   selector: 'app-rating-user',

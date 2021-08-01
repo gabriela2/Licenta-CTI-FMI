@@ -52,6 +52,7 @@ namespace API.Controllers
 
             userRating.Rating =userRatingDto.Rating;
             userRating.Comment=userRatingDto.Comment;
+            userRating.Title = userRatingDto.Title;
             
             _userRatingRepository.UpdateUserRating(userRating);
             if(await _userRatingRepository.SaveAllAsync())return NoContent();
@@ -65,6 +66,8 @@ namespace API.Controllers
             UserRating model = new UserRating()
             {
                 Rating = userRatingDto.Rating,
+                CreatedAt = userRatingDto.CreatedAt,
+                Title=userRatingDto.Title,
                 Comment=userRatingDto.Comment,
                 ReceiverId = userRatingDto.ReceiverId,
                 SenderId=userRatingDto.ReceiverId
@@ -73,16 +76,6 @@ namespace API.Controllers
             if(await _userRatingRepository.SaveAllAsync())return NoContent();
             return BadRequest("UserRating-ul nu a putut fi adaugat");
 
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> DeletUserRating(int id)
-        {
-            var userRating = await _userRatingRepository.GetUserRatingAsync(id);
-            if(userRating ==null){return NotFound();}
-            _userRatingRepository.DeleteUserRating(userRating);
-            if(await _userRatingRepository.SaveAllAsync())return NoContent();
-            return BadRequest("UserRating-ul nu a putut fi sters");
         }
     }
 }

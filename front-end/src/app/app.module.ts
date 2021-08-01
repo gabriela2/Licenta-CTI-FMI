@@ -22,7 +22,7 @@ import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { AdsListComponent } from './ads/ads-list/ads-list.component';
 import { AdCardComponent } from './ads/ad-card/ad-card.component';
 import { AdDetailComponent } from './ads/ad-detail/ad-detail.component';
-import { RatingUserComponent } from './rating-user/rating-user.component';
+import { RatingUserComponent } from './ratings/rating-user/rating-user.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { TabsModule} from 'ngx-bootstrap/tabs';
 import {NgxGalleryModule} from '@kolkov/ngx-gallery';
@@ -30,6 +30,12 @@ import { FundraiserCardComponent } from './fundraisers/fundraiser-card/fundraise
 import { FundraiserDetailComponent } from './fundraisers/fundraiser-detail/fundraiser-detail.component';
 import { FundraisersListComponent } from './fundraisers/fundraisers-list/fundraisers-list.component';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+import { MemberProfileComponent } from './members/member-profile/member-profile.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { RatingCardComponent } from './ratings/rating-card/rating-card.component';
+import { EditRatingComponent } from './ratings/edit-rating/edit-rating.component';
+import { AddRatingComponent } from './ratings/add-rating/add-rating.component';
+
 
 @NgModule({
   declarations: [
@@ -51,6 +57,10 @@ import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
     FundraiserCardComponent,
     FundraiserDetailComponent,
     FundraisersListComponent,
+    MemberProfileComponent,
+    RatingCardComponent,
+    EditRatingComponent,
+    AddRatingComponent,
 
 
   ],
@@ -66,6 +76,7 @@ import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
     TabsModule.forRoot(),
     NgxGalleryModule,
     ProgressbarModule.forRoot(),
+    TooltipModule.forRoot(),
 
   ],
   providers: [

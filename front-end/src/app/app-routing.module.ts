@@ -13,8 +13,11 @@ import { AuthGuard } from './guards/auth.guard';
 
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { MemberProfileComponent } from './members/member-profile/member-profile.component';
 import { MembersListComponent } from './members/members-list/members-list.component';
-import { RatingUserComponent } from './rating-user/rating-user.component';
+import { AddRatingComponent } from './ratings/add-rating/add-rating.component';
+import { EditRatingComponent } from './ratings/edit-rating/edit-rating.component';
+import { RatingUserComponent } from './ratings/rating-user/rating-user.component';
 import { RegisterComponent } from './register/register.component';
 
 const routes: Routes = [
@@ -28,6 +31,9 @@ const routes: Routes = [
       { path: 'ads-list', component: AdsListComponent },
       { path: 'fundraisers-list', component: FundraisersListComponent },
       { path: 'rating-user/:id', component: RatingUserComponent },
+      { path: 'edit-rating/:id', component: EditRatingComponent },
+      { path: 'add-rating/:id', component: AddRatingComponent },
+      {path:'member-profile/:id',component:MemberProfileComponent},
       {path:'ads-list/:id',component:AdDetailComponent},
       {path:'fundraisers-list/:id',component:FundraiserDetailComponent},
 

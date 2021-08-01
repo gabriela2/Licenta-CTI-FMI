@@ -21,14 +21,11 @@ export class AdCardComponent implements OnInit {
     this.userId = parseInt(localStorage.getItem('userId'));
     this.favouriteListService.getFavouriteLists(this.userId).subscribe( response=>{
       this.favouriteList=response;
-      console.log(this.favouriteList, this.userId, this.ad);
       for(const item of response){
-        console.log('aici sosis',item);
         if(item.adId==this.ad.id){
           this.flag=true;
         }
       }
-      console.log(this.flag);
     });
   }
 

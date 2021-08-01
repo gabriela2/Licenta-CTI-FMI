@@ -35,6 +35,7 @@ export class FundraiserDetailComponent implements OnInit {
   favorite: FavouriteList;
   favouriteList: FavouriteList[];
   currentUserLogged: number;
+  content :string;
 
   constructor(
     private fundraiserService: FundraisersService,
@@ -65,6 +66,7 @@ export class FundraiserDetailComponent implements OnInit {
 
   toggleFavourite() {
     if (this.flag == true) {
+      this.content = 'Adauga in lista de favorite.';
       console.log(this.currentUserLogged, this.fundraiser.id);
       this.favouriteListService.getFavouriteFundraiser(this.currentUserLogged, this.fundraiser.id).subscribe(result => {
         this.favorite = result;
@@ -72,6 +74,8 @@ export class FundraiserDetailComponent implements OnInit {
         this.flag = false;
       })
     } else {
+      this.content = 'Elimina din lista de favorite.';
+      
       var favouriteList = {
         id: 0,
         fundraiserId: this.fundraiser.id,
@@ -145,8 +149,10 @@ export class FundraiserDetailComponent implements OnInit {
         console.log(this.favorite);
         if (this.favorite == null) {
           this.flag = false;
+          this.content = 'Adauga in lista de favorite.';
         }
-        else { this.flag = true }
+        else { this.flag = true;
+          this.content = 'Elimina din lista de favorite.'; }
       })
     })
   }

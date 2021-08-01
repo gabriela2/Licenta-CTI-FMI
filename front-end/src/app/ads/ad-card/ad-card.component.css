@@ -1,7 +1,6 @@
 img{
-    margin:10px;
-    width: 10vw;
-    height: 10vw;
+    width: 9vw;
+    height: 9vw;
 }
 .card-horizontal {
     display: flex;
