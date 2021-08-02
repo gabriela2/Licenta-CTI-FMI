@@ -42,6 +42,29 @@ namespace HelpAFamilyOfferAChance.API.Controllers
         }
 
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult> UpdateUser(int id, MemberDto memberDto)
+        {
+            User member = await _userRepository.GetUserByIdAsync(memberDto.Id);
+            if(id!= member.Id)
+            {
+                return BadRequest("S-a intamplat ceva neasteptat");
+            }
+            
+            member.LastName=memberDto.LastName;
+            member.FirstName = memberDto.FirstName;
+            member.PhoneNumber = memberDto.PhoneNumber;
+            member.LastActivity = memberDto.LastActivity;
+            member.StripeAccount = memberDto.StripeAccount;
+            member.StripeConfigurationLink = memberDto.StripeConfigurationLink;
+            member.EmailConfirmed = memberDto.EmailConfirmed;
+            member.IsOrganisation = memberDto.IsOrganisation;
+            member.OrganizationIdentificationNumber = memberDto.OrganizationIdentificationNumber;
+            _userRepository.Update(member);
+            if(await _userRepository.SaveAllAsync())return NoContent();
+            return BadRequest("Userul nu a putut fi actualizat");
+        }
+
 
 
 

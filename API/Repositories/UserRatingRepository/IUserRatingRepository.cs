@@ -12,6 +12,7 @@ namespace API.Repositories.UserRatingRepository
         Task<IEnumerable<UserRatingDto>> GetUserRatingsAsync();
         Task<UserRatingDto> GetUserRatingDtoAsync(int id);
         Task<UserRating> GetUserRatingAsync(int id);
+    
         Task<IEnumerable<UserRatingDto>> GetUserRatingsByReceiverIdAsync(int id);
         Task<bool> SaveAllAsync();
         

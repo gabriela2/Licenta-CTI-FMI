@@ -35,6 +35,11 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { RatingCardComponent } from './ratings/rating-card/rating-card.component';
 import { EditRatingComponent } from './ratings/edit-rating/edit-rating.component';
 import { AddRatingComponent } from './ratings/add-rating/add-rating.component';
+import { ModalModule} from 'ngx-bootstrap/modal';
+import { PreventEditReviewByOtherUsersGuard } from './guards/prevent-edit-review-by-other-users.guard';
+import {NgxSpinnerModule} from 'ngx-spinner';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { MemberEditComponent } from './members/member-edit/member-edit.component';
 
 
 @NgModule({
@@ -61,8 +66,7 @@ import { AddRatingComponent } from './ratings/add-rating/add-rating.component';
     RatingCardComponent,
     EditRatingComponent,
     AddRatingComponent,
-
-
+    MemberEditComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,17 +75,21 @@ import { AddRatingComponent } from './ratings/add-rating/add-rating.component';
     BrowserAnimationsModule,
     FormsModule,
     BsDropdownModule.forRoot(),
-    ToastrModule.forRoot({positionClass: 'toast-bottom-right'}),
+    ToastrModule.forRoot({positionClass: 'toast-bottom-right',preventDuplicates:true}),
     NgbModule,
     TabsModule.forRoot(),
     NgxGalleryModule,
     ProgressbarModule.forRoot(),
     TooltipModule.forRoot(),
+    ModalModule.forRoot(),
+    NgxSpinnerModule
 
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+    PreventEditReviewByOtherUsersGuard,
   ],
   bootstrap: [AppComponent]
 })

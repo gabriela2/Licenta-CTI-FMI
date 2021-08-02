@@ -1,1 +1,32 @@
-<p>add-rating works!</p>
+<div >
+    <div class="card-header">
+        <h3><strong>Adauga review:</strong></h3>
+    </div>
+
+    <div class="card-body">
+        <form #addRating='ngForm' (ngSubmit)='addUserRating()' id='addRating'>
+            <h4 class="mt-3"><strong>Rating</strong></h4>
+
+            <ng-template  form="addRating" #t let-fill="fill">
+                <span class="star" [class.full]="fill === 100">
+                    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                </span>
+            </ng-template>
+            <ngb-rating class="form-control" form="addRating" name="rating" [(ngModel)]="rating" [(rate)]="rating" [starTemplate]="t" [readonly]="false" [max]="5"></ngb-rating>
+
+            <h4 class="mt-3"><strong>Titlu</strong></h4>
+            <textarea class="form-control" [(ngModel)]="title" name="title" rows="1" placeholder="Adauga un titlu"></textarea>
+
+
+            <h4 class="mt-3"><strong>Review</strong></h4>
+            <textarea  class="form-control" [(ngModel)]="comment" name="comment" rows="3" placeholder="Adauga un comentariu"></textarea>
+    </form>
+        </div>
+
+
+    <div class="card-footer">
+        <button type="button" form="addRating" class="btn btn-default" (click)="cancel()">Cancel</button>
+        <button type="submit" form="addtRating" class="btn btn-primary" (click)="addUserRating()">Submit</button>
+    </div>
+
+</div>

@@ -19,7 +19,6 @@ namespace API.DTOs
         public bool EmailConfirmed { get; set; }
         public bool IsOrganisation { get; set; }
         public string OrganizationIdentificationNumber{get;set;}
-        public UserPhotoDto Photo{get;set;}
         public string PhotoUrl { get; set; }
 
     }

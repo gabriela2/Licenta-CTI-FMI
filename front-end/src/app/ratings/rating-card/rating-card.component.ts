@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import Member from 'src/app/models/member';
 import { UserRating } from 'src/app/models/userRating';
 import { MembersService } from 'src/app/services/members.service';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { UserRatingsService } from 'src/app/services/user-ratings.service';
 
 
 @Component({
@@ -16,12 +16,13 @@ export class RatingCardComponent implements OnInit {
   sender:Member;
   flag=false;
 
-  constructor(private memberService:MembersService) { }
+  constructor(
+    private memberService:MembersService,
+    ) { }
 
   ngOnInit(): void {
     this.loadSenderUser();
   }
-
 
   loadSenderUser(){
     this.memberService.getMember(this.rating.senderId).subscribe(response=>{

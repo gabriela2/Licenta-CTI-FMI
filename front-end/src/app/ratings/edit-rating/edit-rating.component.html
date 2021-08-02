@@ -1,4 +1,37 @@
-<p>edit-rating works!</p>
-<p>edit-rating works!</p>
-    <p>edit-rating works!</p>
-        <p>edit-rating works!</p>
+<div *ngIf="rating">
+
+
+    <div class="card-header">
+        <h3><strong>Editeaza review:</strong></h3>
+    </div>
+
+    <div class="card-body">
+        <form #editRating='ngForm' (ngSubmit)="update()" id="editRating">
+
+            <h4 class="mt-3"><strong>Rating</strong></h4>
+            <ng-template form="editRating" #t let-fill="fill">
+                <span class="star" [class.full]="fill === 100">
+                    <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                </span>
+            </ng-template>
+            <ngb-rating class="form-control" 
+            form="editRating" name="rating" [(ngModel)]="rating.rating" 
+            [(rate)]="rating.rating" [starTemplate]="t" [readonly]="false" [max]="5"></ngb-rating>
+
+
+            <h4 class="mt-3"><strong>Titlu</strong></h4>
+            <textarea class="form-control" [(ngModel)]="rating.title" name="title" rows="1"></textarea>
+
+
+            <h4 class="mt-3"><strong>Review</strong></h4>
+            <textarea class="form-control" id="commentId" [(ngModel)]="rating.comment" name="comment" rows="3"></textarea>
+        </form>
+    </div>
+
+
+    <div class="card-footer">
+        <button type="button" form="editRating" class="btn btn-default" (click)="cancel()">Cancel</button>
+        <button type="submit" form="editRating" class="btn btn-primary">Submit</button>
+    </div>
+
+</div>

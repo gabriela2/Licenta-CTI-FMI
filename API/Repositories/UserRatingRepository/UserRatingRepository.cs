@@ -25,6 +25,7 @@ namespace API.Repositories.UserRatingRepository
             _context.UserRatings.Add(userRating);
         }
 
+        
 
         public async Task<UserRating> GetUserRatingAsync(int id)
         {

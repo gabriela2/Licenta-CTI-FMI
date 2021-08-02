@@ -70,7 +70,7 @@ namespace API.Controllers
                 Title=userRatingDto.Title,
                 Comment=userRatingDto.Comment,
                 ReceiverId = userRatingDto.ReceiverId,
-                SenderId=userRatingDto.ReceiverId
+                SenderId=userRatingDto.SenderId
             };
             _userRatingRepository.AddUserRating(model);
             if(await _userRatingRepository.SaveAllAsync())return NoContent();

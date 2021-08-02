@@ -20,4 +20,7 @@ export class AddressesService {
   getAddressByUserId(id:number){
     return this.http.get<Address>(this.baseUrl+'addresses/user-address/'+id);
   }
+  updateAddress(id:number, address:Address){
+    return this.http.put(this.baseUrl + 'addresses/' + id, address);
+  }
 }

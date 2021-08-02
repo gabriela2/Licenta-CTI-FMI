@@ -14,6 +14,9 @@ export class UserRatingsService {
   getUserRatings() {
     return this.http.get<UserRating[]>(this.baseUrl + 'userRatings');
   }
+  getUserRating(id:number) {
+    return this.http.get<UserRating>(this.baseUrl + 'userRatings/'+id);
+  }
   getUserRatingsByReceiverId(id: number) {
     return this.http.get<UserRating[]>(this.baseUrl + 'userRatings/rating-received/' + id);
   }
