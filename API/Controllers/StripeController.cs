@@ -95,7 +95,7 @@ namespace Help.Controllers
 
 
         [HttpPost("CreateConnectedExpressAccount/{id}")]
-        public IActionResult CreateConnectedExpressAccount(int id)
+        public async Task<ActionResult> CreateConnectedExpressAccount(int id)
         {
 
             var options = new AccountCreateOptions
@@ -120,8 +120,10 @@ namespace Help.Controllers
             user.StripeAccount = account.Id;
             user.StripeConfigurationLink = accountLink.Url;
             _userRepository.Update(user);
+             if(await _userRepository.SaveAllAsync())return new OkObjectResult(new { id = account.Id, link = accountLink.ToJson() });
+            return BadRequest("Userul nu a putut fi actualizat");
 
-            return new OkObjectResult(new { id = account.Id, link = accountLink.ToJson() });
+            // return new OkObjectResult(new { id = account.Id, link = accountLink.ToJson() });
         }
 
 

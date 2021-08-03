@@ -55,7 +55,6 @@ namespace API.Controllers
             fundraiser.TargetAmount = fundraiserDto.TargetAmount;
             fundraiser.IsValidated = fundraiserDto.IsValidated;
 
-
             _fundraiserRepository.UpdateFundraiser(fundraiser);
             if (await _fundraiserRepository.SaveAllAsync()) return NoContent();
             return BadRequest("Strangerea de fonduri nu a putut fi actualizata");
@@ -66,13 +65,13 @@ namespace API.Controllers
         {
             Fundraiser model = new Fundraiser()
             {
-                Name=fundraiserDto.Name,
-                Description=fundraiserDto.Description,
-                CreatedAt=fundraiserDto.CreatedAt,
+                Name = fundraiserDto.Name,
+                Description = fundraiserDto.Description,
+                CreatedAt = fundraiserDto.CreatedAt,
                 CurrentAmount = 0,
-                TargetAmount=fundraiserDto.TargetAmount,
+                TargetAmount = fundraiserDto.TargetAmount,
                 IsValidated = false,
-                UserId=fundraiserDto.UserId
+                UserId = fundraiserDto.UserId,
             };
             _fundraiserRepository.AdFundraiser(model);
             if (await _fundraiserRepository.SaveAllAsync()) return NoContent();

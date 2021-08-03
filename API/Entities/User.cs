@@ -21,6 +21,10 @@ namespace HelpAFamilyOfferAChance.API.Entities
         public bool EmailConfirmed { get; set; }
         public bool IsOrganisation { get; set; }
         public string OrganizationIdentificationNumber { get; set; }
+        public string Iban{get;set;}
+        public string Bank{get;set;}
+        public string Owner{get;set;}
+        public bool StripeLinkWasAccessed{get;set;}
         public UserPhoto Photo { get; set; }
         public Address Address { get; set; }
         public ICollection<Ad> Ads { get; set; }

@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using API.Services;
 using API.Services.MailService;
 using API.Services.MailService.Template;
+using API.Repositories.UserRepository;
 
 namespace HelpAFamilyOfferAChance.API.Controllers
 {
@@ -20,8 +21,10 @@ namespace HelpAFamilyOfferAChance.API.Controllers
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
         private readonly IEmailService _emailService;
-        public AuthController(DataContext context, ITokenService tokenService, IEmailService emailService )
+        private readonly IUserRepository _userRepository;
+        public AuthController(DataContext context, ITokenService tokenService, IEmailService emailService, IUserRepository userRepository)
         {
+            _userRepository = userRepository;
             _tokenService = tokenService;
             _context = context;
             _emailService = emailService;
@@ -32,7 +35,7 @@ namespace HelpAFamilyOfferAChance.API.Controllers
         {
             if (await UserNameExists(registerDto.Username)) return BadRequest("Exista un utilizator inregistrat cu usernameul introdus de dvs.");
             if (await EmailExists(registerDto.Email)) return BadRequest("Exista un utilizator inregistrat cu emailul introdus de dvs.");
-            if(!EmailValidation(registerDto.Email)) return BadRequest("Emailul introdus nu este valid");
+            if (!EmailValidation(registerDto.Email)) return BadRequest("Emailul introdus nu este valid");
 
             using var hmac = new HMACSHA512();
             var user = new User
@@ -49,12 +52,11 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             ConfirmationEmailTemplate emailTemplate = new ConfirmationEmailTemplate();
             emailTemplate.url = "http://localhost:4200/#/verify-email/" + user.Id;
             emailTemplate.username = user.UserName;
-           
-
             await _emailService.SendConfirmationEmailAsync(user.Email, "Validare cont", emailTemplate);
 
-   
-            return new UserDto{
+
+            return new UserDto
+            {
                 Username = user.UserName,
                 Email = user.Email,
                 Token = _tokenService.CreateToken(user)
@@ -75,7 +77,8 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             {
                 if (computedHash[i] != user.PasswordHash[i]) return Unauthorized("Parola incorecta");
             }
-            return new UserDto{
+            return new UserDto
+            {
                 Username = user.UserName,
                 Email = user.Email,
                 Token = _tokenService.CreateToken(user)
@@ -83,6 +86,9 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             };
 
         }
+
+
+        
 
         private async Task<bool> UserNameExists(string username)
         {
@@ -99,6 +105,7 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             return result;
 
         }
+         
 
 
     }

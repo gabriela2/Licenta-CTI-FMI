@@ -9,10 +9,13 @@ import { EditRatingComponent } from '../ratings/edit-rating/edit-rating.componen
 export class PreventUnsavedChangesForEditRatingGuard implements CanDeactivate<unknown> {
   canDeactivate(
     component: EditRatingComponent): boolean  {
-    if(component.editRating.dirty){
-      return confirm('Continui? Modificarile facute vor fi pierdute');
+      const canDeactivate = component.canDeactivate();
+    if(component.editRating.dirty || !canDeactivate){
+       return confirm('Continui? Modificarile facute vor fi pierdute');
+
     }
+    else{
     return true;
-  }
+  }}
   
 }

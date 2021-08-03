@@ -1,17 +1,23 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
+import { MemberEditComponent } from '../members/member-edit/member-edit.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PreventUnsavedChangesForProfileGuard implements CanDeactivate<unknown> {
   canDeactivate(
-    component: unknown,
-    currentRoute: ActivatedRouteSnapshot,
-    currentState: RouterStateSnapshot,
-    nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+    component: MemberEditComponent):boolean  {
+    if(component.editMemberForm.dirty ||
+      component.editAddressForm.dirty || 
+      component.editBankDetailsForm.dirty ||
+      component.editStripeDetailsForm.dirty){
+      return confirm('Continui? Modificarile facute vor fi pierdute');
+    }
+    else{
+      return true;
+    }
   }
   
 }

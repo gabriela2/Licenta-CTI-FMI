@@ -7,13 +7,14 @@
 
                 <form #editMemberForm='ngForm' id="editMemberForm" (ngSubmit)='updateMember(editMemberForm.value)'
                     autocomplete="off">
-                    <h2 class="text-center text-primary">Editeaza profilul</h2>
+                    <h2 class="text-center text-primary">Editeaza datele personale</h2>
                     <hr>
 
 
                     <div class="text-center">
                         <div class="alert alert-primary" *ngIf="editMemberForm.dirty">
-                            <strong>Atentie: </strong> Au fost facute modificari asupra datelor. Te rugam sa salvezi inainte sa iesi!
+                            <strong>Atentie: </strong> Au fost facute modificari asupra datelor. Te rugam sa salvezi
+                            inainte sa iesi!
                         </div>
                     </div>
 
@@ -21,46 +22,50 @@
 
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-1 d-flex align-items-center">
+                            <div class="col-2 d-flex align-items-center">
                                 <label for='lastName'><strong>Nume</strong></label>
                             </div>
-                            <div class="col-11">
+                            <div class="col-10">
                                 <input required [ngModel]="member.lastName" minlength="2" maxlength="50"
-                                    [pattern]="lastNamePattern" name="lastName" type="text" #lastName="ngModel"
-                                    class="form-control" id="lastName">
+                                    placeholder="Ex: Popescu" [pattern]="lastNamePattern" name="lastName" type="text"
+                                    #lastName="ngModel" class="form-control" id="lastName">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-1">
+                            <div class="col-2">
                             </div>
-                            <div class="col-11">
+                            <div class="col-10">
                                 <div class="alert alert-primary" *ngIf="lastName.touched && !lastName.valid">
-                                    <div *ngIf="lastName.errors.required">Numele de familie trebuie completat.</div>
-                                    <div *ngIf="lastName.errors.pattern">Numele de familie poate contine doar litere si caracterele [, . ' -]</div>
-                                    <div *ngIf="lastName.errors.minlength">Numele de familie trebuie sa aiba minim 2 caractere.</div>
+                                    <div *ngIf="lastName.errors.required">Acest camp trebuie completat!</div>
+                                    <div *ngIf="lastName.errors.pattern">Acest camp poate contine doar litere si
+                                        caracterele [, . ' -]</div>
+                                    <div *ngIf="lastName.errors.minlength">Acest camp trebuie sa aiba minim 2 caractere.
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-1 d-flex align-items-center">
+                            <div class="col-2 d-flex align-items-center">
                                 <label for='firstName'><strong>Prenume</strong></label>
                             </div>
-                            <div class="col-11">
+                            <div class="col-10">
                                 <input required [ngModel]="member.firstName" minlength="2" maxlength="80"
-                                    [pattern]="firstNamePattern" name="firstName" type="text" #firstName="ngModel"
-                                    class="form-control" id="firstName">
+                                    placeholder="Ex: Ion" [pattern]="firstNamePattern" name="firstName" type="text"
+                                    #firstName="ngModel" class="form-control" id="firstName">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-1">
+                            <div class="col-2">
                             </div>
-                            <div class="col-11">
+                            <div class="col-10">
                                 <div class="alert alert-primary" *ngIf="firstName.touched && !firstName.valid">
-                                    <div *ngIf="firstName.errors.required">Prenumele trebuie completat.</div>
-                                    <div *ngIf="firstName.errors.pattern">Prenumele poate contine doar litere si caracterele [, . ' -]</div>
-                                    <div *ngIf="firstName.errors.minlength">Prenumele de familie trebuie sa aiba minim 2 caractere.</div>
+                                    <div *ngIf="firstName.errors.required">Acest camp trebuie completat.</div>
+                                    <div *ngIf="firstName.errors.pattern">Acest camp poate contine doar litere si
+                                        caracterele [, . ' -]</div>
+                                    <div *ngIf="firstName.errors.minlength">Acest camp trebuie sa aiba minim 2
+                                        caractere.</div>
                                 </div>
                             </div>
                         </div>
@@ -68,23 +73,22 @@
 
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-1 d-flex align-items-center">
+                            <div class="col-2 d-flex align-items-center">
                                 <label for='phoneNumber'><strong>Telefon</strong></label>
                             </div>
-                            <div class="col-11">
+                            <div class="col-10">
                                 <input required [ngModel]="member.phoneNumber" minlength="10" maxlength="10"
-                                    [pattern]="phoneNumberPattern" name="phoneNumber" type="text" #phoneNumber="ngModel"
-                                    class="form-control" id="phoneNumber">
+                                    placeholder="Ex: 0721111111" [pattern]="phoneNumberPattern" name="phoneNumber"
+                                    type="text" #phoneNumber="ngModel" class="form-control" id="phoneNumber">
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-1">
+                            <div class="col-2">
                             </div>
-                            <div class="col-11">
+                            <div class="col-10">
                                 <div class="alert alert-primary" *ngIf="phoneNumber.touched && !phoneNumber.valid">
-                                    <div *ngIf="phoneNumber.errors.required">Numarul de telefon trebuie completat.</div>
-                                    <div *ngIf="phoneNumber.errors.minlength">Numarul de telefon trebuie sa aiba {{
-                                        phoneNumber.errors.minlength.requiredLength }} cifre.</div>
+                                    <div *ngIf="phoneNumber.errors.required">Acest camp trebuie completat.</div>
+                                    <div *ngIf="phoneNumber.errors.minlength">Acest camp trebuie sa aiba 10 cifre.</div>
                                     <div *ngIf="phoneNumber.errors.pattern">Te rugam sa introduci un numar de telefon
                                         valid!
                                     </div>
@@ -93,40 +97,34 @@
                         </div>
                     </div>
 
-                    <!-- <div class="form-group">
-                    <div class="row">
-                        <div class="col-1 d-flex align-items-center">
-                            <label for='isOrganisation'><strong>Persoana juridica</strong></label>
-                        </div>
-                        <div class="col-11">
-                            <div class="ml-4">
-                                 <span *ngIf="isOrganization==true">
-                                    <input class="form-check-input blue"  type="radio" value="true" name="isOrganization"  #isOrganization="ngModel"  [(ngModel)]="member.isOrganisation" >
-                                    <label class="mr-4">true</label> 
-                                    <input  class="form-check-input" type="radio" value="false" name="Organization" #Organization="ngModel" [(ngModel)]="member.isOrganisation">
-                                    <label>false</label>
-                                    </span> 
-                            </div>
-                            <div class="ml-4">
-                                <span *ngIf="isOrganization==false">
-                                   <input class="form-check-input blue"  type="radio" value="true" name="isOrganization"  #isOrganization="ngModel"  [(ngModel)]="member.isOrganisation" >
-                                   <label class="mr-4">true</label> 
-                                   <input  class="form-check-input" type="radio" value="true" name="Organization" #Organization="ngModel" [(ngModel)]="member.isOrganisation">
-                                   <label>true</label>
-                                   </span> 
-                           </div>
-        
-                        </div>
-                    </div> -->
-
-
                     <div class="form-group">
                         <div class="row">
-                            <div class="col-1 d-flex align-items-center">
+                            <div class="col-1">
+                                <label for='isOrganisation'><strong>Persoana juridica</strong></label>
+                            </div>
+                            <div class="col-11" style="margin-left: 150px;margin-top: -40px;">
+
+                                <label class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="mode" [value]="true"
+                                        [(ngModel)]="member.isOrganisation">Da
+                                </label>
+                                <label class="form-check-inline">
+                                    <input class="form-check-input" type="radio" name="mode" [value]="false"
+                                        [(ngModel)]="member.isOrganisation">Nu
+                                </label>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group" *ngIf="member.isOrganisation==true">
+                        <div class="row">
+                            <div class="col-2 d-flex align-items-center">
                                 <label for='phoneNumber'><strong>Cod Identificare</strong></label>
                             </div>
-                            <div class="col-11">
-                                <input [ngModel]="member.organizationIdentificationNumber"
+                            <div class="col-10">
+                                <input [ngModel]="member.organizationIdentificationNumber" placeholder="Ex: RO987654"
                                     name="OrganizationIdentificationNumber" type="text"
                                     #OrganizationIdentificationNumber="ngModel" class="form-control"
                                     id="OrganizationIdentificationNumber">
@@ -135,7 +133,9 @@
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center">
-                        <button class="btn btn-primary" type="submit" [class.disabled]="!editMemberForm.valid || !editMemberForm.dirty">Salveaza modificarile!</button>
+                        <button class="btn btn-primary" type="submit"
+                            [class.disabled]="!editMemberForm.valid || !editMemberForm.dirty">Salveaza
+                            modificarile!</button>
 
                     </div>
 
@@ -159,7 +159,8 @@
 
                     <div class="text-center">
                         <div class="alert alert-primary" *ngIf="editAddressForm.dirty">
-                            <strong>Atentie: </strong> Au fost facute modificari asupra datelor. Te rugam sa salvezi inainte sa iesi!
+                            <strong>Atentie: </strong> Au fost facute modificari asupra datelor. Te rugam sa salvezi
+                            inainte sa iesi!
                         </div>
                     </div>
 
@@ -171,8 +172,8 @@
                                 <label for='houseNumber'><strong>Numar</strong></label>
                             </div>
                             <div class="col-11">
-                                <input required [ngModel]="address.houseNumber" name="houseNumber" type="text" #houseNumber="ngModel"
-                                    class="form-control" id="houseNumber">
+                                <input required [ngModel]="address.houseNumber" name="houseNumber" type="text"
+                                    placeholder="Ex: 1A" #houseNumber="ngModel" class="form-control" id="houseNumber">
                             </div>
                         </div>
                         <div class="row">
@@ -194,7 +195,7 @@
                             </div>
                             <div class="col-11">
                                 <input required [ngModel]="address.street" name="street" type="text" #street="ngModel"
-                                    class="form-control" id="street">
+                                    placeholder="Ex:Garofitelor" class="form-control" id="street">
                             </div>
                         </div>
                         <div class="row">
@@ -215,7 +216,7 @@
                             </div>
                             <div class="col-11">
                                 <input required [ngModel]="address.city" name="city" type="text" #city="ngModel"
-                                    class="form-control" id="city">
+                                    placeholder="Ex: Sector 1" class="form-control" id="city">
                             </div>
                         </div>
                         <div class="row">
@@ -235,8 +236,8 @@
                                 <label for='district'><strong>Judet</strong></label>
                             </div>
                             <div class="col-11">
-                                <input required [ngModel]="address.district" name="district" type="text" #district="ngModel"
-                                    class="form-control" id="district">
+                                <input required [ngModel]="address.district" name="district" type="text"
+                                    placeholder="Ex: Bucuresti" #district="ngModel" class="form-control" id="district">
                             </div>
                         </div>
                         <div class="row">
@@ -257,8 +258,8 @@
                                 <label for='country'><strong>Tara</strong></label>
                             </div>
                             <div class="col-11">
-                                <input required [ngModel]="address.country" name="country" type="text" #country="ngModel"
-                                    class="form-control" id="country">
+                                <input required [ngModel]="address.country" name="country" type="text"
+                                    placeholder="Ex: Romania" #country="ngModel" class="form-control" id="country">
                             </div>
                         </div>
                         <div class="row">
@@ -279,8 +280,8 @@
                                 <label for='zipCode'><strong>Cod postal</strong></label>
                             </div>
                             <div class="col-11">
-                                <input required [ngModel]="address.zipCode" name="zipCode" type="text" #zipCode="ngModel"
-                                    class="form-control" id="zipCode">
+                                <input required [ngModel]="address.zipCode" name="zipCode" type="text"
+                                    placeholder="Ex: 013353" #zipCode="ngModel" class="form-control" id="zipCode">
                             </div>
                         </div>
                         <div class="row">
@@ -295,10 +296,12 @@
                     </div>
 
                     <div class="d-flex align-items-center justify-content-center">
-                        <button class="btn btn-primary" type="submit" [class.disabled]="!editAddressForm.valid || !editAddressForm.dirty">Salveaza modificarile!</button>
+                        <button class="btn btn-primary" type="submit"
+                            [class.disabled]="!editAddressForm.valid || !editAddressForm.dirty">Salveaza
+                            modificarile!</button>
 
                     </div>
-                    
+
                 </form>
             </div>
             <div class="col-2"></div>
@@ -307,13 +310,168 @@
     </tab>
 
 
+    <tab heading='Editeaza detaliile bancare'>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8" *ngIf="member">
+
+                <form #editBankDetailsForm='ngForm' id="editBankDetailsForm"
+                    (ngSubmit)='updateBankDetails(editBankDetailsForm.value)' autocomplete="off">
+                    <h2 class="text-center text-primary">Editeaza detaliile bancare</h2>
+                    <hr>
+
+
+                    <div class="text-center">
+                        <div class="alert alert-primary" *ngIf="editBankDetailsForm.dirty">
+                            <strong>Atentie: </strong> Au fost facute modificari asupra datelor. Te rugam sa salvezi
+                            inainte sa iesi!
+                        </div>
+                    </div>
 
 
 
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-2 d-flex align-items-center">
+                                <label for='iban'><strong>Iban</strong></label>
+                            </div>
+                            <div class="col-10">
+                                <input required [ngModel]="member.iban" [pattern]="ibanPattern" name="iban"
+                                    minlength="24" maxlength="24" type="text" placeholder="Ex: RO61INGB0000000000000000"
+                                    #iban="ngModel" class="form-control" id="iban">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                            </div>
+                            <div class="col-10">
+                                <div class="alert alert-primary" *ngIf="iban.touched && !iban.valid">
+                                    <div *ngIf="iban.errors.required">Acest camp trebuie completat!</div>
+                                    <div *ngIf="iban.errors.pattern">Introduceti un cont Iban valid, fara a adauga
+                                        spatii.</div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-2 d-flex align-items-center">
+                                <label for='bank'><strong>Banca la care s-a deschis contul</strong></label>
+                            </div>
+                            <div class="col-10">
+                                <input required [ngModel]="member.bank" maxlength="80" name="bank" type="text"
+                                    placeholder="ING CENTRALA" #bank="ngModel" class="form-control" id="bank">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                            </div>
+                            <div class="col-10">
+                                <div class="alert alert-primary" *ngIf="bank.touched && !bank.valid">
+                                    <div *ngIf="bank.errors.required">Acest camp trebuie completat.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-    <tab heading='Editeaza cont stripe'>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-2 d-flex align-items-center">
+                                <label for='owner'><strong>Numele pe care a fost deschis contul</strong></label>
+                            </div>
+                            <div class="col-10">
+                                <input required [ngModel]="member.owner" maxlength="100" name="owner" type="text"
+                                    placeholder="Ex: Nume Prenume" #owner="ngModel" class="form-control" id="owner">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                            </div>
+                            <div class="col-10">
+                                <div class="alert alert-primary" *ngIf="owner.touched && !owner.valid">
+                                    <div *ngIf="owner.errors.required">Acest camp trebuie completat.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center">
+                        <button class="btn btn-primary" type="submit"
+                            [class.disabled]="!editBankDetailsForm.valid || !editBankDetailsForm.dirty">Salveaza
+                            modificarile!</button>
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-2"></div>
+        </div>
+        
+
+        <div class="row mt-3">
+            <div class="col-2"></div>
+            <div class="col-8" *ngIf="member">
+
+                <form #editStripeDetailsForm='ngForm' id="editStripeDetailsForm"
+                    (ngSubmit)='updateStripeDetails(editStripeDetailsForm.value)' autocomplete="off">
+                    <h2 class="text-center text-primary">Editeaza detaliile contului Stripe</h2>
+
+                    <div class="text-center">
+                        <div class="alert alert-primary" *ngIf="editStripeDetailsForm.dirty">
+                            <strong>Atentie: </strong> Au fost facute modificari asupra datelor. Te rugam sa salvezi
+                            inainte sa iesi!
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <div class="alert alert-primary" *ngIf="member.stripeAccount==null">
+                            <strong>Atentie: </strong> Pentru acest user nu este asociat niciun cont Stripe. Va puteti
+                            adauga un cont apasand <strong (click)="StripeAccount()">aici </strong> .
+                        </div>
+                        Sau completand campul de mai jos...
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-2 d-flex align-items-center">
+                                <label for='stripe'><strong>Cont Stripe</strong></label>
+                            </div>
+                            <div class="col-10">
+                                <input required [ngModel]="member.stripeAccount" name="stripe" type="text" placeholder="Ex: acct_1JKTSKPK64KdoCnq"
+                                    #stripe="ngModel" class="form-control" id="stripe">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                            </div>
+                            <div class="col-10">
+                                <div class="alert alert-primary" *ngIf="stripe.touched && !stripe.valid">
+                                    <div *ngIf="stripe.errors.required">Acest camp trebuie completat!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center">
+                        <button class="btn btn-primary" type="submit" 
+                            [class.disabled]="!editStripeDetailsForm.valid || !editStripeDetailsForm.dirty">Salveaza
+                            modificarile!</button>
+                            <button class='btn btn-primary'
+                            *ngIf="member.stripeLinkWasAccessed==false && member.stripeAccount!=null"
+                            (click)="goToWebsite(this.member.stripeConfigurationLink)">Configureaza contul
+                            Stripe</button>
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-2"></div>
+        </div>
+
     </tab>
 
     <tab heading='Editeaza Poza profil'>

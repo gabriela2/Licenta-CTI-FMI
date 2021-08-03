@@ -9,14 +9,16 @@
         <form #editRating='ngForm' (ngSubmit)="update()" id="editRating">
 
             <h4 class="mt-3"><strong>Rating</strong></h4>
+
             <ng-template form="editRating" #t let-fill="fill">
                 <span class="star" [class.full]="fill === 100">
                     <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
                 </span>
             </ng-template>
-            <ngb-rating class="form-control" 
-            form="editRating" name="rating" [(ngModel)]="rating.rating" 
-            [(rate)]="rating.rating" [starTemplate]="t" [readonly]="false" [max]="5"></ngb-rating>
+            
+            <rating class="form-control" 
+            form="editRating" name="rating" [(ngModel)]="rating.rating"  (rateChange)="ratingChange()"
+            [(rate)]="rating.rating" [starTemplate]="t" [readonly]="false" [max]="5"></rating>
 
 
             <h4 class="mt-3"><strong>Titlu</strong></h4>

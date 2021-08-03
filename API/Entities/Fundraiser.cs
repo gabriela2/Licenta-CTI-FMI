@@ -15,6 +15,7 @@ namespace API.Entities
         public bool IsValidated { get; set; }
         public User User { get; set; }
         public int UserId { get; set; }
+        
         public ICollection<Photo> Photos { get; set; }
         public ICollection<Donation> Donations { get; set; }
         public ICollection<FavouriteList> FavouriteList { get; set; }

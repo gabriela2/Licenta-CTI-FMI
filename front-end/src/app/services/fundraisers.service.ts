@@ -22,4 +22,7 @@ export class FundraisersService {
   put(id: number, fundraiser:Fundraiser) {
     return this.http.put(this.baseUrl + 'fundraisers/' + id, fundraiser);
   }
+  post(fundraiser:Fundraiser) {
+    return this.http.post(this.baseUrl + 'fundraisers/', fundraiser);
+  }
 }

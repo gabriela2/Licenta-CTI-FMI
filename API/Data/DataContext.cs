@@ -25,8 +25,8 @@ namespace HelpAFamilyOfferAChance.API.Data
         public DbSet<Donation> Donations { get; set; }
         public DbSet<Address> Addresses{get;set;}
         public DbSet<FavouriteList> FavouriteList{get;set;}
-        
         public DbSet<UserRating> UserRatings{get;set;}
+        public DbSet<ChangePasswordToken> ChangePasswordTokens { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

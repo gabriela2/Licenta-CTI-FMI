@@ -14,7 +14,6 @@ namespace API.DTOs
         public bool IsValidated { get; set; }
         public int UserId{get;set;}
         public string Url { get; set; }
-        public ICollection<PhotoDto> Photos {get;set;}
-        public ICollection<DonationDto> Donations { get; set; }
+       public ICollection<PhotoDto> Photos { get; set; }
     }
 }

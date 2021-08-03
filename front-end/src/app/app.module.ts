@@ -40,6 +40,8 @@ import { PreventEditReviewByOtherUsersGuard } from './guards/prevent-edit-review
 import {NgxSpinnerModule} from 'ngx-spinner';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { AddFundraiserComponent } from './fundraisers/add-fundraiser/add-fundraiser.component';
+
 
 
 @NgModule({
@@ -67,6 +69,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
     EditRatingComponent,
     AddRatingComponent,
     MemberEditComponent,
+    AddFundraiserComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +86,8 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
     ProgressbarModule.forRoot(),
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+
 
   ],
   providers: [

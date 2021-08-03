@@ -20,6 +20,10 @@ namespace API.DTOs
         public bool IsOrganisation { get; set; }
         public string OrganizationIdentificationNumber{get;set;}
         public string PhotoUrl { get; set; }
+         public string Iban{get;set;}
+        public string Bank{get;set;}
+        public string Owner{get;set;}
+        public bool StripeLinkWasAccessed{get;set;}
 
     }
 }

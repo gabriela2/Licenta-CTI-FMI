@@ -60,6 +60,10 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             member.EmailConfirmed = memberDto.EmailConfirmed;
             member.IsOrganisation = memberDto.IsOrganisation;
             member.OrganizationIdentificationNumber = memberDto.OrganizationIdentificationNumber;
+            member.Owner = memberDto.Owner;
+            member.Iban = memberDto.Iban;
+            member.Bank = memberDto.Bank;
+            member.StripeLinkWasAccessed= memberDto.StripeLinkWasAccessed;
             _userRepository.Update(member);
             if(await _userRepository.SaveAllAsync())return NoContent();
             return BadRequest("Userul nu a putut fi actualizat");

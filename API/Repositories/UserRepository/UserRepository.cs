@@ -20,6 +20,11 @@ namespace API.Repositories.UserRepository
             _mapper = mapper;
         }
 
+        public Task ChangePassword(string newPassword, string token, User user)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public void Delete(User user)
         {
             _context.Users.Remove(user);
@@ -33,6 +38,11 @@ namespace API.Repositories.UserRepository
         public async Task<IEnumerable<MemberDto>> GetMembersAsync()
         {
             return await _context.Users.ProjectTo<MemberDto>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
+        public async Task<User> GetUserByEmailAsync(string email)
+        {
+            return await _context.Users.Where(user=>user.Email==email).SingleOrDefaultAsync();
         }
 
         public async Task<User> GetUserByIdAsync(int id)
@@ -54,6 +64,8 @@ namespace API.Repositories.UserRepository
         {
             return await _context.SaveChangesAsync()>0;
         }
+
+        
 
         public void Update(User user)
         {
