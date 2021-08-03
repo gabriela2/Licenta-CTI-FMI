@@ -1,1 +1,322 @@
-<p>member-edit works!</p>
+<tabset class="member-tabset">
+    <tab heading='Editeaza profil'>
+
+        <div class="row m-2">
+            <div class="col-2"></div>
+            <div class="col-8" *ngIf="member">
+
+                <form #editMemberForm='ngForm' id="editMemberForm" (ngSubmit)='updateMember(editMemberForm.value)'
+                    autocomplete="off">
+                    <h2 class="text-center text-primary">Editeaza profilul</h2>
+                    <hr>
+
+
+                    <div class="text-center">
+                        <div class="alert alert-primary" *ngIf="editMemberForm.dirty">
+                            <strong>Atentie: </strong> Au fost facute modificari asupra datelor. Te rugam sa salvezi inainte sa iesi!
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-1 d-flex align-items-center">
+                                <label for='lastName'><strong>Nume</strong></label>
+                            </div>
+                            <div class="col-11">
+                                <input required [ngModel]="member.lastName" minlength="2" maxlength="50"
+                                    [pattern]="lastNamePattern" name="lastName" type="text" #lastName="ngModel"
+                                    class="form-control" id="lastName">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                                <div class="alert alert-primary" *ngIf="lastName.touched && !lastName.valid">
+                                    <div *ngIf="lastName.errors.required">Numele de familie trebuie completat.</div>
+                                    <div *ngIf="lastName.errors.pattern">Numele de familie poate contine doar litere si caracterele [, . ' -]</div>
+                                    <div *ngIf="lastName.errors.minlength">Numele de familie trebuie sa aiba minim 2 caractere.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-1 d-flex align-items-center">
+                                <label for='firstName'><strong>Prenume</strong></label>
+                            </div>
+                            <div class="col-11">
+                                <input required [ngModel]="member.firstName" minlength="2" maxlength="80"
+                                    [pattern]="firstNamePattern" name="firstName" type="text" #firstName="ngModel"
+                                    class="form-control" id="firstName">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                                <div class="alert alert-primary" *ngIf="firstName.touched && !firstName.valid">
+                                    <div *ngIf="firstName.errors.required">Prenumele trebuie completat.</div>
+                                    <div *ngIf="firstName.errors.pattern">Prenumele poate contine doar litere si caracterele [, . ' -]</div>
+                                    <div *ngIf="firstName.errors.minlength">Prenumele de familie trebuie sa aiba minim 2 caractere.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-1 d-flex align-items-center">
+                                <label for='phoneNumber'><strong>Telefon</strong></label>
+                            </div>
+                            <div class="col-11">
+                                <input required [ngModel]="member.phoneNumber" minlength="10" maxlength="10"
+                                    [pattern]="phoneNumberPattern" name="phoneNumber" type="text" #phoneNumber="ngModel"
+                                    class="form-control" id="phoneNumber">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                                <div class="alert alert-primary" *ngIf="phoneNumber.touched && !phoneNumber.valid">
+                                    <div *ngIf="phoneNumber.errors.required">Numarul de telefon trebuie completat.</div>
+                                    <div *ngIf="phoneNumber.errors.minlength">Numarul de telefon trebuie sa aiba {{
+                                        phoneNumber.errors.minlength.requiredLength }} cifre.</div>
+                                    <div *ngIf="phoneNumber.errors.pattern">Te rugam sa introduci un numar de telefon
+                                        valid!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- <div class="form-group">
+                    <div class="row">
+                        <div class="col-1 d-flex align-items-center">
+                            <label for='isOrganisation'><strong>Persoana juridica</strong></label>
+                        </div>
+                        <div class="col-11">
+                            <div class="ml-4">
+                                 <span *ngIf="isOrganization==true">
+                                    <input class="form-check-input blue"  type="radio" value="true" name="isOrganization"  #isOrganization="ngModel"  [(ngModel)]="member.isOrganisation" >
+                                    <label class="mr-4">true</label> 
+                                    <input  class="form-check-input" type="radio" value="false" name="Organization" #Organization="ngModel" [(ngModel)]="member.isOrganisation">
+                                    <label>false</label>
+                                    </span> 
+                            </div>
+                            <div class="ml-4">
+                                <span *ngIf="isOrganization==false">
+                                   <input class="form-check-input blue"  type="radio" value="true" name="isOrganization"  #isOrganization="ngModel"  [(ngModel)]="member.isOrganisation" >
+                                   <label class="mr-4">true</label> 
+                                   <input  class="form-check-input" type="radio" value="true" name="Organization" #Organization="ngModel" [(ngModel)]="member.isOrganisation">
+                                   <label>true</label>
+                                   </span> 
+                           </div>
+        
+                        </div>
+                    </div> -->
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-1 d-flex align-items-center">
+                                <label for='phoneNumber'><strong>Cod Identificare</strong></label>
+                            </div>
+                            <div class="col-11">
+                                <input [ngModel]="member.organizationIdentificationNumber"
+                                    name="OrganizationIdentificationNumber" type="text"
+                                    #OrganizationIdentificationNumber="ngModel" class="form-control"
+                                    id="OrganizationIdentificationNumber">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center">
+                        <button class="btn btn-primary" type="submit" [class.disabled]="!editMemberForm.valid || !editMemberForm.dirty">Salveaza modificarile!</button>
+
+                    </div>
+
+                </form>
+            </div>
+            <div class="col-2"></div>
+        </div>
+    </tab>
+
+
+    <tab heading='Editeaza adresa'>
+        <div class="row m-2">
+            <div class="col-2"></div>
+            <div class="col-8" *ngIf="address">
+
+                <form #editAddressForm='ngForm' id="editAddressForm" (ngSubmit)='updateAddress(editAddressForm.value)'
+                    autocomplete="off">
+                    <h2 class="text-center text-primary">Editeaza adresa</h2>
+                    <hr>
+
+
+                    <div class="text-center">
+                        <div class="alert alert-primary" *ngIf="editAddressForm.dirty">
+                            <strong>Atentie: </strong> Au fost facute modificari asupra datelor. Te rugam sa salvezi inainte sa iesi!
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-1 d-flex align-items-center">
+                                <label for='houseNumber'><strong>Numar</strong></label>
+                            </div>
+                            <div class="col-11">
+                                <input required [ngModel]="address.houseNumber" name="houseNumber" type="text" #houseNumber="ngModel"
+                                    class="form-control" id="houseNumber">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                                <div class="alert alert-primary" *ngIf="houseNumber.touched && !houseNumber.valid">
+                                    <div *ngIf="houseNumber.errors.required">Acest camp trebuie completat!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-1 d-flex align-items-center">
+                                <label for='street'><strong>Strada</strong></label>
+                            </div>
+                            <div class="col-11">
+                                <input required [ngModel]="address.street" name="street" type="text" #street="ngModel"
+                                    class="form-control" id="street">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                                <div class="alert alert-primary" *ngIf="street.touched && !street.valid">
+                                    <div *ngIf="street.errors.required">Acest camp trebuie completat!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-1 d-flex align-items-center">
+                                <label for='city'><strong>Localitate</strong></label>
+                            </div>
+                            <div class="col-11">
+                                <input required [ngModel]="address.city" name="city" type="text" #city="ngModel"
+                                    class="form-control" id="city">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                                <div class="alert alert-primary" *ngIf="city.touched && !city.valid">
+                                    <div *ngIf="city.errors.required">Acest camp trebuie completat!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-1 d-flex align-items-center">
+                                <label for='district'><strong>Judet</strong></label>
+                            </div>
+                            <div class="col-11">
+                                <input required [ngModel]="address.district" name="district" type="text" #district="ngModel"
+                                    class="form-control" id="district">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                                <div class="alert alert-primary" *ngIf="district.touched && !district.valid">
+                                    <div *ngIf="district.errors.required">Acest camp trebuie completat!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-1 d-flex align-items-center">
+                                <label for='country'><strong>Tara</strong></label>
+                            </div>
+                            <div class="col-11">
+                                <input required [ngModel]="address.country" name="country" type="text" #country="ngModel"
+                                    class="form-control" id="country">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                                <div class="alert alert-primary" *ngIf="country.touched && !country.valid">
+                                    <div *ngIf="country.errors.required">Acest camp trebuie completat!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-1 d-flex align-items-center">
+                                <label for='zipCode'><strong>Cod postal</strong></label>
+                            </div>
+                            <div class="col-11">
+                                <input required [ngModel]="address.zipCode" name="zipCode" type="text" #zipCode="ngModel"
+                                    class="form-control" id="zipCode">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-1">
+                            </div>
+                            <div class="col-11">
+                                <div class="alert alert-primary" *ngIf="zipCode.touched && !zipCode.valid">
+                                    <div *ngIf="zipCode.errors.required">Acest camp trebuie completat!</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center justify-content-center">
+                        <button class="btn btn-primary" type="submit" [class.disabled]="!editAddressForm.valid || !editAddressForm.dirty">Salveaza modificarile!</button>
+
+                    </div>
+                    
+                </form>
+            </div>
+            <div class="col-2"></div>
+        </div>
+
+    </tab>
+
+
+
+
+
+
+
+
+    <tab heading='Editeaza cont stripe'>
+    </tab>
+
+    <tab heading='Editeaza Poza profil'>
+    </tab>
+
+</tabset>

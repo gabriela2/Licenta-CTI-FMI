@@ -49,7 +49,7 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             if(id!= member.Id)
             {
                 return BadRequest("S-a intamplat ceva neasteptat");
-            }
+        }
             
             member.LastName=memberDto.LastName;
             member.FirstName = memberDto.FirstName;

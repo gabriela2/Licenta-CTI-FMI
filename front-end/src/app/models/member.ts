@@ -1,9 +1,3 @@
-import { Ad } from "./ad";
-import { Address } from "./address";
-import { Demand } from "./demand";
-import { Donation } from "./donation";
-import { Fundraiser } from "./fundraiser";
-import { UserRating } from "./userRating";
 
 export default interface Member{
     id:number;

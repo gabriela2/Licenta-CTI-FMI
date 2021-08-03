@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Address } from 'src/app/models/address';
 import Member from 'src/app/models/member';
@@ -12,79 +12,109 @@ import { MembersService } from 'src/app/services/members.service';
   styleUrls: ['./member-edit.component.css']
 })
 export class MemberEditComponent implements OnInit {
+  member: Member;
+  address: Address
+  currentUserId: number;
+  isOrganization: any;
 
+  lastNamePattern = "^[a-zA-Z ,.'-]+$";
+  firstNamePattern = "^[a-zA-Z ,.'-]+$";
+  phoneNumberPattern = "^(07[0-9]{8}|02[0-9]{8}|03[0-9]{8})$"
 
-  editMemberForm :FormGroup;
-  editAddressForm :FormGroup;
+  @ViewChild('editMemberForm') editMemberForm: NgForm;
+  @ViewChild('editAddressForm') editAddressForm: NgForm;
 
-  member:Member;
-  address:Address
-  currentUserId:number;
-
-  @HostListener('window:beforeunload', ['$event']) unloadNotification($event: any) {
-    if (this.editMemberForm.dirty || this.editAddressForm.dirty) {
-      $event.returnValue = true;
-    }
-  }
+  // @HostListener('window:beforeunload', ['$event']) unloadNotification($event: any) {
+  //   if (this.editMemberForm.dirty || this.editAddressForm.dirty) {
+  //     $event.returnValue = true;
+  //   }
+  // }
 
 
   constructor(
-    private memberService:MembersService,
-    private addressService:AddressesService,
-    private toastr:ToastrService,
-    private formBuider:FormBuilder) { }
+    private memberService: MembersService,
+    private addressService: AddressesService,
+    private toastr: ToastrService) {
+    this.currentUserId = parseInt(localStorage.getItem('userId'));
+  }
 
   ngOnInit(): void {
-    this.currentUserId = parseInt(localStorage.getItem('userId'));
-    this.loadMember;
-    this.initializeForm();
+    this.loadMember();
   }
 
-  initializeForm(){
-    this.editMemberForm=this.formBuider.group({
-      lastName:[this.member.lastName,Validators.required],
-      firstName:[this.member.firstName, Validators.required,],
-      phoneNumber:[this.member.phoneNumber, [Validators.required,
-        Validators.pattern('^(?:(?:(?:00\s?|\+)40\s?|0)(?:7\d{2}\s?\d{3}\s?\d{3}|(21|31)\d{1}\s?\d{3}\s?\d{3}|((2|3)[3-7]\d{1})\s?\d{3}\s?\d{3}|(8|9)0\d{1}\s?\d{3}\s?\d{3}))$')]],
-      isOrganisation:[this.member.isOrganisation,Validators.required],
-      organizationIdentificationNumber:[this.member.organizationIdentificationNumber]
-    })
-
-    this.editAddressForm=this.formBuider.group({
-      houseNumber:[this.address.houseNumber,[Validators.required]],
-      street:[this.address.street,[Validators.required]],
-      city:[this.address.city,[Validators.required]],
-      district:[this.address.district,[Validators.required]],
-      country:[this.address.country,[Validators.required]],
-      zipCode:[this.address.zipCode,[Validators.required]],
-
-    })
-  }
-
-  loadMember(){
-    this.memberService.getMember(this.currentUserId).subscribe(member=>{
-      this.member=member;
+  loadMember() {
+    this.memberService.getMember(this.currentUserId).subscribe(member => {
+      this.member = member;
+      this.isOrganization = member.isOrganisation;
       this.loadAddress();
     })
   }
-  loadAddress(){
-    this.addressService.getAddressByUserId(this.member.id).subscribe(address=>{
+
+
+  loadAddress() {
+    this.addressService.getAddressByUserId(this.member.id).subscribe(address => {
       this.address = address;
     })
   }
 
 
-  updateMember(){
-    this.memberService.updateMember(this.member.id, this.member).subscribe();
+  updateMember(form) {
+    var firstName = form.firstName;
+    console.log(firstName);
+
+    var lastName = form.lastName;
+    console.log(lastName);
+
+    var phoneNumber = form.phoneNumber;
+    console.log(phoneNumber);
+    var OrganizationIdentificationNumber = form.OrganizationIdentificationNumber;
+    console.log(OrganizationIdentificationNumber);
+
+    let member = {
+      id: this.member.id,
+      userName: this.member.userName,
+      email: this.member.email,
+      lastName: lastName,
+      firstName: firstName,
+      phoneNumber: phoneNumber,
+      createdAt: this.member.createdAt,
+      lastActivity: new Date(),
+      isOrganisation: OrganizationIdentificationNumber == "" ? false : true,
+      emailConfirmed: this.member.emailConfirmed,
+      stripeAccount: this.member.stripeAccount,
+      stripeConfigurationLink: this.member.stripeConfigurationLink,
+      organizationIdentificationNumber: OrganizationIdentificationNumber == "" ? null : OrganizationIdentificationNumber,
+      photoUrl: this.member.photoUrl
+    }
+    console.log(member);
+    this.memberService.updateMember(member.id, member).subscribe();
     this.toastr.success('Datele utilizatorului au fost actualizate cu success!');
     this.editMemberForm.reset(this.member);
   }
 
-  updateAddress(){
-    this.addressService.updateAddress(this.address.id,this.address).subscribe();
+  updateAddress(form) {
+    var houseNumber = form.houseNumber;
+    var street = form.street;
+    var city = form.city;
+    var district = form.district;
+    var country = form.country;
+    var zipCode = form.zipCode;
+
+
+    let address = {
+      id: this.address.id,
+      houseNumber: houseNumber,
+      street: street,
+      city: city,
+      district: district,
+      country: country,
+      zipCode: zipCode,
+      userId: this.currentUserId
+    }
+    this.addressService.updateAddress(address.id, address).subscribe();
     this.toastr.success('Adresa utilizatorului a fost actualizata cu success!');
-    this.editAddressForm.reset(this.member);
+    this.editAddressForm.reset(this.address);
   }
-  
+
 
 }

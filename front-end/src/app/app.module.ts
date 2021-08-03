@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './home/home.component';
@@ -74,6 +74,7 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot({positionClass: 'toast-bottom-right',preventDuplicates:true}),
     NgbModule,

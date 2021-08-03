@@ -8,9 +8,7 @@ namespace API.Repositories.AddressRepository
     public interface IAddressRepository
     {
         void UpdateAddress(Address address);
-        void DeleteAddress(Address address);
         void AddAddress(Address address);
-
         Task<IEnumerable<AddressDto>> GetAddressesAsync();
         Task<Address> GetAddressByIdAsync(int id);
         Task<AddressDto> GetAddressDtoByIdAsync(int id);

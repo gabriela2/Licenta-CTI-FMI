@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2sBdBevvNSJqgNBxciMMI1OramQjKNV1nYiywmQOJMoYIK7Ly9gNY0dJEVKYrh2HFvWJNM5zp6pljEBMmfgkUg==",
+  "dgSpecHash": "YEVrS3jCkC6WIe3cX1LnlcKEeZ4OLX6T+gn9iL1GLF/cR1bCJewaKVUIubi8Wvh5TGUYOYtFGMeenjPxMt7GxQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Gabi\\Documents\\licenta FMI\\cod-proiect\\HelpAFamilyOfferAChance\\api\\API.csproj",
+  "projectFilePath": "C:\\Users\\Gabi\\Documents\\licenta FMI\\cod-proiect\\HelpAFamilyOfferAChance\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Gabi\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Gabi\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

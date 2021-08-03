@@ -56,7 +56,7 @@ namespace API.Controllers
             address.ZipCode =addressDto.ZipCode;
             _addressRepository.UpdateAddress(address);
             if(await _addressRepository.SaveAllAsync())return NoContent();
-            return BadRequest("Adresa by a putut fi actualizata");
+            return BadRequest("Adresa nu a putut fi actualizata");
         }
 
         [HttpPost]
@@ -73,23 +73,9 @@ namespace API.Controllers
             };
             _addressRepository.AddAddress(model);
              if(await _addressRepository.SaveAllAsync())return NoContent();
-            return BadRequest("Adresa by a putut fi adaugata");
+            return BadRequest("Adresa nu a putut fi adaugata");
         }
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteAddress(int id)
-        {
-            var address = await _addressRepository.GetAddressByIdAsync(id);
-            if(address==null)
-            {
-                return NotFound();
-            }
-            _addressRepository.DeleteAddress(address);
-            if(await _addressRepository.SaveAllAsync())return NoContent();
-            return BadRequest("Adresa by a putut fi stearsa");
-
-        }
-
-
+        
 
     }
 }

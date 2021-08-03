@@ -24,11 +24,6 @@ namespace API.Repositories.AddressRepository
         {
             _context.Addresses.Add(address);
         }
-        
-        public void DeleteAddress(Address address)
-        {
-            _context.Addresses.Remove(address);
-        }
 
         public async Task<Address> GetAddressByIdAsync(int id)
         {
