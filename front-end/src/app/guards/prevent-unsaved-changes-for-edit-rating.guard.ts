@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanDeactivate,} from '@angular/router';
 import { EditRatingComponent } from '../ratings/edit-rating/edit-rating.component';
 
 @Injectable({
@@ -9,10 +8,8 @@ import { EditRatingComponent } from '../ratings/edit-rating/edit-rating.componen
 export class PreventUnsavedChangesForEditRatingGuard implements CanDeactivate<unknown> {
   canDeactivate(
     component: EditRatingComponent): boolean  {
-      const canDeactivate = component.canDeactivate();
-    if(component.editRating.dirty || !canDeactivate){
-       return confirm('Continui? Modificarile facute vor fi pierdute');
-
+    if(component.editRating.dirty){
+       return confirm('Renunti la modificarea acestui review?');
     }
     else{
     return true;

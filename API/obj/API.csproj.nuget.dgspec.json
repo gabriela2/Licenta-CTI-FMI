@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gabi\\Documents\\licenta FMI\\cod-proiect\\HelpAFamilyOfferAChance\\API\\API.csproj": {}
+    "C:\\Users\\Gabi\\Documents\\licenta FMI\\cod-proiect\\HelpAFamilyOfferAChance\\api\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gabi\\Documents\\licenta FMI\\cod-proiect\\HelpAFamilyOfferAChance\\API\\API.csproj": {
+    "C:\\Users\\Gabi\\Documents\\licenta FMI\\cod-proiect\\HelpAFamilyOfferAChance\\api\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gabi\\Documents\\licenta FMI\\cod-proiect\\HelpAFamilyOfferAChance\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\Gabi\\Documents\\licenta FMI\\cod-proiect\\HelpAFamilyOfferAChance\\api\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\Gabi\\Documents\\licenta FMI\\cod-proiect\\HelpAFamilyOfferAChance\\API\\API.csproj",
+        "projectPath": "C:\\Users\\Gabi\\Documents\\licenta FMI\\cod-proiect\\HelpAFamilyOfferAChance\\api\\API.csproj",
         "packagesPath": "C:\\Users\\Gabi\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gabi\\Documents\\licenta FMI\\cod-proiect\\HelpAFamilyOfferAChance\\API\\obj\\",
+        "outputPath": "C:\\Users\\Gabi\\Documents\\licenta FMI\\cod-proiect\\HelpAFamilyOfferAChance\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Gabi\\AppData\\Roaming\\NuGet\\NuGet.Config",

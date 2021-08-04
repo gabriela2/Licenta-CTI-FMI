@@ -42,28 +42,67 @@ namespace HelpAFamilyOfferAChance.API.Controllers
         }
 
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateUser(int id, MemberDto memberDto)
+        [HttpPut("update-profile/{id}")]
+        public async Task<ActionResult> UpdateUserProfile(int id, MemberUpdateProfileDto memberUpdateProfileDto)
         {
-            User member = await _userRepository.GetUserByIdAsync(memberDto.Id);
+            User member = await _userRepository.GetUserByIdAsync(memberUpdateProfileDto.Id);
             if(id!= member.Id)
             {
                 return BadRequest("S-a intamplat ceva neasteptat");
-        }
+            }
+
+            _mapper.Map(memberUpdateProfileDto, member);
             
-            member.LastName=memberDto.LastName;
-            member.FirstName = memberDto.FirstName;
-            member.PhoneNumber = memberDto.PhoneNumber;
-            member.LastActivity = memberDto.LastActivity;
-            member.StripeAccount = memberDto.StripeAccount;
-            member.StripeConfigurationLink = memberDto.StripeConfigurationLink;
-            member.EmailConfirmed = memberDto.EmailConfirmed;
-            member.IsOrganisation = memberDto.IsOrganisation;
-            member.OrganizationIdentificationNumber = memberDto.OrganizationIdentificationNumber;
-            member.Owner = memberDto.Owner;
-            member.Iban = memberDto.Iban;
-            member.Bank = memberDto.Bank;
-            member.StripeLinkWasAccessed= memberDto.StripeLinkWasAccessed;
+            _userRepository.Update(member);
+            if(await _userRepository.SaveAllAsync())return NoContent();
+            return BadRequest("Userul nu a putut fi actualizat");
+        }
+        
+
+        [HttpPut("update-bank/{id}")]
+        public async Task<ActionResult> UpdateUserBankDetails(int id, MemberUpdateBankDetailsDto memberUpdateBankDetailsDto)
+        {
+            User member = await _userRepository.GetUserByIdAsync(memberUpdateBankDetailsDto.Id);
+            if(id!= member.Id)
+            {
+                return BadRequest("S-a intamplat ceva neasteptat");
+            }
+
+            _mapper.Map(memberUpdateBankDetailsDto, member);
+            
+            _userRepository.Update(member);
+            if(await _userRepository.SaveAllAsync())return NoContent();
+            return BadRequest("Userul nu a putut fi actualizat");
+        }
+
+
+        [HttpPut("update-stripe-access/{id}")]
+        public async Task<ActionResult> UpdateUserStripeAccess(int id, MemberUpdateStripeAccessDto memberUpdateStripeAccessDto)
+        {
+            User member = await _userRepository.GetUserByIdAsync(memberUpdateStripeAccessDto.Id);
+            if(id!= member.Id)
+            {
+                return BadRequest("S-a intamplat ceva neasteptat");
+            }
+
+            _mapper.Map(memberUpdateStripeAccessDto, member);
+            
+            _userRepository.Update(member);
+            if(await _userRepository.SaveAllAsync())return NoContent();
+            return BadRequest("Userul nu a putut fi actualizat");
+        }
+
+        [HttpPut("update-stripe-details/{id}")]
+        public async Task<ActionResult> UpdateUserStripeDetails(int id, MemberUpdateStripeDetailsDto memberUpdateStripeDetailsDto)
+        {
+            User member = await _userRepository.GetUserByIdAsync(memberUpdateStripeDetailsDto.Id);
+            if(id!= member.Id)
+            {
+                return BadRequest("S-a intamplat ceva neasteptat");
+            }
+
+            _mapper.Map(memberUpdateStripeDetailsDto, member);
+            
             _userRepository.Update(member);
             if(await _userRepository.SaveAllAsync())return NoContent();
             return BadRequest("Userul nu a putut fi actualizat");

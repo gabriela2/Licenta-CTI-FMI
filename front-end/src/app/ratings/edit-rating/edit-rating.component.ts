@@ -12,8 +12,6 @@ import { UserRatingsService } from "src/app/services/user-ratings.service";
 export class EditRatingComponent implements OnInit {
   ratingId:number;
   rating:UserRating;
-  changed:any = false;
-  ratingnr:number;
   @ViewChild('editRating') editRating:NgForm;
   @HostListener("window:beforeunload", ["$event"])
   beforeUnloadHandler(event: any) {
@@ -25,14 +23,6 @@ export class EditRatingComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private router: Router,
     private userRatingService: UserRatingsService) { }
-
-  canDeactivate(){
-    if(!this.changed){
-      return true;
-    }else{
-      return false;
-    }
-  }
 
   
 
@@ -57,12 +47,6 @@ export class EditRatingComponent implements OnInit {
     this.userRatingService.put(this.rating.id, this.rating).subscribe();
     this.router.navigateByUrl('/member-profile/'+this.rating.receiverId);
     this.editRating.reset(this.rating);
-  }
-
-  ratingChange(  )
-  {
-    debugger
-    this.changed=true;
   }
 
 }

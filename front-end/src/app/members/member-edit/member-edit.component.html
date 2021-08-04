@@ -5,7 +5,7 @@
             <div class="col-2"></div>
             <div class="col-8" *ngIf="member">
 
-                <form #editMemberForm='ngForm' id="editMemberForm" (ngSubmit)='updateMember(editMemberForm.value)'
+                <form #editMemberForm='ngForm' id="editMemberForm" (ngSubmit)='updateMember()'
                     autocomplete="off">
                     <h2 class="text-center text-primary">Editeaza datele personale</h2>
                     <hr>
@@ -26,7 +26,7 @@
                                 <label for='lastName'><strong>Nume</strong></label>
                             </div>
                             <div class="col-10">
-                                <input required [ngModel]="member.lastName" minlength="2" maxlength="50"
+                                <input required [(ngModel)]="member.lastName" minlength="2" maxlength="50"
                                     placeholder="Ex: Popescu" [pattern]="lastNamePattern" name="lastName" type="text"
                                     #lastName="ngModel" class="form-control" id="lastName">
                             </div>
@@ -51,7 +51,7 @@
                                 <label for='firstName'><strong>Prenume</strong></label>
                             </div>
                             <div class="col-10">
-                                <input required [ngModel]="member.firstName" minlength="2" maxlength="80"
+                                <input required [(ngModel)]="member.firstName" minlength="2" maxlength="80"
                                     placeholder="Ex: Ion" [pattern]="firstNamePattern" name="firstName" type="text"
                                     #firstName="ngModel" class="form-control" id="firstName">
                             </div>
@@ -77,7 +77,7 @@
                                 <label for='phoneNumber'><strong>Telefon</strong></label>
                             </div>
                             <div class="col-10">
-                                <input required [ngModel]="member.phoneNumber" minlength="10" maxlength="10"
+                                <input required [(ngModel)]="member.phoneNumber" minlength="10" maxlength="10"
                                     placeholder="Ex: 0721111111" [pattern]="phoneNumberPattern" name="phoneNumber"
                                     type="text" #phoneNumber="ngModel" class="form-control" id="phoneNumber">
                             </div>
@@ -105,11 +105,11 @@
                             <div class="col-11" style="margin-left: 150px;margin-top: -40px;">
 
                                 <label class="form-check-inline">
-                                    <input class="form-check-input" type="radio" name="mode" [value]="true"
+                                    <input class="form-check-input" type="radio" name="isOrganisation" [value]="true"  
                                         [(ngModel)]="member.isOrganisation">Da
                                 </label>
                                 <label class="form-check-inline">
-                                    <input class="form-check-input" type="radio" name="mode" [value]="false"
+                                    <input class="form-check-input" type="radio" name="isOrganisation" [value]="false" 
                                         [(ngModel)]="member.isOrganisation">Nu
                                 </label>
 
@@ -121,13 +121,22 @@
                     <div class="form-group" *ngIf="member.isOrganisation==true">
                         <div class="row">
                             <div class="col-2 d-flex align-items-center">
-                                <label for='phoneNumber'><strong>Cod Identificare</strong></label>
+                                <label for='organizationIdentificationNumber'><strong>Cod Identificare</strong></label>
                             </div>
                             <div class="col-10">
-                                <input [ngModel]="member.organizationIdentificationNumber" placeholder="Ex: RO987654"
-                                    name="OrganizationIdentificationNumber" type="text"
-                                    #OrganizationIdentificationNumber="ngModel" class="form-control"
-                                    id="OrganizationIdentificationNumber">
+                                <input [(ngModel)]="member.organizationIdentificationNumber" placeholder="Ex: RO987654" required
+                                    name="organizationIdentificationNumber" type="text"
+                                    #organizationIdentificationNumber="ngModel" class="form-control"
+                                    id="organizationIdentificationNumber">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2">
+                            </div>
+                            <div class="col-10">
+                                <div class="alert alert-primary" *ngIf="organizationIdentificationNumber.touched && !organizationIdentificationNumber.valid">
+                                    <div *ngIf="organizationIdentificationNumber.errors.required">Acest camp trebuie completat.</div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -151,7 +160,7 @@
             <div class="col-2"></div>
             <div class="col-8" *ngIf="address">
 
-                <form #editAddressForm='ngForm' id="editAddressForm" (ngSubmit)='updateAddress(editAddressForm.value)'
+                <form #editAddressForm='ngForm' id="editAddressForm" (ngSubmit)='updateAddress()'
                     autocomplete="off">
                     <h2 class="text-center text-primary">Editeaza adresa</h2>
                     <hr>
@@ -172,7 +181,7 @@
                                 <label for='houseNumber'><strong>Numar</strong></label>
                             </div>
                             <div class="col-11">
-                                <input required [ngModel]="address.houseNumber" name="houseNumber" type="text"
+                                <input required [(ngModel)]="address.houseNumber" name="houseNumber" type="text"
                                     placeholder="Ex: 1A" #houseNumber="ngModel" class="form-control" id="houseNumber">
                             </div>
                         </div>
@@ -194,7 +203,7 @@
                                 <label for='street'><strong>Strada</strong></label>
                             </div>
                             <div class="col-11">
-                                <input required [ngModel]="address.street" name="street" type="text" #street="ngModel"
+                                <input required [(ngModel)]="address.street" name="street" type="text" #street="ngModel"
                                     placeholder="Ex:Garofitelor" class="form-control" id="street">
                             </div>
                         </div>
@@ -215,7 +224,7 @@
                                 <label for='city'><strong>Localitate</strong></label>
                             </div>
                             <div class="col-11">
-                                <input required [ngModel]="address.city" name="city" type="text" #city="ngModel"
+                                <input required [(ngModel)]="address.city" name="city" type="text" #city="ngModel"
                                     placeholder="Ex: Sector 1" class="form-control" id="city">
                             </div>
                         </div>
@@ -236,7 +245,7 @@
                                 <label for='district'><strong>Judet</strong></label>
                             </div>
                             <div class="col-11">
-                                <input required [ngModel]="address.district" name="district" type="text"
+                                <input required [(ngModel)]="address.district" name="district" type="text"
                                     placeholder="Ex: Bucuresti" #district="ngModel" class="form-control" id="district">
                             </div>
                         </div>
@@ -258,7 +267,7 @@
                                 <label for='country'><strong>Tara</strong></label>
                             </div>
                             <div class="col-11">
-                                <input required [ngModel]="address.country" name="country" type="text"
+                                <input required [(ngModel)]="address.country" name="country" type="text"
                                     placeholder="Ex: Romania" #country="ngModel" class="form-control" id="country">
                             </div>
                         </div>
@@ -280,7 +289,7 @@
                                 <label for='zipCode'><strong>Cod postal</strong></label>
                             </div>
                             <div class="col-11">
-                                <input required [ngModel]="address.zipCode" name="zipCode" type="text"
+                                <input required [(ngModel)]="address.zipCode" name="zipCode" type="text"
                                     placeholder="Ex: 013353" #zipCode="ngModel" class="form-control" id="zipCode">
                             </div>
                         </div>
@@ -316,7 +325,7 @@
             <div class="col-8" *ngIf="member">
 
                 <form #editBankDetailsForm='ngForm' id="editBankDetailsForm"
-                    (ngSubmit)='updateBankDetails(editBankDetailsForm.value)' autocomplete="off">
+                    (ngSubmit)='updateBankDetails()' autocomplete="off">
                     <h2 class="text-center text-primary">Editeaza detaliile bancare</h2>
                     <hr>
 
@@ -336,7 +345,7 @@
                                 <label for='iban'><strong>Iban</strong></label>
                             </div>
                             <div class="col-10">
-                                <input required [ngModel]="member.iban" [pattern]="ibanPattern" name="iban"
+                                <input required [(ngModel)]="member.iban" [pattern]="ibanPattern" name="iban"
                                     minlength="24" maxlength="24" type="text" placeholder="Ex: RO61INGB0000000000000000"
                                     #iban="ngModel" class="form-control" id="iban">
                             </div>
@@ -362,7 +371,7 @@
                                 <label for='bank'><strong>Banca la care s-a deschis contul</strong></label>
                             </div>
                             <div class="col-10">
-                                <input required [ngModel]="member.bank" maxlength="80" name="bank" type="text"
+                                <input required [(ngModel)]="member.bank" maxlength="80" name="bank" type="text"
                                     placeholder="ING CENTRALA" #bank="ngModel" class="form-control" id="bank">
                             </div>
                         </div>
@@ -383,7 +392,7 @@
                                 <label for='owner'><strong>Numele pe care a fost deschis contul</strong></label>
                             </div>
                             <div class="col-10">
-                                <input required [ngModel]="member.owner" maxlength="100" name="owner" type="text"
+                                <input required [(ngModel)]="member.owner" maxlength="100" name="owner" type="text"
                                     placeholder="Ex: Nume Prenume" #owner="ngModel" class="form-control" id="owner">
                             </div>
                         </div>
@@ -438,19 +447,19 @@
                     <div class="form-group">
                         <div class="row">
                             <div class="col-2 d-flex align-items-center">
-                                <label for='stripe'><strong>Cont Stripe</strong></label>
+                                <label for='stripeAccount'><strong>Cont Stripe</strong></label>
                             </div>
                             <div class="col-10">
-                                <input required [ngModel]="member.stripeAccount" name="stripe" type="text" placeholder="Ex: acct_1JKTSKPK64KdoCnq"
-                                    #stripe="ngModel" class="form-control" id="stripe">
+                                <input required [(ngModel)]="member.stripeAccount" name="stripeAccount" type="text" placeholder="Ex: acct_1JKTSKPK64KdoCnq"
+                                    #stripeAccount="ngModel" class="form-control" id="stripeAccount">
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-2">
                             </div>
                             <div class="col-10">
-                                <div class="alert alert-primary" *ngIf="stripe.touched && !stripe.valid">
-                                    <div *ngIf="stripe.errors.required">Acest camp trebuie completat!</div>
+                                <div class="alert alert-primary" *ngIf="stripeAccount.touched && !stripeAccount.valid">
+                                    <div *ngIf="stripeAccount.errors.required">Acest camp trebuie completat!</div>
                                 </div>
                             </div>
                         </div>

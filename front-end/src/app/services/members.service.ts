@@ -19,7 +19,16 @@ export class MembersService {
   getMember(id:number){
     return this.http.get<Member>(this.baseUrl+'users/'+id);
   }
-  updateMember(id:number, member:Member){
-    return this.http.put(this.baseUrl + 'users/' + id, member);
+  updateMemberProfile(id:number, member:Member){
+    return this.http.put(this.baseUrl + 'users/update-profile/' + id, member);
+  }
+  updateMemberBankDetails(id:number, member:Member){
+    return this.http.put(this.baseUrl + 'users/update-bank/' + id, member);
+  }
+  updateMemberStripeAccess(id:number, member:Member){
+    return this.http.put(this.baseUrl + 'users/update-stripe-access/' + id, member);
+  }
+  updateMemberStripeDetails(id:number, member:Member){
+    return this.http.put(this.baseUrl + 'users/update-stripe-details/' + id, member);
   }
 }

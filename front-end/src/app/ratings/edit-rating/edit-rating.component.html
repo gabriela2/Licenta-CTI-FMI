@@ -16,9 +16,9 @@
                 </span>
             </ng-template>
             
-            <rating class="form-control" 
-            form="editRating" name="rating" [(ngModel)]="rating.rating"  (rateChange)="ratingChange()"
-            [(rate)]="rating.rating" [starTemplate]="t" [readonly]="false" [max]="5"></rating>
+            <ngb-rating class="form-control" 
+            form="editRating" name="rating" [(ngModel)]="rating.rating"
+            [(rate)]="rating.rating" [starTemplate]="t" [readonly]="false" [max]="5"></ngb-rating>
 
 
             <h4 class="mt-3"><strong>Titlu</strong></h4>
