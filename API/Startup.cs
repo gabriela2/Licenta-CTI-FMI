@@ -30,7 +30,7 @@ using API.Repositories.UserRatingRepository;
 using API.Repositories.FundraiserRepository;
 using API.Repositories.FavouriteListRepository;
 using API.Services.CloudinaryPhotoService;
-
+using API.Repositories.UserPhotoRepository;
 
 namespace API
 {
@@ -54,6 +54,7 @@ namespace API
             
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IAdRepository, AdRepository>();
+            services.AddScoped<IUserPhotoRepository, UserPhotoRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IDeliveryTypeRepository, DeliveryTypeRepository>();

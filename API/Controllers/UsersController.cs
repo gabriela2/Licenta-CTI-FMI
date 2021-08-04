@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Repositories.UserPhotoRepository;
 using API.Repositories.UserRepository;
 using API.Services.CloudinaryPhotoService;
 using AutoMapper;
@@ -24,8 +25,10 @@ namespace HelpAFamilyOfferAChance.API.Controllers
         private readonly ICloudinaryPhotoService _cloudinaryPhotoService;
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
-        public UsersController(IUserRepository userRepository, IMapper mapper, ICloudinaryPhotoService cloudinaryPhotoService)
+        private readonly IUserPhotoRepository _userPhotoRepository;
+        public UsersController(IUserRepository userRepository, IUserPhotoRepository userPhotoRepository, IMapper mapper, ICloudinaryPhotoService cloudinaryPhotoService)
         {
+            _userPhotoRepository = userPhotoRepository;
 
             _cloudinaryPhotoService = cloudinaryPhotoService;
             _userRepository = userRepository;
@@ -123,20 +126,48 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             var result = await _cloudinaryPhotoService.AddCloudinaryPhotoAsync(file);
             if (result.Error != null) return BadRequest(result.Error.Message);
 
-            var photo =new Photo{
+            var photo = new UserPhoto
+            {
                 Url = result.SecureUrl.AbsoluteUri,
                 PublicId = result.PublicId,
             };
 
-            photo.IsMain=true;
-                
-            user.Photos.Add(photo);
+            if (user.Photo != null)
+            {
+                await _cloudinaryPhotoService.DeleteCloudinaryPhotoAsync(user.Photo.PublicId);
+            }
+
+            user.Photo = photo;
+
 
             if (await _userRepository.SaveAllAsync())
             {
-               return CreatedAtRoute("GetUser", new { id = userId }, _mapper.Map<PhotoDto>(photo));
+                return CreatedAtRoute("GetUser", new { id = userId }, _mapper.Map<UserPhotoDto>(photo));
             }
             return BadRequest("Poza nu a putut fi adaugata");
+        }
+
+        [HttpDelete("delete-photo/")]
+        public async Task<ActionResult> DeletePhoto()
+        {
+            var userId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier)?.Value);
+            User user = await _userRepository.GetUserByIdAsync(userId);
+
+            var photo = user.Photo;
+
+            if (photo == null) return NotFound();
+            if (photo.PublicId != null)
+            {
+                var result = await _cloudinaryPhotoService.DeleteCloudinaryPhotoAsync(photo.PublicId);
+                if (result.Error != null){
+                     return BadRequest(result.Error.Message);
+                }
+            }
+
+            _userPhotoRepository.DeleteUserPhoto(photo);
+
+            if (await _userPhotoRepository.SaveAllAsync()) return NoContent();
+            return BadRequest("Fotografia nu a putut fi stearsa");
         }
 
 

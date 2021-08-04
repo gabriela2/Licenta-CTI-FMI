@@ -42,22 +42,22 @@ namespace API.Repositories.UserRepository
 
         public async Task<User> GetUserByEmailAsync(string email)
         {
-            return await _context.Users.Include(p=>p.Photos).Where(user=>user.Email==email).SingleOrDefaultAsync();
+            return await _context.Users.Include(p=>p.Photo).Where(user=>user.Email==email).SingleOrDefaultAsync();
         }
 
         public async Task<User> GetUserByIdAsync(int id)
         {
-            return await _context.Users.Include(p=>p.Photos).SingleOrDefaultAsync(user =>user.Id==id);
+            return await _context.Users.Include(p=>p.Photo).SingleOrDefaultAsync(user =>user.Id==id);
         }
 
         public async Task<User> GetUserByUsernameAsync(string username)
         {
-            return await _context.Users.Include(p=>p.Photos).SingleOrDefaultAsync(user => user.UserName == username);
+            return await _context.Users.Include(p=>p.Photo).SingleOrDefaultAsync(user => user.UserName == username);
         }
 
         public async Task<IEnumerable<User>> GetUsersAsync()
         {
-            return await _context.Users.Include(p=>p.Photos).ToListAsync();
+            return await _context.Users.Include(p=>p.Photo).ToListAsync();
         }
 
         public async Task<bool> SaveAllAsync()

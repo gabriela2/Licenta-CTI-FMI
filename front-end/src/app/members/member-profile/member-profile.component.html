@@ -4,7 +4,7 @@
             <aside class="col-sm-5 border-right">
                 <article class="mb-3">
                     <div class="user">
-                        <img class="img-user" src="{{member.photoUrl}}" alt="{{member.firstName}} {{member.lastName}}">
+                        <img class="img-user" src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.firstName}} {{member.lastName}}">
                         <div class="info">
                             <span id="name"><i class="fa fa-user" aria-hidden="true"></i>
                                 <Strong>{{member.firstName|titlecase}} {{member.lastName |titlecase}}</Strong>

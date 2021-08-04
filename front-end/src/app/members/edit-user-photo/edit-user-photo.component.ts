@@ -55,15 +55,23 @@ export class EditUserPhotoComponent implements OnInit {
     this.uploader.onSuccessItem = (item, response, status, headers) => {
       if (response) {
         const photo: Photo = JSON.parse(response);
-        this.member.test=photo;
+        this.member.photo=photo;
         console.log(this.member);
-         if (photo.isMain) {
-           this.user.photoUrl = photo.url;
+        this.user.photoUrl = photo.url;
            this.member.photoUrl = photo.url;
            this.authService.setCurrentUser(this.user);
-         }
+        
       }
     }
+  }
+
+  deletePhoto(){
+    this.memberService.deletePhoto().subscribe();
+    this.member.photoUrl = null;
+    this.member.photo=null;
+    this.user.photoUrl=null;
+    this.authService.setCurrentUser(this.user);
+    
   }
 
 

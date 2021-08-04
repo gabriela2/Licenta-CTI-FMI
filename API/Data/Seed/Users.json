@@ -17,10 +17,10 @@
             "Country":"Romania",
             "ZipCode":"12345"
         },
-        "Photos": [{
-            "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
-            "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
-        }],
+        "Photo": {
+            "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215313/pp_qsxedz.jpg",
+            "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215313/pp_qsxedz.jpg"
+        },
         "RatingReceived":[
             {
                 "Rating":4,
@@ -93,10 +93,10 @@
             "Country":"Romania",
             "ZipCode":"12345"
         },
-        "Photos": [{
+        "Photo": {
             "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
             "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
-        }],
+        },
         "RatingReceived":[
             {
                 "Rating":5,
@@ -142,10 +142,10 @@
             "Country":"Romania",
             "ZipCode":"12345"
         },
-        "Photos": [{
+        "Photo": {
             "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
             "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
-        }]
+        }
     },
     {
         "UserName": "megaImage",
@@ -165,10 +165,10 @@
             "Country":"Romania",
             "ZipCode":"12345"
         },
-        "Photos": [{
+        "Photo": {
             "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
             "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
-        }]
+        }
     },
     {
         "UserName": "maria",
@@ -187,10 +187,10 @@
             "Country":"Romania",
             "ZipCode":"12345"
         },
-        "Photos": [{
+        "Photo": {
             "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
             "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
-        }]
+        }
     },
 
     {
@@ -210,10 +210,10 @@
             "Country":"Romania",
             "ZipCode":"12345"
         },
-        "Photos": [{
+        "Photo": {
             "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
             "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
-        }]
+        }
     },
     {
         "UserName": "andreea",
@@ -232,9 +232,9 @@
             "Country":"Romania",
             "ZipCode":"12345"
         },
-        "Photos": [{
+        "Photo": {
             "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
             "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
-        }]
+        }
     }
 ]

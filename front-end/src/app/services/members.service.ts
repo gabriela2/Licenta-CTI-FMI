@@ -31,4 +31,7 @@ export class MembersService {
   updateMemberStripeDetails(id:number, member:Member){
     return this.http.put(this.baseUrl + 'users/update-stripe-details/' + id, member);
   }
+  deletePhoto() {
+    return this.http.delete(this.baseUrl + 'users/delete-photo/');
+  }
 }

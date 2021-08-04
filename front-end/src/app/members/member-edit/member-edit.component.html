@@ -484,7 +484,14 @@
     </tab>
 
     <tab heading='Editeaza Poza profil'>
-        <app-edit-user-photo [member]="member"></app-edit-user-photo>
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <h2 class="text-center text-primary">Editeaza datele personale</h2>
+                <app-edit-user-photo [member]="member"></app-edit-user-photo>
+            </div>
+            <div class="col-2"></div>
+        </div>
     </tab>
 
 </tabset>

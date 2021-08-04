@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import Member from '../models/member';
 import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
+import { MembersService } from '../services/members.service';
 
 @Component({
   selector: 'app-navbar',
@@ -11,10 +13,13 @@ import { AuthService } from '../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  model: any={};
-  constructor(public authService:AuthService,private router: Router) { }
+  member:Member;
+  constructor(public authService:AuthService,private router: Router, private memberService:MembersService) { }
 
   ngOnInit(): void {
+    this.memberService.getMember(parseInt(localStorage.getItem('userId'))).subscribe(response=>{
+      this.member=response;
+    })
     
   }
 

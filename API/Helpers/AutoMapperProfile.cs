@@ -10,12 +10,13 @@ namespace API.Helpers
     {
         public AutoMapperProfile()
         {
-            CreateMap<User, MemberDto>().ForMember(destination => destination.PhotoUrl, options => options.MapFrom(source => source.Photos.FirstOrDefault(photo => photo.IsMain).Url));
+            CreateMap<User, MemberDto>().ForMember(destination => destination.PhotoUrl, options => options.MapFrom(source => source.Photo.Url));
             CreateMap<MemberUpdateProfileDto,User>();
             CreateMap<MemberUpdateBankDetailsDto,User>();
             CreateMap<MemberUpdateStripeAccessDto,User>();
             CreateMap<MemberUpdateStripeDetailsDto,User>();
             CreateMap<Photo, PhotoDto>();
+            CreateMap<UserPhoto, UserPhotoDto>();
 
             CreateMap<Ad, AdDto>()
                 .ForMember(destination => destination.Url, options => options.MapFrom(source => source.Photos.FirstOrDefault(photo => photo.IsMain).Url))

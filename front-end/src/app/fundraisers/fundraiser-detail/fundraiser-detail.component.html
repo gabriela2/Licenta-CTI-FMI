@@ -51,7 +51,7 @@
                     <article class="mb-3">
                         <div class="user">
                             <img class="img-user" routerLink="/member-profile/{{userOwner.id}}"
-                                src="{{userOwner.photoUrl}}" alt="{{userOwner.firstName}} {{userOwner.lastName}}">
+                                src="{{userOwner.photoUrl || './assets/user.png'}}" alt="{{userOwner.firstName}} {{userOwner.lastName}}">
                             <div class="info">
                                 <span id="name" routerLink="/member-profile/{{userOwner.id}}"><i class="fa fa-user"
                                         aria-hidden="true"></i><Strong>{{userOwner.firstName|titlecase}}
