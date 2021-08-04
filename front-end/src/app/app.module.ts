@@ -41,6 +41,8 @@ import {NgxSpinnerModule} from 'ngx-spinner';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { AddFundraiserComponent } from './fundraisers/add-fundraiser/add-fundraiser.component';
+import {FileUploadModule} from "ng2-file-upload";
+import { EditUserPhotoComponent } from './members/edit-user-photo/edit-user-photo.component';
 
 
 
@@ -70,6 +72,8 @@ import { AddFundraiserComponent } from './fundraisers/add-fundraiser/add-fundrai
     AddRatingComponent,
     MemberEditComponent,
     AddFundraiserComponent,
+    EditUserPhotoComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -87,6 +91,8 @@ import { AddFundraiserComponent } from './fundraisers/add-fundraiser/add-fundrai
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     NgxSpinnerModule,
+    FileUploadModule
+    
 
 
   ],

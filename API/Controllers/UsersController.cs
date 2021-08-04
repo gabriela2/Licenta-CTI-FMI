@@ -123,22 +123,18 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             var result = await _cloudinaryPhotoService.AddCloudinaryPhotoAsync(file);
             if (result.Error != null) return BadRequest(result.Error.Message);
 
-            var photo = new Photo
-            {
+            var photo =new Photo{
                 Url = result.SecureUrl.AbsoluteUri,
                 PublicId = result.PublicId,
-                UserId = userId
             };
 
-            if (user.Photos.Count == 0)
-            {
-                photo.IsMain = true;
-            }
-
+            photo.IsMain=true;
+                
             user.Photos.Add(photo);
+
             if (await _userRepository.SaveAllAsync())
             {
-                return CreatedAtRoute("GetUser", new { id = userId }, _mapper.Map<PhotoDto>(photo));
+               return CreatedAtRoute("GetUser", new { id = userId }, _mapper.Map<PhotoDto>(photo));
             }
             return BadRequest("Poza nu a putut fi adaugata");
         }

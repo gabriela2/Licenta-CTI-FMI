@@ -13,6 +13,7 @@ namespace API.Entities
         public Fundraiser Fundraiser{get;set;}
         public int? FundraiserId{get;set;}
         public User User{get;set;}
-        public int? UserId { get; set; }
+        public int? UserId{get;set;}
+        
     }
 }

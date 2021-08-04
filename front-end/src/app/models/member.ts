@@ -15,11 +15,14 @@ export default interface Member{
     stripeConfigurationLink:string;
     organizationIdentificationNumber:string;
     photoUrl:string;
+    publicId:string;
     iban?: string;
     bank?: string;
     owner?: string;
     stripeLinkWasAccessed?:boolean;
-    photos: Photo[];
+    photos:Photo[];
+    test:Photo;
+    
 
     
 

@@ -17,14 +17,15 @@ namespace API.DTOs
         public string StripeAccount { get; set; }
         public string StripeConfigurationLink { get; set; }
         public bool EmailConfirmed { get; set; }
+        public string PhotoUrl{get;set;}
         public bool IsOrganisation { get; set; }
         public string OrganizationIdentificationNumber{get;set;}
-        public string PhotoUrl { get; set; }
-         public string Iban{get;set;}
+        public string Iban{get;set;}
         public string Bank{get;set;}
         public string Owner{get;set;}
         public bool StripeLinkWasAccessed{get;set;}
         public ICollection<PhotoDto> Photos{get;set;}
+       
 
     }
 }
