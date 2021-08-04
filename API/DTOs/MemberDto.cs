@@ -24,6 +24,7 @@ namespace API.DTOs
         public string Bank{get;set;}
         public string Owner{get;set;}
         public bool StripeLinkWasAccessed{get;set;}
+        public ICollection<PhotoDto> Photos{get;set;}
 
     }
 }

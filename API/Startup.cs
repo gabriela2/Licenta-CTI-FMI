@@ -29,6 +29,8 @@ using API.Repositories.DonationRepository;
 using API.Repositories.UserRatingRepository;
 using API.Repositories.FundraiserRepository;
 using API.Repositories.FavouriteListRepository;
+using API.Services.CloudinaryPhotoService;
+
 
 namespace API
 {
@@ -45,6 +47,11 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             services.Configure<StripeKeys>(_config.GetSection("StripePayment"));
+            services.Configure<CloudinaryKeys>(_config.GetSection("Cloudinary"));
+            services.Configure<EmailSettings>(_config.GetSection("EmailSettings"));
+            services.AddTransient<IEmailService, EmailService>();
+            services.AddScoped<ICloudinaryPhotoService, CloudinaryPhotoService>();
+            
             services.AddScoped<ITokenService, TokenService>();
             services.AddScoped<IAdRepository, AdRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
@@ -58,8 +65,6 @@ namespace API
             services.AddScoped<IDonationRepository, DonationRepository>();
             services.AddScoped<IUserRatingRepository,UserRatingRepository>();
             services.AddScoped<IFavouriteListRepository, FavouriteListRepository>();
-            services.Configure<EmailSettings>(_config.GetSection("EmailSettings"));
-            services.AddTransient<IEmailService, EmailService>();
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
             services.AddDbContext<DataContext>(options =>
             {
@@ -86,13 +91,13 @@ namespace API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //app.UseMiddleware<ExceptionMiddleware>();
-             if (env.IsDevelopment())
-             {
-                 app.UseDeveloperExceptionPage();
-                 app.UseSwagger();
-                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
-            }
+            app.UseMiddleware<ExceptionMiddleware>();
+            //  if (env.IsDevelopment())
+            //  {
+            //      app.UseDeveloperExceptionPage();
+            //      app.UseSwagger();
+            //      app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "API v1"));
+            // }
 
             app.UseHttpsRedirection();
 

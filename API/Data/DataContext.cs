@@ -19,7 +19,6 @@ namespace HelpAFamilyOfferAChance.API.Data
         public DbSet<Category> Category { get; set; }
       
         public DbSet<DeliveryType> DeliveryTypes{get;set;}
-        public DbSet<UserPhoto> UserPhotos { get; set; }
         public DbSet<Ad_x_DeliveryType> Ads_X_DeliveryTypes { get; set; }
         public DbSet<Demand> Demands { get; set; }
         public DbSet<Donation> Donations { get; set; }

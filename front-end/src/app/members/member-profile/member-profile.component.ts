@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { Ad } from 'src/app/models/ad';
 import { Address } from 'src/app/models/address';
 import { Fundraiser } from 'src/app/models/fundraiser';
 import Member from 'src/app/models/member';
 import { UserRating } from 'src/app/models/userRating';
-import { EditRatingComponent } from 'src/app/ratings/edit-rating/edit-rating.component';
 import { AddressesService } from 'src/app/services/addresses.service';
 import { AdsService } from 'src/app/services/ads.service';
 import { FundraisersService } from 'src/app/services/fundraisers.service';
@@ -20,25 +18,25 @@ import { UserRatingsService } from 'src/app/services/user-ratings.service';
   styleUrls: ['./member-profile.component.css']
 })
 export class MemberProfileComponent implements OnInit {
-  userId:number;
-  member:Member;
-  address:Address;
+  userId: number;
+  member: Member;
+  address: Address;
   phoneNumber: string = "Suna utilizatorul";
-  ads:Ad[];
-  fundraisers:Fundraiser[];
-  ratings:UserRating[];
+  ads: Ad[];
+  fundraisers: Fundraiser[];
+  ratings: UserRating[];
 
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private memberService: MembersService,
-    private addressService:AddressesService,
+    private addressService: AddressesService,
     private adsService: AdsService,
-    private fundraisersService:FundraisersService,
-    private ratingsService:UserRatingsService,
-    private toastr:ToastrService,
-    private router:Router
-    ) { }
+    private fundraisersService: FundraisersService,
+    private ratingsService: UserRatingsService,
+    private toastr: ToastrService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -60,9 +58,9 @@ export class MemberProfileComponent implements OnInit {
     })
   }
 
-  loadMember(){
-    this.memberService.getMember(this.userId).subscribe(response=>{
-      this.member=response;
+  loadMember() {
+    this.memberService.getMember(this.userId).subscribe(response => {
+      this.member = response;
       // console.log(this.member);
     })
     this.loadAddress();
@@ -71,47 +69,47 @@ export class MemberProfileComponent implements OnInit {
     this.loadRatings();
   }
 
-  loadAds(){
-    this.adsService.getAdsByUserId(this.userId).subscribe(response=>{
-      this.ads=response;
+  loadAds() {
+    this.adsService.getAdsByUserId(this.userId).subscribe(response => {
+      this.ads = response;
       // console.log("this.ads=",this.ads);
     })
   }
 
-  loadFundraisers(){
-    this.fundraisersService.getFundraisersByUserId(this.userId).subscribe(response=>{
-      this.fundraisers=response;
+  loadFundraisers() {
+    this.fundraisersService.getFundraisersByUserId(this.userId).subscribe(response => {
+      this.fundraisers = response;
       // console.log("this.fundraisers=",this.fundraisers);
     })
   }
 
-  loadRatings(){
-    this.ratingsService.getUserRatingsByReceiverId(this.userId).subscribe(response =>{
+  loadRatings() {
+    this.ratingsService.getUserRatingsByReceiverId(this.userId).subscribe(response => {
       this.ratings = response;
       // console.log("this.ratings=",this.ratings);
     }
     )
   }
-  addReview(){
-    var flag= false;
-    var currentUser= parseInt(localStorage.getItem('userId'));
-    for(var item of this.ratings){
-      if(item.senderId==currentUser){
-        flag=true;
+  addReview() {
+    var flag = false;
+    var currentUser = parseInt(localStorage.getItem('userId'));
+    for (var item of this.ratings) {
+      if (item.senderId == currentUser) {
+        flag = true;
       }
     }
 
-    if(currentUser==this.userId){
+    if (currentUser == this.userId) {
       this.toastr.warning("Nu puteti scrie un review pentru propriul cont");
-    }else{
+    } else {
 
-    console.log(flag);
-    if(flag==true){
-      this.toastr.warning("Ati acordat un review pentru acest utilizator! In cazul in care v-ati schimbat opinia, va rugam sa editati review-ul existent.");
-    }else{
-      this.router.navigateByUrl('/add-rating/'+this.userId);
+      console.log(flag);
+      if (flag == true) {
+        this.toastr.warning("Ati acordat un review pentru acest utilizator! In cazul in care v-ati schimbat opinia, va rugam sa editati review-ul existent.");
+      } else {
+        this.router.navigateByUrl('/add-rating/' + this.userId);
+      }
     }
-  }
   }
 
 }

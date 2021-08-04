@@ -25,7 +25,6 @@ namespace HelpAFamilyOfferAChance.API.Entities
         public string Bank{get;set;}
         public string Owner{get;set;}
         public bool StripeLinkWasAccessed{get;set;}
-        public UserPhoto Photo { get; set; }
         public Address Address { get; set; }
         public ICollection<Ad> Ads { get; set; }
         public ICollection<Fundraiser> Fundraisers { get; set; }
@@ -34,6 +33,7 @@ namespace HelpAFamilyOfferAChance.API.Entities
         public ICollection<UserRating> RatingReceived { get; set; }
         public ICollection<UserRating> RatingGiven { get; set; }
         public ICollection<FavouriteList> FavouriteList { get; set; }
+        public ICollection<Photo> Photos{get;set;}
 
 
 

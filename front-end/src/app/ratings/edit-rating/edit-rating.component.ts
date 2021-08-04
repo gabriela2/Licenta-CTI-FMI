@@ -11,7 +11,9 @@ import { UserRatingsService } from "src/app/services/user-ratings.service";
 })
 export class EditRatingComponent implements OnInit {
   ratingId:number;
+  flag=false;
   rating:UserRating;
+  
   @ViewChild('editRating') editRating:NgForm;
   @HostListener("window:beforeunload", ["$event"])
   beforeUnloadHandler(event: any) {
@@ -24,7 +26,10 @@ export class EditRatingComponent implements OnInit {
     private router: Router,
     private userRatingService: UserRatingsService) { }
 
-  
+  canDeactivateFunction(){
+    if(!this.flag)
+    return false;
+    }
 
   ngOnInit(): void {
     this.loadUserRating();

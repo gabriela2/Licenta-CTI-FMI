@@ -8,8 +8,8 @@ import { EditRatingComponent } from '../ratings/edit-rating/edit-rating.componen
 export class PreventUnsavedChangesForEditRatingGuard implements CanDeactivate<unknown> {
   canDeactivate(
     component: EditRatingComponent): boolean  {
-    if(component.editRating.dirty){
-       return confirm('Renunti la modificarea acestui review?');
+    if(component.editRating.dirty || !component.canDeactivateFunction()){
+       return confirm('Esti sigur ca vrei sa continui?');
     }
     else{
     return true;

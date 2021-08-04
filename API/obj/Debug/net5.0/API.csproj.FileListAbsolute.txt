@@ -142,3 +142,4 @@ C:\Users\Gabi\Documents\licenta FMI\cod-proiect\HelpAFamilyOfferAChance\api\obj\
 C:\Users\Gabi\Documents\licenta FMI\cod-proiect\HelpAFamilyOfferAChance\api\obj\Debug\net5.0\API.pdb
 C:\Users\Gabi\Documents\licenta FMI\cod-proiect\HelpAFamilyOfferAChance\api\obj\Debug\net5.0\API.genruntimeconfig.cache
 C:\Users\Gabi\Documents\licenta FMI\cod-proiect\HelpAFamilyOfferAChance\api\obj\Debug\net5.0\API.csproj.AssemblyReference.cache
+C:\Users\Gabi\Documents\licenta FMI\cod-proiect\HelpAFamilyOfferAChance\api\bin\Debug\net5.0\CloudinaryDotNet.dll

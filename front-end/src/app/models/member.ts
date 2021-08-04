@@ -1,3 +1,4 @@
+import { Photo } from "./photo";
 
 export default interface Member{
     id:number;
@@ -18,6 +19,7 @@ export default interface Member{
     bank?: string;
     owner?: string;
     stripeLinkWasAccessed?:boolean;
+    photos: Photo[];
 
     
 
