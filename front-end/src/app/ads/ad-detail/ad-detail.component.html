@@ -59,6 +59,13 @@
                     </span>
 
 
+                    <span *ngIf="ad.quantity== 0">
+                        <div class="alert alert-primary d-flex align-items-center justify-content-center">
+                            <strong>Acest anunt nu mai este valabil! Puteti gasi articole similare selectand pagina de anunturi.</strong>
+                        </div>
+                    </span>
+
+
 
 
                 </article>
@@ -84,6 +91,8 @@
                                     {{userOwner.email}}</span>
                                 <span id="info" *ngIf="address"><i class="fa fa-map-marker" aria-hidden="true"></i>
                                     {{address.city}}, {{address.district}}, {{address.country}}</span>
+                                <span id="info" *ngIf="userOwner.isOrganisation"><i class="fa fa-sitemap" aria-hidden="true"></i>
+                                        Cod CIF: {{userOwner.organizationIdentificationNumber}}</span>
                             </div>
                         </div>
                     </article>
@@ -91,9 +100,12 @@
                         <app-rating-user [member]="userOwner"></app-rating-user>
                     </span>
                 </aside>
+
+                
                 <aside class="col-sm-7 d-flex align-items-center justify-content-center">
                     <div>
                         <button class="btn btn-info mr-3 my-auto"><i class="fa fa-comments" aria-hidden="true"></i> Trimite Mesaj</button>
+
                         <ng-template #tolTemplate>{{content}}</ng-template>
                         <button class="btn btn-info my-auto mr-3" (click)="toggleFavourite()" [tooltip]="tolTemplate" placement="bottom"> 
                             <div [ngClass]="{'red':flag,'normal':!flag}">

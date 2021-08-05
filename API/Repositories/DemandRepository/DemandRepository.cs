@@ -45,6 +45,16 @@ namespace API.Repositories.DemandRepository
             return await _context.Demands.ProjectTo<DemandDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
+        public async Task<IEnumerable<DemandDto>> GetDemandsByAdIdAsync(int id)
+        {
+            return await _context.Demands.Where(demand => demand.AdId==id).ProjectTo<DemandDto>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
+        public async Task<IEnumerable<DemandDto>> GetDemandsByUserIdAsync(int id)
+        {
+            return await _context.Demands.Where(demand => demand.UserId==id).ProjectTo<DemandDto>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
         public async Task<bool> SaveAllAsync()
         {
             return await _context.SaveChangesAsync()>0;

@@ -16,6 +16,8 @@ export interface Ad
     userId:number;
     unitOfMeasure:string;
     category:string;
+    unitOfMeasureId:number;
+    categoryId:number;
     photos: Photo[];
     ad_x_DeliveryType: Ad_x_DeliveryType[];
     demands:Demand[];

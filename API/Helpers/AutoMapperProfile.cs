@@ -22,7 +22,7 @@ namespace API.Helpers
                 .ForMember(destination => destination.Url, options => options.MapFrom(source => source.Photos.FirstOrDefault(photo => photo.IsMain).Url))
                 .ForMember(destination => destination.UnitOfMeasure, options => options.MapFrom(source => source.UnitOfMeasure.Abbreviation))
                 .ForMember(destination => destination.Category, options => options.MapFrom(source => source.Category.Name));
-
+            CreateMap<Ad,AdUpdateDto>();
             CreateMap<Ad_x_DeliveryType, Ad_x_DeliveryTypeDto>()
             .ForMember(destination => destination.DeliveryType, options => options.MapFrom(source => source.DeliveryType.Name));
             CreateMap<Demand, DemandDto>();

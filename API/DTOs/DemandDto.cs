@@ -8,6 +8,7 @@ namespace API.DTOs
         public DateTime CreatedAt { get; set; } 
         public int QuantityRequested { get; set; }
         public bool IsApproved { get; set; }
+        public bool IsDeclined {get;set;}
         public string DeliveryTypeSelected { get; set; }
         public int UserId { get; set; }
         public int AdId { get; set; }

@@ -9,6 +9,7 @@ namespace API.Entities
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public int QuantityRequested { get; set; }
         public bool IsApproved { get; set; }
+        public bool IsDeclined {get;set;}
         public string DeliveryTypeSelected { get; set; }
         public User User { get; set; }
         public int UserId { get; set; }

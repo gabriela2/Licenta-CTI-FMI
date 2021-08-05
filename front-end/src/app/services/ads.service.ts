@@ -22,4 +22,10 @@ export class AdsService {
   put(id: number, ad: Ad) {
     return this.http.put(this.baseUrl + 'ads/' + id, ad);
   }
+  setMainPhoto(adId:number,photoId: number) {
+    return this.http.put(this.baseUrl + 'ads/set-main-photo/'+adId+'/' + photoId, {});
+  }
+  deletePhoto(adId:number,photoId: number) {
+    return this.http.delete(this.baseUrl + 'ads/delete-photo/'+adId+'/' + photoId);
+  }
 }

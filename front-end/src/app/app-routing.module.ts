@@ -1,7 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdDetailComponent } from './ads/ad-detail/ad-detail.component';
+import { AddAdComponent } from './ads/add-ad/add-ad.component';
 import { AdsListComponent } from './ads/ads-list/ads-list.component';
+import { EditAdComponent } from './ads/edit-ad/edit-ad.component';
+import { MyAdsComponent } from './ads/my-ads/my-ads.component';
+import { ViewDemandsComponent } from './ads/view-demands/view-demands.component';
 import { EmailConfirmationComponent } from './email-confirmation/email-confirmation.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
@@ -41,7 +45,10 @@ const routes: Routes = [
       { path: 'member-profile/:id', component: MemberProfileComponent },
       { path: 'ads-list/:id', component: AdDetailComponent },
       { path: 'fundraisers-list/:id', component: FundraiserDetailComponent },
-
+      {path:'my-ads', component:MyAdsComponent},
+      {path:'add-ad', component:AddAdComponent},
+      {path:'view-demands/:id', component:ViewDemandsComponent},
+      {path:'edit-ad/:id', component:EditAdComponent},
     ]
   },
   { path: 'members-list', component: MembersListComponent },

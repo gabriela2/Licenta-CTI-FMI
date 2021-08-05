@@ -19,6 +19,12 @@
                             <p>{{fundraiser.description}} </p>
                         </dd>
                     </dl>
+                    <dl class="item-property" *ngIf="userOwner">
+                        <dt>Detalii bancare</dt>
+                        <p><strong>Iban</strong><br>{{userOwner.iban}}</p>
+                        <p><strong>Sucursala</strong><br>{{userOwner.bank}}</p>
+                        <p><strong>Titular</strong> <br> {{userOwner.owner}}</p>
+                    </dl>
                     <div class="d-flex align-items-center justify-content-center mt-5">
                         <span><strong class="font-weight-bold text-primary" style="font-size:x-large;"> {{fundraiser.currentAmount| number:'.2'}} LEI</strong> stransi din {{fundraiser.targetAmount|number:'.2'}} LEI
                         </span>
@@ -60,6 +66,8 @@
                                     {{userOwner.email}}</span>
                                 <span id="info" *ngIf="address"><i class="fa fa-map-marker" aria-hidden="true"></i>
                                     {{address.city}}, {{address.district}}, {{address.country}}</span>
+                                <span id="info" *ngIf="userOwner.isOrganisation"><i class="fa fa-sitemap" aria-hidden="true"></i>
+                                        Cod CIF: {{userOwner.organizationIdentificationNumber}}</span>
                             </div>
                         </div>
                     </article>

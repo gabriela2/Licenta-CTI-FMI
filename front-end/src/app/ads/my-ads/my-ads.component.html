@@ -1,0 +1,61 @@
+<tabset class="member-tabset">
+<tab heading='Anunturi active'>
+    <div class="row mt-3">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <h2 class="text-center text-primary">Anunturi active</h2>
+        </div>
+        <div class="col-2">
+            <div class="col-1 d-flex flex-row-reverse bd-highlight" style="margin-left:150px">
+                <ng-template #tolTemplate>Adauga anunt</ng-template>
+                <i class="fa fa-plus-circle fa-2x" aria-hidden="true" routerLink='/add-ad' [tooltip]="tolTemplate" placement="bottom"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4" *ngIf="activeAds">
+        
+        <div class="col-12" *ngIf="activeAds.length>0">
+            <span *ngFor="let activeAd of activeAds">
+                <app-ad-card-for-my-ads [ad]="activeAd"></app-ad-card-for-my-ads>
+            </span>
+        </div>
+
+
+        <div class="col-12" *ngIf="activeAds.length==0" >
+            <h2 class="text-center"><strong>Nu aveti niciun anunt activ.</strong></h2>
+        </div>
+
+
+    </div>
+
+</tab>
+
+<tab heading='Anunturi inactive'>
+    <div class="row mt-3">
+        <div class="col-12">
+            <h2 class="text-center text-primary">Anunturi inactive</h2>
+        </div>
+    </div>
+
+    <div class="row mt-4" *ngIf="inactiveAds">
+        <div class="col-12" *ngIf="inactiveAds.length>0">
+            <span *ngFor="let inactiveAd of inactiveAds">
+                <app-ad-card-for-my-ads [ad]="inactiveAd"></app-ad-card-for-my-ads>
+            </span>
+        </div>
+
+
+        <div class="col-12" *ngIf="inactiveAds.length==0" >
+            <h2 class="text-center"><strong>Nu aveti niciun anunt inactiv.</strong></h2>
+        </div>
+
+
+        <div class="col-2"></div>
+    </div>
+
+</tab>
+
+
+
+</tabset>

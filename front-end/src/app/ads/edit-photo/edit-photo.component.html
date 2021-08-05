@@ -1,0 +1,70 @@
+<div class="clasa">
+
+
+<div class="row mt-5">
+
+    <div class="col-3 mt-3">
+
+        <div ng2FileDrop [ngClass]="{'nv-file-over': hasBaseDropZoneOver}" (fileOver)="fileOverBase($event)"
+            [uploader]="uploader" class="card bg-faded p-3 text-center mb-3 my-drop-zone">
+            <i class="fa fa-upload fa-3x"></i>Adauga fisierele aici
+        </div>
+        <input type="file" ng2FileSelect [uploader]="uploader" multiple /><br />
+    </div>
+
+    <div class="col-md-9" style="margin-bottom: 40px">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th width="50%">Nume</th>
+                    <th>Dimensiune</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of uploader.queue">
+                    <td><strong>{{ item?.file?.name }}</strong></td>
+                    <td *ngIf="uploader.options.isHTML5" nowrap>{{ item?.file?.size/1024/1024 | number:'.2' }} MB
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div>
+            <div>
+                Progres:
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" [ngStyle]="{ 'width': uploader.progress + '%' }">
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-around mt-3">
+                <button type="button" class="btn btn-primary" (click)="uploader.uploadAll()">
+                    <span class="fa fa-upload"></span> Incarca fisierele
+                </button>
+                <button type="button" class="btn btn-primary" (click)="uploader.cancelAll()">
+                    <span class="fa fa-ban"></span> Anuleaza
+                </button>
+                <button type="button" class="btn btn-primary" (click)="uploader.clearQueue()">
+                    <span class="fa fa-trash"></span> Sterge fisierele
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="row mb-3">
+
+<div class="card m-2" style="width: 12rem;" *ngFor="let photo of ad.photos">
+    <img class="card-img-top mt-2" src="{{photo.url}}" alt="{{photo.url}}">
+    <ul class="list-inline text-center mt-2">
+        <li class="list-inline-item"><button [disabled]="photo.isMain" (click)="setMainPhoto(photo)" class="btn btn-primary">Main</button></li>
+        <li class="list-inline-item"><button [disabled]="photo.isMain" (click)="deletePhoto(photo.id)" class=" btn btn-primary"><i class="fa fa-times"
+            aria-hidden="true"></i></button></li>
+    </ul>
+</div>
+</div>
+
+</div>

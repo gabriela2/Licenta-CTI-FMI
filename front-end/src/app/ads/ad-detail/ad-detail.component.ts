@@ -183,6 +183,7 @@ export class AdDetailComponent implements OnInit {
       createdAt: new Date(),
       quantityRequested: this.quantityRequested,
       isApproved: false,
+      isDeclined:false,
       deliveryTypeSelected: this.deliveryTypeSelected,
       adId: this.ad.id,
       userId: this.currentUserLogged

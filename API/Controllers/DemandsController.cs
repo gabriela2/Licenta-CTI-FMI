@@ -24,6 +24,20 @@ namespace API.Controllers
             return Ok(demands);
         }
 
+        [HttpGet("get-by-user/{id}")]
+        public async Task<ActionResult<IEnumerable<DemandDto>>> GetDemandsByUserId(int id) 
+        {
+            var demands = await _demandRepository.GetDemandsByUserIdAsync(id);
+            return Ok(demands);
+        }
+
+        [HttpGet("get-by-ad/{id}")]
+        public async Task<ActionResult<IEnumerable<DemandDto>>> GetDemandsByAdId(int id) 
+        {
+            var demands = await _demandRepository.GetDemandsByAdIdAsync(id);
+            return Ok(demands);
+        }
+
 
         [HttpGet("{id}")]
         public async Task<ActionResult<DemandDto>> GetDemand(int id)
@@ -42,6 +56,7 @@ namespace API.Controllers
             }
             demand.QuantityRequested = demandDto.QuantityRequested;
             demand.IsApproved = demandDto.IsApproved;
+            demand.IsDeclined = demandDto.IsDeclined;
             demand.DeliveryTypeSelected = demandDto.DeliveryTypeSelected;
             _demandRepository.UpdateDemand(demand);
             if(await _demandRepository.SaveAllAsync())return NoContent();
@@ -56,6 +71,7 @@ namespace API.Controllers
                 CreatedAt = demandDto.CreatedAt,
                 QuantityRequested = demandDto.QuantityRequested,
                 IsApproved = demandDto.IsApproved,
+                IsDeclined = false,
                 DeliveryTypeSelected = demandDto.DeliveryTypeSelected,
                 UserId = demandDto.UserId,
                 AdId = demandDto.AdId

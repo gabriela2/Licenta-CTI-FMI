@@ -43,6 +43,12 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
 import { AddFundraiserComponent } from './fundraisers/add-fundraiser/add-fundraiser.component';
 import {FileUploadModule} from "ng2-file-upload";
 import { EditUserPhotoComponent } from './members/edit-user-photo/edit-user-photo.component';
+import { MyAdsComponent } from './ads/my-ads/my-ads.component';
+import { AddAdComponent } from './ads/add-ad/add-ad.component';
+import { AdCardForMyAdsComponent } from './ads/ad-card-for-my-ads/ad-card-for-my-ads.component';
+import { EditAdComponent } from './ads/edit-ad/edit-ad.component';
+import { EditPhotoComponent } from './ads/edit-photo/edit-photo.component';
+import { ViewDemandsComponent } from './ads/view-demands/view-demands.component';
 
 
 
@@ -73,6 +79,13 @@ import { EditUserPhotoComponent } from './members/edit-user-photo/edit-user-phot
     MemberEditComponent,
     AddFundraiserComponent,
     EditUserPhotoComponent,
+    MyAdsComponent,
+    AddAdComponent,
+    AdCardForMyAdsComponent,
+    EditAdComponent,
+    EditPhotoComponent,
+    ViewDemandsComponent,
+    
     
   ],
   imports: [

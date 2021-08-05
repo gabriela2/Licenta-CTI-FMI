@@ -1,0 +1,193 @@
+<div class="row m-2">
+    <div class="col-2"></div>
+    <div class="col-8" *ngIf="ad">
+
+        <form #editAdForm='ngForm' id="editAdForm" (ngSubmit)='updateAd()' autocomplete="off" class="mb-4">
+            <h2 class="text-center text-primary">Editeaza anuntul</h2>
+            <hr>
+
+
+            <div class="text-center">
+                <div class="alert alert-primary" *ngIf="editAdForm.dirty">
+                    <strong>Atentie: </strong> Au fost facute modificari asupra datelor. Te rugam sa salvezi
+                    inainte sa iesi!
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2">
+                        <label for='name'><strong>Nume</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <input required [(ngModel)]="ad.name" maxlength="50" placeholder="Ex: Nume produs" name="name"
+                            type="text" #name="ngModel" class="form-control" id="name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-10">
+                        <div class="alert alert-primary" *ngIf="name.touched && !name.valid">
+                            <div *ngIf="name.errors.required">Acest camp trebuie completat!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2 ">
+                        <label for='description'><strong>Descriere</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <textarea required [(ngModel)]="ad.description" minlength="10" maxlength="1000" rows="5"
+                            placeholder="Ex: Descriere" name="description" type="text" #description="ngModel"
+                            class="form-control" id="description"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-10">
+                        <div class="alert alert-primary" *ngIf="description.touched && !description.valid">
+                            <div *ngIf="description.errors.required">Acest camp trebuie completat.</div>
+                            <div *ngIf="description.errors.minlength">Acest camp trebuie sa aiba minim 10
+                                caractere.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2 ">
+                        <label for='category'><strong>Categorie</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <select name="category" class="form-control p-2" [(ngModel)]="ad.category">
+                            <option *ngFor="let category of categoriesName" [value]="category.name">{{category.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2 ">
+                        <label for='unitOfMeasure'><strong>Unitate de masure</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <select name="unitOfMeasure" class="form-control p-2" [(ngModel)]="ad.unitOfMeasure">
+                            <option *ngFor="let unit of unitsOfMeasure" [value]="unit.abbreviation">{{unit.name}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- <div class="form-group">
+                <div class="row">
+                    <div class="col-2 ">
+                        <label for='deliveries'><strong>Livrare</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <span *ngFor="let delivery of deliveryTypes" style="display: block;">
+                            <input class="form-check-input" name="ad_x_DeliveryType" type="checkbox" value="{{delivery.deliveryType}}" [(ngModel)]="selectedTypes" >
+                            <label>{{delivery.name}}</label>
+                        </span>
+                    </div>
+                </div>
+            </div> -->
+
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2 ">
+                        <label for='quantity'><strong>Cantitate</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <input required [(ngModel)]="ad.quantity" name="quantity" type="number" min="0"
+                            max="999999999999" #quantity="ngModel" class="form-control" id="quantity">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-10">
+                        <div class="alert alert-primary" *ngIf="quantity.touched && !quantity.valid">
+                            <div *ngIf="quantity.errors.required">Acest camp trebuie completat.</div>
+                            <div *ngIf="quantity.errors">Acest camp trebuie sa aiba minim 10
+                                caractere.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-1">
+                        <label for='existsLimit'><strong>Exista limita?</strong></label>
+                    </div>
+                    <div class="col-11" style="margin-left: 150px;margin-top: -40px;">
+
+                        <label class="form-check-inline">
+                            <input class="form-check-input" type="radio" name="existsLimit" [value]="true"
+                                [(ngModel)]="ad.existsLimit">Da
+                        </label>
+                        <label class="form-check-inline">
+                            <input class="form-check-input" type="radio" name="existsLimit" [value]="false"
+                                [(ngModel)]="ad.existsLimit">Nu
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group" *ngIf="ad.existsLimit==true">
+                <div class="row">
+                    <div class="col-2 d-flex align-items-center">
+                        <label for='limit'><strong>Limita</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <input [(ngModel)]="ad.limit" required name="limit" type="number" min="1" #limit="ngModel"
+                            class="form-control" id="limit">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-10">
+                        <div class="alert alert-primary" *ngIf="limit.touched && !limit.valid">
+                            <div *ngIf="limit.errors.required">Acest camp trebuie completat.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-center">
+                <button class="btn btn-primary" type="submit"
+                    [class.disabled]="!editAdForm.valid || !editAdForm.dirty">Salveaza
+                    modificarile!</button>
+
+            </div>
+
+
+        </form>
+
+        <app-edit-photo [ad]='ad'></app-edit-photo>
+
+    </div>
+    <div class="col-2"></div>
+</div>
+
+
+

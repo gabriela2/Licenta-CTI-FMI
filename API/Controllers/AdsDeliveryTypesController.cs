@@ -20,7 +20,7 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Ad_x_DeliveryTypeDto>>> GetAdsDeliveryTypes()
+        public async Task<ActionResult<IEnumerable<Ad_x_DeliveryTypeDto>>> GetAdsDeliveryByAsIdTypes()
         {
             var ads_x_deliverieTypes = await _adDeliveryTypeRepository.GetAdsDeliveryTypesAsync();
             return Ok(ads_x_deliverieTypes);

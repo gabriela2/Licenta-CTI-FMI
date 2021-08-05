@@ -13,6 +13,8 @@
                             <span id="info" *ngIf="address"><i class="fa fa-map-marker" aria-hidden="true"></i>
                                 {{address.city}}, {{address.district}}, {{address.country}}
                             </span>
+                            <span id="info" *ngIf="member.isOrganisation"><i class="fa fa-sitemap" aria-hidden="true"></i>
+                                Cod CIF: {{member.organizationIdentificationNumber}}</span>
                         </div>
                     </div>
                 </article>

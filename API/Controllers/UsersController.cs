@@ -144,7 +144,7 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             {
                 return CreatedAtRoute("GetUser", new { id = userId }, _mapper.Map<UserPhotoDto>(photo));
             }
-            return BadRequest("Poza nu a putut fi adaugata");
+            return BadRequest("Fotografia nu a putut fi adaugata");
         }
 
         [HttpDelete("delete-photo/")]

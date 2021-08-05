@@ -209,6 +209,9 @@ namespace API.Data.Migrations
                     b.Property<bool>("IsApproved")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsDeclined")
+                        .HasColumnType("bit");
+
                     b.Property<int>("QuantityRequested")
                         .HasColumnType("int");
 

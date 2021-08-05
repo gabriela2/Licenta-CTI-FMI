@@ -6,8 +6,7 @@ import Member from 'src/app/models/member';
 import { AddressesService } from 'src/app/services/addresses.service';
 import { MembersService } from 'src/app/services/members.service';
 import { PaymentService } from 'src/app/services/payment.service';
-import {FileUploader} from 'ng2-file-upload';
-import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-member-edit',
