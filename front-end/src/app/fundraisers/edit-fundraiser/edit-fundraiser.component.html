@@ -1,0 +1,97 @@
+<div class="row m-2">
+    <div class="col-2"></div>
+    <div class="col-8" *ngIf="fundraiser">
+
+        <form #editFundraiserForm='ngForm' id="editFundraiserForm" (ngSubmit)='updateFundraiser()' autocomplete="off" class="mb-4">
+            <h2 class="text-center text-primary">Editeaza anuntul</h2>
+            <hr>
+
+
+            <div class="text-center">
+                <div class="alert alert-primary" *ngIf="editFundraiserForm.dirty">
+                    <strong>Atentie: </strong> Au fost facute modificari asupra datelor. Te rugam sa salvezi
+                    inainte sa iesi!
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2">
+                        <label for='name'><strong>Nume</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <input required [(ngModel)]="fundraiser.name" maxlength="50" placeholder="Ex: Nume produs" name="name"
+                            type="text" #name="ngModel" class="form-control" id="name">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-10">
+                        <div class="alert alert-primary" *ngIf="name.touched && !name.valid">
+                            <div *ngIf="name.errors.required">Acest camp trebuie completat!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2 ">
+                        <label for='description'><strong>Descriere</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <textarea required [(ngModel)]="fundraiser.description" minlength="10" maxlength="10000" rows="10"
+                            placeholder="Ex: Descriere" name="description" type="text" #description="ngModel"
+                            class="form-control" id="description"></textarea>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-10">
+                        <div class="alert alert-primary" *ngIf="description.touched && !description.valid">
+                            <div *ngIf="description.errors.required">Acest camp trebuie completat.</div>
+                            <div *ngIf="description.errors.minlength">Acest camp trebuie sa aiba minim 10
+                                caractere.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2 ">
+                        <label for='targetAmount'><strong>Suma necesara (RON)</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <input required [(ngModel)]="fundraiser.targetAmount" name="targetAmount" type="number" min="0"
+                            max="999999999999999999999" #targetAmount="ngModel" class="form-control" id="targetAmount">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                    </div>
+                    <div class="col-10">
+                        <div class="alert alert-primary" *ngIf="targetAmount.touched && !targetAmount.valid">
+                            <div *ngIf="targetAmount.errors.required">Acest camp trebuie completat.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-center">
+                <button class="btn btn-primary" type="submit"
+                    [class.disabled]="!editFundraiserForm.valid || !editFundraiserForm.dirty">Salveaza
+                    modificarile!</button>
+
+            </div>
+        </form>
+
+        <app-edit-photo-fundraisers [fundraiser]='fundraiser'></app-edit-photo-fundraisers>
+
+    </div>
+    <div class="col-2"></div>
+</div>

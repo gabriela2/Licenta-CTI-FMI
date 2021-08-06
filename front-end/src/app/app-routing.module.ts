@@ -10,13 +10,18 @@ import { EmailConfirmationComponent } from './email-confirmation/email-confirmat
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { AddFundraiserComponent } from './fundraisers/add-fundraiser/add-fundraiser.component';
+import { EditFundraiserComponent } from './fundraisers/edit-fundraiser/edit-fundraiser.component';
 import { FundraiserDetailComponent } from './fundraisers/fundraiser-detail/fundraiser-detail.component';
 import { FundraisersListComponent } from './fundraisers/fundraisers-list/fundraisers-list.component';
+import { MyFundraisersComponent } from './fundraisers/my-fundraisers/my-fundraisers.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PreventEditAdByOtherUsersGuard } from './guards/prevent-edit-ad-by-other-users.guard';
+import { PreventEditFundraiserByOtherUsersGuard } from './guards/prevent-edit-fundraiser-by-other-users.guard';
 import { PreventEditReviewByOtherUsersGuard } from './guards/prevent-edit-review-by-other-users.guard';
 import { PreventUnsavedChangesForAddRatingGuard } from './guards/prevent-unsaved-changes-for-add-rating.guard';
 import { PreventUnsavedChangesForEditAdGuard } from './guards/prevent-unsaved-changes-for-edit-ad.guard';
+import { PreventUnsavedChangesForEditFundraiserGuard } from './guards/prevent-unsaved-changes-for-edit-fundraiser.guard';
 import { PreventUnsavedChangesForEditRatingGuard } from './guards/prevent-unsaved-changes-for-edit-rating.guard';
 import { PreventUnsavedChangesForProfileGuard } from './guards/prevent-unsaved-changes-for-profile.guard';
 
@@ -48,9 +53,12 @@ const routes: Routes = [
       { path: 'ads-list/:id', component: AdDetailComponent },
       { path: 'fundraisers-list/:id', component: FundraiserDetailComponent },
       {path:'my-ads', component:MyAdsComponent},
+      {path:'my-fundraisers', component:MyFundraisersComponent},
       {path:'add-ad', component:AddAdComponent},
+      {path:'add-fundraiser', component:AddFundraiserComponent},
       {path:'view-demands/:id', component:ViewDemandsComponent},
       {path:'edit-ad/:id', component:EditAdComponent,canDeactivate: [PreventUnsavedChangesForEditAdGuard], canActivate: [PreventEditAdByOtherUsersGuard]},
+      {path:'edit-fundraiser/:id', component:EditFundraiserComponent,canDeactivate: [PreventUnsavedChangesForEditFundraiserGuard], canActivate: [PreventEditFundraiserByOtherUsersGuard]},
     ]
   },
   { path: 'members-list', component: MembersListComponent },

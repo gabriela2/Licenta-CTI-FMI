@@ -12,6 +12,7 @@ namespace API.DTOs
         public double CurrentAmount { get; set; }
         public double TargetAmount { get; set; }
         public bool IsValidated { get; set; }
+        public bool IsRejected { get; set; }
         public int UserId{get;set;}
         public string Url { get; set; }
        public ICollection<PhotoDto> Photos { get; set; }

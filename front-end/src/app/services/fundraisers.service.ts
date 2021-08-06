@@ -25,4 +25,10 @@ export class FundraisersService {
   post(fundraiser:Fundraiser) {
     return this.http.post(this.baseUrl + 'fundraisers/', fundraiser);
   }
+  setMainPhoto(fundraiserId:number,photoId: number) {
+    return this.http.put(this.baseUrl + 'fundraisers/set-main-photo/'+fundraiserId+'/' + photoId, {});
+  }
+  deletePhoto(fundraiserId:number,photoId: number) {
+    return this.http.delete(this.baseUrl + 'fundraisers/delete-photo/'+fundraiserId+'/' + photoId);
+  }
 }

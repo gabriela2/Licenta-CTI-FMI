@@ -51,6 +51,11 @@ import { EditPhotoComponent } from './ads/edit-photo/edit-photo.component';
 import { ViewDemandsComponent } from './ads/view-demands/view-demands.component';
 import { DemandCardApprovedComponent } from './demands/demand-card-approved/demand-card-approved.component';
 import { DemandCardUnapprovedComponent } from './demands/demand-card-unapproved/demand-card-unapproved.component';
+import { MyFundraisersComponent } from './fundraisers/my-fundraisers/my-fundraisers.component';
+import { FundraiserCardForMyFundraisersComponent } from './fundraisers/fundraiser-card-for-my-fundraisers/fundraiser-card-for-my-fundraisers.component';
+import { EditFundraiserComponent } from './fundraisers/edit-fundraiser/edit-fundraiser.component';
+import { ViewDonationsComponent } from './fundraisers/view-donations/view-donations.component';
+import { EditPhotoFundraisersComponent } from './fundraisers/edit-photo-fundraisers/edit-photo-fundraisers.component';
 
 
 
@@ -89,6 +94,11 @@ import { DemandCardUnapprovedComponent } from './demands/demand-card-unapproved/
     ViewDemandsComponent,
     DemandCardApprovedComponent,
     DemandCardUnapprovedComponent,
+    MyFundraisersComponent,
+    FundraiserCardForMyFundraisersComponent,
+    EditFundraiserComponent,
+    ViewDonationsComponent,
+    EditPhotoFundraisersComponent,
     
     
   ],

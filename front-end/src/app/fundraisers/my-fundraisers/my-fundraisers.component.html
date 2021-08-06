@@ -1,0 +1,87 @@
+<tabset class="member-tabset">
+    <tab heading='Strangeri de fonduri active'>
+        <div class="row mt-3">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <h2 class="text-center text-primary">Strangeri de fonduri active active</h2>
+            </div>
+            <div class="col-2">
+                <div class="col-1 d-flex flex-row-reverse bd-highlight" style="margin-left:150px">
+                    <ng-template #tolTemplate>Adauga o strangere de fonduri</ng-template>
+                    <i class="fa fa-plus-circle fa-2x" aria-hidden="true" routerLink='/add-fundraiser' [tooltip]="tolTemplate" placement="bottom"></i>
+                </div>
+            </div>
+        </div>
+    
+        <div class="row mt-4" *ngIf="activeFundraisers">
+            
+            <div class="col-12" *ngIf="activeFundraisers.length>0">
+                <span *ngFor="let activeFundraiser of activeFundraisers">
+                    <app-fundraiser-card-for-my-fundraisers [fundraiser]="activeFundraiser"></app-fundraiser-card-for-my-fundraisers>
+                </span>
+            </div>
+    
+    
+            <div class="col-12" *ngIf="activeFundraisers.length==0" >
+                <h2 class="text-center"><strong>Nu aveti nicio strangere de fonduri activa.</strong></h2>
+            </div>
+    
+    
+        </div>
+    
+    </tab>
+    
+    <tab heading='Strangeri de fonduri in curs de aprobare'>
+        <div class="row mt-3">
+            <div class="col-12">
+                <h2 class="text-center text-primary">Strangeri de fonduri in curs de aprobare</h2>
+            </div>
+        </div>
+    
+        <div class="row mt-4" *ngIf="notApprovedYetFundraisers">
+            <div class="col-12" *ngIf="notApprovedYetFundraisers.length>0">
+                <span *ngFor="let notApprovedYetFundraiser of notApprovedYetFundraisers">
+                    <app-fundraiser-card-for-my-fundraisers [fundraiser]="notApprovedYetFundraiser"></app-fundraiser-card-for-my-fundraisers>
+                </span>
+            </div>
+    
+    
+            <div class="col-12" *ngIf="notApprovedYetFundraisers.length==0" >
+                <h2 class="text-center"><strong>Nu aveti nicio strangere de fonduri in curs de aprobare.</strong></h2>
+            </div>
+    
+    
+            <div class="col-2"></div>
+        </div>
+    
+    </tab>
+
+    <tab heading="Strangeri de fonduri respinse">
+        <div class="row mt-3">
+            <div class="col-12">
+                <h2 class="text-center text-primary">Strangeri de fonduri respinse</h2>
+            </div>
+        </div>
+    
+        <div class="row mt-4" *ngIf="notApprovedYetFundraisers">
+            <div class="col-12" *ngIf="rejectedFundraisers.length>0">
+                <span *ngFor="let rejectedFundraiser of rejectedFundraisers">
+                    <app-fundraiser-card-for-my-fundraisers [fundraiser]="rejectedFundraiser"></app-fundraiser-card-for-my-fundraisers>
+                </span>
+            </div>
+    
+    
+            <div class="col-12" *ngIf="rejectedFundraisers.length==0" >
+                <h2 class="text-center"><strong>Nu aveti nicio strangere de fonduri in curs de aprobare.</strong></h2>
+            </div>
+    
+    
+            <div class="col-2"></div>
+        </div>
+
+    </tab>
+    
+    
+    
+    </tabset>
+    

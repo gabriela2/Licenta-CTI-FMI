@@ -60,9 +60,4 @@ export class MyAdsComponent implements OnInit {
       })
   }
 
-  addNewAd()
-  {
-    this.router.navigateByUrl('/add-ad');
-
-  }
 }

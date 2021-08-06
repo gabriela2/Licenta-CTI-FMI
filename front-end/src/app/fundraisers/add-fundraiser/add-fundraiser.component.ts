@@ -41,6 +41,7 @@ export class AddFundraiserComponent implements OnInit {
     currentAmount: 0,
     targetAmount: form.targetAmount,
     isValidated: false,
+    isRejected:false,
     url: null,
     userId: this.currentUserLogged,
     photos:null

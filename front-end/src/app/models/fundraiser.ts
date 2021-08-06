@@ -9,6 +9,7 @@ export interface Fundraiser {
     currentAmount: number;
     targetAmount: number;
     isValidated: boolean;
+    isRejected:boolean;
     url: string;
     userId: number;
     photos: Photo[];

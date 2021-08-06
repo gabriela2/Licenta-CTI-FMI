@@ -19,7 +19,7 @@ export class FundraisersListComponent implements OnInit {
 
   getFundraisers(){
     this.fundraiserService.getFundraisers().pipe(
-      map(response=> response.filter((fundraiser:Fundraiser)=>fundraiser.isValidated === true))
+      map(response=> response.filter((fundraiser:Fundraiser)=>fundraiser.isValidated === true && fundraiser.isRejected===false ))
     ).subscribe(fundraisers=>{
       this.fundraisers=fundraisers;
     })

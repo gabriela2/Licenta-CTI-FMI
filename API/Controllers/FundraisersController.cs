@@ -3,7 +3,11 @@ using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
 using API.Repositories.FundraiserRepository;
+using API.Repositories.PhotoRepository;
+using API.Services.CloudinaryPhotoService;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -14,8 +18,14 @@ namespace API.Controllers
     public class FundraisersController : ControllerBase
     {
         private readonly IFundraiserRepository _fundraiserRepository;
-        public FundraisersController(IFundraiserRepository fundraiserRepository)
+        private readonly IPhotoRepository _photoRepository;
+        private readonly ICloudinaryPhotoService _cloudinaryPhotoService;
+        private readonly IMapper _mapper;
+        public FundraisersController(IFundraiserRepository fundraiserRepository, IPhotoRepository photoRepository, ICloudinaryPhotoService cloudinaryPhotoService, IMapper mapper)
         {
+            _mapper = mapper;
+            _cloudinaryPhotoService = cloudinaryPhotoService;
+            _photoRepository = photoRepository;
             _fundraiserRepository = fundraiserRepository;
         }
 
@@ -26,7 +36,7 @@ namespace API.Controllers
             return Ok(fundraisers);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}",Name ="GetFundraiser")]
         public async Task<ActionResult<FundraiserDto>> GetFundraiser(int id)
         {
             var fundraiser = await _fundraiserRepository.GetFundraiserDtoByIdAsync(id);
@@ -90,6 +100,75 @@ namespace API.Controllers
             if (await _fundraiserRepository.SaveAllAsync()) return NoContent();
             return BadRequest("Strangerea de fonduri nu a putut fi stearsa");
 
+        }
+
+        [HttpPost("add-photo/{id}")]
+        public async Task<ActionResult<PhotoDto>> AddPhoto(int id, IFormFile file)
+        {
+            Fundraiser fundraiser = await _fundraiserRepository.GetFundraiserByIdAsync(id);
+
+            var result = await _cloudinaryPhotoService.AddCloudinaryPhotoAsync(file);
+
+            if (result.Error != null) return BadRequest(result.Error.Message);
+
+            var photo = new Photo
+            {
+                Url = result.SecureUrl.AbsoluteUri,
+                PublicId = result.PublicId,
+                FundraiserId = id
+            };
+
+            _photoRepository.AddPhoto(photo);
+
+            if (await _photoRepository.SaveAllAsync())
+            {
+                return CreatedAtRoute("GetFundraiser", new { id = fundraiser.Id }, _mapper.Map<PhotoDto>(photo));
+            }
+
+            return BadRequest("Fotografia nu a putut fi adaugata");
+        }
+
+        [HttpDelete("delete-photo/{fundraiserId}/{photoId}")]
+        public async Task<ActionResult> DeletePhoto(int fundraiserId, int photoId)
+        {
+            Fundraiser fundraiser = await _fundraiserRepository.GetFundraiserByIdAsync(fundraiserId);
+
+            Photo photo = await _photoRepository.GetPhotoById(photoId);
+
+            if (photo == null)
+            {
+                return NotFound();
+            }
+            if (photo.PublicId != null)
+            {
+                var result = await _cloudinaryPhotoService.DeleteCloudinaryPhotoAsync(photo.PublicId);
+                if (result.Error != null)
+                {
+                    return BadRequest(result.Error.Message);
+                }
+            }
+
+            _photoRepository.DeletePhoto(photo);
+
+            if (await _photoRepository.SaveAllAsync()) return NoContent();
+            return BadRequest("Fotografia nu a putut fi stearsa");
+        }
+
+        [HttpPut("set-main-photo/{fundraiserId}/{photoId}")]
+        public async Task<ActionResult> SetMainPhoto(int fundraiserId, int photoId)
+        {
+            Fundraiser fundraiser = await _fundraiserRepository.GetFundraiserByIdAsync(fundraiserId);
+            Photo photo = await _photoRepository.GetPhotoById(photoId);
+
+            Photo mainPhoto = await _photoRepository.GetMainPhotoForAd(fundraiser.Id);
+            if (mainPhoto != null)
+            {
+                mainPhoto.IsMain = false;
+            }
+            photo.IsMain = true;
+
+            if (await _photoRepository.SaveAllAsync()) return NoContent();
+            return BadRequest("Fotografia nu a putut fi setata ca find principala");
         }
     }
 }
