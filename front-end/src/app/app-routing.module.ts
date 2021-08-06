@@ -13,8 +13,10 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { FundraiserDetailComponent } from './fundraisers/fundraiser-detail/fundraiser-detail.component';
 import { FundraisersListComponent } from './fundraisers/fundraisers-list/fundraisers-list.component';
 import { AuthGuard } from './guards/auth.guard';
+import { PreventEditAdByOtherUsersGuard } from './guards/prevent-edit-ad-by-other-users.guard';
 import { PreventEditReviewByOtherUsersGuard } from './guards/prevent-edit-review-by-other-users.guard';
 import { PreventUnsavedChangesForAddRatingGuard } from './guards/prevent-unsaved-changes-for-add-rating.guard';
+import { PreventUnsavedChangesForEditAdGuard } from './guards/prevent-unsaved-changes-for-edit-ad.guard';
 import { PreventUnsavedChangesForEditRatingGuard } from './guards/prevent-unsaved-changes-for-edit-rating.guard';
 import { PreventUnsavedChangesForProfileGuard } from './guards/prevent-unsaved-changes-for-profile.guard';
 
@@ -48,7 +50,7 @@ const routes: Routes = [
       {path:'my-ads', component:MyAdsComponent},
       {path:'add-ad', component:AddAdComponent},
       {path:'view-demands/:id', component:ViewDemandsComponent},
-      {path:'edit-ad/:id', component:EditAdComponent},
+      {path:'edit-ad/:id', component:EditAdComponent,canDeactivate: [PreventUnsavedChangesForEditAdGuard], canActivate: [PreventEditAdByOtherUsersGuard]},
     ]
   },
   { path: 'members-list', component: MembersListComponent },

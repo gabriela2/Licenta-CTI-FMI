@@ -50,18 +50,21 @@ namespace API.Controllers
         public async Task<ActionResult> UpdateDemand(int id, DemandDto demandDto)
         {
             Demand demand = await _demandRepository.GetDemandByIdAsync(demandDto.Id);
-            if(id!= demand.Id)
+            if (id != demandDto.Id)
             {
                 return BadRequest("S-a intamplat ceva neasteptat");
             }
-            demand.QuantityRequested = demandDto.QuantityRequested;
+
             demand.IsApproved = demandDto.IsApproved;
             demand.IsDeclined = demandDto.IsDeclined;
             demand.DeliveryTypeSelected = demandDto.DeliveryTypeSelected;
+            demand.QuantityRequested = demandDto.QuantityRequested;
+
             _demandRepository.UpdateDemand(demand);
-            if(await _demandRepository.SaveAllAsync())return NoContent();
-            return BadRequest("Demand-ul nu a putut fi actualizat");
+            if (await _demandRepository.SaveAllAsync()) return NoContent();
+            return BadRequest("Anuntul nu a putut fi actualizat");
         }
+        
 
         [HttpPost]
         public async Task<ActionResult> AddDemand(DemandDto demandDto)
@@ -70,7 +73,7 @@ namespace API.Controllers
             {
                 CreatedAt = demandDto.CreatedAt,
                 QuantityRequested = demandDto.QuantityRequested,
-                IsApproved = demandDto.IsApproved,
+                IsApproved = false,
                 IsDeclined = false,
                 DeliveryTypeSelected = demandDto.DeliveryTypeSelected,
                 UserId = demandDto.UserId,

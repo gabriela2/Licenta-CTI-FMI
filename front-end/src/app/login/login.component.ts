@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
       this.router.navigateByUrl('/ads-list')
     }, error=>{
       console.log(error);
-      this.toatrService.error(error.error);
+      this.toatrService.error("Credentialele nu sunt inregistrate! Te rugam sa incerci din nou. ");
     })
   }
 

@@ -17,6 +17,8 @@ export class MyAdsComponent implements OnInit {
   member:Member;
   activeAds:Ad[];
   inactiveAds:Ad[];
+  currentNoOfDemandsForActive:number = 0;
+  currentNoOfDemandsForInactive:number = 0; 
   
   constructor(private router:Router, private memberService:MembersService, private adService:AdsService) { 
     this.currentUserId = parseInt(localStorage.getItem('userId')); 
@@ -32,6 +34,13 @@ export class MyAdsComponent implements OnInit {
       map( response =>response.filter((ad:Ad)=>ad.isActive ===true && ad.userId===this.currentUserId))
     ).subscribe(ads=>{
         this.activeAds=ads;
+        for(const item of this.activeAds){
+          for(const vara of item.demands){
+            if(vara.isApproved==false){
+              this.currentNoOfDemandsForActive =this.currentNoOfDemandsForActive+1;
+            }
+          }
+        }
       })
   }
 
@@ -40,6 +49,14 @@ export class MyAdsComponent implements OnInit {
       map( response =>response.filter((ad:Ad)=>ad.isActive ===false && ad.userId===this.currentUserId))
     ).subscribe(ads=>{
         this.inactiveAds=ads;
+        for(const item of this.inactiveAds){
+          for(const vara of item.demands){
+            if(vara.isApproved==false){
+              this.currentNoOfDemandsForInactive =this.currentNoOfDemandsForInactive+1;
+            }
+          }
+        }
+        
       })
   }
 

@@ -49,6 +49,8 @@ import { AdCardForMyAdsComponent } from './ads/ad-card-for-my-ads/ad-card-for-my
 import { EditAdComponent } from './ads/edit-ad/edit-ad.component';
 import { EditPhotoComponent } from './ads/edit-photo/edit-photo.component';
 import { ViewDemandsComponent } from './ads/view-demands/view-demands.component';
+import { DemandCardApprovedComponent } from './demands/demand-card-approved/demand-card-approved.component';
+import { DemandCardUnapprovedComponent } from './demands/demand-card-unapproved/demand-card-unapproved.component';
 
 
 
@@ -85,6 +87,8 @@ import { ViewDemandsComponent } from './ads/view-demands/view-demands.component'
     EditAdComponent,
     EditPhotoComponent,
     ViewDemandsComponent,
+    DemandCardApprovedComponent,
+    DemandCardUnapprovedComponent,
     
     
   ],

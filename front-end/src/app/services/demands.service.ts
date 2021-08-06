@@ -18,8 +18,8 @@ export class DemandsService {
   delete(id:number){
     return this.http.delete(this.baseUrl+'demands/'+id);
   }
-  update(id:number, demand:Demand){
-    return this.http.put(this.baseUrl+'demans/'+id,demand);
+  put(id: number, demand: Demand) {
+    return this.http.put(this.baseUrl + 'demands/' + id, demand);
   }
   getDemandsByUserId(id:number){
     return this.http.get<Demand[]>(this.baseUrl+'demans/get-by-user/'+id);

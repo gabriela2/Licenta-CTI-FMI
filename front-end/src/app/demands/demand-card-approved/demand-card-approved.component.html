@@ -1,0 +1,38 @@
+<div class="row mb-3">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class="card mb-3" [ngClass]="{'bg-light':this.demand.isDeclined==true}">
+            <div class="row">
+                <div class="col-5 border-right">
+                    <div class="user mt-4 ml-2" *ngIf="member && address">
+                        <img class="img-user" src="{{member.photoUrl || './assets/user.png'}}"
+                            alt="{{member.firstName}} {{member.lastName}}">
+                        <div class="info">
+                            <span id="name"><i class="fa fa-user" aria-hidden="true"></i>
+                                <Strong>{{member.firstName|titlecase}} {{member.lastName |titlecase}}</Strong>
+                            </span>
+                            <span id="info"><i class="fa fa-envelope" aria-hidden="true"></i>{{member.email}}</span>
+                            <span id="info"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                                {{address.city}}, {{address.district}}, {{address.country}}
+                            </span>
+                            <span id="info" *ngIf="member.isOrganisation"><i class="fa fa-sitemap"
+                                    aria-hidden="true"></i>
+                                Cod CIF: {{member.organizationIdentificationNumber}}</span>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-7 mt-4">
+                    <p class="card-text"><strong>Tipul de livrare selectat: </strong>{{demand.deliveryTypeSelected}}</p>
+                    <p class="card-text"><strong>Cantitatea ceruta: </strong>{{demand.quantityRequested}}</p>
+                    <p class="card-text" *ngIf="demand.isDeclined==true"><strong>Status: </strong>Respinsa</p>
+                    <p class="card-text" *ngIf="demand.isDeclined==false"><strong>Status: </strong>Aprobata</p>
+                </div>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Cererea a fost creata pe {{demand.createdAt| date:'dd/MM/yyyy'}}</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>

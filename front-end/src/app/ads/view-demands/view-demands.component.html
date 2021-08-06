@@ -1,1 +1,38 @@
-<p>view-demands works!</p>
+<tabset class="member-tabset">
+    <tab heading="Cereri neaprobate">
+        <div class="row mt-3">
+            <h2 class="text-center text-primary">Cereri neaprobate</h2>
+        </div>
+        <div class="row" *ngIf="unapprovedDemands.length>0">
+            <span *ngFor="let item of unapprovedDemands">
+                <app-demand-card-unapproved [demand]="item"></app-demand-card-unapproved>
+            </span>
+            
+        </div>
+
+
+        <div class="row" *ngIf="unapprovedDemands.length==0">
+            <h2 class="d-flex align-items-center justify-content-center"><strong>Nu exista cereri neaprobate!</strong></h2>
+            <p class="d-flex align-items-center justify-content-center">Pentru acest anunt nu exista nicio cerere neaprobata pana in prezent.</p>
+        </div>
+    </tab>
+
+
+    <tab heading="Lista cereri">
+        <div class="row mt-3">
+            <h2 class="text-center text-primary">Lista cereri</h2>
+        </div>
+        <div class="row mt-3" *ngIf="demands.length>0">
+            <span *ngFor="let item of demands">
+                <app-demand-card-approved [demand]="item"></app-demand-card-approved>
+
+            </span>
+
+        </div>
+        <div class="row" *ngIf="demands.length==0">
+            <h2 class="d-flex align-items-center justify-content-center"><strong>Nu exista cereri!</strong></h2>
+            <p class="d-flex align-items-center justify-content-center">Pentru acest anunt nu exista nicio cerere
+                revizuita pana in prezent.</p>
+        </div>
+    </tab>
+</tabset>

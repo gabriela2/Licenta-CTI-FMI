@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -6,7 +6,9 @@ import { Ad } from 'src/app/models/ad';
 import { Ad_x_DeliveryType } from 'src/app/models/ad_x_deliveryType';
 import { Category } from 'src/app/models/category';
 import { DeliveryType } from 'src/app/models/deliveryType';
+import { HelperDelivery } from 'src/app/models/HelperDelivery';
 import { UnitOfMeasure } from 'src/app/models/unitOfMeasure';
+import { AdsDeliveryTypesService } from 'src/app/services/ads-delivery-types.service';
 import { AdsService } from 'src/app/services/ads.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { DeliveryTypesService } from 'src/app/services/delivery-types.service';
@@ -19,89 +21,153 @@ import { UnitsOfMeasureService } from 'src/app/services/units-of-measure.service
 })
 export class EditAdComponent implements OnInit {
 
-  ad:Ad;
-  adId:number;
-  categoriesName:Category[];
-  unitsOfMeasure:UnitOfMeasure[];
+  ad: Ad;
+  adId: number;
+  categoriesName: Category[];
+  unitsOfMeasure: UnitOfMeasure[];
   deliveryTypes: DeliveryType[];
-  categoryId:number;
-  unitOfMeasureId:number;
-  selectedTypes:Ad_x_DeliveryType[];
+  categoryId: number;
+  unitOfMeasureId: number;
+  ad_x_DeliveryType: Ad_x_DeliveryType[] = [];
+  list: HelperDelivery[] = [];
+  InitialList: HelperDelivery[] = [];
+  objectToAd:Ad_x_DeliveryType;
+
 
   @ViewChild('editAdForm') editAdForm: NgForm;
 
   constructor(
     private adService: AdsService,
     private route: ActivatedRoute,
-    private categoryService:CategoriesService,
-    private unitOfMeasureService:UnitsOfMeasureService,
-    private deliveryTypeService:DeliveryTypesService,
+    private categoryService: CategoriesService,
+    private unitOfMeasureService: UnitsOfMeasureService,
+    private deliveryTypeService: DeliveryTypesService,
     private toastr: ToastrService,
-    ) { }
+    private adDeliveryService:AdsDeliveryTypesService
+  ) { }
+
+
 
   ngOnInit(): void {
     this.loadAd();
     this.loadCategories();
     this.loadUnitsOfMeasure();
-    this.loadDeliveryType();
   }
 
-  loadAd(){
+
+  @HostListener("window:beforeunload", ["$event"])
+  beforeUnloadHandler(event: any) {
+    if (this.editAdForm.dirty) {
+      event.returnValue = true;
+    }
+  }
+
+  loadAd() {
     this.route.params.subscribe((params) => {
       this.adId = params['id'];
     })
-    console.log("this.adId = ", this.adId);
-    this.adService.getAd(this.adId).subscribe(response=>{
-      this.ad=response;
-      this.selectedTypes = this.ad.ad_x_DeliveryType;
+    this.adService.getAd(this.adId).subscribe(response => {
+      this.ad = response;
+      this.ad_x_DeliveryType = this.ad.ad_x_DeliveryType;
 
-      console.log('this.selectedTypes', this.selectedTypes);
-
-      console.log(this.ad);
+      for(const item of this.ad_x_DeliveryType){
+        var obj = { id: item.deliveryTypeId, name: item.deliveryType, checked: true };
+        this.InitialList.push(obj);
+      }
+      console.log("InitialList", this.InitialList);
+      this.loadDeliveryType();
     })
   }
 
-  updateAd(){
-    if(this.ad.existsLimit===false){
-      this.ad.limit=null;
+  updateAd() {
+    if (this.ad.existsLimit === false) {
+      this.ad.limit = null;
     }
-    for(const item of this.categoriesName){
-      if(item.name==this.ad.category){
-        this.categoryId=item.id;
+    for (const item of this.categoriesName) {
+      if (item.name == this.ad.category) {
+        this.categoryId = item.id;
       }
     }
-    console.log(this.categoryId);
-    console.log(this.ad);
-    this.ad.categoryId=this.categoryId;
-    for(const item of this.unitsOfMeasure){
-      if(item.abbreviation==this.ad.unitOfMeasure){
-        this.unitOfMeasureId=item.id;
+    this.ad.categoryId = this.categoryId;
+    for (const item of this.unitsOfMeasure) {
+      if (item.abbreviation == this.ad.unitOfMeasure) {
+        this.unitOfMeasureId = item.id;
       }
     }
-    this.ad.unitOfMeasureId=this.unitOfMeasureId;
-    this.adService.put(this.ad.id,this.ad).subscribe();
+    this.ad.unitOfMeasureId = this.unitOfMeasureId;
+    this.adService.put(this.ad.id, this.ad).subscribe();
     this.toastr.success('Anuntul a fost actualizat cu success!');
     this.editAdForm.reset(this.ad)
   }
 
-  loadCategories(){
-    this.categoryService.getCategories().subscribe(response=>{
-      this.categoriesName=response;
-      console.log(this.categoriesName);
+  loadCategories() {
+    this.categoryService.getCategories().subscribe(response => {
+      this.categoriesName = response;
     })
   }
 
-  loadUnitsOfMeasure(){
-    this.unitOfMeasureService.getUnitsOfMeasure().subscribe(response=>{
+  loadUnitsOfMeasure() {
+    this.unitOfMeasureService.getUnitsOfMeasure().subscribe(response => {
       this.unitsOfMeasure = response;
-      console.log(this.unitsOfMeasure)
     })
   }
 
-  loadDeliveryType(){
-    this.deliveryTypeService.getDeliveryTypes().subscribe(response=>{
+  loadDeliveryType() {
+    this.deliveryTypeService.getDeliveryTypes().subscribe(response => {
       this.deliveryTypes = response;
-      console.log(this.deliveryTypes);
+      for (const del of this.deliveryTypes) {
+        for (const delad of this.ad_x_DeliveryType) {
+          if (del.name == delad.deliveryType) {
+            var obj = { id: del.id, name: del.name, checked: true };
+            this.list.push(obj);
+          }
+        }
+      }
+      for (const variabila of this.deliveryTypes) {
+        if (!this.list.find(e => e.name === variabila.name)) {
+          var obj = { id: variabila.id, name: variabila.name, checked: false };
+          this.list.push(obj);
+        }
+      }
+      console.log("this.list", this.list)
+
     })
   }
-}
+
+
+
+  get NoOfSelectedDeliveryType() {
+    return this.list.filter(x => x.checked);
+  }
+  
+
+  saveDeliveryTypes() {
+    console.log(this.list.filter(x => x.checked));
+      for(const item2 of this.list.filter(x => x.checked)){
+        if (!this.ad_x_DeliveryType.find(e => e.deliveryTypeId === item2.id)) {
+          // console.log(item2,"nu era pana acum");
+          var objectToAdd={
+            id:0,
+            deliveryTypeId:item2.id,
+            deliveryType:item2.name,
+            adId:this.adId
+          };
+          this.adDeliveryService.post(objectToAdd).subscribe();
+        }
+      }
+
+      for(const item of this.ad_x_DeliveryType){
+        if (!this.list.filter(x => x.checked).find(e => e.id === item.deliveryTypeId)) {
+          // console.log(item,"a fost si nu mai este");
+          this.adDeliveryService.delete(item.id).subscribe();
+        }
+      }
+
+      this.toastr.success('Anuntul a fost actualizat cu success!');
+      window.location.reload();
+     
+    }
+
+
+  }
+
