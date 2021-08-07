@@ -13,8 +13,7 @@ export class PreventEditAdByOtherUsersGuard implements CanActivate {
   ad:Ad;
   currentUserLogged: number;
   adId: number;
-  senderId: number;
-
+  
   constructor(private adService: AdsService,
     private toastrService: ToastrService,) { }
 

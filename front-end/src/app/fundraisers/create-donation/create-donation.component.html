@@ -1,0 +1,105 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">Doneaza pentru <strong>{{fundraiser.name}}</strong></h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <form #paymentForm="ngForm" id="paymentForm" (ngSubmit)="pay()" autocomplete="off" class="mb-4">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-2">
+                    <label for="amount">Suma</label>
+                </div>
+                <div class="col-3">
+                    <input type="number" [(ngModel)]="payment.amount" name="amount" min="2" #amount="ngModel" required
+                        class="form-control validate" />
+                </div>
+                <div class="col-7">
+                    LEI
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-2">
+                </div>
+                <div class="col-10">
+                    <div *ngIf="amount.touched && !amount.valid">
+                        <div *ngIf="amount.errors.required">Acest camp trebuie completat!</div>
+                        <div *ngIf="amount.errors.min">Suma minima care poate fi transferata este 2 LEI !</div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-2">
+                    <label for="name">Nume</label>
+                </div>
+                <div class="col-10">
+                    <input type="text" [(ngModel)]="donator.name" name="name" #name="ngModel" required
+                        class=" form-control validate" />
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-2">
+                </div>
+                <div class="col-10">
+                    <div *ngIf="name.touched && !name.valid">
+                        <div *ngIf="name.errors.required">Acest camp trebuie completat!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+        <div class="row">
+            <div class="col-2">
+                <label for="description">Descriere</label>
+            </div>
+            <div class="col-10">
+                <input type="text" [(ngModel)]="donator.description" name="description" #description="ngModel" required
+                    class="form-control validate" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-10">
+                <div *ngIf="description.touched && !description.valid">
+                    <div *ngIf="description.errors.required">Acest camp trebuie completat!</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<div class="form-group">
+
+        <div class="row mt-3">
+            <label class="col-2" for="card-element">Detaliile cardului</label>
+            <div class="col-10" id="card-element"></div></div>
+            <div class="row">
+            <div id="card-errors" role="alert"></div>
+        </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6 d-flex align-items-center justify-content-center">
+            <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Cancel</button>
+            </div>
+            <div class="col-6 d-flex align-items-center justify-content-center">
+    <button type="submit" id="paymentForm" class="btn  btn-primary" [class.disabled]="!paymentForm.valid || !paymentForm.dirty">Submit</button>
+        </div>
+        </div>
+
+    </form>
+</div>

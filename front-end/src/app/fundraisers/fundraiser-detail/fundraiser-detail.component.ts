@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Address } from 'src/app/models/address';
 import { Fundraiser } from 'src/app/models/fundraiser';
 import Member from 'src/app/models/member';
@@ -12,6 +12,8 @@ import { MembersService } from 'src/app/services/members.service';
 import { ProgressbarConfig } from 'ngx-bootstrap/progressbar';
 import { FavouriteList } from 'src/app/models/favouriteList';
 import { FavouriteListService } from 'src/app/services/favourite-list.service';
+import { CreateDonationComponent } from '../create-donation/create-donation.component';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 
 @Component({
@@ -37,13 +39,17 @@ export class FundraiserDetailComponent implements OnInit {
   currentUserLogged: number;
   content :string;
 
+  bsModalRef: BsModalRef;
+
   constructor(
     private fundraiserService: FundraisersService,
     private route: ActivatedRoute,
     private addressService: AddressesService,
     private memberService: MembersService,
     private config:ProgressbarConfig,
-    private favouriteListService: FavouriteListService
+    private favouriteListService: FavouriteListService,
+    private modalService:BsModalService
+
   ) { 
     config.animate=true;
   }
@@ -157,6 +163,13 @@ export class FundraiserDetailComponent implements OnInit {
     })
   }
 
-
-
+  doneaza(fundraiser:Fundraiser){
+    const configurationsForModal={
+      class:'modal-dialog-centered',
+      initialState:{
+        fundraiser
+      }
+    }
+    this.bsModalRef = this.modalService.show(CreateDonationComponent, configurationsForModal);
+}
 }

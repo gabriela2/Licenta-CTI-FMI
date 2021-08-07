@@ -1,5 +1,5 @@
 export class Payment{
-    public tokenId:string;
-    public email: string;
+    public token:string;
+    public description: string;
     public amount: number;
 }

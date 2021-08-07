@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
@@ -11,28 +11,18 @@ import { Transfer } from '../models/transfer';
 export class PaymentService {
 
   baseUrl = environment.apiUrl;
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  createConnectedExpressAccount(id:number){
-    return this.http.post(this.baseUrl+'Stripe/CreateConnectedExpressAccount/'+id,{}).pipe(map((response:any)=>response));
-  }
-  getListOfPayments(){
-    return this.http.get(this.baseUrl+'Stripe/GetPayments');
+  createConnectedExpressAccount(id: number) {
+    return this.http.post(this.baseUrl + 'Stripe/express-account/' + id, {});
   }
 
-  createPayment(payment:Payment){
-    payment.amount = Number.parseFloat(payment.amount.toString());
-    const data = JSON.stringify(payment);
-    return this.http.post(this.baseUrl+'Stripe/CreateCharges',data).subscribe();
+  createPayment(payment: Payment) {
+    return this.http.post(this.baseUrl + 'Stripe/charge', payment);
   }
 
-  transferPayment(payment:Transfer){
-    payment.amount=Number.parseFloat(payment.amount.toString());
-    return this.http.post(this.baseUrl+'Stripe/TransferPayment',payment).subscribe();
+  transferPayment(payment: Transfer) {
+    return this.http.post(this.baseUrl + 'Stripe/transfer', payment);
   }
 
-  refundPayment(chargeId:string){
-    const data = JSON.stringify(chargeId);
-    return this.http.post(this.baseUrl+'Stripe/RefundPayment', data).subscribe();
-  }
 }

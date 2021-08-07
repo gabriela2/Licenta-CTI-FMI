@@ -1,15 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
-using System.Transactions;
-using API.Entities;
 using API.Helpers;
 using API.Repositories.UserRepository;
 using HelpAFamilyOfferAChance.API.Entities;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Stripe;
@@ -31,116 +25,76 @@ namespace Help.Controllers
         }
 
 
-        [HttpGet("GetBalance")]
-
-        public async Task<IActionResult> GetBalance()
+        [HttpPost("charge")]
+        public async Task<ActionResult> AddCharges([FromBody] API.Helpers.Charge model)
         {
-            var service = new BalanceService();
-            Balance balance = await service.GetAsync();
-            return new OkObjectResult(new { success = "true", bal = balance.Object });
-        }
-
-        [HttpGet("GetPayments")]
-        public async Task<IActionResult> GetPayments()
-        {
-            var options = new ChargeListOptions
+            var curstomerCreateOption = new CustomerCreateOptions
             {
-                Limit = 1000
+                Source = model.Token,
             };
-            var service = new ChargeService();
-            StripeList<Charge> charges = await service.ListAsync(options);
-            return new OkObjectResult(new { success = "true", payments = charges });
-        }
+            var customersService = new CustomerService();
+            var customer = customersService.Create(curstomerCreateOption);
 
 
-        [HttpPost("CreateCharges")]
-        public async Task<IActionResult> CreateCharges([FromBody] CreateChargeModel model)
-        {
-            if (!ModelState.IsValid)
+            var chargeCreateOptions = new ChargeCreateOptions
             {
-                return BadRequest(ModelState);
-            }
-            var customers = new CustomerService();
-            var customer = customers.Create(
-                new CustomerCreateOptions{
-                    Email = model.Email,
-                    Source = model.TokenId,
-                }
-            );
-
-            var options = new ChargeCreateOptions{
                 Amount = (int)(model.Amount * 100),
-                Currency = "usd",
-                Description = "Test Charge",
+                Currency = "ron",
+                Description = model.Description,
                 Customer = customer.Id,
-                ReceiptEmail = model.Email
             };
-            var service = new ChargeService();
-            await service.CreateAsync(options);
-            return new OkObjectResult(new { Success = "true", message = "Payment Received." });
+            var chargeService = new ChargeService();
+            await chargeService.CreateAsync(chargeCreateOptions);
+            return NoContent();
         }
 
 
-        [HttpPost("RefundPayment")]
-        public async Task<ActionResult> RefundPayment([FromBody] string chargeId) 
-        {
-            var refunds = new RefundService();
-            var refundOptions = new RefundCreateOptions
-            {
-                Charge = chargeId
-            };
-            var refund = await refunds.CreateAsync(refundOptions);
-            return new OkObjectResult(new { Success = "true" });
-        }
 
-
-        [HttpPost("CreateConnectedExpressAccount/{id}")]
+        [HttpPost("express-account/{id}")]
         public async Task<ActionResult> CreateConnectedExpressAccount(int id)
         {
 
-            var options = new AccountCreateOptions
+            var accountCreateOptions = new AccountCreateOptions
             {
                 Type = "express",
             };
 
-            var service = new AccountService();
-            var account = service.Create(options);
+            var accountService = new AccountService();
+            var account = accountService.Create(accountCreateOptions);
 
-            var linkOptions = new AccountLinkCreateOptions
+            var accountLinkCreateOptions = new AccountLinkCreateOptions
             {
                 Account = account.Id,
                 RefreshUrl = "https://example.com/reauth",
                 ReturnUrl = "https://example.com/return",
                 Type = "account_onboarding",
             };
-            var linkService = new AccountLinkService();
-            var accountLink = linkService.Create(linkOptions);
+            var accountLinkService = new AccountLinkService();
+            var accountLink = accountLinkService.Create(accountLinkCreateOptions);
 
             User user = _userRepository.GetUserByIdAsync(id).Result;
             user.StripeAccount = account.Id;
             user.StripeConfigurationLink = accountLink.Url;
             _userRepository.Update(user);
-             if(await _userRepository.SaveAllAsync())return new OkObjectResult(new { id = account.Id, link = accountLink.ToJson() });
+            if (await _userRepository.SaveAllAsync()) return Ok(new { id = account.Id, link = accountLink });
             return BadRequest("Userul nu a putut fi actualizat");
-
-            // return new OkObjectResult(new { id = account.Id, link = accountLink.ToJson() });
         }
 
 
-        [HttpPost("TransferPayment")]
-        public Object TransferPayment([FromBody] TransferModel model)
+        [HttpPost("transfer")]
+        public async Task<ActionResult> Transfer([FromBody] API.Helpers.Transfer transfer)
         {
-            
-            var options = new TransferCreateOptions
+
+            var transferCreateOptions = new TransferCreateOptions
             {
-                Amount = (int)(model.Amount * 100),
+                Amount = (int)(transfer.Amount * 100),
                 Currency = "ron",
-                Destination = model.ConnectedStripeAccountId
+                Destination = transfer.StripeAccount
             };
 
-            var service = new TransferService();
-            var Transfer = service.Create(options);
-            return Transfer.StripeResponse;
+            var transferService = new TransferService();
+            await transferService.CreateAsync(transferCreateOptions);
+            return NoContent();
         }
     }
 }

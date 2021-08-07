@@ -1,4 +1,4 @@
 export class Transfer{
-    public connectedStripeAccountId:string;
+    public stripeAccount:string;
     public amount:number;
 }

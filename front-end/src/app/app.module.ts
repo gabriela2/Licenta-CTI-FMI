@@ -56,6 +56,7 @@ import { FundraiserCardForMyFundraisersComponent } from './fundraisers/fundraise
 import { EditFundraiserComponent } from './fundraisers/edit-fundraiser/edit-fundraiser.component';
 import { ViewDonationsComponent } from './fundraisers/view-donations/view-donations.component';
 import { EditPhotoFundraisersComponent } from './fundraisers/edit-photo-fundraisers/edit-photo-fundraisers.component';
+import { CreateDonationComponent } from './fundraisers/create-donation/create-donation.component';
 
 
 
@@ -99,6 +100,7 @@ import { EditPhotoFundraisersComponent } from './fundraisers/edit-photo-fundrais
     EditFundraiserComponent,
     ViewDonationsComponent,
     EditPhotoFundraisersComponent,
+    CreateDonationComponent,
     
     
   ],
@@ -124,7 +126,7 @@ import { EditPhotoFundraisersComponent } from './fundraisers/edit-photo-fundrais
 
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
     PreventEditReviewByOtherUsersGuard,
