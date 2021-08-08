@@ -1,1 +1,181 @@
-<p>add-ad works!</p>
+<div class="row mt-2">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <form [formGroup]='addAdForm' (ngSubmit)="addAd()" autocomplete="off">
+            <h2 class="text-center text-primary">Adauga un anunt nou</h2>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2">
+                        <label for='name'><strong>Nume</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <input [class.is-invalid]='addAdForm.get("name").errors && addAdForm.get("name").touched'
+                            type="text" class="form-control" formControlName='name' placeholder="Nume">
+                        <div *ngIf="addAdForm.get('name').hasError('required')" class="invalid-feedback text-primary">
+                            Acest camp trebuie sa fie completat</div>
+                        <div *ngIf="addAdForm.get('name').hasError('maxlength')" class="invalid-feedback text-primary">
+                            Acest camp trebuie sa contina maxim 50 de caractere</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2">
+                        <label for='description'><strong>Descriere</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <textarea rows="5"
+                            [class.is-invalid]='addAdForm.get("description").errors && addAdForm.get("description").touched'
+                            type="text" class="form-control" formControlName='description'
+                            placeholder="Descriere"></textarea>
+                        <div *ngIf="addAdForm.get('description').hasError('required')"
+                            class="invalid-feedback text-primary">
+                            Acest camp trebuie sa fie completat</div>
+                        <div *ngIf="addAdForm.get('description').hasError('maxlength')"
+                            class="invalid-feedback text-primary">
+                            Acest camp trebuie sa contina maxim 1000 de caractere</div>
+                        <div *ngIf="addAdForm.get('description').hasError('minlength')"
+                            class="invalid-feedback text-primary">
+                            Acest camp trebuie sa contina minim 10 de caractere</div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2">
+                        <label for="quantity"><strong>Cantitate</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <input type="number" class="form-control" formControlName='quantity' placeholder="Cantitate"
+                            [class.is-invalid]='addAdForm.get("quantity").errors && addAdForm.get("quantity").touched'>
+                        <div *ngIf="addAdForm.get('quantity').hasError('required')"
+                            class="invalid-feedback text-primary">
+                            Acest camp trebuie sa fie completat</div>
+                        <div *ngIf="addAdForm.get('quantity').hasError('min')" class="invalid-feedback text-primary">
+                            Acest camp trebuie sa fie minim 1</div>
+                        <div *ngIf="addAdForm.get('quantity').hasError('max')" class="invalid-feedback text-primary">
+                            Acest camp trebuie sa fie maxim 999999999999</div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2">
+                        <label for="existsLimit"><strong>Exista limita?</strong></label>
+                    </div>
+                    <div class="col-10" style="margin-left: 175px;margin-top: -20px;">
+                        <label class="radio-inline">
+                            <input class="form-check-input" type="radio" value="da" formControlName='existsLimit'>Da
+                        </label>
+                        <label class="radio-inline ml-5">
+                            <input class="form-check-input" type="radio" value="nu" formControlName='existsLimit'>Nu
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group" *ngIf="addAdForm.get('existsLimit').value =='da'">
+                <div class="row">
+                    <div class="col-2">
+                        <label for="limit"><strong>Limita</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <input type="number" class="form-control" formControlName='limit' placeholder="Limita"
+                            [class.is-invalid]='addAdForm.get("limit").errors && addAdForm.get("limit").touched'>
+                        <div *ngIf="addAdForm.get('limit').hasError('min')" class="invalid-feedback text-primary">
+                            Acest camp trebuie sa fie minim 1</div>
+                        <div *ngIf="addAdForm.get('limit').hasError('required')" class="invalid-feedback text-primary">
+                            Acest camp trebuie sa fie completat</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2">
+                        <label for="unitOfMeasure"><strong>Unitate de masura</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <select style="height:min-content;" class="form-control" formControlName='unitOfMeasure'
+                            [class.is-invalid]='addAdForm.get("unitOfMeasure").errors && addAdForm.get("unitOfMeasure").touched'>
+                            <option *ngFor="let unit of unitsOfMeasure" [value]="unit.abbreviation">{{unit.name}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback text-primary">Acest camp trebuie sa fie completat</div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2">
+                        <label for="category"><strong>Categorie</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <select style="height:min-content;" class="form-control" formControlName='category'
+                            [class.is-invalid]='addAdForm.get("category").errors && addAdForm.get("category").touched'>
+                            <option *ngFor="let category of categoriesName" [value]="category.name">{{category.name}}
+                            </option>
+                        </select>
+                        <div class="invalid-feedback text-primary">Acest camp trebuie sa fie completat</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex align-items-center justify-content-center" *ngIf="flag===false">
+                <button type="button" class="btn btn-primary" (click)="cancel()">Anuleaza</button>
+                <button class="btn btn-primary" type="submit" [disabled]='!addAdForm.valid'> Continua</button>
+            </div>
+
+        </form>
+
+    </div>
+    <div class="col-2"></div>
+
+</div>
+
+<div class="row mt-4" *ngIf="flag===true ">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <h2 class="text-center text-primary">Adauga modalitatile de livrare</h2>
+        <div class="row py-2">
+            <div class="col-2 ">
+                <label for='deliveries'><strong>Livrare</strong></label>
+            </div>
+            <div class="col-10">
+                <span *ngFor="let item of list" style="display: block;">
+                    <input type="checkbox" [(ngModel)]="item.checked">{{item.name}}
+                </span>
+            </div>
+        </div>
+        <div class="d-flex align-items-center justify-content-center" *ngIf="flag2===false">
+            <button [class.disabled]="NoOfSelectedDeliveryType.length<1" class="btn btn-primary" (click)="saveDeliveryTypes()">Continua</button>
+            
+        </div> 
+    </div>
+    <div class="col-2"></div>
+
+</div>
+<div class="row mt-4" *ngIf="flag2===true">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <app-edit-photo [ad]="ad"></app-edit-photo>
+        <div class="d-flex align-items-center justify-content-center">
+            <button type="button" class="btn btn-primary" (click)="viewAd()">Vizualizeaza anuntul</button>
+            
+        </div> 
+    </div>
+    <div class="col-2"></div>
+
+</div>

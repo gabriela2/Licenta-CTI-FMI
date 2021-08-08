@@ -71,20 +71,23 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddFundraiser(FundraiserDto fundraiserDto)
+        public async Task<ActionResult<int>> AddFundraiser(FundraiserAdDto fundraiserAdDto)
         {
             Fundraiser model = new Fundraiser()
             {
-                Name = fundraiserDto.Name,
-                Description = fundraiserDto.Description,
-                CreatedAt = fundraiserDto.CreatedAt,
+                Name = fundraiserAdDto.Name,
+                Description = fundraiserAdDto.Description,
+                CreatedAt = fundraiserAdDto.CreatedAt,
                 CurrentAmount = 0,
-                TargetAmount = fundraiserDto.TargetAmount,
+                TargetAmount = fundraiserAdDto.TargetAmount,
                 IsValidated = false,
-                UserId = fundraiserDto.UserId,
+                IsRejected=false,
+                UserId = fundraiserAdDto.UserId,
             };
             _fundraiserRepository.AdFundraiser(model);
-            if (await _fundraiserRepository.SaveAllAsync()) return NoContent();
+            if (await _fundraiserRepository.SaveAllAsync()){
+                return model.Id;
+            }
             return BadRequest("Strangerea de fonduri nu a putut fi adaugata");
         }
 

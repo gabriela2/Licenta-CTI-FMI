@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { Ad } from '../models/ad';
 
@@ -21,6 +22,9 @@ export class AdsService {
   }
   put(id: number, ad: Ad) {
     return this.http.put(this.baseUrl + 'ads/' + id, ad);
+  }
+  post(ad: any) {
+    return this.http.post(this.baseUrl + 'ads', ad);
   }
   setMainPhoto(adId:number,photoId: number) {
     return this.http.put(this.baseUrl + 'ads/set-main-photo/'+adId+'/' + photoId, {});

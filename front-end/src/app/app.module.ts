@@ -14,7 +14,6 @@ import { EmailConfirmationComponent } from './email-confirmation/email-confirmat
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ToastrModule } from 'ngx-toastr';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
-import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { MembersListComponent } from './members/members-list/members-list.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
@@ -24,8 +23,8 @@ import { AdCardComponent } from './ads/ad-card/ad-card.component';
 import { AdDetailComponent } from './ads/ad-detail/ad-detail.component';
 import { RatingUserComponent } from './ratings/rating-user/rating-user.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { TabsModule} from 'ngx-bootstrap/tabs';
-import {NgxGalleryModule} from '@kolkov/ngx-gallery';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { FundraiserCardComponent } from './fundraisers/fundraiser-card/fundraiser-card.component';
 import { FundraiserDetailComponent } from './fundraisers/fundraiser-detail/fundraiser-detail.component';
 import { FundraisersListComponent } from './fundraisers/fundraisers-list/fundraisers-list.component';
@@ -35,13 +34,12 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { RatingCardComponent } from './ratings/rating-card/rating-card.component';
 import { EditRatingComponent } from './ratings/edit-rating/edit-rating.component';
 import { AddRatingComponent } from './ratings/add-rating/add-rating.component';
-import { ModalModule} from 'ngx-bootstrap/modal';
-import { PreventEditReviewByOtherUsersGuard } from './guards/prevent-edit-review-by-other-users.guard';
-import {NgxSpinnerModule} from 'ngx-spinner';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { AddFundraiserComponent } from './fundraisers/add-fundraiser/add-fundraiser.component';
-import {FileUploadModule} from "ng2-file-upload";
+import { FileUploadModule } from "ng2-file-upload";
 import { EditUserPhotoComponent } from './members/edit-user-photo/edit-user-photo.component';
 import { MyAdsComponent } from './ads/my-ads/my-ads.component';
 import { AddAdComponent } from './ads/add-ad/add-ad.component';
@@ -101,8 +99,8 @@ import { CreateDonationComponent } from './fundraisers/create-donation/create-do
     ViewDonationsComponent,
     EditPhotoFundraisersComponent,
     CreateDonationComponent,
-    
-    
+
+
   ],
   imports: [
     BrowserModule,
@@ -112,7 +110,7 @@ import { CreateDonationComponent } from './fundraisers/create-donation/create-do
     FormsModule,
     ReactiveFormsModule,
     BsDropdownModule.forRoot(),
-    ToastrModule.forRoot({positionClass: 'toast-bottom-right',preventDuplicates:true}),
+    ToastrModule.forRoot({ positionClass: 'toast-bottom-right', preventDuplicates: true }),
     NgbModule,
     TabsModule.forRoot(),
     NgxGalleryModule,
@@ -121,7 +119,7 @@ import { CreateDonationComponent } from './fundraisers/create-donation/create-do
     ModalModule.forRoot(),
     NgxSpinnerModule,
     FileUploadModule
-    
+
 
 
   ],
@@ -129,7 +127,6 @@ import { CreateDonationComponent } from './fundraisers/create-donation/create-do
     // { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
-    PreventEditReviewByOtherUsersGuard,
   ],
   bootstrap: [AppComponent]
 })

@@ -23,6 +23,8 @@ namespace API.Helpers
                 .ForMember(destination => destination.UnitOfMeasure, options => options.MapFrom(source => source.UnitOfMeasure.Abbreviation))
                 .ForMember(destination => destination.Category, options => options.MapFrom(source => source.Category.Name));
             CreateMap<Ad,AdUpdateDto>();
+            CreateMap<AdAddDto,Ad>();
+            CreateMap<FundraiserAdDto,Fundraiser>();
             CreateMap<Ad_x_DeliveryType, Ad_x_DeliveryTypeDto>()
             .ForMember(destination => destination.DeliveryType, options => options.MapFrom(source => source.DeliveryType.Name));
             CreateMap<Demand, DemandDto>();

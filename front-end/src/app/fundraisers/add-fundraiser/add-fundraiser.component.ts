@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Fundraiser } from 'src/app/models/fundraiser';
 import Member from 'src/app/models/member';
 import { FundraisersService } from 'src/app/services/fundraisers.service';
 import { MembersService } from 'src/app/services/members.service';
@@ -11,18 +14,54 @@ import { MembersService } from 'src/app/services/members.service';
 })
 export class AddFundraiserComponent implements OnInit {
 
+  addFundraiserForm: FormGroup;
+  fundraiserId:number;
+  flag=false;
+  flag2=false;
+  fundraiser:Fundraiser;
+
+
   constructor(
     private memberService:MembersService,
     private fundraiserService:FundraisersService,
-    private toastr:ToastrService
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private toastr: ToastrService,
   ) { }
 
   currentUserLogged :number;
   member: Member;
 
   ngOnInit(): void {
+    this.addFundraiserForm = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.maxLength(50)]],
+      description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10000)]],
+      targetAmount: [1, [Validators.required, Validators.min(1), Validators.max(999999999999999999999)]],
+    });
+
     this.currentUserLogged = parseInt(localStorage.getItem('userId'));
     this.loadMember();
+  }
+
+  addFundraiser(){
+    let fundraiser ={
+      name : this.addFundraiserForm.get('name').value,
+      description : this.addFundraiserForm.get('description').value,
+      createdAt:new Date(),
+      targetAmount: this.addFundraiserForm.get('targetAmount').value,
+      currentAmount:0,
+      isValidated:false,
+      isRejected:false,
+      userId:this.currentUserLogged
+    }
+    this.fundraiserService.post(fundraiser).subscribe(response=>{
+      this.fundraiserId = parseInt(response.toString());
+      this.fundraiserService.getFundraiser(this.fundraiserId).subscribe(response=>{
+        this.fundraiser=response;
+      });
+      this.toastr.success('Strangerea de fonduri a fost adaugata cu succes');
+      this.flag=true;
+    });
   }
 
   loadMember(){
@@ -30,26 +69,13 @@ export class AddFundraiserComponent implements OnInit {
       this.member=response;
     })
   }
-  addFundraiser(form){
-    
-
-    var fundraiser={
-      id:0,
-    name: form.name,
-    description: form.description,
-    createdAt: new Date(),
-    currentAmount: 0,
-    targetAmount: form.targetAmount,
-    isValidated: false,
-    isRejected:false,
-    url: null,
-    userId: this.currentUserLogged,
-    photos:null
-    }
-    this.fundraiserService.post(fundraiser).subscribe(()=>{
-      this.toastr.success("Ati adaugat o noua strangere de fonduri.");
-      
-    })
+  
+  viewFundraiser(){
+    this.router.navigateByUrl('/fundraisers-list/'+this.fundraiserId);
   }
+
+  cancel() {
+    this.router.navigateByUrl('/my-fundraisers');
+   }
 
 }

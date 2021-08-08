@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Ad } from 'src/app/models/ad';
 import { Ad_x_DeliveryType } from 'src/app/models/ad_x_deliveryType';
@@ -43,7 +43,9 @@ export class EditAdComponent implements OnInit {
     private unitOfMeasureService: UnitsOfMeasureService,
     private deliveryTypeService: DeliveryTypesService,
     private toastr: ToastrService,
-    private adDeliveryService:AdsDeliveryTypesService
+    private adDeliveryService:AdsDeliveryTypesService,
+    private router:Router
+
   ) { }
 
 
@@ -60,6 +62,10 @@ export class EditAdComponent implements OnInit {
     if (this.editAdForm.dirty) {
       event.returnValue = true;
     }
+  }
+
+  viewAd(){
+    this.router.navigateByUrl('/ads-list/'+this.adId);
   }
 
   loadAd() {

@@ -19,6 +19,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { PreventEditAdByOtherUsersGuard } from './guards/prevent-edit-ad-by-other-users.guard';
 import { PreventEditFundraiserByOtherUsersGuard } from './guards/prevent-edit-fundraiser-by-other-users.guard';
 import { PreventEditReviewByOtherUsersGuard } from './guards/prevent-edit-review-by-other-users.guard';
+import { PreventUnsavedChangesForAddAdGuard } from './guards/prevent-unsaved-changes-for-add-ad.guard';
 import { PreventUnsavedChangesForAddRatingGuard } from './guards/prevent-unsaved-changes-for-add-rating.guard';
 import { PreventUnsavedChangesForEditAdGuard } from './guards/prevent-unsaved-changes-for-edit-ad.guard';
 import { PreventUnsavedChangesForEditFundraiserGuard } from './guards/prevent-unsaved-changes-for-edit-fundraiser.guard';
@@ -54,7 +55,7 @@ const routes: Routes = [
       { path: 'fundraisers-list/:id', component: FundraiserDetailComponent },
       {path:'my-ads', component:MyAdsComponent},
       {path:'my-fundraisers', component:MyFundraisersComponent},
-      {path:'add-ad', component:AddAdComponent},
+      {path:'add-ad', component:AddAdComponent, canDeactivate:[PreventUnsavedChangesForAddAdGuard]},
       {path:'add-fundraiser', component:AddFundraiserComponent},
       {path:'view-demands/:id', component:ViewDemandsComponent},
       {path:'edit-ad/:id', component:EditAdComponent,canDeactivate: [PreventUnsavedChangesForEditAdGuard], canActivate: [PreventEditAdByOtherUsersGuard]},

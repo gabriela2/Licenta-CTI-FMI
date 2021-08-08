@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -90,22 +91,27 @@ namespace API.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> AddAd(AdDto adDto)
+        public async Task<ActionResult<int>> AddAd(AdAddDto adAddDto)
         {
             Ad model = new Ad()
             {
-                Name = adDto.Name,
-                Description = adDto.Description,
-                CreatedAt = adDto.CreatedAt,
-                Quantity = adDto.Quantity,
-                ExistsLimit = adDto.ExistsLimit,
-                Limit = adDto.Limit,
-                UserId = adDto.UserId,
-                UnitOfMeasureId = adDto.UnitOfMeasureId,
-                CategoryId = adDto.CategoryId
+                Name = adAddDto.Name,
+                Description = adAddDto.Description,
+                CreatedAt = adAddDto.CreatedAt,
+                Quantity = adAddDto.Quantity,
+                ExistsLimit = adAddDto.ExistsLimit,
+                IsActive = true,
+                Limit = adAddDto.Limit,
+                UserId = adAddDto.UserId,
+                UnitOfMeasureId = adAddDto.UnitOfMeasureId,
+                CategoryId = adAddDto.CategoryId
             };
             _adRepository.AddAd(model);
-            if (await _adRepository.SaveAllAsync()) return NoContent();
+            if (await _adRepository.SaveAllAsync()){
+
+                Console.WriteLine(model.Id);
+                return model.Id;
+            } 
             return BadRequest("Anuntul nu a putut fi adaugat");
         }
 
@@ -138,6 +144,7 @@ namespace API.Controllers
                 PublicId = result.PublicId,
                 AdId = id
             };
+            
 
             _photoRepository.AddPhoto(photo);
 
