@@ -41,6 +41,11 @@ namespace API.Repositories.DonationRepository
            return await _context.Donations.ProjectTo<DonationDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
+        public async Task<IEnumerable<DonationDto>> GetDonationsByUserId(int id)
+        {
+           return await _context.Donations.Where(donation => donation.UserId==id).ProjectTo<DonationDto>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
         public async Task<bool> SaveAllAsync()
         {
             return await _context.SaveChangesAsync()>0;

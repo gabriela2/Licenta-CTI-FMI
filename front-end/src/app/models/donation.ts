@@ -4,4 +4,5 @@ export interface Donation{
     amount:number;
     userId:number;
     fundraiserId:number;
+    description:string;
 }

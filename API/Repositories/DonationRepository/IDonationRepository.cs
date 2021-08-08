@@ -10,6 +10,7 @@ namespace API.Repositories.DonationRepository
         
         void AddDonation(Donation donation);
         Task<IEnumerable<DonationDto>> GetDonationsAsync();
+        Task<IEnumerable<DonationDto>> GetDonationsByUserId(int id);
         Task<Donation> GetDonationByIdAsync(int id);
         Task<DonationDto> GetDonationDtoByIdAsync(int id);
         Task<bool> SaveAllAsync();

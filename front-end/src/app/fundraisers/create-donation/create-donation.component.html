@@ -12,11 +12,11 @@
                 <div class="col-2">
                     <label for="amount">Suma</label>
                 </div>
-                <div class="col-3">
-                    <input type="number" [(ngModel)]="payment.amount" name="amount" min="2" #amount="ngModel" required
+                <div class="col-6">
+                    <input type="number" [(ngModel)]="payment.amount" name="amount" min="2" max="999999" #amount="ngModel" required
                         class="form-control validate" />
                 </div>
-                <div class="col-7">
+                <div class="col-4">
                     LEI
                 </div>
 
@@ -28,6 +28,7 @@
                     <div *ngIf="amount.touched && !amount.valid">
                         <div *ngIf="amount.errors.required">Acest camp trebuie completat!</div>
                         <div *ngIf="amount.errors.min">Suma minima care poate fi transferata este 2 LEI !</div>
+                        <div *ngIf="amount.errors.max">Suma maxima care poate fi transferata este 999.999,99 LEI !</div>
 
                     </div>
                 </div>

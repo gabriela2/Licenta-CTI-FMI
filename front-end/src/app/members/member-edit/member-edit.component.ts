@@ -5,7 +5,8 @@ import { Address } from 'src/app/models/address';
 import Member from 'src/app/models/member';
 import { AddressesService } from 'src/app/services/addresses.service';
 import { MembersService } from 'src/app/services/members.service';
-import { PaymentService } from 'src/app/services/payment.service';
+import { StripeService } from 'src/app/services/stripe.service';
+
 
 
 @Component({
@@ -40,7 +41,7 @@ member: Member;
     private memberService: MembersService,
     private addressService: AddressesService,
     private toastr: ToastrService,
-    private paymentService:PaymentService) {
+    private stripeService:StripeService) {
     this.currentUserId = parseInt(localStorage.getItem('userId'));
   }
 
@@ -74,7 +75,7 @@ member: Member;
   }
 
   StripeAccount(){
-    this.paymentService.createConnectedExpressAccount(this.currentUserId).subscribe(a=> {console.log(a);});
+    this.stripeService.postExpressAccount(this.currentUserId).subscribe(a=> {console.log(a);});
     this.memberService.updateMemberStripeDetails(this.member.id, this.member).subscribe();
     this.editStripeDetailsForm.reset(this.member);
   }

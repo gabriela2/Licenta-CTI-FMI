@@ -6,9 +6,10 @@ import { Fundraiser } from 'src/app/models/fundraiser';
 import Member from 'src/app/models/member';
 import { Payment } from 'src/app/models/payment';
 import { Transfer } from 'src/app/models/transfer';
+import { DonationsService } from 'src/app/services/donations.service';
 import { FundraisersService } from 'src/app/services/fundraisers.service';
 import { MembersService } from 'src/app/services/members.service';
-import { PaymentService } from 'src/app/services/payment.service';
+import { StripeService } from 'src/app/services/stripe.service';
 
 declare var Stripe: any;
 
@@ -32,7 +33,9 @@ export class CreateDonationComponent implements OnInit {
 
   constructor(
     private memberService: MembersService,
-    private paymentService: PaymentService,
+    private stripeService: StripeService,
+    private fundraiserService:FundraisersService,
+    private donationService:DonationsService,
     public bsModalRef: BsModalRef,
     public toastr: ToastrService
   ) { }
@@ -59,18 +62,34 @@ export class CreateDonationComponent implements OnInit {
 
     this.stripe.createToken(this.card).then(result => {
       if (result.error) {
-        this.toastr.error("Plata a fost respinsa. Te rugam furnizeaza corect informatile");
-        // document.getElementById('card-error').textContent = result.error.message;
+        this.toastr.error("Plata a fost respinsa. Te rugam sa furnizezi corect informatile");
       } else {
         this.payment.token = result.token.id;
         this.payment.description = this.donator.description;
-        this.paymentService.createPayment(this.payment).subscribe(() => {
+        this.stripeService.postCharge(this.payment).subscribe(() => {
           this.toastr.success("Plata a fost realizata cu success");
-          this.transfer.amount = this.payment.amount;
-          this.transfer.stripeAccount = this.owner.stripeAccount;
-          this.paymentService.transferPayment(this.transfer).subscribe(response => console.log(response));
-
         })
+        console.log(this.payment.amount);
+        var fees= (this.payment.amount * 0.029)+1;
+        console.log(fees)
+        this.transfer.amount = this.payment.amount- fees ;
+        console.log(this.transfer.amount);
+        this.transfer.stripeAccount = this.owner.stripeAccount;
+        this.stripeService.postTransfer(this.transfer).subscribe(response => console.log(response));
+        var donation ={
+          id:0,
+          createdAt:new Date(),
+          amount:this.transfer.amount,
+          userId:parseInt(localStorage.getItem('userId')),
+          fundraiserId:this.fundraiser.id,
+          description:this.payment.description
+        }
+        this.donationService.post(donation).subscribe();
+        this.fundraiser.currentAmount = this.fundraiser.currentAmount + this.transfer.amount;
+        this.fundraiserService.put(this.fundraiser.id, this.fundraiser).subscribe();
+        this.bsModalRef.hide();
+        window.location.reload();
+
       }
     })
 

@@ -25,10 +25,10 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<DonationDto>> GetDonation(int id)
+        public async Task<ActionResult<IEnumerable<DonationDto>>> GetDonationsByUserId(int id)
         {
-            var donation = await _donationRepository.GetDonationDtoByIdAsync(id);
-            return donation;
+            var donation = await _donationRepository.GetDonationsByUserId(id);
+            return Ok(donation);
         }
 
         [HttpPost]
@@ -38,6 +38,7 @@ namespace API.Controllers
             {
                 CreatedAt = donationDto.CreatedAt,
                 Amount = donationDto.Amount,
+                Description= donationDto.Description,
                 UserId = donationDto.UserId,
                 FundraiserId = donationDto.FundraiserId
             };
