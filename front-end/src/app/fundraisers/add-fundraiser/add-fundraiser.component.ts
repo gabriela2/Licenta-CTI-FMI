@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -19,6 +19,8 @@ export class AddFundraiserComponent implements OnInit {
   flag=false;
   flag2=false;
   fundraiser:Fundraiser;
+  currentUserLogged :number;
+  member: Member;
 
 
   constructor(
@@ -29,8 +31,14 @@ export class AddFundraiserComponent implements OnInit {
     private toastr: ToastrService,
   ) { }
 
-  currentUserLogged :number;
-  member: Member;
+  @HostListener("window:beforeunload", ["$event"])
+  beforeUnloadHandler(event: any) {
+    if (this.addFundraiserForm.dirty || this.flag===false||this.flag2===false) {
+      event.returnValue = true;
+    }
+  }
+
+ 
 
   ngOnInit(): void {
     this.addFundraiserForm = this.formBuilder.group({

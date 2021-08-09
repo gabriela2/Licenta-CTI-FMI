@@ -1,7 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FileUploader } from 'ng2-file-upload';
 import { take } from 'rxjs/operators';
-import { Ad } from 'src/app/models/ad';
 import { Fundraiser } from 'src/app/models/fundraiser';
 import { Photo } from 'src/app/models/photo';
 import { User } from 'src/app/models/user';
@@ -15,12 +14,13 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./edit-photo-fundraisers.component.css']
 })
 export class EditPhotoFundraisersComponent implements OnInit {
-
   uploader:FileUploader;
   hasBaseDropZoneOver = false;
   baseUrl = environment.apiUrl;
   user:User;
   @Input() fundraiser:Fundraiser;
+  fundraiserId:number;
+
 
   constructor(private fundraiserService:FundraisersService,private authService:AuthService,) { 
     this.authService.currentUser$.pipe(take(1)).subscribe(user=> this.user=user);
@@ -28,6 +28,7 @@ export class EditPhotoFundraisersComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeUploader();
+    console.log(this.fundraiser);
   }
 
   fileOverBase(e: any) {
@@ -35,7 +36,7 @@ export class EditPhotoFundraisersComponent implements OnInit {
   }
 
   setMainPhoto(photo: Photo) {
-    this.fundraiserService.setMainPhoto(this.fundraiser.id,photo.id).subscribe(() => {
+    this.fundraiserService.setMainPhoto(this.fundraiser.id, photo.id).subscribe(() => {
       this.fundraiser.url = photo.url;
       this.fundraiser.photos.forEach(p => {
         if (p.isMain) p.isMain = false;

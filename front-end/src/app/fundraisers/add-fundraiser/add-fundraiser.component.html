@@ -1,94 +1,93 @@
 <div class="row mt-2">
-  <div class="col-2"></div>
-  <div class="col-8">
-      <form [formGroup]='addFundraiserForm' (ngSubmit)="addFundraiser()" autocomplete="off">
-          <h2 class="text-center text-primary">Adauga o strangere de fonduri noi</h2>
+    <div class="col-2"></div>
+    <div class="col-8">
+        <form [formGroup]='addFundraiserForm' (ngSubmit)="addFundraiser()" autocomplete="off">
+            <h2 class="text-center text-primary">Adauga un anunt nou</h2>
 
-          <div class="form-group">
-              <div class="row">
-                  <div class="col-2">
-                      <label for='name'><strong>Nume</strong></label>
-                  </div>
-                  <div class="col-10">
-                      <input [class.is-invalid]='addFundraiserForm.get("name").errors && addFundraiserForm.get("name").touched'
-                          type="text" class="form-control" formControlName='name' placeholder="Nume">
-                      <div *ngIf="addFundraiserForm.get('name').hasError('required')" class="invalid-feedback text-primary">
-                          Acest camp trebuie sa fie completat</div>
-                      <div *ngIf="addFundraiserForm.get('name').hasError('maxlength')" class="invalid-feedback text-primary">
-                          Acest camp trebuie sa contina maxim 50 de caractere</div>
-                  </div>
-              </div>
-          </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2">
+                        <label for='name'><strong>Nume</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <input [class.is-invalid]='addFundraiserForm.get("name").errors && addFundraiserForm.get("name").touched'
+                            type="text" class="form-control" formControlName='name' placeholder="Nume">
+                        <div *ngIf="addFundraiserForm.get('name').hasError('required')" class="invalid-feedback text-primary">
+                            Acest camp trebuie sa fie completat</div>
+                        <div *ngIf="addFundraiserForm.get('name').hasError('maxlength')" class="invalid-feedback text-primary">
+                            Acest camp trebuie sa contina maxim 50 de caractere</div>
+                    </div>
+                </div>
+            </div>
 
-          <div class="form-group">
-              <div class="row">
-                  <div class="col-2">
-                      <label for='description'><strong>Descriere</strong></label>
-                  </div>
-                  <div class="col-10">
-                      <textarea rows="10"
-                          [class.is-invalid]='addFundraiserForm.get("description").errors && addFundraiserForm.get("description").touched'
-                          type="text" class="form-control" formControlName='description'
-                          placeholder="Descriere"></textarea>
-                      <div *ngIf="addFundraiserForm.get('description').hasError('required')"
-                          class="invalid-feedback text-primary">
-                          Acest camp trebuie sa fie completat</div>
-                      <div *ngIf="addFundraiserForm.get('description').hasError('maxlength')"
-                          class="invalid-feedback text-primary">
-                          Acest camp trebuie sa contina maxim 10000 de caractere</div>
-                      <div *ngIf="addFundraiserForm.get('description').hasError('minlength')"
-                          class="invalid-feedback text-primary">
-                          Acest camp trebuie sa contina minim 10 de caractere</div>
-
-                  </div>
-              </div>
-          </div>
-
-          <div class="form-group">
-              <div class="row">
-                  <div class="col-2">
-                      <label for="targetAmount"><strong>Suma necesara</strong></label>
-                  </div>
-                  <div class="col-10">
-                      <input type="number" class="form-control" formControlName='targetAmount' placeholder="Cantitate"
-                          [class.is-invalid]='addFundraiserForm.get("targetAmount").errors && addFundraiserForm.get("targetAmount").touched'>
-                      <div *ngIf="addFundraiserForm.get('targetAmount').hasError('required')"
-                          class="invalid-feedback text-primary">
-                          Acest camp trebuie sa fie completat</div>
-                      <div *ngIf="addFundraiserForm.get('targetAmount').hasError('min')" class="invalid-feedback text-primary">
-                          Acest camp trebuie sa fie minim 1</div>
-                      <div *ngIf="addFundraiserForm.get('targetAmount').hasError('max')" class="invalid-feedback text-primary">
-                          Acest camp trebuie sa fie maxim 999999999999</div>
-
-                  </div>
-              </div>
-          </div>
-
-          
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2">
+                        <label for='description'><strong>Descriere</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <textarea rows="10"
+                            [class.is-invalid]='addFundraiserForm.get("description").errors && addFundraiserForm.get("description").touched'
+                            type="text" class="form-control" formControlName='description'
+                            placeholder="Descriere"></textarea>
+                        <div *ngIf="addFundraiserForm.get('description').hasError('required')"
+                            class="invalid-feedback text-primary">
+                            Acest camp trebuie sa fie completat</div>
+                        <div *ngIf="addFundraiserForm.get('description').hasError('maxlength')"
+                            class="invalid-feedback text-primary">
+                            Acest camp trebuie sa contina maxim 10000 de caractere</div>
+                        <div *ngIf="addFundraiserForm.get('description').hasError('minlength')"
+                            class="invalid-feedback text-primary">
+                            Acest camp trebuie sa contina minim 10 de caractere</div>
+  
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-2">
+                        <label for="targetAmount"><strong>Suma necesara</strong></label>
+                    </div>
+                    <div class="col-10">
+                        <input type="number" class="form-control" formControlName='targetAmount' placeholder="Suma necesara"
+                            [class.is-invalid]='addFundraiserForm.get("targetAmount").errors && addFundraiserForm.get("targetAmount").touched'>
+                        <div *ngIf="addFundraiserForm.get('targetAmount').hasError('required')"
+                            class="invalid-feedback text-primary">
+                            Acest camp trebuie sa fie completat</div>
+                        <div *ngIf="addFundraiserForm.get('targetAmount').hasError('min')" class="invalid-feedback text-primary">
+                            Acest camp trebuie sa fie minim 1</div>
+                        <div *ngIf="addFundraiserForm.get('targetAmount').hasError('max')" class="invalid-feedback text-primary">
+                            Acest camp trebuie sa fie maxim 999999999999</div>
+  
+                    </div>
+                </div>
+            </div>
+            
 
 
-          <div class="d-flex align-items-center justify-content-center" *ngIf="flag===false">
-              <button type="button" class="btn btn-primary" (click)="cancel()">Anuleaza</button>
-              <button class="btn btn-primary" type="submit" [disabled]='!addFundraiserForm.valid'> Continua</button>
-          </div>
+           
 
-      </form>
+            <div class="d-flex align-items-center justify-content-center" *ngIf="flag===false">
+                <button type="button" class="btn btn-primary" (click)="cancel()">Anuleaza</button>
+                <button class="btn btn-primary" type="submit" [disabled]='!addFundraiserForm.valid'> Continua</button>
+            </div>
 
-  </div>
-  <div class="col-2"></div>
+        </form>
+
+    </div>
+    <div class="col-2"></div>
 
 </div>
 
-
-<div class="row mt-4" *ngIf="flag===true">
-  <div class="col-2"></div>
-  <div class="col-8">
-      <app-edit-photo-fundraisers [fundraiser]="fundraiser"></app-edit-photo-fundraisers>
-      <div class="d-flex align-items-center justify-content-center">
-          <button type="button" class="btn btn-primary" (click)="viewFunseaiser()">Vizualizeaza strangerea de fonduri</button>
-          
-      </div> 
-  </div>
-  <div class="col-2"></div>
+<div class="row mt-4" *ngIf="flag===true && fundraiser">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <app-edit-photo-fundraisers [fundraiser]="fundraiser"></app-edit-photo-fundraisers>
+        <div class="d-flex align-items-center justify-content-center">
+            <button type="button" class="btn btn-primary" (click)="viewFundraiser()">Vizualizeaza strangerea de fonduri</button>
+            
+        </div> 
+    </div>
+    <div class="col-2"></div>
 
 </div>
