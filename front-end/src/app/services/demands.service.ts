@@ -122,6 +122,8 @@ export class DemandsService {
       params = params.append('orderBy',orderBy);
       params = params.append('sortBy',sortBy);
     }
+
+    
     
     
     return this.http.get<Demand[]>(this.baseUrl + 'demands/all-by-ad-id/'+id, { observe: 'response', params }).pipe(
