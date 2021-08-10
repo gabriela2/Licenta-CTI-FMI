@@ -57,7 +57,7 @@ const routes: Routes = [
       {path:'my-fundraisers', component:MyFundraisersComponent},
       {path:'add-ad', component:AddAdComponent, canDeactivate:[PreventUnsavedChangesForAddAdGuard]},
       {path:'add-fundraiser', component:AddFundraiserComponent},
-      {path:'view-demands/:id', component:ViewDemandsComponent},
+      {path:'view-demands/:id', component:ViewDemandsComponent,canActivate: [PreventEditAdByOtherUsersGuard]},
       {path:'edit-ad/:id', component:EditAdComponent,canDeactivate: [PreventUnsavedChangesForEditAdGuard], canActivate: [PreventEditAdByOtherUsersGuard]},
       {path:'edit-fundraiser/:id', component:EditFundraiserComponent,canDeactivate: [PreventUnsavedChangesForEditFundraiserGuard], canActivate: [PreventEditFundraiserByOtherUsersGuard]},
     ]

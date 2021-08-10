@@ -52,8 +52,9 @@ namespace API
             services.Configure<EmailSettings>(_config.GetSection("EmailSettings"));
             services.AddTransient<IEmailService, EmailService>();
             services.AddScoped<ICloudinaryPhotoService, CloudinaryPhotoService>();
-            
             services.AddScoped<ITokenService, TokenService>();
+            services.AddScoped<ModifyLastActivityForUser>();
+
             services.AddScoped<IAdRepository, AdRepository>();
             services.AddScoped<IUserPhotoRepository, UserPhotoRepository>();
             services.AddScoped<IPhotoRepository, PhotoRepository>();

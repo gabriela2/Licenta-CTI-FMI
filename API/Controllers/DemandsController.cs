@@ -2,11 +2,14 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Extensions;
+using API.Helpers;
 using API.Repositories.DemandRepository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [ServiceFilter(typeof(ModifyLastActivityForUser))]
     [ApiController]
     [Route("api/[controller]")]
     public class DemandsController : ControllerBase
@@ -24,19 +27,55 @@ namespace API.Controllers
             return Ok(demands);
         }
 
-        [HttpGet("get-by-user/{id}")]
-        public async Task<ActionResult<IEnumerable<DemandDto>>> GetDemandsByUserId(int id) 
+        [HttpGet("approved-by-user-id/{id}")]
+        public async Task<ActionResult<IEnumerable<DemandDto>>> GetApprovedDemandsByUserId([FromQuery]AppParams appParams, int id)
         {
-            var demands = await _demandRepository.GetDemandsByUserIdAsync(id);
+            var demands = await _demandRepository.GetApprovedDemandsByUserIdAsync(appParams, id);
+            Response.AddPaginationHeader(demands.CurrentPage, demands.PageSize, demands.TotalCount,demands.TotalPages);
             return Ok(demands);
         }
 
-        [HttpGet("get-by-ad/{id}")]
-        public async Task<ActionResult<IEnumerable<DemandDto>>> GetDemandsByAdId(int id) 
+
+
+        [HttpGet("not-approved-yet-by-user-id/{id}")]
+        public async Task<ActionResult<IEnumerable<DemandDto>>> GetNotApprovedYetDemandsByUserId([FromQuery]AppParams appParams, int id)
         {
-            var demands = await _demandRepository.GetDemandsByAdIdAsync(id);
+            var demands = await _demandRepository.GetNotApprovedYetDemandsByUserIdAsync(appParams, id);
+            Response.AddPaginationHeader(demands.CurrentPage, demands.PageSize, demands.TotalCount,demands.TotalPages);
             return Ok(demands);
         }
+
+
+
+
+        [HttpGet("rejected-by-user-id/{id}")]
+        public async Task<ActionResult<IEnumerable<DemandDto>>> GetRejectedDemandsByUserId([FromQuery]AppParams appParams, int id)
+        {
+            var demands = await _demandRepository.GetRejectedDemandsByUserIdAsync(appParams, id);
+            Response.AddPaginationHeader(demands.CurrentPage, demands.PageSize, demands.TotalCount,demands.TotalPages);
+            return Ok(demands);
+        }
+
+
+
+        [HttpGet("unapproved-by-ad-id/{id}")]
+        public async Task<ActionResult<IEnumerable<DemandDto>>> GetUnapprovedDemandsByAdId([FromQuery]AppParams appParams, int id)
+        {
+            var demands = await _demandRepository.GetUnapprovedDemandsByAdIdAsync(appParams, id);
+            Response.AddPaginationHeader(demands.CurrentPage, demands.PageSize, demands.TotalCount,demands.TotalPages);
+            return Ok(demands);
+        }
+
+
+
+        [HttpGet("all-by-ad-id/{id}")]
+        public async Task<ActionResult<IEnumerable<DemandDto>>> GetAllDemandsByAdId([FromQuery]DemandsParams demandsParams, int id)
+        {
+            var demands = await _demandRepository.GetAllDemandsByAdIdAsync(demandsParams, id);
+            Response.AddPaginationHeader(demands.CurrentPage, demands.PageSize, demands.TotalCount,demands.TotalPages);
+            return Ok(demands);
+        }
+
 
 
         [HttpGet("{id}")]

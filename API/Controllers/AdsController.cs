@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Extensions;
+using API.Helpers;
 using API.Repositories.AdDeliveryTypeRepository;
 using API.Repositories.AdRepository;
 using API.Repositories.CategoryRepository;
@@ -45,11 +47,35 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AdDto>>> GetAds()
+        public async Task<ActionResult<IEnumerable<AdDto>>> GetAds([FromQuery]AdsParams adsParams)
         {
-            var ads = await _adRepository.GetAdsAsync();
+            var ads = await _adRepository.GetAdsAsync(adsParams);
+            Response.AddPaginationHeader(ads.CurrentPage, ads.PageSize, ads.TotalCount,ads.TotalPages);
             return Ok(ads);
         }
+
+        [HttpGet("user-id/{id}")]
+        public async Task<ActionResult<IEnumerable<AdDto>>> GetAdsByUserId(int id){
+            return Ok( await _adRepository.GetAdsByUserId(id));
+        }
+
+
+        [HttpGet("active/{id}")]
+        public async Task<ActionResult<IEnumerable<AdDto>>> GetActiveAdsByUserId([FromQuery]AdsParams adsParams, int id)
+        {
+            var ads = await _adRepository.GetActiveAdsByUserIdAsync(adsParams, id);
+            Response.AddPaginationHeader(ads.CurrentPage, ads.PageSize, ads.TotalCount,ads.TotalPages);
+            return Ok(ads);
+        }
+
+        [HttpGet("inactive/{id}")]
+        public async Task<ActionResult<IEnumerable<AdDto>>> GetInactiveAdsByUserId([FromQuery]AdsParams adsParams, int id)
+        {
+            var ads = await _adRepository.GetInactiveAdsByUserIdAsync(adsParams, id);
+            Response.AddPaginationHeader(ads.CurrentPage, ads.PageSize, ads.TotalCount,ads.TotalPages);
+            return Ok(ads);
+        }
+
 
         [HttpGet("{id}", Name = "GetAd")]
         public async Task<ActionResult<AdDto>> GetAd(int id)
@@ -57,14 +83,6 @@ namespace API.Controllers
             var ad = await _adRepository.GetAdDtoByIdAsync(id);
             return ad;
         }
-
-        [HttpGet("user-ads/{id}")]
-        public async Task<ActionResult<IEnumerable<AdDto>>> GetAdsByUserId(int id)
-        {
-            var ads = await _adRepository.GetAdsDtoByUserIdAsync(id);
-            return Ok(ads);
-        }
-
 
 
         [HttpPut("{id}")]

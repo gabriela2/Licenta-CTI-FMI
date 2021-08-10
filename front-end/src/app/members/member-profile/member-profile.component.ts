@@ -3,8 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Ad } from 'src/app/models/ad';
 import { Address } from 'src/app/models/address';
+import { Category } from 'src/app/models/category';
 import { Fundraiser } from 'src/app/models/fundraiser';
 import Member from 'src/app/models/member';
+import { Pagination } from 'src/app/models/pagination';
 import { UserRating } from 'src/app/models/userRating';
 import { AddressesService } from 'src/app/services/addresses.service';
 import { AdsService } from 'src/app/services/ads.service';
@@ -25,6 +27,7 @@ export class MemberProfileComponent implements OnInit {
   ads: Ad[];
   fundraisers: Fundraiser[];
   ratings: UserRating[];
+
 
 
   constructor(
@@ -64,17 +67,17 @@ export class MemberProfileComponent implements OnInit {
       // console.log(this.member);
     })
     this.loadAddress();
-    this.loadAds();
+    // this.loadAds();
     this.loadFundraisers();
     this.loadRatings();
   }
 
-  loadAds() {
-    this.adsService.getAdsByUserId(this.userId).subscribe(response => {
-      this.ads = response;
-      // console.log("this.ads=",this.ads);
-    })
-  }
+  // loadAds() {
+  //   this.adsService.getActiveAdsByUserId(this.userId,this.pageNumber,this.pageSize, this.categoryId, this.orderBy).subscribe(response=>{
+  //     this.ads=response.result;
+  //     this.pagination = response.pagination;
+  //   })
+  // }
 
   loadFundraisers() {
     this.fundraisersService.getFundraisersByUserId(this.userId).subscribe(response => {

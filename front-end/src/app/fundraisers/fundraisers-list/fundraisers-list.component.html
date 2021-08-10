@@ -1,5 +1,26 @@
-<div class="column">
+<div class="container mt-3 ml-3">
+    <form #selectCategoryform="ngForm" class="form-inline" (ngSubmit)="apply()" autocomplete="off">
+        <div>
+            <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="orderBy" (click)="apply()"
+                btnRadio='oldest'>Cele mai recente</button>
+            <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy" (click)="apply()"
+                btnRadio='newest'>Cele mai vechi</button>
+        </div>
+
+        <button class="btn btn primary ml-3" type="submit" (click)="reset()">Reseteaza filtrele</button>
+    </form>
+    <p><small>{{pagination?.totalItems}} rezultate gasite</small></p>
+
+</div>
+<div class="col-12" *ngIf="pagination?.totalItems!=0">
     <div *ngFor="let fundraiser of fundraisers">
         <app-fundraiser-card [fundraiser]="fundraiser"></app-fundraiser-card>
+    </div>
+    <div class="d-flex justify-content-center" *ngIf="pagination">
+        <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+            [(ngModel)]="pagination.currentPage" (pageChanged)="changePage($event)" previousText="&lsaquo;"
+            nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+
+        </pagination>
     </div>
 </div>

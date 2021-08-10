@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 
 namespace API.Repositories.AdRepository
 {
@@ -11,11 +12,13 @@ namespace API.Repositories.AdRepository
         void UpdateAd(Ad ad);
         void DeleteAd(Ad ad);
         Task<bool> SaveAllAsync();
-        Task<IEnumerable<AdDto>> GetAdsAsync();
+        Task<PagedList<AdDto>> GetAdsAsync(AdsParams adsParams);
+        Task<PagedList<AdDto>> GetInactiveAdsByUserIdAsync(AdsParams adsParams, int id);
+        Task<PagedList<AdDto>> GetActiveAdsByUserIdAsync(AdsParams adsParams, int id);
         Task<AdDto> GetAdDtoByIdAsync(int id);
         Task<Ad> GetAdByIdAsync(int id);
         Task<AdDto> GetAdByNameAsync(string name);
-         Task<IEnumerable<AdDto>> GetAdsDtoByUserIdAsync(int id);
+        Task<IEnumerable<AdDto>> GetAdsByUserId(int id);
         
 
     }

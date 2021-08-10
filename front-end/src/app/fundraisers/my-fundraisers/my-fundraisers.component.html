@@ -8,80 +8,154 @@
             <div class="col-2">
                 <div class="col-1 d-flex flex-row-reverse bd-highlight" style="margin-left:150px">
                     <ng-template #tolTemplate>Adauga o strangere de fonduri</ng-template>
-                    <i class="fa fa-plus-circle fa-2x" aria-hidden="true" routerLink='/add-fundraiser' [tooltip]="tolTemplate" placement="bottom"></i>
+                    <i class="fa fa-plus-circle fa-2x" aria-hidden="true" routerLink='/add-fundraiser'
+                        [tooltip]="tolTemplate" placement="bottom"></i>
                 </div>
             </div>
         </div>
-    
+
+        <div class="container">
+
+            <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="orderBy"
+                (click)="applyActive()" btnRadio='oldest'>Cele mai recente</button>
+            <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                (click)="applyActive()" btnRadio='newest'>Cele mai vechi</button>
+
+            <button class="btn btn primary ml-3" type="button" (click)="resetActive()">Reseteaza
+                filtrele</button>
+            <p><small>{{paginationActive?.totalItems}} rezultate gasite</small></p>
+
+        </div>
+
         <div class="row mt-4" *ngIf="activeFundraisers">
-            
-            <div class="col-12" *ngIf="activeFundraisers.length>0">
+
+            <div class="col-12" *ngIf="paginationActive?.totalItems!=0">
                 <span *ngFor="let activeFundraiser of activeFundraisers">
-                    <app-fundraiser-card-for-my-fundraisers [fundraiser]="activeFundraiser"></app-fundraiser-card-for-my-fundraisers>
+                    <app-fundraiser-card-for-my-fundraisers [fundraiser]="activeFundraiser">
+                    </app-fundraiser-card-for-my-fundraisers>
                 </span>
+                <div class="d-flex justify-content-center" *ngIf="paginationActive">
+                    <pagination [boundaryLinks]="true" [totalItems]="paginationActive.totalItems"
+                        [itemsPerPage]="paginationActive.itemsPerPage" [(ngModel)]="paginationActive.currentPage"
+                        (pageChanged)="changePageActive($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;">
+
+                    </pagination>
+                </div>
             </div>
-    
-    
-            <div class="col-12" *ngIf="activeFundraisers.length==0" >
+
+
+            <div class="col-12" *ngIf="paginationActive?.totalItems==0">
                 <h2 class="text-center"><strong>Nu aveti nicio strangere de fonduri activa.</strong></h2>
             </div>
-    
-    
+
+
         </div>
-    
+
     </tab>
-    
+
+
+
+
     <tab heading='Strangeri de fonduri in curs de aprobare'>
         <div class="row mt-3">
-            <div class="col-12">
+            <div class="col-2"></div>
+            <div class="col-8">
                 <h2 class="text-center text-primary">Strangeri de fonduri in curs de aprobare</h2>
             </div>
-        </div>
-    
-        <div class="row mt-4" *ngIf="notApprovedYetFundraisers">
-            <div class="col-12" *ngIf="notApprovedYetFundraisers.length>0">
-                <span *ngFor="let notApprovedYetFundraiser of notApprovedYetFundraisers">
-                    <app-fundraiser-card-for-my-fundraisers [fundraiser]="notApprovedYetFundraiser"></app-fundraiser-card-for-my-fundraisers>
-                </span>
-            </div>
-    
-    
-            <div class="col-12" *ngIf="notApprovedYetFundraisers.length==0" >
-                <h2 class="text-center"><strong>Nu aveti nicio strangere de fonduri in curs de aprobare.</strong></h2>
-            </div>
-    
-    
             <div class="col-2"></div>
         </div>
-    
+
+        <div class="container">
+
+            <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="orderBy"
+                (click)="applyNotApprovedYet()" btnRadio='oldest'>Cele mai recente</button>
+            <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                (click)="applyNotApprovedYet()" btnRadio='newest'>Cele mai vechi</button>
+
+            <button class="btn btn primary ml-3" type="button" (click)="resetNotApprovedYet()">Reseteaza
+                filtrele</button>
+            <p><small>{{paginationNotApprovedYet?.totalItems}} rezultate gasite</small></p>
+
+        </div>
+
+        <div class="row mt-4" *ngIf="notApprovedYetFundraisers">
+
+            <div class="col-12" *ngIf="paginationNotApprovedYet?.totalItems!=0">
+                <span *ngFor="let notApprovedYetFundraiser of notApprovedYetFundraisers">
+                    <app-fundraiser-card-for-my-fundraisers [fundraiser]="notApprovedYetFundraiser">
+                    </app-fundraiser-card-for-my-fundraisers>
+                </span>
+                <div class="d-flex justify-content-center" *ngIf="paginationNotApprovedYet">
+                    <pagination [boundaryLinks]="true" [totalItems]="paginationNotApprovedYet.totalItems"
+                        [itemsPerPage]="paginationNotApprovedYet.itemsPerPage" [(ngModel)]="paginationNotApprovedYet.currentPage"
+                        (pageChanged)="changePageNotApprovedYet($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;">
+
+                    </pagination>
+                </div>
+            </div>
+
+
+            <div class="col-12" *ngIf="paginationNotApprovedYet?.totalItems==0">
+                <h2 class="text-center"><strong>Nu aveti nicio strangere de fonduri in curs de aprobare.</strong></h2>
+            </div>
+
+
+        </div>
     </tab>
+
+
+
 
     <tab heading="Strangeri de fonduri respinse">
         <div class="row mt-3">
-            <div class="col-12">
+            <div class="col-2"></div>
+            <div class="col-8">
                 <h2 class="text-center text-primary">Strangeri de fonduri respinse</h2>
             </div>
-        </div>
-    
-        <div class="row mt-4" *ngIf="notApprovedYetFundraisers">
-            <div class="col-12" *ngIf="rejectedFundraisers.length>0">
-                <span *ngFor="let rejectedFundraiser of rejectedFundraisers">
-                    <app-fundraiser-card-for-my-fundraisers [fundraiser]="rejectedFundraiser"></app-fundraiser-card-for-my-fundraisers>
-                </span>
-            </div>
-    
-    
-            <div class="col-12" *ngIf="rejectedFundraisers.length==0" >
-                <h2 class="text-center"><strong>Nu aveti nicio strangere de fonduri in curs de aprobare.</strong></h2>
-            </div>
-    
-    
             <div class="col-2"></div>
         </div>
 
+        <div class="container">
+
+            <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="orderBy"
+                (click)="applyRejected()" btnRadio='oldest'>Cele mai recente</button>
+            <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                (click)="applyRejected()" btnRadio='newest'>Cele mai vechi</button>
+
+            <button class="btn btn primary ml-3" type="button" (click)="resetRejected()">Reseteaza
+                filtrele</button>
+            <p><small>{{paginationRejected?.totalItems}} rezultate gasite</small></p>
+
+        </div>
+
+        <div class="row mt-4" *ngIf="rejectedFundraisers">
+
+            <div class="col-12" *ngIf="rejectedFundraisers?.totalItems!=0">
+                <span *ngFor="let rejectedFundraiser of rejectedFundraisers">
+                    <app-fundraiser-card-for-my-fundraisers [fundraiser]="rejectedFundraiser">
+                    </app-fundraiser-card-for-my-fundraisers>
+                </span>
+                <div class="d-flex justify-content-center" *ngIf="paginationRejected">
+                    <pagination [boundaryLinks]="true" [totalItems]="paginationRejected.totalItems"
+                        [itemsPerPage]="paginationRejected.itemsPerPage" [(ngModel)]="paginationRejected.currentPage"
+                        (pageChanged)="changePageRejected($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;">
+
+                    </pagination>
+                </div>
+            </div>
+
+
+            <div class="col-12" *ngIf="rejectedFundraisers?.totalItems==0">
+                <h2 class="text-center"><strong>Nu aveti nicio strangere de fonduri in curs de aprobare.</strong></h2>
+            </div>
+
+
+        </div>
     </tab>
-    
-    
-    
-    </tabset>
-    
+
+
+
+</tabset>

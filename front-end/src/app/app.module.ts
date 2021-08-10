@@ -55,6 +55,8 @@ import { EditFundraiserComponent } from './fundraisers/edit-fundraiser/edit-fund
 import { ViewDonationsComponent } from './fundraisers/view-donations/view-donations.component';
 import { EditPhotoFundraisersComponent } from './fundraisers/edit-photo-fundraisers/edit-photo-fundraisers.component';
 import { CreateDonationComponent } from './fundraisers/create-donation/create-donation.component';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+import { ButtonsModule} from 'ngx-bootstrap/buttons';
 
 
 
@@ -118,7 +120,9 @@ import { CreateDonationComponent } from './fundraisers/create-donation/create-do
     TooltipModule.forRoot(),
     ModalModule.forRoot(),
     NgxSpinnerModule,
-    FileUploadModule
+    FileUploadModule,
+    PaginationModule.forRoot(),
+    ButtonsModule
 
 
 

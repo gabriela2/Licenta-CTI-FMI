@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using HelpAFamilyOfferAChance.API.Data;
@@ -40,9 +41,56 @@ namespace API.Repositories.AdRepository
             return await _context.Ads.Where(ad => ad.Name == name).ProjectTo<AdDto>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<AdDto>> GetAdsAsync()
+        public async Task<PagedList<AdDto>> GetAdsAsync(AdsParams adsParams)
         {
-            return await _context.Ads.ProjectTo<AdDto>(_mapper.ConfigurationProvider).ToListAsync();
+            var query =  _context.Ads.AsQueryable();
+            query = query.Where(ad => ad.IsActive == true);
+            if(adsParams.CategoryId!=null){
+            query = query.Where(ad => ad.CategoryId == adsParams.CategoryId);
+            }
+            query = adsParams.OrderBy switch {
+                "newest" => query.OrderBy(ad =>ad.CreatedAt),
+                "oldest" => query.OrderByDescending(ad=>ad.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<AdDto>.CreateAsync(query.ProjectTo<AdDto>(_mapper.ConfigurationProvider).AsNoTracking(), adsParams.PageNumber,adsParams.PageSize);
+        }
+
+        public async Task<PagedList<AdDto>> GetActiveAdsByUserIdAsync(AdsParams adsParams, int id)
+        {
+            var query =  _context.Ads.AsQueryable();
+            query = query.Where(ad => ad.IsActive == true);
+            query = query.Where(ad => ad.UserId == id );
+
+            if(adsParams.CategoryId!=null){
+            query = query.Where(ad => ad.CategoryId == adsParams.CategoryId);
+            }
+            query = adsParams.OrderBy switch {
+                "newest" => query.OrderBy(ad =>ad.CreatedAt),
+                "oldest" => query.OrderByDescending(ad=>ad.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<AdDto>.CreateAsync(query.ProjectTo<AdDto>(_mapper.ConfigurationProvider).AsNoTracking(), adsParams.PageNumber,adsParams.PageSize);
+        }
+
+        public async Task<PagedList<AdDto>> GetInactiveAdsByUserIdAsync(AdsParams adsParams, int id)
+        {
+            var query =  _context.Ads.AsQueryable();
+            query = query.Where(ad => ad.IsActive == false);
+            query = query.Where(ad => ad.UserId == id );
+
+            if(adsParams.CategoryId!=null){
+            query = query.Where(ad => ad.CategoryId == adsParams.CategoryId);
+            }
+            query = adsParams.OrderBy switch {
+                "newest" => query.OrderBy(ad =>ad.CreatedAt),
+                "oldest" => query.OrderByDescending(ad=>ad.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<AdDto>.CreateAsync(query.ProjectTo<AdDto>(_mapper.ConfigurationProvider).AsNoTracking(), adsParams.PageNumber,adsParams.PageSize);
         }
 
         public async Task<bool> SaveAllAsync()
@@ -54,15 +102,15 @@ namespace API.Repositories.AdRepository
         {
             _context.Entry(ad).State = EntityState.Modified;
         }
-
-        public async Task<IEnumerable<AdDto>> GetAdsDtoByUserIdAsync(int id)
-        {
-            return await _context.Ads.Where(ad => ad.UserId == id).ProjectTo<AdDto>(_mapper.ConfigurationProvider).ToListAsync();
-        }
-
+        
         public void AddAd(Ad ad)
         {
             _context.Ads.Add(ad);
+        }
+
+        public async Task<IEnumerable<AdDto>> GetAdsByUserId(int id)
+        {
+            return await _context.Ads.Where(ad => ad.UserId==id).ProjectTo<AdDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
     }
 }

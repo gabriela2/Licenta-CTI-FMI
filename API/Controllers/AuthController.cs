@@ -11,9 +11,11 @@ using API.Services;
 using API.Services.MailService;
 using API.Services.MailService.Template;
 using API.Repositories.UserRepository;
+using API.Helpers;
 
 namespace HelpAFamilyOfferAChance.API.Controllers
 {
+    [ServiceFilter(typeof(ModifyLastActivityForUser))]
     [ApiController]
     [Route("api/[controller]")]
     public class AuthController : ControllerBase

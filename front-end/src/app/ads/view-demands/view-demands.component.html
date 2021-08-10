@@ -1,38 +1,114 @@
 <tabset class="member-tabset">
-    <tab heading="Cereri neaprobate">
+    <tab heading='Cereri neaprobate'>
         <div class="row mt-3">
-            <h2 class="text-center text-primary">Cereri neaprobate</h2>
-        </div>
-        <div class="row" *ngIf="unapprovedDemands.length>0">
-            <span *ngFor="let item of unapprovedDemands">
-                <app-demand-card-unapproved [demand]="item"></app-demand-card-unapproved>
-            </span>
-            
+            <div class="col-2"></div>
+            <div class="col-8">
+                <h2 class="text-center text-primary">Cereri neaprobate</h2>
+            </div>
+            <div class="col-2"></div>
         </div>
 
+        <div class="container">
 
-        <div class="row" *ngIf="unapprovedDemands.length==0">
-            <h2 class="d-flex align-items-center justify-content-center"><strong>Nu exista cereri neaprobate!</strong></h2>
-            <p class="d-flex align-items-center justify-content-center">Pentru acest anunt nu exista nicio cerere neaprobata pana in prezent.</p>
+            <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="orderBy"
+                (click)="applyPageNotApprovedYet()" btnRadio='oldest'>Cele mai recente</button>
+            <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                (click)="applyPageNotApprovedYet()" btnRadio='newest'>Cele mai vechi</button>
+
+            <button class="btn btn primary ml-3" type="button" (click)="resetPageNotApprovedYet()">Reseteaza
+                filtrele</button>
+            <p><small>{{paginationUnapproved?.totalItems}} rezultate gasite</small></p>
+
+        </div>
+
+        <div class="row mt-4" *ngIf="unapprovedDemands">
+
+            <div class="col-12" *ngIf="paginationUnapproved?.totalItems!=0">
+                <span *ngFor="let unapprovedDemand of unapprovedDemands">
+                    <app-demand-card-unapproved [demand]="unapprovedDemand"></app-demand-card-unapproved>
+                </span>
+                <div class="d-flex justify-content-center" *ngIf="paginationUnapproved">
+                    <pagination [boundaryLinks]="true" [totalItems]="paginationUnapproved.totalItems"
+                        [itemsPerPage]="paginationUnapproved.itemsPerPage"
+                        [(ngModel)]="paginationUnapproved.currentPage" (pageChanged)="changePageNotApprovedYet($event)"
+                        previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+
+                    </pagination>
+                </div>
+            </div>
+
+
+            <div class="col-12" *ngIf="paginationUnapproved?.totalItems==0">
+                <h2 class="text-center"><strong>Nu exista nicio cerere neaprobata pentru acest anunt.</strong></h2>
+            </div>
+
+
+        </div>
+
+    </tab>
+
+
+    <tab heading='Lista cereri'>
+        <div class="row mt-3">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <h2 class="text-center text-primary">Lista cereri</h2>
+            </div>
+            <div class="col-2"></div>
+        </div>
+
+        <div class="container ml-3" >
+            <form #selectDeliveryTypeform="ngForm" class="form-inline mb-3" (ngSubmit)="applyPageAll()"
+                autocomplete="off">
+                <div class="form-group">
+                    <label><strong>Livrare:</strong></label>
+                    <select name="deliveryType" class="form-control ml-2" style="height: min-content;"
+                        [(ngModel)]="deliveryTypeSelected">
+                        <option *ngFor="let deliveryType of deliveryTypeList" [value]="deliveryType.name">
+                            {{deliveryType.name}}</option>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                    (click)="applyPageAll()" btnRadio='oldest'>Cele mai recente</button>
+                <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                    (click)="applyPageAll()" btnRadio='newest'>Cele mai vechi</button>
+
+                <button type="button" class="btn btn-primary ml-3" name="sortBy" [(ngModel)]="sortBy"
+                    (click)="applyPageAll()" btnRadio='approve'>Aprobate</button>
+                <button type="button" class="btn btn-primary ml-3" name="sortBy" [(ngModel)]="sortBy"
+                    (click)="applyPageAll()" btnRadio='declined'>Respinse</button>
+                <button class="btn btn primary ml-3" type="submit">Aplica filtrele</button>
+                <button class="btn btn primary ml-3" type="button" (click)="resetPageAll()">Reseteaza
+                    filtrele</button>
+            </form>
+            <p><small>{{paginationAll?.totalItems}} rezultate gasite</small></p>
+
+        </div>
+
+        <div class="row mt-4" *ngIf="demands">
+
+            <div class="col-12" *ngIf="paginationAll?.totalItems!=0">
+                <span *ngFor="let demand of demands">
+                    <app-demand-card-approved [demand]="demand"></app-demand-card-approved>
+                </span>
+                <div class="d-flex justify-content-center" *ngIf="paginationAll">
+                    <pagination [boundaryLinks]="true" [totalItems]="paginationAll.totalItems"
+                        [itemsPerPage]="paginationAll.itemsPerPage" [(ngModel)]="paginationAll.currentPage"
+                        (pageChanged)="changePageAll($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;">
+
+                    </pagination>
+                </div>
+            </div>
+
+
+            <div class="col-12" *ngIf="paginationAll?.totalItems==0">
+                <h2 class="text-center"><strong>Nu exista nicio cerere pentru acest anunt.</strong></h2>
+            </div>
+
+
         </div>
     </tab>
 
 
-    <tab heading="Lista cereri">
-        <div class="row mt-3">
-            <h2 class="text-center text-primary">Lista cereri</h2>
-        </div>
-        <div class="row mt-3" *ngIf="demands.length>0">
-            <span *ngFor="let item of demands">
-                <app-demand-card-approved [demand]="item"></app-demand-card-approved>
-
-            </span>
-
-        </div>
-        <div class="row" *ngIf="demands.length==0">
-            <h2 class="d-flex align-items-center justify-content-center"><strong>Nu exista cereri!</strong></h2>
-            <p class="d-flex align-items-center justify-content-center">Pentru acest anunt nu exista nicio cerere
-                revizuita pana in prezent.</p>
-        </div>
-    </tab>
 </tabset>

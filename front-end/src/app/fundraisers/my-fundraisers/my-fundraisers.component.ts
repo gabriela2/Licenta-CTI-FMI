@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Fundraiser } from 'src/app/models/fundraiser';
+import { Pagination } from 'src/app/models/pagination';
 import { FundraisersService } from 'src/app/services/fundraisers.service';
 
 @Component({
@@ -11,15 +12,23 @@ import { FundraisersService } from 'src/app/services/fundraisers.service';
 })
 export class MyFundraisersComponent implements OnInit {
 
-  currentUserLogger:number;
+  currentUserId:number;
   activeFundraisers:Fundraiser[]=[];
   rejectedFundraisers:Fundraiser[]=[];
   notApprovedYetFundraisers:Fundraiser[]=[];
+  paginationActive: Pagination;
+  paginationRejected: Pagination;
+  paginationNotApprovedYet: Pagination;
+  pageNumberActive = 1;
+  pageNumberRejected = 1;
+  pageNumberNotApprovedYet = 1;
+  pageSize = 10;
+  orderBy = 'createdAt';
 
 
   constructor(private router:Router, private fundraisersService: FundraisersService) { 
-    this.currentUserLogger = parseInt(localStorage.getItem('userId'));
-    console.log(this.currentUserLogger);
+    this.currentUserId = parseInt(localStorage.getItem('userId'));
+    console.log(this.currentUserId);
   }
 
   ngOnInit(): void {
@@ -29,29 +38,63 @@ export class MyFundraisersComponent implements OnInit {
   }
 
   loadActiveFundraisers(){
-    this.fundraisersService.getFundraisersByUserId(this.currentUserLogger).pipe(
-      map( response =>response.filter((fundraiser:Fundraiser)=>fundraiser.isValidated ===true && fundraiser.isRejected===false && fundraiser.userId===this.currentUserLogger))
-    ).subscribe(fundraisers=>{
-        this.activeFundraisers= fundraisers;
-        console.log(this.activeFundraisers)
-      })
+    this.fundraisersService.getApprovedFundraiserByUserId(this.currentUserId,this.pageNumberActive, this.pageSize,this.orderBy).subscribe(response=>{
+      this.activeFundraisers = response.result;
+      this.paginationActive = response.pagination;
+    })
+  }
+  loadNotApprovedYetFundraisers(){
+    this.fundraisersService.getNotApprovedYetFundraiserByUserId(this.currentUserId,this.pageNumberNotApprovedYet, this.pageSize,this.orderBy).subscribe(response=>{
+      this.notApprovedYetFundraisers = response.result;
+      this.paginationNotApprovedYet = response.pagination;
+    })
+
   }
 
   loadRejectedFundraisers(){
-    this.fundraisersService.getFundraisersByUserId(this.currentUserLogger).pipe(
-      map( response =>response.filter((fundraiser:Fundraiser)=>fundraiser.isValidated ===true && fundraiser.isRejected===true && fundraiser.userId===this.currentUserLogger))
-    ).subscribe(fundraisers=>{
-        this.rejectedFundraisers= fundraisers;
-        console.log(this.rejectedFundraisers)
-      })
+    this.fundraisersService.getRejectedFundraiserByUserId(this.currentUserId, this.pageNumberRejected,this.pageSize,this.orderBy).subscribe(response=>{
+      this.rejectedFundraisers=response.result;
+      this.paginationRejected = response.pagination;
+    })
   }
 
-  loadNotApprovedYetFundraisers(){
-    this.fundraisersService.getFundraisersByUserId(this.currentUserLogger).pipe(
-      map( response =>response.filter((fundraiser:Fundraiser)=>fundraiser.isValidated ===false && fundraiser.isRejected===false && fundraiser.userId===this.currentUserLogger))
-    ).subscribe(fundraisers=>{
-        this.notApprovedYetFundraisers= fundraisers;
-      })
+  
+
+  changePageActive(event:any){
+    this.pageNumberActive = event.page;
+    this.loadActiveFundraisers();
+  }
+  changePageNotApprovedYet(event:any){
+    this.pageNumberNotApprovedYet = event.page;
+    this.loadNotApprovedYetFundraisers();
+  }
+  changePageRejected(event:any){
+    this.pageNumberRejected = event.page;
+    this.loadRejectedFundraisers();
+  }
+
+  applyActive(){
+    this.loadActiveFundraisers();
+  }
+  applyRejected(){
+    this.loadRejectedFundraisers();
+  }
+  applyNotApprovedYet(){
+    this.loadNotApprovedYetFundraisers();
+  }
+
+
+  resetActive(){
+    this.orderBy="createdAt";
+    this.loadActiveFundraisers();
+  }
+  resetRejected(){
+    this.orderBy="createdAt";
+    this.loadRejectedFundraisers();
+  }
+  resetNotApprovedYet(){
+    this.orderBy="createdAt";
+    this.loadNotApprovedYetFundraisers();
   }
 
 

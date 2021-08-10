@@ -1,60 +1,129 @@
 <tabset class="member-tabset">
-<tab heading='{{currentNoOfDemandsForActive}} 🏴 Anunturi active'>
-    <div class="row mt-3">
-        <div class="col-2"></div>
-        <div class="col-8">
-            <h2 class="text-center text-primary">Anunturi active</h2>
-        </div>
-        <div class="col-2">
-            <div class="col-1 d-flex flex-row-reverse bd-highlight" style="margin-left:150px">
-                <ng-template #tolTemplate>Adauga anunt</ng-template>
-                <i class="fa fa-plus-circle fa-2x" aria-hidden="true" routerLink='/add-ad' [tooltip]="tolTemplate" placement="bottom"></i>
+    <tab heading='{{currentNoOfDemandsForActive}} 🏴 Anunturi active'>
+        <div class="row mt-3">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <h2 class="text-center text-primary">Anunturi active</h2>
+            </div>
+            <div class="col-2">
+                <div class="col-1 d-flex flex-row-reverse bd-highlight" style="margin-left:150px">
+                    <ng-template #tolTemplate>Adauga anunt</ng-template>
+                    <i class="fa fa-plus-circle fa-2x" aria-hidden="true" routerLink='/add-ad' [tooltip]="tolTemplate"
+                        placement="bottom"></i>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="row mt-4" *ngIf="activeAds">
-        
-        <div class="col-12" *ngIf="activeAds.length>0">
-            <span *ngFor="let activeAd of activeAds">
-                <app-ad-card-for-my-ads [ad]="activeAd"></app-ad-card-for-my-ads>
-            </span>
+        <div class="row mt-4" *ngIf="activeAds">
+            <div class="container">
+                <form #selectCategoryform="ngForm" class="form-inline mb-3" (ngSubmit)="applyActive()"
+                    autocomplete="off">
+                    <div class="form-group">
+                        <label><strong>Categorie:</strong></label>
+                        <select name="category" class="form-control ml-2" style="height: min-content;"
+                            [(ngModel)]="categoryId">
+                            <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="ml-3">
+                        <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                            (click)="applyActive()" btnRadio='oldest'>Cele mai recente</button>
+                        <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                            (click)="applyActive()" btnRadio='newest'>Cele mai vechi</button>
+                    </div>
+
+                    <button class="btn btn primary ml-3" type="submit">Aplica filtrele</button>
+                    <button class="btn btn primary ml-3" type="submit" (click)="resetActive()">Reseteaza
+                        filtrele</button>
+                </form>
+                <p><small>{{paginationActive?.totalItems}} rezultate gasite</small></p>
+
+            </div>
+
+            <div class="col-12" *ngIf="paginationActive?.totalItems!=0">
+                <span *ngFor="let activeAd of activeAds">
+                    <app-ad-card-for-my-ads [ad]="activeAd"></app-ad-card-for-my-ads>
+                </span>
+                <div class="d-flex justify-content-center" *ngIf="paginationActive">
+                    <pagination [boundaryLinks]="true" [totalItems]="paginationActive.totalItems"
+                        [itemsPerPage]="paginationActive.itemsPerPage" [(ngModel)]="paginationActive.currentPage"
+                        (pageChanged)="changePageActive($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;">
+
+                    </pagination>
+                </div>
+            </div>
+
+
+            <div class="col-12" *ngIf="paginationActive?.totalItems==0">
+                <h2 class="text-center"><strong>Nu aveti niciun anunt activ.</strong></h2>
+            </div>
+
+
         </div>
 
+    </tab>
 
-        <div class="col-12" *ngIf="activeAds.length==0" >
-            <h2 class="text-center"><strong>Nu aveti niciun anunt activ.</strong></h2>
+    <tab heading='{{currentNoOfDemandsForInactive}} 🏴 Anunturi inactive'>
+        <div class="row mt-3">
+            <div class="col-12">
+                <h2 class="text-center text-primary">Anunturi inactive</h2>
+            </div>
+            <div class="container mt-4">
+                <form #selectCategoryform="ngForm" class="form-inline mb-3" (ngSubmit)="applyInactive()"
+                    autocomplete="off">
+                    <div class="form-group">
+                        <label><strong>Categorie:</strong></label>
+                        <select name="category" class="form-control ml-2" style="height: min-content;"
+                            [(ngModel)]="categoryId">
+                            <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="ml-3">
+                        <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                            (click)="applyInactive()" btnRadio='oldest'>Cele mai recente</button>
+                        <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                            (click)="applyInactive()" btnRadio='newest'>Cele mai vechi</button>
+                    </div>
+
+                    <button class="btn btn primary ml-3" type="submit">Aplica filtrele</button>
+                    <button class="btn btn primary ml-3" type="submit" (click)="resetInactive()">Reseteaza
+                        filtrele</button>
+                </form>
+                <p><small>{{paginationInactive?.totalItems}} rezultate gasite</small></p>
+
+            </div>
         </div>
 
+        <div class="row mt-4" *ngIf="inactiveAds">
+            <div class="col-12" *ngIf="inactiveAds.length>0">
+                <span *ngFor="let inactiveAd of inactiveAds">
+                    <app-ad-card-for-my-ads [ad]="inactiveAd"></app-ad-card-for-my-ads>
+                </span>
+                <div class="d-flex justify-content-center" *ngIf="paginationInactive">
+                    <pagination [boundaryLinks]="true" [totalItems]="paginationInactive.totalItems"
+                        [itemsPerPage]="paginationInactive.itemsPerPage" [(ngModel)]="paginationInactive.currentPage"
+                        (pageChanged)="changePageInactive($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;">
 
-    </div>
+                    </pagination>
+                </div>
+            </div>
 
-</tab>
 
-<tab heading='{{currentNoOfDemandsForInactive}} 🏴 Anunturi inactive'>
-    <div class="row mt-3">
-        <div class="col-12">
-            <h2 class="text-center text-primary">Anunturi inactive</h2>
+            <div class="col-12" *ngIf="inactiveAds.length==0">
+                <h2 class="text-center"><strong>Nu aveti niciun anunt inactiv.</strong></h2>
+            </div>
+
+
+            <div class="col-2"></div>
         </div>
-    </div>
 
-    <div class="row mt-4" *ngIf="inactiveAds">
-        <div class="col-12" *ngIf="inactiveAds.length>0">
-            <span *ngFor="let inactiveAd of inactiveAds">
-                <app-ad-card-for-my-ads [ad]="inactiveAd"></app-ad-card-for-my-ads>
-            </span>
-        </div>
-
-
-        <div class="col-12" *ngIf="inactiveAds.length==0" >
-            <h2 class="text-center"><strong>Nu aveti niciun anunt inactiv.</strong></h2>
-        </div>
-
-
-        <div class="col-2"></div>
-    </div>
-
-</tab>
+    </tab>
 
 
 

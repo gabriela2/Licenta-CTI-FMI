@@ -2,11 +2,13 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 using API.Repositories.FavouriteListRepository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [ServiceFilter(typeof(ModifyLastActivityForUser))]
     [ApiController]
     [Route("api/[controller]")]
     public class FavouriteListsController : ControllerBase

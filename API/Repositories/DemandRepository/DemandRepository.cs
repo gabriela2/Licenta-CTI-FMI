@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using HelpAFamilyOfferAChance.API.Data;
@@ -30,6 +31,44 @@ namespace API.Repositories.DemandRepository
             _context.Demands.Remove(demand);
         }
 
+        public async Task<PagedList<DemandDto>> GetAllDemandsByAdIdAsync(DemandsParams demandsParams, int id)
+        {
+            var query =  _context.Demands.AsQueryable();
+            query = query.Where(demand => demand.IsApproved==true);
+            query = query.Where(demand => demand.AdId==id);
+            query = demandsParams.OrderBy switch {
+                "newest" => query.OrderBy(demand =>demand.CreatedAt),
+                "oldest" => query.OrderByDescending(demand=>demand.CreatedAt),
+                _ => query
+            };
+            if(demandsParams.DeliveryTypeSelected!=null){
+            query = query.Where(demand => demand.DeliveryTypeSelected == demandsParams.DeliveryTypeSelected);
+            }
+            query = demandsParams.SortBy switch {
+                "approve" => query.Where(demand => demand.IsDeclined==false),
+                "declined" => query.Where(demand => demand.IsDeclined==true),
+                _ => query
+            };
+
+
+            return await PagedList<DemandDto>.CreateAsync(query.ProjectTo<DemandDto>(_mapper.ConfigurationProvider).AsNoTracking(), demandsParams.PageNumber,demandsParams.PageSize);
+        }
+
+        public async Task<PagedList<DemandDto>> GetApprovedDemandsByUserIdAsync(AppParams appParams, int id)
+        {
+            var query =  _context.Demands.AsQueryable();
+            query = query.Where(demand => demand.UserId==id);
+            query = query.Where(demand => demand.IsApproved==true);
+            query = query.Where(demand => demand.IsDeclined==false);
+            query = appParams.OrderBy switch {
+                "newest" => query.OrderBy(demand =>demand.CreatedAt),
+                "oldest" => query.OrderByDescending(demand=>demand.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<DemandDto>.CreateAsync(query.ProjectTo<DemandDto>(_mapper.ConfigurationProvider).AsNoTracking(), appParams.PageNumber,appParams.PageSize);
+        }
+
         public async Task<Demand> GetDemandByIdAsync(int id)
         {
             return await _context.Demands.Where(demand =>demand.Id == id).SingleOrDefaultAsync();
@@ -45,14 +84,49 @@ namespace API.Repositories.DemandRepository
             return await _context.Demands.ProjectTo<DemandDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
-        public async Task<IEnumerable<DemandDto>> GetDemandsByAdIdAsync(int id)
+        public async Task<PagedList<DemandDto>> GetNotApprovedYetDemandsByUserIdAsync(AppParams appParams, int id)
         {
-            return await _context.Demands.Where(demand => demand.AdId==id).ProjectTo<DemandDto>(_mapper.ConfigurationProvider).ToListAsync();
+            var query =  _context.Demands.AsQueryable();
+            query = query.Where(demand => demand.UserId==id);
+            query = query.Where(demand => demand.IsApproved==false);
+            query = query.Where(demand => demand.IsDeclined==false);
+            query = appParams.OrderBy switch {
+                "newest" => query.OrderBy(demand =>demand.CreatedAt),
+                "oldest" => query.OrderByDescending(demand=>demand.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<DemandDto>.CreateAsync(query.ProjectTo<DemandDto>(_mapper.ConfigurationProvider).AsNoTracking(), appParams.PageNumber,appParams.PageSize);
         }
 
-        public async Task<IEnumerable<DemandDto>> GetDemandsByUserIdAsync(int id)
+        public async Task<PagedList<DemandDto>> GetRejectedDemandsByUserIdAsync(AppParams appParams, int id)
         {
-            return await _context.Demands.Where(demand => demand.UserId==id).ProjectTo<DemandDto>(_mapper.ConfigurationProvider).ToListAsync();
+            var query =  _context.Demands.AsQueryable();
+            query = query.Where(demand => demand.UserId==id);
+            query = query.Where(demand => demand.IsApproved==true);
+            query = query.Where(demand => demand.IsDeclined==true);
+            query = appParams.OrderBy switch {
+                "newest" => query.OrderBy(demand =>demand.CreatedAt),
+                "oldest" => query.OrderByDescending(demand=>demand.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<DemandDto>.CreateAsync(query.ProjectTo<DemandDto>(_mapper.ConfigurationProvider).AsNoTracking(), appParams.PageNumber,appParams.PageSize);
+        }
+
+        public async Task<PagedList<DemandDto>> GetUnapprovedDemandsByAdIdAsync(AppParams appParams, int id)
+        {
+            var query =  _context.Demands.AsQueryable();
+            query = query.Where(demand => demand.AdId==id);
+            query = query.Where(demand => demand.IsApproved==false);
+            query = query.Where(demand => demand.IsDeclined==false);
+            query = appParams.OrderBy switch {
+                "newest" => query.OrderBy(demand =>demand.CreatedAt),
+                "oldest" => query.OrderByDescending(demand=>demand.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<DemandDto>.CreateAsync(query.ProjectTo<DemandDto>(_mapper.ConfigurationProvider).AsNoTracking(), appParams.PageNumber,appParams.PageSize);
         }
 
         public async Task<bool> SaveAllAsync()

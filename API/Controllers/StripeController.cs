@@ -10,6 +10,7 @@ using Stripe;
 
 namespace Help.Controllers
 {
+    [ServiceFilter(typeof(ModifyLastActivityForUser))]
     [EnableCors]
     [Route("api/[controller]")]
     [ApiController]

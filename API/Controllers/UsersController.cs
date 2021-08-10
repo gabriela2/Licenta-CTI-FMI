@@ -4,6 +4,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 using API.Repositories.UserPhotoRepository;
 using API.Repositories.UserRepository;
 using API.Services.CloudinaryPhotoService;
@@ -17,6 +18,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HelpAFamilyOfferAChance.API.Controllers
 {
+    [ServiceFilter(typeof(ModifyLastActivityForUser))]
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]

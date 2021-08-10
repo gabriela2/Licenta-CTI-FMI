@@ -37,7 +37,7 @@ export class DemandCardUnapprovedComponent implements OnInit {
   loadMember(){
     this.memberService.getMember(this.demand.userId).subscribe(response=>{
       this.member = response;
-      // console.log(this.member);
+      console.log(this.member);
       this.loadAddress();
     })
   }

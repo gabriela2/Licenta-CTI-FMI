@@ -202,6 +202,7 @@ export class AdDetailComponent implements OnInit {
 
         this.adService.put(this.ad.id, this.ad).subscribe();
         this.toastr.info("Cererea dvs. a fost inregistrata!");
+        window.location.reload();
       }
     }
     else {

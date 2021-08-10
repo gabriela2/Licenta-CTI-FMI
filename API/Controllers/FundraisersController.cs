@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Extensions;
+using API.Helpers;
 using API.Repositories.FundraiserRepository;
 using API.Repositories.PhotoRepository;
 using API.Services.CloudinaryPhotoService;
@@ -12,6 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [ServiceFilter(typeof(ModifyLastActivityForUser))]
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]
@@ -30,9 +33,34 @@ namespace API.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<FundraiserDto>>> GetFundraisers()
+        public async Task<ActionResult<IEnumerable<FundraiserDto>>> GetFundraisers([FromQuery]AppParams appParams)
         {
-            var fundraisers = await _fundraiserRepository.GetFundraisersAsync();
+            var fundraisers = await _fundraiserRepository.GetFundraisersAsync(appParams);
+            Response.AddPaginationHeader(fundraisers.CurrentPage,fundraisers.PageSize,fundraisers.TotalCount, fundraisers.TotalPages);
+            return Ok(fundraisers);
+        }
+        
+        [HttpGet("approved/{id}")]
+        public async Task<ActionResult<IEnumerable<FundraiserDto>>> GetApprovedFundraisersByUserId([FromQuery]AppParams appParams, int id)
+        {
+            var fundraisers = await _fundraiserRepository.GetActiveFundraisersByUserIdAsync(appParams, id);
+            Response.AddPaginationHeader(fundraisers.CurrentPage, fundraisers.PageSize, fundraisers.TotalCount,fundraisers.TotalPages);
+            return Ok(fundraisers);
+        }
+
+        [HttpGet("not-approved-yet/{id}")]
+        public async Task<ActionResult<IEnumerable<FundraiserDto>>> GetNotApprovedYetFundraisersByUserId([FromQuery]AppParams appParams, int id)
+        {
+            var fundraisers = await _fundraiserRepository.GetInactiveFundraisersByUserIdAsync(appParams, id);
+            Response.AddPaginationHeader(fundraisers.CurrentPage, fundraisers.PageSize, fundraisers.TotalCount,fundraisers.TotalPages);
+            return Ok(fundraisers);
+        }
+        
+        [HttpGet("rejected/{id}")]
+        public async Task<ActionResult<IEnumerable<FundraiserDto>>> GetRejectedFundraisersByUserId([FromQuery]AppParams appParams, int id)
+        {
+            var fundraisers = await _fundraiserRepository.GetRejectedFundraisersByUserIdAsync(appParams, id);
+            Response.AddPaginationHeader(fundraisers.CurrentPage, fundraisers.PageSize, fundraisers.TotalCount,fundraisers.TotalPages);
             return Ok(fundraisers);
         }
 

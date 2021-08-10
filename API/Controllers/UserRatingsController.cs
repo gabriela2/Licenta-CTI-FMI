@@ -2,13 +2,15 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 using API.Repositories.UserRatingRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    // [Authorize]
+    [ServiceFilter(typeof(ModifyLastActivityForUser))]
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UserRatingsController : ControllerBase
