@@ -10,9 +10,9 @@ export class PreventUnsavedChangesForAddRatingGuard implements CanDeactivate<unk
 
     canDeactivate(
       component: AddRatingComponent): Observable<boolean> | boolean  {
-      if(component.userRating.rating!=0 || component.userRating.title!='' || component.userRating.comment!=''){
-        return confirm('Continui? Modificarile facute vor fi pierdute');
-      }
+      
+        
+      
       return true;
     }
   

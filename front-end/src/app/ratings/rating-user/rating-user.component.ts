@@ -28,7 +28,7 @@ export class RatingUserComponent implements OnInit {
   }
 
   loadUserRatings(){
-    this.userRatingService.getUserRatingsByReceiverId(this.member.id).subscribe(result =>{
+    this.userRatingService.getUserRatingByReceiverIdWithoutPag(this.member.id).subscribe(result =>{
       this.userRating=result;
       for(var item of result){
         this.sum=this.sum+item.rating;

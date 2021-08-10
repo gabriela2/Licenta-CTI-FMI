@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Extensions;
 using API.Helpers;
 using API.Repositories.UserRatingRepository;
 using Microsoft.AspNetCore.Authorization;
@@ -37,11 +38,21 @@ namespace API.Controllers
         }
 
         [HttpGet("rating-received/{id}")]
-        public async Task<ActionResult<IEnumerable<UserRatingDto>>> GetUserRatingReceived(int id)
+        public async Task<ActionResult<IEnumerable<UserRatingDto>>> GetUserRatingReceived([FromQuery]RatingsParams ratingsParams ,int id)
         {
-            var userRating = await _userRatingRepository.GetUserRatingsByReceiverIdAsync(id);
+            var userRating = await _userRatingRepository.GetUserRatingsByReceiverIdAsync( ratingsParams, id);
+            Response.AddPaginationHeader(userRating.CurrentPage, userRating.PageSize, userRating.TotalCount,userRating.TotalPages);
             return Ok(userRating);
         }
+
+
+        [HttpGet("rating-received-without-pag/{id}")]
+        public async Task<ActionResult<IEnumerable<UserRatingDto>>> GetUserRatingReceivedIdWihout(int id)
+        {
+            var userRating = await _userRatingRepository.GetUserRatingsByReceiverIdWihoutPagAsync(id);
+            return Ok(userRating);
+        }
+
 
         [HttpPut("{id}")]
         public async Task<ActionResult> UpdateUserRating(int id, UserRatingDto userRatingDto)

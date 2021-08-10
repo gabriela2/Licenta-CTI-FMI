@@ -41,53 +41,145 @@
     <div class="row mt-3">
         <tabset class="member-tabset">
             <tab heading='Anunturi'>
-                <div class="column" *ngIf="ads">
+                <div class="container mt-3">
+                    <form #selectCategoryform="ngForm" class="form-inline mb-3" (ngSubmit)="applyAd()" autocomplete="off">
+                        <div class="form-group">
+                            <label><strong>Categorie:</strong></label>
+                            <select name="category" class="form-control ml-2" style="height: min-content;"  [(ngModel)]="categoryId" >
+                                <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
+                            </select>
+                        </div>
+                
+                        <div class="ml-3">
+                            <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy" (click)="applyAd()" btnRadio='oldest' >Cele mai recente</button>
+                            <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy" (click)="applyAd()" btnRadio='newest' >Cele mai vechi</button>
+                        </div>
+                
+                        <button class="btn btn primary ml-3" type="submit">Aplica filtrele</button>
+                        <button class="btn btn primary ml-3" type="submit" (click)="resetAd()">Reseteaza filtrele</button>
+                    </form>
+                    <p><small>{{paginationAd?.totalItems}} rezultate gasite</small></p>
+                
+                </div>
+                
+                <div class="col-12" *ngIf="paginationAd?.totalItems!=0">
                     <div *ngFor="let ad of ads">
                         <app-ad-card [ad]="ad"></app-ad-card>
                     </div>
+                    <div class="d-flex justify-content-center" *ngIf="paginationAd">
+                        <pagination 
+                            [boundaryLinks]="true" 
+                            [totalItems]="paginationAd.totalItems" 
+                            [itemsPerPage]="paginationAd.itemsPerPage"
+                            [(ngModel)]="paginationAd.currentPage"
+                            (pageChanged)="changePageAd($event)"
+                            previousText="&lsaquo;" 
+                            nextText="&rsaquo;" 
+                            firstText="&laquo;"
+                            lastText="&raquo;">
+                    
+                        </pagination>
+                    </div>
                 </div>
-                <div class="mt-5 mb-5" *ngIf="ads<1">
+                
+                <div class="col-12" *ngIf="paginationAd?.totalItems==0">
                     <h2 class="d-flex align-items-center justify-content-center"><strong>Nu exista anunturi!</strong>
                     </h2>
                     <p class="d-flex align-items-center justify-content-center">Acest utilizator nu a adaugat niciun
-                        anunt pana in prezent.</p>
-
+                        anunt pana in prezent pentru aceasta categorie.</p>
                 </div>
+                
+
             </tab>
 
 
             <tab heading='Strangeri de fonduri'>
-                <div class="column" *ngIf="fundraisers">
+                <div class="container mt-3 ml-3">
+                    <form #selectCategoryform="ngForm" class="form-inline" (ngSubmit)="applyFundraisers()" autocomplete="off">
+                        <div>
+                            <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="orderBy" (click)="applyFundraisers()"
+                                btnRadio='oldest'>Cele mai recente</button>
+                            <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy" (click)="applyFundraisers()"
+                                btnRadio='newest'>Cele mai vechi</button>
+                        </div>
+                
+                        <button class="btn btn primary ml-3" type="submit" (click)="resetFundraisers()">Reseteaza filtrele</button>
+                    </form>
+                    <p><small>{{paginationFundraiser?.totalItems}} rezultate gasite</small></p>
+                
+                </div>
+                <div class="col-12" *ngIf="paginationFundraiser?.totalItems!=0">
                     <div *ngFor="let fundraiser of fundraisers">
                         <app-fundraiser-card [fundraiser]="fundraiser"></app-fundraiser-card>
                     </div>
+                    <div class="d-flex justify-content-center" *ngIf="paginationFundraiser">
+                        <pagination [boundaryLinks]="true" [totalItems]="paginationFundraiser.totalItems" [itemsPerPage]="paginationFundraiser.itemsPerPage"
+                            [(ngModel)]="paginationFundraiser.currentPage" (pageChanged)="changePageFundraisers($event)" previousText="&lsaquo;"
+                            nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+                
+                        </pagination>
+                    </div>
                 </div>
-                <div class="mt-5 mb-5" *ngIf="fundraisers<1">
-                    <h2 class="d-flex align-items-center justify-content-center"><strong>Nu exista strangeri de
-                            fonduri!</strong></h2>
-                    <p class="d-flex align-items-center justify-content-center">Acest utilizator nu a adaugat nicio
-                        strangere de fonduri pana in prezent.</p>
 
+                <div class="col-12" *ngIf="paginationFundraiser?.totalItems==0">
+                    <h2 class="d-flex align-items-center justify-content-center"><strong>Nu exista strangeri de fonduri!</strong>
+                    </h2>
+                    <p class="d-flex align-items-center justify-content-center">Acest utilizator nu a adaugat nicio strangere de fonduri pana in prezent.</p>
                 </div>
 
             </tab>
 
 
             <tab heading='Review-uri'>
-                <div class="column" *ngIf="ratings">
+                <div class="container mt-3">
+                    <form #selectCategoryform="ngForm" class="form-inline mb-3" (ngSubmit)="applyUserRating()" autocomplete="off">
+                        <div class="form-group">
+                            <label><strong>Rating:</strong></label>
+                            <select name="rating" class="form-control ml-2" style="height: min-content;"  [(ngModel)]="rating" >
+                                <option *ngFor="let value of ratingList" [value]="value">{{value}}</option>
+                            </select>
+                        </div>
+                
+                        <div class="ml-3">
+                            <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy" (click)="applyUserRating()" btnRadio='oldest' >Cele mai recente</button>
+                            <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy" (click)="applyUserRating()" btnRadio='newest' >Cele mai vechi</button>
+                        </div>
+                
+                        <button class="btn btn primary ml-3" type="submit">Aplica filtrele</button>
+                        <button class="btn btn primary ml-3" type="submit" (click)="resetUserRating()">Reseteaza filtrele</button>
+                    </form>
+                    <p><small>{{paginationUserRating?.totalItems}} rezultate gasite</small></p>
+                
+                </div>
+                
+                <div class="col-12" *ngIf="paginationUserRating?.totalItems!=0">
                     <div *ngFor="let rating of ratings">
                         <app-rating-card [rating]="rating"></app-rating-card>
                     </div>
+                    <div class="d-flex justify-content-center" *ngIf="paginationUserRating">
+                        <pagination 
+                            [boundaryLinks]="true" 
+                            [totalItems]="paginationUserRating.totalItems" 
+                            [itemsPerPage]="paginationUserRating.itemsPerPage"
+                            [(ngModel)]="paginationUserRating.currentPage"
+                            (pageChanged)="changePageUserRating($event)"
+                            previousText="&lsaquo;" 
+                            nextText="&rsaquo;" 
+                            firstText="&laquo;"
+                            lastText="&raquo;">
+                    
+                        </pagination>
+                    </div>
                 </div>
-                <div class="mt-5 mb-5" *ngIf="ratings<1">
+                
+                <div class="col-12" *ngIf="paginationUserRating?.totalItems==0">
                     <h2 class="d-flex align-items-center justify-content-center"><strong>Nu exista review-uri pentru
-                            acest utilizator!</strong></h2>
-                    <p class="d-flex align-items-center justify-content-center">Fii prima persoana care adauga un review
-                        <span>
-                            <button class="btn btn-info ml-3" (click)="addReview()"><i class="fa fa-pencil" aria-hidden="true"></i>Adauga un
-                                review</button>
-                        </span></p>
-
+                        acest utilizator!</strong></h2>
+                <p class="d-flex align-items-center justify-content-center">Fii prima persoana care adauga un review
+                    <span>
+                        <button class="btn btn-info ml-3" (click)="addReview()"><i class="fa fa-pencil" aria-hidden="true"></i>Adauga un
+                            review</button>
+                    </span></p>
                 </div>
 
             </tab>

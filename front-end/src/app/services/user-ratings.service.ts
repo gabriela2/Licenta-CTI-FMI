@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { PaginatedResult } from '../models/pagination';
 import { UserRating } from '../models/userRating';
 
 @Injectable({
@@ -10,47 +11,55 @@ import { UserRating } from '../models/userRating';
 })
 export class UserRatingsService {
 
-  userRatings: UserRating[]=[];
-
-
   baseUrl = environment.apiUrl;
+  paginatedResult: PaginatedResult<UserRating[]> = new PaginatedResult<UserRating[]>();
   constructor(private http: HttpClient) { }
 
   getUserRatings() {
-    if(this.userRatings.length>0) return of(this.userRatings);
-    return this.http.get<UserRating[]>(this.baseUrl + 'userRatings').pipe(
-      map(userRatings =>{
-        this.userRatings = userRatings;
-        return userRatings;
-      })
-    )
+    return this.http.get<UserRating[]>(this.baseUrl + 'userRatings');
   }
 
 
   getUserRating(id:number) {
-    const userRating= this.userRatings.find(x=>x.id=== id);
-    if(userRating !== undefined) return of(userRating);
     return this.http.get<UserRating>(this.baseUrl + 'userRatings/'+id);
   }
 
-  getUserRatingsByReceiverId(id: number) {
-    return this.http.get<UserRating[]>(this.baseUrl + 'userRatings/rating-received/' + id).pipe(
-      map(userRatings =>{
-        this.userRatings = userRatings;
-        return userRatings;
-      })
-    );
+  getUserRatingByReceiverIdWithoutPag(id:number) {
+    return this.http.get<UserRating[]>(this.baseUrl + 'userRatings/rating-received-without-pag/'+id);
   }
+
+
+
+  getUserRatingsByReceiverId(id: number,page?: number, itemsPerPage?: number, orderBy?:string, rating?:number) {
+    let params = new HttpParams();
+    if (page !== null && itemsPerPage !== null) {
+      params = params.append('pageNumber', page.toString());
+      params = params.append('pageSize', itemsPerPage.toString());
+      params = params.append('orderBy',orderBy);
+      params = params.append('rating',rating.toString());
+    }
+
+    
+    return this.http.get<UserRating[]>(this.baseUrl +'userRatings/rating-received/' + id, { observe: 'response', params }).pipe(
+      map(response => {
+        this.paginatedResult.result = response.body;
+        if (response.headers.get('Pagination') !== null) {
+          this.paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+        }
+        return this.paginatedResult;
+
+      }
+      ));
+  }
+
+
+
   post(userRating: UserRating) {
     return this.http.post(this.baseUrl + 'userRatings/', userRating);
   }
+
   put(id: number, userRating: UserRating) {
-    return this.http.put(this.baseUrl + 'userRatings/' + id, userRating).pipe(
-      map(()=> {
-        const index = this.userRatings.indexOf(userRating);
-        this.userRatings[index] = userRating;
-      })
-    );
+    return this.http.put(this.baseUrl + 'userRatings/' + id, userRating);
   }
   delete(id:number){
     return this.http.delete(this.baseUrl+'userRatings/'+id);

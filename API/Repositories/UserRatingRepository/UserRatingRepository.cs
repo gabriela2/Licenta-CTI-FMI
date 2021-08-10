@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using HelpAFamilyOfferAChance.API.Data;
@@ -43,10 +44,26 @@ namespace API.Repositories.UserRatingRepository
            return await _context.UserRatings.ProjectTo<UserRatingDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
-        public async Task<IEnumerable<UserRatingDto>> GetUserRatingsByReceiverIdAsync(int id)
+        public async Task<PagedList<UserRatingDto>> GetUserRatingsByReceiverIdAsync(RatingsParams ratingsParams, int id)
         {
-            return await _context.UserRatings.Where(userRating => userRating.ReceiverId == id).ProjectTo<UserRatingDto>(_mapper.ConfigurationProvider).ToListAsync();
-            
+            var query =  _context.UserRatings.AsQueryable();
+            query = query.Where(userRating => userRating.ReceiverId == id);
+            if(ratingsParams.Rating>0 && ratingsParams.Rating<6 ){
+            query = query.Where(userRating => userRating.Rating == ratingsParams.Rating);
+            }
+            query = ratingsParams.OrderBy switch {
+                "newest" => query.OrderBy(ad =>ad.CreatedAt),
+                "oldest" => query.OrderByDescending(ad=>ad.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<UserRatingDto>.CreateAsync(query.ProjectTo<UserRatingDto>(_mapper.ConfigurationProvider).AsNoTracking(), ratingsParams.PageNumber,ratingsParams.PageSize);
+        
+        }
+
+        public async Task<IEnumerable<UserRatingDto>> GetUserRatingsByReceiverIdWihoutPagAsync(int id)
+        {
+            return await _context.UserRatings.Where(userRating => userRating.ReceiverId==id).ProjectTo<UserRatingDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
         public async Task<bool> SaveAllAsync()

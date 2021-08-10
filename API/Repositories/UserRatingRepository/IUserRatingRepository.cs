@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 
 namespace API.Repositories.UserRatingRepository
 {
@@ -13,7 +14,8 @@ namespace API.Repositories.UserRatingRepository
         Task<UserRatingDto> GetUserRatingDtoAsync(int id);
         Task<UserRating> GetUserRatingAsync(int id);
     
-        Task<IEnumerable<UserRatingDto>> GetUserRatingsByReceiverIdAsync(int id);
+        Task<PagedList<UserRatingDto>> GetUserRatingsByReceiverIdAsync(RatingsParams ratingsParams, int id);
+        Task<IEnumerable<UserRatingDto>> GetUserRatingsByReceiverIdWihoutPagAsync(int id);
         Task<bool> SaveAllAsync();
         
         

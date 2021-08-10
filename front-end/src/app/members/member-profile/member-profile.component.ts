@@ -10,6 +10,7 @@ import { Pagination } from 'src/app/models/pagination';
 import { UserRating } from 'src/app/models/userRating';
 import { AddressesService } from 'src/app/services/addresses.service';
 import { AdsService } from 'src/app/services/ads.service';
+import { CategoriesService } from 'src/app/services/categories.service';
 import { FundraisersService } from 'src/app/services/fundraisers.service';
 import { MembersService } from 'src/app/services/members.service';
 import { UserRatingsService } from 'src/app/services/user-ratings.service';
@@ -27,6 +28,20 @@ export class MemberProfileComponent implements OnInit {
   ads: Ad[];
   fundraisers: Fundraiser[];
   ratings: UserRating[];
+  paginationAd:Pagination;
+  pageNumberAd=1;
+  paginationFundraiser:Pagination;
+  pageNumberFundraisers=1;
+  paginationUserRating:Pagination;
+  pageNumberUserRating=1;
+  pageSize=10;
+  orderBy='createdAt';
+  categoryId:number;
+  categoryList:Category[];
+  ratingList:number[]=[1,2,3,4,5];
+  rating=0;
+
+  
 
 
 
@@ -38,17 +53,80 @@ export class MemberProfileComponent implements OnInit {
     private fundraisersService: FundraisersService,
     private ratingsService: UserRatingsService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private categoryService:CategoriesService
   ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
       this.userId = params['id'];
     })
-    // console.log("this.userId = ", this.userId);
     this.loadMember();
+    this.getCategories();
   }
 
+  getCategories(){
+    this.categoryService.getCategories().subscribe(response=>{
+      this.categoryList= response;
+      this.categoryId=0;
+      this.getAds();
+    })
+  }
+
+  applyAd(){
+    console.log(this.categoryId);
+    this.getAds();
+
+  }
+  resetAd(){
+    this.categoryId=0;
+    this.orderBy="createdAt";
+    this.getAds();
+  }
+
+  changePageAd(event:any){
+    this.pageNumberAd = event.page;
+    this.getAds();
+  }
+
+  applyUserRating(){
+    this.loadRatings()
+
+  }
+  resetUserRating(){
+    this.rating=0;
+    this.orderBy="createdAt";
+    this.loadRatings();
+  }
+
+  changePageUserRating(event:any){
+    this.pageNumberUserRating = event.page;
+    this.loadRatings();
+  }
+
+  applyFundraisers(){
+    console.log(this.categoryId);
+    this.loadFundraisers();
+
+  }
+  resetFundraisers(){
+    this.orderBy="createdAt";
+    this.loadFundraisers();
+  }
+
+  changePageFundraisers(event:any){
+    this.pageNumberFundraisers = event.page;
+    this.loadFundraisers();
+  }
+
+  getAds(){
+    this.adsService.getActiveAdsByUserId(this.userId,this.pageNumberAd,this.pageSize, this.categoryId, this.orderBy).subscribe(response=>{
+      this.ads=response.result;
+      this.paginationAd = response.pagination;
+    })
+  }
+
+ 
 
   showPhoneNumber() {
     this.phoneNumber = this.member.phoneNumber;
@@ -57,39 +135,31 @@ export class MemberProfileComponent implements OnInit {
   loadAddress() {
     this.addressService.getAddressByUserId(this.userId).subscribe(address => {
       this.address = address;
-      // console.log("this.address = ", this.address);
     })
   }
 
   loadMember() {
     this.memberService.getMember(this.userId).subscribe(response => {
       this.member = response;
-      // console.log(this.member);
     })
     this.loadAddress();
-    // this.loadAds();
     this.loadFundraisers();
     this.loadRatings();
   }
 
-  // loadAds() {
-  //   this.adsService.getActiveAdsByUserId(this.userId,this.pageNumber,this.pageSize, this.categoryId, this.orderBy).subscribe(response=>{
-  //     this.ads=response.result;
-  //     this.pagination = response.pagination;
-  //   })
-  // }
+
 
   loadFundraisers() {
-    this.fundraisersService.getFundraisersByUserId(this.userId).subscribe(response => {
-      this.fundraisers = response;
-      // console.log("this.fundraisers=",this.fundraisers);
+    this.fundraisersService.getApprovedFundraiserByUserId(this.userId,this.pageNumberFundraisers,this.pageSize, this.orderBy).subscribe(response => {
+      this.fundraisers = response.result;
+      this.paginationFundraiser = response.pagination;
     })
   }
 
   loadRatings() {
-    this.ratingsService.getUserRatingsByReceiverId(this.userId).subscribe(response => {
-      this.ratings = response;
-      // console.log("this.ratings=",this.ratings);
+    this.ratingsService.getUserRatingsByReceiverId(this.userId, this.pageNumberUserRating, this.pageSize, this.orderBy,this.rating).subscribe(response => {
+      this.ratings = response.result;
+      this.paginationUserRating = response.pagination;
     }
     )
   }
