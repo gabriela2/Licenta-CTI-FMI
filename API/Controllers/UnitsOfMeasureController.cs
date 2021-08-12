@@ -38,47 +38,6 @@ namespace API.Controllers
             return unitOfMeasure;
         }
 
-        [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateUnitOfMeasure(int id, UnitOfMeasureDto unitOfMeasureDto)
-        {
-            UnitOfMeasure unitOfMeasure = await _unitOfMeasureRepository.GetUnitOfMeasureByIdAsync(unitOfMeasureDto.Id);
-            if(id!= unitOfMeasure.Id)
-            {
-               return BadRequest("S-a intamplat ceva neasteptat");
-            }
-
-            unitOfMeasure.Name =unitOfMeasureDto.Name;
-            unitOfMeasure.Description=unitOfMeasureDto.Description;
-            unitOfMeasure.Abbreviation = unitOfMeasureDto.Abbreviation;
-            _unitOfMeasureRepository.UpdateUnitOfMeasure(unitOfMeasure);
-            if(await _unitOfMeasureRepository.SaveAllAsync())return NoContent();
-            return BadRequest("UnitOfMeasure-ul nu a putut fi actualizat");
-
-        }
-
-        [HttpPost]
-        public async Task<ActionResult> AddUnitOfMeasure(UnitOfMeasureDto unitOfMeasureDto)
-        {
-            UnitOfMeasure model = new UnitOfMeasure()
-            {
-                Name = unitOfMeasureDto.Name,
-                Description = unitOfMeasureDto.Description,
-                Abbreviation = unitOfMeasureDto.Abbreviation,
-            };
-            _unitOfMeasureRepository.AddUnitOfMeasure(model);
-            if(await _unitOfMeasureRepository.SaveAllAsync())return NoContent();
-            return BadRequest("UnitOfMeasure-ul nu a putut fi adaugat");
-
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteUnitOfMeasure(int id)
-        {
-            var unitOfMeasure = await _unitOfMeasureRepository.GetUnitOfMeasureByIdAsync(id);
-            if(unitOfMeasure ==null){return NotFound();}
-            _unitOfMeasureRepository.DeleteUnitOfMeasure(unitOfMeasure);
-            if(await _unitOfMeasureRepository.SaveAllAsync())return NoContent();
-            return BadRequest("UnitOfMeasure-ul nu a putut fi sters");
-        }
+        
     }
 }

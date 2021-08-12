@@ -20,9 +20,21 @@ namespace API.Data.Seed
             }
             var userData = await System.IO.File.ReadAllTextAsync("Data/Seed/Users.json");
             var users = JsonSerializer.Deserialize<List<User>>(userData);
+            var roles = new List<RoleType>{
+                new RoleType{Name="Member", Description="Un membru are access la functionalitatile de baza ale aplicatiie"},
+                new RoleType{Name="Admin", Description="Un admin poate modifica drepturile celorlalti useri; poate face moficari in ceea ce priveste tabelele de referinta"},
+                new RoleType{Name="Moderator", Description="Un moderator poate aproba sau respinge strangerile de fonduri"}
+            };
+            
+
+            foreach(var role in roles){
+                context.RoleTypes.Add(role);
+            }
+            await context.SaveChangesAsync();
+
+            using var hmac = new HMACSHA512();
             foreach (var user in users)
             {
-                using var hmac = new HMACSHA512();
                 user.UserName = user.UserName.ToLower();
                 user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("Pa$$w0rd"));
                 user.PasswordSalt = hmac.Key;
@@ -30,6 +42,29 @@ namespace API.Data.Seed
             }
 
             await context.SaveChangesAsync();
+
+            foreach(var user in users){
+                context.Users_X_RoleTypes.Add(new User_x_RoleType{UserId=user.Id, RoleTypeId=roles[0].Id});
+            }
+            await context.SaveChangesAsync();
+
+            var admin = new User{
+                Email="ownerhelpafamilyofferachance@gmail.com",
+                UserName="Admin",
+                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("Pa$$w0rd")),
+                PasswordSalt = hmac.Key,
+            };
+            context.Users.Add(admin);
+            await context.SaveChangesAsync();
+
+            foreach(var role in roles){
+                if(role.Name!="Member"){
+                context.Users_X_RoleTypes.Add(new User_x_RoleType{UserId=admin.Id, RoleTypeId=role.Id});
+            }
+            }
+
+            await context.SaveChangesAsync();
+
 
         }
 

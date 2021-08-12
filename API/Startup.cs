@@ -89,6 +89,10 @@ namespace API
                     ValidateAudience= false,//usually is the angular aplication 
                 };
             });
+            services.AddAuthorization(options =>{
+                options.AddPolicy("ModeratorRole",policy=>policy.RequireRole("Moderator"));
+                options.AddPolicy("AdminRole",policy=>policy.RequireRole("Admin"));
+            });
 
         }
 

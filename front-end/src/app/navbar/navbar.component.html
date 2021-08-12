@@ -8,19 +8,18 @@
                     <a routerLink="/about-us" class="nav-link" routerLinkActive='active'>Despre noi <i class="fa fa-building" aria-hidden="true"></i></a>
                 </li>
                 <li class="nav-item">
-                    <a routerLink="/members-list" class="nav-link" routerLinkActive='active'>members-list <i class="fa fa-building" aria-hidden="true"></i></a>
-                </li>
-                <li class="nav-item">
                     <a routerLink="/ads-list" class="nav-link" routerLinkActive='active'>Anunturi <i class="fa fa-archive" aria-hidden="true"></i></a>
                 </li>
 
                 <li class="nav-item">
                     <a routerLink="/fundraisers-list" class="nav-link" routerLinkActive='active'>Strangeri de fonduri <i class="fa fa-handshake-o" aria-hidden="true"></i></a>
                 </li>
+                <li *appUserRole='["Admin","Moderator"]' class="nav-item">
+                    <a routerLink="/admin" class="nav-link" routerLinkActive='active'>Admin  <i class="fa fa-lock" aria-hidden="true"></i></a>
+                </li>
+
             </ng-container>
-            <li class="nav-item">
-                <a routerLink="/errors" class="nav-link" routerLinkActive='active'>Errors<i class="fa fa-building" aria-hidden="true"></i></a>
-            </li>
+            
             <ng-container *ngIf="(authService.currentUser$ | async)===null">
                 <li class="nav-item">
                     <a class="nav-link" routerLink="/login" routerLinkActive='active'>Login <i class="fa fa-sign-in" aria-hidden="true"></i></a>

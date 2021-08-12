@@ -12,6 +12,8 @@ using API.Services.MailService;
 using API.Services.MailService.Template;
 using API.Repositories.UserRepository;
 using API.Helpers;
+using API.Entities;
+using System.Linq;
 
 namespace HelpAFamilyOfferAChance.API.Controllers
 {
@@ -48,6 +50,9 @@ namespace HelpAFamilyOfferAChance.API.Controllers
                 PasswordSalt = hmac.Key
             };
             _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+            var memberRole= _context.RoleTypes.Where(role => role.Name=="Member").SingleOrDefault();
+            _context.Users_X_RoleTypes.Add(new User_x_RoleType{UserId=user.Id,RoleTypeId=memberRole.Id});
             await _context.SaveChangesAsync();
 
 

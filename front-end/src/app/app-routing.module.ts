@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdDetailComponent } from './ads/ad-detail/ad-detail.component';
 import { AddAdComponent } from './ads/add-ad/add-ad.component';
 import { AdsListComponent } from './ads/ads-list/ads-list.component';
@@ -15,6 +16,7 @@ import { EditFundraiserComponent } from './fundraisers/edit-fundraiser/edit-fund
 import { FundraiserDetailComponent } from './fundraisers/fundraiser-detail/fundraiser-detail.component';
 import { FundraisersListComponent } from './fundraisers/fundraisers-list/fundraisers-list.component';
 import { MyFundraisersComponent } from './fundraisers/my-fundraisers/my-fundraisers.component';
+import { AdminGuard } from './guards/admin.guard';
 import { AuthGuard } from './guards/auth.guard';
 import { PreventEditAdByOtherUsersGuard } from './guards/prevent-edit-ad-by-other-users.guard';
 import { PreventEditFundraiserByOtherUsersGuard } from './guards/prevent-edit-fundraiser-by-other-users.guard';
@@ -60,6 +62,7 @@ const routes: Routes = [
       {path:'view-demands/:id', component:ViewDemandsComponent,canActivate: [PreventEditAdByOtherUsersGuard]},
       {path:'edit-ad/:id', component:EditAdComponent,canDeactivate: [PreventUnsavedChangesForEditAdGuard], canActivate: [PreventEditAdByOtherUsersGuard]},
       {path:'edit-fundraiser/:id', component:EditFundraiserComponent,canDeactivate: [PreventUnsavedChangesForEditFundraiserGuard], canActivate: [PreventEditFundraiserByOtherUsersGuard]},
+      {path:'admin', component:AdminDashboardComponent, canActivate:[AdminGuard]},
     ]
   },
   { path: 'members-list', component: MembersListComponent },

@@ -1,0 +1,35 @@
+<div class="container">
+  <table class="table table-striped ">
+    <thead>
+      <tr>
+        <th scope="col" style="width:5%">Id</th>
+        <th scope="col" style="width:30%">Email</th>
+        <th scope="col" style="width:30%">Username</th>
+        <th scope="col" style="width:30%">Roluri</th>
+        <th scope="col" style="width:5%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users;let i=index">
+        <th>{{user.id}}</th>
+        <td>{{user.email}}</td>
+        <td>{{user.userName}}</td>
+        <td>{{user.roles}}</td>
+        <td>
+          <div class="btn-group" dropdown>
+            <button id="button-basic" dropdownToggle class="btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+            </button>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+              <li role="menuitem"><a class="dropdown-item" (click)="edit(user)">Editeaza</a></li>
+            </ul>
+          </div>
+        </td>
+
+
+      </tr>
+
+
+    </tbody>
+  </table>
+
+</div>

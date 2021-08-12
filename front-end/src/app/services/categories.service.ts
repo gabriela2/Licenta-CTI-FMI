@@ -17,13 +17,5 @@ export class CategoriesService {
   getCategory(id: number) {
     return this.http.get<Category>(this.baseUrl + 'categories/' + id);
   }
-  post(category: Category) {
-    return this.http.post(this.baseUrl + 'categories/', category);
-  }
-  put(id: number, category: Category) {
-    return this.http.put(this.baseUrl + 'categories/' + id, category);
-  }
-  delete(id:number){
-    return this.http.delete(this.baseUrl+'categories/'+id);
-  }
+  
 }

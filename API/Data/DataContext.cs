@@ -17,15 +17,17 @@ namespace HelpAFamilyOfferAChance.API.Data
         public DbSet<Photo> Photos { get; set; }
         public DbSet<UnitOfMeasure> UnitsOfMeasure { get; set; }
         public DbSet<Category> Category { get; set; }
-      
-        public DbSet<DeliveryType> DeliveryTypes{get;set;}
+
+        public DbSet<DeliveryType> DeliveryTypes { get; set; }
         public DbSet<Ad_x_DeliveryType> Ads_X_DeliveryTypes { get; set; }
         public DbSet<Demand> Demands { get; set; }
         public DbSet<Donation> Donations { get; set; }
-        public DbSet<Address> Addresses{get;set;}
-        public DbSet<FavouriteList> FavouriteList{get;set;}
-        public DbSet<UserRating> UserRatings{get;set;}
-        public DbSet<UserPhoto> UserPhotos{get;set;}
+        public DbSet<Address> Addresses { get; set; }
+        public DbSet<FavouriteList> FavouriteList { get; set; }
+        public DbSet<UserRating> UserRatings { get; set; }
+        public DbSet<UserPhoto> UserPhotos { get; set; }
+        public DbSet<RoleType> RoleTypes { get; set; }
+        public DbSet<User_x_RoleType> Users_X_RoleTypes { get; set; }
         public DbSet<ChangePasswordToken> ChangePasswordTokens { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -35,7 +37,7 @@ namespace HelpAFamilyOfferAChance.API.Data
                 .HasMany(adt => adt.Ad_X_DeliveryType)
                 .WithOne(dt => dt.DeliveryType)
                 .HasForeignKey(adt => adt.DeliveryTypeId);
-                
+
 
             builder.Entity<Ad>()
                 .HasMany(adt => adt.Ad_x_DeliveryType)
@@ -43,32 +45,61 @@ namespace HelpAFamilyOfferAChance.API.Data
                 .HasForeignKey(adt => adt.AdId);
 
             builder.Entity<Ad>()
-                .HasMany(adt=>adt.Demands)
-                .WithOne(a=>a.Ad)
+                .HasMany(adt => adt.Photos)
+                .WithOne(a => a.Ad)
                 .HasForeignKey(adt => adt.AdId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // builder.Entity<Ad>()
+            //     .HasMany(adt=>adt.Demands)
+            //     .WithOne(a=>a.Ad)
+            //     .HasForeignKey(adt => adt.AdId)
+            //     .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Ad>()
+            .HasMany<Demand>(c => c.Demands)
+            .WithOne(ad => ad.Ad)
+            .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<User>()
+            .HasMany<Demand>(c => c.Demands)
+            .WithOne(ad => ad.User)
+            .OnDelete(DeleteBehavior.Restrict);
+
             builder.Entity<Fundraiser>()
-                .HasMany(adt=>adt.Donations)
-                .WithOne(a=>a.Fundraiser)
+                .HasMany(adt => adt.Donations)
+                .WithOne(a => a.Fundraiser)
                 .HasForeignKey(adt => adt.FundraiserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             builder.Entity<UserRating>()
                 .HasOne(user => user.Receiver)
-                .WithMany(l=>l.RatingReceived)
+                .WithMany(l => l.RatingReceived)
                 .HasForeignKey(user => user.ReceiverId)
                 .OnDelete(DeleteBehavior.Restrict);
-            
+
             builder.Entity<UserRating>()
                 .HasOne(user => user.Sender)
-                .WithMany(l=>l.RatingGiven)
+                .WithMany(l => l.RatingGiven)
                 .HasForeignKey(user => user.SenderId)
                 .OnDelete(DeleteBehavior.Restrict);
-            
-            
+
+            builder.Entity<User_x_RoleType>().HasKey(key => new { key.UserId, key.RoleTypeId });
+            builder.Entity<User>()
+                .HasMany(urt => urt.Users_x_RoleTypes)
+                .WithOne(u => u.User)
+                .HasForeignKey(urt => urt.UserId)
+                .IsRequired();
+            builder.Entity<RoleType>()
+                .HasMany(urt => urt.Users_x_RoleTypes)
+                .WithOne(rt => rt.RoleType)
+                .HasForeignKey(urt => urt.RoleTypeId)
+                .IsRequired();
+
+
         }
 
-       
+
 
 
 

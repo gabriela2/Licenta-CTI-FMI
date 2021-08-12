@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
+using API.Helpers;
 using HelpAFamilyOfferAChance.API.Entities;
 
 namespace API.Repositories.UserRepository
@@ -17,6 +18,7 @@ namespace API.Repositories.UserRepository
         Task<User> GetUserByUsernameAsync(string username);
         Task<MemberDto> GetMemberAsync(int id);
         Task<IEnumerable<MemberDto>> GetMembersAsync();
+        
 
 
     }

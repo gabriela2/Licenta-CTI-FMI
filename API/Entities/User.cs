@@ -31,11 +31,10 @@ namespace HelpAFamilyOfferAChance.API.Entities
         public ICollection<Fundraiser> Fundraisers { get; set; }
         public ICollection<Demand> Demands { get; set; }
         public ICollection<Donation> Donations { get; set; }
-        // public ICollection<Photo> Photos { get; set; }
-
         public ICollection<UserRating> RatingReceived { get; set; }
         public ICollection<UserRating> RatingGiven { get; set; }
         public ICollection<FavouriteList> FavouriteList { get; set; }
+        public ICollection<User_x_RoleType> Users_x_RoleTypes { get; set; }
         
         
 

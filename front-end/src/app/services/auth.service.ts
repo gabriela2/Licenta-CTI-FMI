@@ -23,25 +23,28 @@ export class AuthService {
       map((response:User)=>{
         const user = response;
         if(user){
-          localStorage.setItem('user',JSON.stringify(user));
-          console.log(user);
-          this.currentUserSource.next(user);
-          const userId = this.getDecodedToken(user.token).nameid;
-          localStorage.setItem('userId', userId);
+         this.setCurrentUser(user);
         }
       })
     );
     
   }
 
+  setCurrentUser(user:User){
+    localStorage.setItem('user',JSON.stringify(user));
+    console.log(user);
+    this.currentUserSource.next(user);
+    const userId = this.getDecodedToken(user.token).nameid;
+    localStorage.setItem('userId', userId);
+    user.roles = [];
+    const roles = this.getDecodedToken(user.token).role;
+    Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
+  }
+
   register(model:any){
     return this.http.post(this.baseUrl+'auth/register', model);
   }
 
-  setCurrentUser(user:User){
-    this.currentUserSource.next(user);
-
-  }
 
   logout(){
     localStorage.removeItem('user');

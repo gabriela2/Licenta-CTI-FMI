@@ -354,6 +354,24 @@ namespace API.Data.Migrations
                     b.ToTable("Photos");
                 });
 
+            modelBuilder.Entity("API.Entities.RoleType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("RoleTypes");
+                });
+
             modelBuilder.Entity("API.Entities.UnitOfMeasure", b =>
                 {
                     b.Property<int>("Id")
@@ -431,6 +449,21 @@ namespace API.Data.Migrations
                     b.HasIndex("SenderId");
 
                     b.ToTable("UserRatings");
+                });
+
+            modelBuilder.Entity("API.Entities.User_x_RoleType", b =>
+                {
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("RoleTypeId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "RoleTypeId");
+
+                    b.HasIndex("RoleTypeId");
+
+                    b.ToTable("Users_X_RoleTypes");
                 });
 
             modelBuilder.Entity("HelpAFamilyOfferAChance.API.Entities.User", b =>
@@ -572,13 +605,13 @@ namespace API.Data.Migrations
                     b.HasOne("API.Entities.Ad", "Ad")
                         .WithMany("Demands")
                         .HasForeignKey("AdId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("HelpAFamilyOfferAChance.API.Entities.User", "User")
                         .WithMany("Demands")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Ad");
@@ -643,7 +676,8 @@ namespace API.Data.Migrations
                 {
                     b.HasOne("API.Entities.Ad", "Ad")
                         .WithMany("Photos")
-                        .HasForeignKey("AdId");
+                        .HasForeignKey("AdId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("API.Entities.Fundraiser", "Fundraiser")
                         .WithMany("Photos")
@@ -684,6 +718,25 @@ namespace API.Data.Migrations
                     b.Navigation("Sender");
                 });
 
+            modelBuilder.Entity("API.Entities.User_x_RoleType", b =>
+                {
+                    b.HasOne("API.Entities.RoleType", "RoleType")
+                        .WithMany("Users_x_RoleTypes")
+                        .HasForeignKey("RoleTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("HelpAFamilyOfferAChance.API.Entities.User", "User")
+                        .WithMany("Users_x_RoleTypes")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("RoleType");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("API.Entities.Ad", b =>
                 {
                     b.Navigation("Ad_x_DeliveryType");
@@ -714,6 +767,11 @@ namespace API.Data.Migrations
                     b.Navigation("Photos");
                 });
 
+            modelBuilder.Entity("API.Entities.RoleType", b =>
+                {
+                    b.Navigation("Users_x_RoleTypes");
+                });
+
             modelBuilder.Entity("API.Entities.UnitOfMeasure", b =>
                 {
                     b.Navigation("Ads");
@@ -738,6 +796,8 @@ namespace API.Data.Migrations
                     b.Navigation("RatingGiven");
 
                     b.Navigation("RatingReceived");
+
+                    b.Navigation("Users_x_RoleTypes");
                 });
 #pragma warning restore 612, 618
         }

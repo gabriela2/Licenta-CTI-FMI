@@ -37,13 +37,13 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             _mapper = mapper;
         }
 
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
             var users = await _userRepository.GetMembersAsync();
             return Ok(users);
         }
+
 
         [HttpGet("{id}", Name = "GetUser")]
         public async Task<ActionResult<MemberDto>> GetUser(int id)

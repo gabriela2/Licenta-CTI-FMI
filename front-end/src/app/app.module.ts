@@ -57,6 +57,18 @@ import { EditPhotoFundraisersComponent } from './fundraisers/edit-photo-fundrais
 import { CreateDonationComponent } from './fundraisers/create-donation/create-donation.component';
 import { PaginationModule } from 'ngx-bootstrap/pagination';
 import { ButtonsModule} from 'ngx-bootstrap/buttons';
+import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
+import { UserRoleDirective } from './directives/user-role.directive';
+import { EditUserRolesComponent } from './admin/edit-user-roles/edit-user-roles.component';
+import { ApproveFundraisersComponent } from './admin/approve-fundraisers/approve-fundraisers.component';
+import { ReferenceTableAdministrationComponent } from './admin/reference-table-administration/reference-table-administration.component';
+import { EditUserRolesModuleComponent } from './admin/edit-user-roles-module/edit-user-roles-module.component';
+import { EditCategoriesModalComponent } from './admin/edit-categories-modal/edit-categories-modal.component';
+import { AddCategoryModalComponent } from './admin/add-category-modal/add-category-modal.component';
+import { AddUnitofmeasureModalComponent } from './admin/add-unitofmeasure-modal/add-unitofmeasure-modal.component';
+import { EditUnitofmeasureModalComponent } from './admin/edit-unitofmeasure-modal/edit-unitofmeasure-modal.component';
+import { EditDeliveryTypeModalComponent } from './admin/edit-delivery-type-modal/edit-delivery-type-modal.component';
+import { AddDeliveryTypeModalComponent } from './admin/add-delivery-type-modal/add-delivery-type-modal.component';
 
 
 
@@ -101,6 +113,18 @@ import { ButtonsModule} from 'ngx-bootstrap/buttons';
     ViewDonationsComponent,
     EditPhotoFundraisersComponent,
     CreateDonationComponent,
+    AdminDashboardComponent,
+    UserRoleDirective,
+    EditUserRolesComponent,
+    ApproveFundraisersComponent,
+    ReferenceTableAdministrationComponent,
+    EditUserRolesModuleComponent,
+    EditCategoriesModalComponent,
+    AddCategoryModalComponent,
+    AddUnitofmeasureModalComponent,
+    EditUnitofmeasureModalComponent,
+    EditDeliveryTypeModalComponent,
+    AddDeliveryTypeModalComponent,
 
 
   ],

@@ -1,0 +1,113 @@
+<div class="container">
+  <h2>Categorii</h2>
+  <table class="table table-striped ">
+    <thead>
+      <tr>
+        <th scope="col" style="width:5%">Id</th>
+        <th scope="col" style="width:30%">Nume</th>
+        <th scope="col" style="width:60%">Descriere</th>
+        <th scope="col" style="width:5%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let category of categories;let i=index">
+        <th>{{category.id}}</th>
+        <td>{{category.name}}</td>
+        <td>{{category.description}}</td>
+        <td>
+          <div class="btn-group" dropdown>
+            <button id="button-basic" dropdownToggle class="btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+            </button>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+              <li role="menuitem"><a class="dropdown-item" (click)="editCaregory(category)">Editeaza</a></li>
+              <li role="menuitem"><a class="dropdown-item" (click)="deleteCategory(category)">Sterge</a></li>
+            </ul>
+          </div>
+        </td>
+
+
+      </tr>
+
+
+    </tbody>
+  </table>
+
+</div>
+
+
+<div class="container">
+  <h2>Unitati de masura</h2>
+  <table class="table table-striped ">
+    <thead>
+      <tr>
+        <th scope="col" style="width:5%">Id</th>
+        <th scope="col" style="width:25%">Nume</th>
+        <th scope="col" style="width:20%">Abreviere</th>
+        <th scope="col" style="width:45%">Descriere</th>
+        <th scope="col" style="width:5%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let unitOfMeasure of unitsOfMeasure;let i=index">
+        <th>{{unitOfMeasure.id}}</th>
+        <td>{{unitOfMeasure.name}}</td>
+        <td>{{unitOfMeasure.abbreviation}}</td>
+        <td>{{unitOfMeasure.description}}</td>
+        <td>
+          <div class="btn-group" dropdown>
+            <button id="button-basic" dropdownToggle class="btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+            </button>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+              <li role="menuitem"><a class="dropdown-item" (click)="editUnitOfMeasure(unitOfMeasure)">Editeaza</a></li>
+              <li role="menuitem"><a class="dropdown-item" (click)="deleteUnitOfMeasure(unitOfMeasure)">Sterge</a></li>
+            </ul>
+          </div>
+        </td>
+
+
+      </tr>
+
+
+    </tbody>
+  </table>
+
+</div>
+
+
+<div class="container">
+  <h2>Modalitati de livrare</h2>
+  <table class="table table-striped ">
+    <thead>
+      <tr>
+        <th scope="col" style="width:5%">Id</th>
+        <th scope="col" style="width:25%">Nume</th>
+        <th scope="col" style="width:20%">Descriere</th>
+        <th scope="col" style="width:45%">Pret</th>
+        <th scope="col" style="width:5%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let deliveryType of deliveryTypes;let i=index">
+        <th>{{deliveryType.id}}</th>
+        <td>{{deliveryType.name}}</td>
+        <td>{{deliveryType.description}}</td>
+        <td>{{deliveryType.price}}</td>
+        <td>
+          <div class="btn-group" dropdown>
+            <button id="button-basic" dropdownToggle class="btn-primary dropdown-toggle" aria-controls="dropdown-basic">
+            </button>
+            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+              <li role="menuitem"><a class="dropdown-item" (click)="editDeliveryType(deliveryType)">Editeaza</a></li>
+              <li role="menuitem"><a class="dropdown-item" (click)="deleteDeliveryType(deliveryType)">Sterge</a></li>
+            </ul>
+          </div>
+        </td>
+
+
+      </tr>
+
+
+    </tbody>
+  </table>
+
+</div>

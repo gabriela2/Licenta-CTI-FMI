@@ -1,0 +1,16 @@
+<tabset class="member-tabset">
+    <tab heading='Administrare roluri' *appUserRole='["Admin"]'>
+        <app-edit-user-roles></app-edit-user-roles>
+    </tab>
+
+    <tab heading='Aprobare strangeri de fonduri' *appUserRole='["Admin","Moderator"]'>
+        <app-approve-fundraisers></app-approve-fundraisers>
+    </tab>
+
+    <tab heading='Modificarea valorilor de referinta' *appUserRole='["Admin"]'>
+        <app-reference-table-administration></app-reference-table-administration>
+    </tab>
+
+
+
+</tabset>
