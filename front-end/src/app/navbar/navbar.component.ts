@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import Member from '../models/member';
-import { User } from '../models/user';
 import { AuthService } from '../services/auth.service';
 import { MembersService } from '../services/members.service';
 

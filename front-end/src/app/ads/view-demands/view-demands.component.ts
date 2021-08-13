@@ -34,7 +34,6 @@ export class ViewDemandsComponent implements OnInit {
 
   constructor(
     private demandSercice: DemandsService,
-    private deliveryTypeService:DeliveryTypesService,
     private route: ActivatedRoute,
     private adService:AdsService
 

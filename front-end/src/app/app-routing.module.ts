@@ -7,9 +7,10 @@ import { AdsListComponent } from './ads/ads-list/ads-list.component';
 import { EditAdComponent } from './ads/edit-ad/edit-ad.component';
 import { MyAdsComponent } from './ads/my-ads/my-ads.component';
 import { ViewDemandsComponent } from './ads/view-demands/view-demands.component';
+import { EditDemandComponent } from './demands/edit-demand/edit-demand.component';
+import { MyDemandsComponent } from './demands/my-demands/my-demands.component';
+import { MyDonationsComponent } from './donations/my-donations/my-donations.component';
 import { EmailConfirmationComponent } from './email-confirmation/email-confirmation.component';
-import { NotFoundComponent } from './errors/not-found/not-found.component';
-import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AddFundraiserComponent } from './fundraisers/add-fundraiser/add-fundraiser.component';
 import { EditFundraiserComponent } from './fundraisers/edit-fundraiser/edit-fundraiser.component';
@@ -55,22 +56,22 @@ const routes: Routes = [
       { path: 'member-profile/:id', component: MemberProfileComponent },
       { path: 'ads-list/:id', component: AdDetailComponent },
       { path: 'fundraisers-list/:id', component: FundraiserDetailComponent },
-      {path:'my-ads', component:MyAdsComponent},
-      {path:'my-fundraisers', component:MyFundraisersComponent},
-      {path:'add-ad', component:AddAdComponent, canDeactivate:[PreventUnsavedChangesForAddAdGuard]},
-      {path:'add-fundraiser', component:AddFundraiserComponent},
-      {path:'view-demands/:id', component:ViewDemandsComponent,canActivate: [PreventEditAdByOtherUsersGuard]},
-      {path:'edit-ad/:id', component:EditAdComponent,canDeactivate: [PreventUnsavedChangesForEditAdGuard], canActivate: [PreventEditAdByOtherUsersGuard]},
-      {path:'edit-fundraiser/:id', component:EditFundraiserComponent,canDeactivate: [PreventUnsavedChangesForEditFundraiserGuard], canActivate: [PreventEditFundraiserByOtherUsersGuard]},
-      {path:'admin', component:AdminDashboardComponent, canActivate:[AdminGuard]},
+      { path: 'my-ads', component: MyAdsComponent },
+      { path: 'my-fundraisers', component: MyFundraisersComponent },
+      { path: 'my-demands', component: MyDemandsComponent },
+      { path: 'my-donations', component: MyDonationsComponent },
+      { path: 'edit-demand/:id', component: EditDemandComponent },
+      { path: 'add-ad', component: AddAdComponent, canDeactivate: [PreventUnsavedChangesForAddAdGuard] },
+      { path: 'add-fundraiser', component: AddFundraiserComponent },
+      { path: 'view-demands/:id', component: ViewDemandsComponent, canActivate: [PreventEditAdByOtherUsersGuard] },
+      { path: 'edit-ad/:id', component: EditAdComponent, canDeactivate: [PreventUnsavedChangesForEditAdGuard], canActivate: [PreventEditAdByOtherUsersGuard] },
+      { path: 'edit-fundraiser/:id', component: EditFundraiserComponent, canDeactivate: [PreventUnsavedChangesForEditFundraiserGuard], canActivate: [PreventEditFundraiserByOtherUsersGuard] },
+      { path: 'admin', component: AdminDashboardComponent, canActivate: [AdminGuard] },
     ]
   },
-  { path: 'members-list', component: MembersListComponent },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'errors', component: TestErrorsComponent },
-  { path: 'not-found', component: NotFoundComponent },
   { path: '**', component: HomeComponent, pathMatch: 'full' },
 ];
 

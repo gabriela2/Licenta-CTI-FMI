@@ -1,0 +1,15 @@
+.img-user{
+    width: 9vw;
+    height: 9vw;
+}
+.info{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+.user{
+    display: flex;
+    flex-direction: row;
+   
+    
+  }

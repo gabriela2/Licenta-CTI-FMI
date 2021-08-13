@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Helpers;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using HelpAFamilyOfferAChance.API.Data;
@@ -44,6 +45,19 @@ namespace API.Repositories.DonationRepository
         public async Task<IEnumerable<DonationDto>> GetDonationsByUserId(int id)
         {
            return await _context.Donations.Where(donation => donation.UserId==id).ProjectTo<DonationDto>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
+         public async Task<PagedList<DonationDto>> GetDonationsByUserIdAsync(AppParams appParams, int id)
+        {
+            var query =  _context.Donations.AsQueryable();
+            query = query.Where(donation => donation.UserId==id);
+            query = appParams.OrderBy switch {
+                "newest" => query.OrderBy(demand =>demand.CreatedAt),
+                "oldest" => query.OrderByDescending(demand=>demand.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<DonationDto>.CreateAsync(query.ProjectTo<DonationDto>(_mapper.ConfigurationProvider).AsNoTracking(), appParams.PageNumber,appParams.PageSize);
         }
 
         public async Task<bool> SaveAllAsync()

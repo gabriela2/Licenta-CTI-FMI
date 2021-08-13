@@ -13,8 +13,6 @@ import { RegisterComponent } from './register/register.component';
 import { EmailConfirmationComponent } from './email-confirmation/email-confirmation.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ToastrModule } from 'ngx-toastr';
-import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
-import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { MembersListComponent } from './members/members-list/members-list.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
@@ -70,6 +68,12 @@ import { EditUnitofmeasureModalComponent } from './admin/edit-unitofmeasure-moda
 import { EditDeliveryTypeModalComponent } from './admin/edit-delivery-type-modal/edit-delivery-type-modal.component';
 import { AddDeliveryTypeModalComponent } from './admin/add-delivery-type-modal/add-delivery-type-modal.component';
 import { FundraiserCardUnapprovedComponent } from './admin/fundraiser-card-unapproved/fundraiser-card-unapproved.component';
+import { MyDemandsComponent } from './demands/my-demands/my-demands.component';
+import { EditDemandComponent } from './demands/edit-demand/edit-demand.component';
+import { DemandCardApprovedForMyDemandsComponent } from './demands/demand-card-approved-for-my-demands/demand-card-approved-for-my-demands.component';
+import { DemandCardNotApprovedForMyDemandsComponent } from './demands/demand-card-not-approved-for-my-demands/demand-card-not-approved-for-my-demands.component';
+import { MyDonationsComponent } from './donations/my-donations/my-donations.component';
+import { DonationCardComponent } from './donations/donation-card/donation-card.component';
 
 
 
@@ -82,8 +86,6 @@ import { FundraiserCardUnapprovedComponent } from './admin/fundraiser-card-unapp
     RegisterComponent,
     EmailConfirmationComponent,
     ForgotPasswordComponent,
-    TestErrorsComponent,
-    NotFoundComponent,
     MembersListComponent,
     MemberCardComponent,
     AdsListComponent,
@@ -127,6 +129,12 @@ import { FundraiserCardUnapprovedComponent } from './admin/fundraiser-card-unapp
     EditDeliveryTypeModalComponent,
     AddDeliveryTypeModalComponent,
     FundraiserCardUnapprovedComponent,
+    MyDemandsComponent,
+    EditDemandComponent,
+    DemandCardApprovedForMyDemandsComponent,
+    DemandCardNotApprovedForMyDemandsComponent,
+    MyDonationsComponent,
+    DonationCardComponent,
 
 
   ],

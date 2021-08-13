@@ -1,0 +1,35 @@
+<div class="container">
+
+    <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="orderBy"
+        (click)="applyPage()" btnRadio='oldest'>Cele mai recente</button>
+    <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+        (click)="applyPage()" btnRadio='newest'>Cele mai vechi</button>
+
+    <button class="btn btn primary ml-3" type="button" (click)="resetPage()">Reseteaza
+        filtrele</button>
+    <p><small>{{pagination?.totalItems}} rezultate gasite</small></p>
+
+</div>
+
+
+<div class="row mt-4" *ngIf="donations">
+
+    <div class="col-12" *ngIf="pagination?.totalItems!=0">
+        <span *ngFor="let donation of donations">
+            <app-donation-card [donation]="donation"></app-donation-card>
+        </span>
+        <div class="d-flex justify-content-center" *ngIf="pagination">
+            <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems"
+                [itemsPerPage]="pagination.itemsPerPage" [(ngModel)]="pagination.currentPage"
+                (pageChanged)="changePage($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                firstText="&laquo;" lastText="&raquo;">
+
+            </pagination>
+        </div>
+    </div>
+
+
+    <div class="col-12" *ngIf="pagination?.totalItems==0">
+        <h2 class="text-center"><strong>Nu exista nicio donatie.</strong></h2>
+    </div>
+</div>
