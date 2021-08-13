@@ -1,1 +1,53 @@
-<p>add-category-modal works!</p>
+<div class="modal-header ml-3">
+    <h2 class="modal-title pull-left"><strong>Adauga o noua categorie </strong></h2>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body ml-3">
+    <form [formGroup]='addCategoryForm' (ngSubmit)="addCategory()" autocomplete="off">
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-2">
+                    <label for='name'><strong>Nume</strong></label>
+                </div>
+                <div class="col-8">
+                    <input [class.is-invalid]='addCategoryForm.get("name").errors && addCategoryForm.get("name").touched'
+                        type="text" class="form-control" formControlName='name' placeholder="Nume">
+                    <div *ngIf="addCategoryForm.get('name').hasError('required')" class="invalid-feedback text-primary">
+                        Acest camp trebuie sa fie completat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-2">
+                    <label for='description'><strong>Descriere</strong></label>
+                </div>
+                <div class="col-8">
+                    <textarea rows="3"
+                        [class.is-invalid]='addCategoryForm.get("description").errors && addCategoryForm.get("description").touched'
+                        type="text" class="form-control" formControlName='description'
+                        placeholder="Descriere"></textarea>
+                    <div *ngIf="addCategoryForm.get('description').hasError('required')"
+                        class="invalid-feedback text-primary">
+                        Acest camp trebuie sa fie completat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6 d-flex align-items-center justify-content-center">
+                <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Anuleaza</button>
+            </div>
+            <div class="col-6 d-flex align-items-center justify-content-center">
+                <button type="submit" class="btn btn-success"
+                    [class.disabled]="!addCategoryForm.valid || !addCategoryForm.dirty">Adauga</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>

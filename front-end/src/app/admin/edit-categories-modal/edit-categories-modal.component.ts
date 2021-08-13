@@ -20,9 +20,8 @@ export class EditCategoriesModalComponent implements OnInit {
   }
 
   updateCategory() {
-    
+    this.adminService.putCategory(this.category.id, this.category).subscribe();
     this.bsModalRef.hide();
-    window.location.reload();
    
   }
 }

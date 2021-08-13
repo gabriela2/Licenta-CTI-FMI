@@ -1,5 +1,5 @@
 <div class="container">
-  <h2>Categorii</h2>
+  <h2>Categorii <span (click)="addCategory()"><i class="fa fa-plus-circle" aria-hidden="true"></i></span></h2>
   <table class="table table-striped ">
     <thead>
       <tr>
@@ -35,8 +35,8 @@
 </div>
 
 
-<div class="container">
-  <h2>Unitati de masura</h2>
+<div class="container mt-3">
+  <h2>Unitati de masura <span (click)="addUnitOfMeasure()"><i class="fa fa-plus-circle" aria-hidden="true"></i></span></h2>
   <table class="table table-striped ">
     <thead>
       <tr>
@@ -74,15 +74,15 @@
 </div>
 
 
-<div class="container">
-  <h2>Modalitati de livrare</h2>
+<div class="container mt-3">
+  <h2>Modalitati de livrare <span (click)="addDeliveryType()"><i class="fa fa-plus-circle" aria-hidden="true"></i></span></h2>
   <table class="table table-striped ">
     <thead>
       <tr>
         <th scope="col" style="width:5%">Id</th>
-        <th scope="col" style="width:25%">Nume</th>
-        <th scope="col" style="width:20%">Descriere</th>
-        <th scope="col" style="width:45%">Pret</th>
+        <th scope="col" style="width:20%">Nume</th>
+        <th scope="col" style="width:60%">Descriere</th>
+        <th scope="col" style="width:10%">Pret</th>
         <th scope="col" style="width:5%"></th>
       </tr>
     </thead>
@@ -91,7 +91,7 @@
         <th>{{deliveryType.id}}</th>
         <td>{{deliveryType.name}}</td>
         <td>{{deliveryType.description}}</td>
-        <td>{{deliveryType.price}}</td>
+        <td>{{deliveryType.price}} Lei</td>
         <td>
           <div class="btn-group" dropdown>
             <button id="button-basic" dropdownToggle class="btn-primary dropdown-toggle" aria-controls="dropdown-basic">

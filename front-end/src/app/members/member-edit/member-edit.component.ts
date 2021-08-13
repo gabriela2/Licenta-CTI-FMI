@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
-import { NgForm, } from '@angular/forms';
+import { FormBuilder, FormGroup, NgForm, Validators, } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { Address } from 'src/app/models/address';
 import Member from 'src/app/models/member';
@@ -18,6 +18,7 @@ export class MemberEditComponent implements OnInit {
 member: Member;
   address: Address
   currentUserId: number;
+  addAddressForm: FormGroup;
 
   lastNamePattern = "^[a-zA-Z ,.'-]+$";
   firstNamePattern = "^[a-zA-Z ,.'-]+$";
@@ -41,12 +42,36 @@ member: Member;
     private memberService: MembersService,
     private addressService: AddressesService,
     private toastr: ToastrService,
-    private stripeService:StripeService) {
+    private stripeService:StripeService,
+    private formBuilder: FormBuilder) {
     this.currentUserId = parseInt(localStorage.getItem('userId'));
   }
 
   ngOnInit(): void {
     this.loadMember();
+    this.addAddressForm = this.formBuilder.group({
+      houserNumber: ['', Validators.required],
+      street: ['', Validators.required],
+      city: ['', Validators.required],
+      district: ['', Validators.required],
+      country: ['', Validators.required],
+      zipCode: ['', Validators.required],
+    });
+  }
+
+  addAddress(){
+    let address={
+      id:0,
+      houseNumber:this.addAddressForm.get('houseNumber').value,
+    street:this.addAddressForm.get('street').value,
+    city:this.addAddressForm.get('city').value,
+    district:this.addAddressForm.get('district').value,
+    country:this.addAddressForm.get('country').value,
+    zipCode:this.addAddressForm.get('zipCode').value,
+    userId:this.currentUserId
+    };
+    this.addressService.addAddress(address).subscribe();
+
   }
 
   loadMember() {

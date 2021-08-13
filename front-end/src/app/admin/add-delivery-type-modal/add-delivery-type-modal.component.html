@@ -1,1 +1,69 @@
-<p>add-delivery-type-modal works!</p>
+<div class="modal-header ml-3">
+    <h2 class="modal-title pull-left"><strong>Adauga o noua modalitate de livrare </strong></h2>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body ml-3">
+    <form [formGroup]='addDeliveryTypeForm' (ngSubmit)="addDeliveryType()" autocomplete="off">
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-2">
+                    <label for='name'><strong>Nume</strong></label>
+                </div>
+                <div class="col-8">
+                    <input [class.is-invalid]='addDeliveryTypeForm.get("name").errors && addDeliveryTypeForm.get("name").touched'
+                        type="text" class="form-control" formControlName='name' placeholder="Nume">
+                    <div *ngIf="addDeliveryTypeForm.get('name').hasError('required')" class="invalid-feedback text-primary">
+                        Acest camp trebuie sa fie completat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+                <div class="col-2">
+                    <label for='description'><strong>Descriere</strong></label>
+                </div>
+                <div class="col-8">
+                    <textarea rows="3"
+                        [class.is-invalid]='addDeliveryTypeForm.get("description").errors && addDeliveryTypeForm.get("description").touched'
+                        type="text" class="form-control" formControlName='description'
+                        placeholder="Descriere"></textarea>
+                    <div *ngIf="addDeliveryTypeForm.get('description').hasError('required')"
+                        class="invalid-feedback text-primary">
+                        Acest camp trebuie sa fie completat</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-2">
+                <label for="price"><strong>Pret</strong></label>
+            </div>
+            <div class="col-8">
+                <input type="number" class="form-control" formControlName='price' placeholder="Pret"
+                    [class.is-invalid]='addDeliveryTypeForm.get("price").errors && addDeliveryTypeForm.get("price").touched'>
+                <div *ngIf="addDeliveryTypeForm.get('price').hasError('required')"
+                    class="invalid-feedback text-primary">
+                    Acest camp trebuie sa fie completat</div>
+                <div *ngIf="addDeliveryTypeForm.get('price').hasError('min')" class="invalid-feedback text-primary">
+                    Acest camp trebuie sa fie minim 0</div>
+            </div>
+            </div>
+        
+
+        <div class="row mt-3">
+            <div class="col-6 d-flex align-items-center justify-content-center">
+                <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Anuleaza</button>
+            </div>
+            <div class="col-6 d-flex align-items-center justify-content-center">
+                <button type="submit" class="btn btn-success"
+                    [class.disabled]="!addDeliveryTypeForm.valid || !addDeliveryTypeForm.dirty">Adauga</button>
+            </div>
+        </div>
+
+    </form>
+
+</div>

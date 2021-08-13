@@ -23,4 +23,7 @@ export class AddressesService {
   updateAddress(id:number, address:Address){
     return this.http.put(this.baseUrl + 'addresses/' + id, address);
   }
+  addAddress(address:Address){
+    return this.http.post(this.baseUrl + 'addresses' , address);
+  }
 }

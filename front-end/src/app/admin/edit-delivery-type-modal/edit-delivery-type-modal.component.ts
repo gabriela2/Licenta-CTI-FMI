@@ -17,8 +17,8 @@ export class EditDeliveryTypeModalComponent implements OnInit {
   ngOnInit(): void {
   }
   updateDeliveryType(){
+    this.adminService.putDeliveryType(this.deliveryType.id, this.deliveryType).subscribe();
     this.bsModalRef.hide();
-    window.location.reload();
   }
 
 

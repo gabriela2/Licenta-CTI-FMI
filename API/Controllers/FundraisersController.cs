@@ -92,6 +92,7 @@ namespace API.Controllers
             fundraiser.CurrentAmount = fundraiserDto.CurrentAmount;
             fundraiser.TargetAmount = fundraiserDto.TargetAmount;
             fundraiser.IsValidated = fundraiserDto.IsValidated;
+            fundraiser.IsRejected = fundraiserDto.IsRejected;
 
             _fundraiserRepository.UpdateFundraiser(fundraiser);
             if (await _fundraiserRepository.SaveAllAsync()) return NoContent();

@@ -17,8 +17,9 @@ export class EditUnitofmeasureModalComponent implements OnInit {
   ngOnInit(): void {
   }
   updateUnitOfMeasure(){
+    console.log(this.unitOfMeasure);
+    this.adminService.putUnitOfMeasure(this.unitOfMeasure.id, this.unitOfMeasure).subscribe();
     this.bsModalRef.hide();
-    window.location.reload();
   }
 
 }

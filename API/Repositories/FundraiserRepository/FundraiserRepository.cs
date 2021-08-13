@@ -48,6 +48,23 @@ namespace API.Repositories.FundraiserRepository
             return await PagedList<FundraiserDto>.CreateAsync(query.ProjectTo<FundraiserDto>(_mapper.ConfigurationProvider).AsNoTracking(), appParams.PageNumber, appParams.PageSize);
         }
 
+        public async Task<PagedList<FundraiserDto>> GetAllInactiveFundraisersAsync(AppParams appParams)
+        {
+            var query = _context.Fundraisers.AsQueryable();
+            query = query.Where(fundraiser => fundraiser.IsValidated == false);
+            query = query.Where(fundraiser => fundraiser.IsRejected == false);
+
+            query = appParams.OrderBy switch
+            {
+                "newest" => query.OrderBy(fundraiser => fundraiser.CreatedAt),
+                "oldest" => query.OrderByDescending(fundraiser => fundraiser.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<FundraiserDto>.CreateAsync(query.ProjectTo<FundraiserDto>(_mapper.ConfigurationProvider).AsNoTracking(), appParams.PageNumber, appParams.PageSize);
+        
+        }
+
         public async Task<Fundraiser> GetFundraiserByIdAsync(int id)
         {
             return await _context.Fundraisers.Where(fundraiser => fundraiser.Id == id).SingleOrDefaultAsync();

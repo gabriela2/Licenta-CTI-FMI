@@ -54,6 +54,11 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             var memberRole= _context.RoleTypes.Where(role => role.Name=="Member").SingleOrDefault();
             _context.Users_X_RoleTypes.Add(new User_x_RoleType{UserId=user.Id,RoleTypeId=memberRole.Id});
             await _context.SaveChangesAsync();
+            var address = new Address{
+                UserId= user.Id
+            };
+            _context.Addresses.Add(address);
+            await _context.SaveChangesAsync();
 
 
             ConfirmationEmailTemplate emailTemplate = new ConfirmationEmailTemplate();

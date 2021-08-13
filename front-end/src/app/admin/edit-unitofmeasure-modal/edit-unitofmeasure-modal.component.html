@@ -1,1 +1,82 @@
-<p>edit-unitofmeasure-modal works!</p>
+<div class="modal-header ml-3">
+    <h2 class="modal-title pull-left"><strong>Editeaza unitatea de masura </strong></h2>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body ml-3">
+    <form #editUnitOfMeasureForm="ngForm">
+        <div class="row mt-1">
+            <div class="col-2">
+                <label for='name'><strong>Nume</strong></label>
+            </div>
+            <div class="col-8">
+                <input required [(ngModel)]="unitOfMeasure.name" name="name" type="text" #name="ngModel"
+                    class="form-control" id="name">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+                <div class="alert alert-primary" *ngIf="name.touched && !name.valid">
+                    <div *ngIf="name.errors.required">Acest camp trebuie completat.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-1">
+            <div class="col-2">
+                <label for='abbreviation'><strong>Abreviere</strong></label>
+            </div>
+            <div class="col-8">
+                <input required [(ngModel)]="unitOfMeasure.abbreviation" name="abbreviation" type="text"
+                    #abbreviation="ngModel" class="form-control" id="abbreviation">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+                <div class="alert alert-primary" *ngIf="abbreviation.touched && !abbreviation.valid">
+                    <div *ngIf="abbreviation.errors.required">Acest camp trebuie completat.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-1">
+            <div class="col-2">
+                <label for='description'><strong>Descriere</strong></label>
+            </div>
+            <div class="col-8">
+                <textarea required [(ngModel)]="unitOfMeasure.description" name="description" rows="3" type="text"
+                    #description="ngModel" class="form-control" id="description"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+                <div class="alert alert-primary" *ngIf="description.touched && !description.valid">
+                    <div *ngIf="description.errors.required">Acest camp trebuie completat.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6 d-flex align-items-center justify-content-center">
+                <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Anuleaza</button>
+            </div>
+            <div class="col-6 d-flex align-items-center justify-content-center">
+                <button type="button" class="btn btn-success"
+                    [class.disabled]="!editUnitOfMeasureForm.valid || !editUnitOfMeasureForm.dirty"
+                    (click)="updateUnitOfMeasure()">Actualizeaza</button>
+            </div>
+        </div>
+    </form>
+
+</div>

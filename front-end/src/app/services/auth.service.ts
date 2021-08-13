@@ -23,7 +23,7 @@ export class AuthService {
       map((response:User)=>{
         const user = response;
         if(user){
-         this.setCurrentUser(user);
+          this.setCurrentUser(user);
         }
       })
     );
@@ -31,14 +31,14 @@ export class AuthService {
   }
 
   setCurrentUser(user:User){
-    localStorage.setItem('user',JSON.stringify(user));
-    console.log(user);
     this.currentUserSource.next(user);
-    const userId = this.getDecodedToken(user.token).nameid;
-    localStorage.setItem('userId', userId);
-    user.roles = [];
-    const roles = this.getDecodedToken(user.token).role;
-    Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
+    localStorage.setItem('user',JSON.stringify(user));
+          console.log(user);
+          const userId = this.getDecodedToken(user.token).nameid;
+          localStorage.setItem('userId', userId);
+          user.roles = [];
+          const roles = this.getDecodedToken(user.token).role;
+          Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
   }
 
   register(model:any){

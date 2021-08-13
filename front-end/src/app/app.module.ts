@@ -69,6 +69,7 @@ import { AddUnitofmeasureModalComponent } from './admin/add-unitofmeasure-modal/
 import { EditUnitofmeasureModalComponent } from './admin/edit-unitofmeasure-modal/edit-unitofmeasure-modal.component';
 import { EditDeliveryTypeModalComponent } from './admin/edit-delivery-type-modal/edit-delivery-type-modal.component';
 import { AddDeliveryTypeModalComponent } from './admin/add-delivery-type-modal/add-delivery-type-modal.component';
+import { FundraiserCardUnapprovedComponent } from './admin/fundraiser-card-unapproved/fundraiser-card-unapproved.component';
 
 
 
@@ -125,6 +126,7 @@ import { AddDeliveryTypeModalComponent } from './admin/add-delivery-type-modal/a
     EditUnitofmeasureModalComponent,
     EditDeliveryTypeModalComponent,
     AddDeliveryTypeModalComponent,
+    FundraiserCardUnapprovedComponent,
 
 
   ],

@@ -7,6 +7,9 @@ import { AdminService } from 'src/app/services/admin.service';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { DeliveryTypesService } from 'src/app/services/delivery-types.service';
 import { UnitsOfMeasureService } from 'src/app/services/units-of-measure.service';
+import { AddCategoryModalComponent } from '../add-category-modal/add-category-modal.component';
+import { AddDeliveryTypeModalComponent } from '../add-delivery-type-modal/add-delivery-type-modal.component';
+import { AddUnitofmeasureModalComponent } from '../add-unitofmeasure-modal/add-unitofmeasure-modal.component';
 import { EditCategoriesModalComponent } from '../edit-categories-modal/edit-categories-modal.component';
 import { EditDeliveryTypeModalComponent } from '../edit-delivery-type-modal/edit-delivery-type-modal.component';
 import { EditUnitofmeasureModalComponent } from '../edit-unitofmeasure-modal/edit-unitofmeasure-modal.component';
@@ -65,6 +68,14 @@ export class ReferenceTableAdministrationComponent implements OnInit {
     this.bsModalRef = this.modalService.show(EditCategoriesModalComponent, configurationForModal);
 
   }
+  addCategory(){
+    const configurationForModal = {
+      class: 'modal-dialog-centered',
+    }
+    this.bsModalRef = this.modalService.show(AddCategoryModalComponent,configurationForModal);
+  }
+
+
 
   deleteUnitOfMeasure(unitOfMeasure:UnitOfMeasure){
     this.adminService.deleteUnitOfMeasure(unitOfMeasure.id).subscribe();
@@ -80,7 +91,12 @@ export class ReferenceTableAdministrationComponent implements OnInit {
     this.bsModalRef = this.modalService.show(EditUnitofmeasureModalComponent, configurationForModal);
 
   }
-
+  addUnitOfMeasure(){
+    const configurationForModal = {
+      class: 'modal-dialog-centered',
+    }
+    this.bsModalRef = this.modalService.show(AddUnitofmeasureModalComponent,configurationForModal);
+  }
 
 
 
@@ -96,7 +112,12 @@ export class ReferenceTableAdministrationComponent implements OnInit {
       }
     }
     this.bsModalRef = this.modalService.show(EditDeliveryTypeModalComponent, configurationForModal);
-
+  }
+  addDeliveryType(){
+    const configurationForModal = {
+      class: 'modal-dialog-centered',
+    }
+    this.bsModalRef = this.modalService.show(AddDeliveryTypeModalComponent,configurationForModal);
   }
 
 

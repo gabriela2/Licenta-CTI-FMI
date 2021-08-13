@@ -1,1 +1,73 @@
-<p>edit-delivery-type-modal works!</p>
+<div class="modal-header ml-3">
+    <h2 class="modal-title pull-left"><strong>Editeaza modalitatea de livrare </strong></h2>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="modal-body ml-3">
+    <form #editDeliveryTypeForm="ngForm">
+        <div class="row mt-1">
+            <div class="col-2">
+                <label for='name'><strong>Nume</strong></label>
+            </div>
+            <div class="col-8">
+                <input required [(ngModel)]="deliveryType.name" name="name" type="text" #name="ngModel"
+                    class="form-control" id="name">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+                <div class="alert alert-primary" *ngIf="name.touched && !name.valid">
+                    <div *ngIf="name.errors.required">Acest camp trebuie completat.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-1">
+            <div class="col-2">
+                <label for='description'><strong>Descriere</strong></label>
+            </div>
+            <div class="col-8">
+                <textarea required [(ngModel)]="deliveryType.description" name="description" rows="3" type="text"
+                    #description="ngModel" class="form-control" id="description"></textarea>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-2">
+            </div>
+            <div class="col-8">
+                <div class="alert alert-primary" *ngIf="description.touched && !description.valid">
+                    <div *ngIf="description.errors.required">Acest camp trebuie completat.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row mt-1">
+            <div class="col-2">
+                <label for='name'><strong>Pret</strong></label>
+            </div>
+            <div class="col-8">
+                <input required [(ngModel)]="deliveryType.price" name="price" type="number" min="0" #price="ngModel"
+                    class="form-control" id="price">
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-6 d-flex align-items-center justify-content-center">
+                <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Anuleaza</button>
+            </div>
+            <div class="col-6 d-flex align-items-center justify-content-center">
+                <button type="button" class="btn btn-success"
+                    [class.disabled]="!editDeliveryTypeForm.valid || !editDeliveryTypeForm.dirty"
+                    (click)="updateDeliveryType()">Actualizeaza</button>
+            </div>
+        </div>
+    </form>
+
+</div>

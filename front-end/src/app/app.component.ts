@@ -10,7 +10,6 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit {
   title = 'Help A Family. Offer A Chance';
-  users:any;
 
   constructor(private authService:AuthService){}
 
@@ -20,7 +19,9 @@ export class AppComponent implements OnInit {
 
   setCurrentUser(){
     const user: User = JSON.parse(localStorage.getItem('user'));
+    if(user){
     this.authService.setCurrentUser(user);
+  }
   }
 
 

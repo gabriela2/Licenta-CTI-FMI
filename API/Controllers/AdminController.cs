@@ -2,9 +2,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Extensions;
 using API.Helpers;
 using API.Repositories.CategoryRepository;
 using API.Repositories.DeliveryTypeRepository;
+using API.Repositories.FundraiserRepository;
 using API.Repositories.UnitOfMeasureRepository;
 using HelpAFamilyOfferAChance.API.Data;
 using Microsoft.AspNetCore.Authorization;
@@ -21,8 +23,15 @@ namespace API.Controllers
         private readonly ICategoryRepository _categoryRepository;
         private readonly IDeliveryTypeRepository _deliveryTypeRepository;
         private readonly IUnitOfMeasureRepository _unitOfMeasureRepository;
-        public AdminController(DataContext context, ICategoryRepository categoryRepository, IDeliveryTypeRepository deliveryTypeRepository, IUnitOfMeasureRepository unitOfMeasureRepository)
+        private readonly IFundraiserRepository _fundraiserRepository;
+        public AdminController(
+            DataContext context, 
+            ICategoryRepository categoryRepository, 
+            IDeliveryTypeRepository deliveryTypeRepository, 
+            IUnitOfMeasureRepository unitOfMeasureRepository,
+            IFundraiserRepository fundraiserRepository)
         {
+            _fundraiserRepository = fundraiserRepository;
             _unitOfMeasureRepository = unitOfMeasureRepository;
             _deliveryTypeRepository = deliveryTypeRepository;
             _categoryRepository = categoryRepository;
@@ -31,7 +40,7 @@ namespace API.Controllers
 
         [Authorize(Policy = "AdminRole")]
         [HttpGet("get-roles-for-users")]
-        public async Task<ActionResult> GetRolesForUsers([FromQuery] AppParams appParams)
+        public async Task<ActionResult> GetRolesForUsers()
         {
             var users = await _context.Users.Include(urt => urt.Users_x_RoleTypes).ThenInclude(rt => rt.RoleType).OrderBy(u => u.Id).Select(u => new
             {
@@ -240,10 +249,12 @@ namespace API.Controllers
 
 
         [Authorize(Policy = "ModeratorRole")]
-        [HttpGet("moderate-fundraisers")]
-        public ActionResult ModerateFundraisers()
+        [HttpGet("get-all-inactive-fundraisers")]
+        public async Task<ActionResult> GetAllInactiveFundraisers([FromQuery]AppParams appParams)
         {
-            return Ok("moderator can see");
+            var fundraisers = await _fundraiserRepository.GetAllInactiveFundraisersAsync(appParams);
+            Response.AddPaginationHeader(fundraisers.CurrentPage,fundraisers.PageSize,fundraisers.TotalCount, fundraisers.TotalPages);
+            return Ok(fundraisers);
         }
 
 

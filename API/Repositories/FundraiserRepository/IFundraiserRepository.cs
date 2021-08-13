@@ -15,6 +15,7 @@ namespace API.Repositories.FundraiserRepository
         Task<PagedList<FundraiserDto>> GetActiveFundraisersByUserIdAsync(AppParams appParams,int id);
         Task<PagedList<FundraiserDto>> GetInactiveFundraisersByUserIdAsync(AppParams appParams, int id);
         Task<PagedList<FundraiserDto>> GetRejectedFundraisersByUserIdAsync(AppParams appParams, int id);
+        Task<PagedList<FundraiserDto>> GetAllInactiveFundraisersAsync(AppParams appParams);
         Task<IEnumerable<FundraiserDto>> GetFundraisersByUserIdAsync(int id);
         Task<FundraiserDto> GetFundraiserDtoByIdAsync(int id);
         Task<Fundraiser> GetFundraiserByIdAsync(int id);
