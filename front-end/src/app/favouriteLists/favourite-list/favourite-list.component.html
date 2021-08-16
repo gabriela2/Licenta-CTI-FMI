@@ -1,0 +1,33 @@
+<div class="row mt-4">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <h2 class="d-flex align-items-center justify-content-center"><strong>Favorite</strong></h2>
+        <p><small>{{pagination?.totalItems}} rezultate gasite</small></p>
+        <span *ngFor="let item of favouriteList">
+            <span *ngIf="item.adId">
+                
+                <app-favourite-ads [favouriteAd]="item"></app-favourite-ads>
+            </span>
+            <span *ngIf="item.fundraiserId">
+                <app-favourite-fundraisers [favouriteFundraiser]="item"></app-favourite-fundraisers>
+            </span>
+
+
+        </span>
+        <div class="d-flex justify-content-center" *ngIf="pagination">
+            <pagination 
+                [boundaryLinks]="true" 
+                [totalItems]="pagination.totalItems" 
+                [itemsPerPage]="pagination.itemsPerPage"
+                [(ngModel)]="pagination.currentPage"
+                (pageChanged)="changePage($event)"
+                previousText="&lsaquo;" 
+                nextText="&rsaquo;" 
+                firstText="&laquo;"
+                lastText="&raquo;">
+        
+            </pagination>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>

@@ -11,6 +11,7 @@ import { EditDemandComponent } from './demands/edit-demand/edit-demand.component
 import { MyDemandsComponent } from './demands/my-demands/my-demands.component';
 import { MyDonationsComponent } from './donations/my-donations/my-donations.component';
 import { EmailConfirmationComponent } from './email-confirmation/email-confirmation.component';
+import { FavouriteListComponent } from './favouriteLists/favourite-list/favourite-list.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AddFundraiserComponent } from './fundraisers/add-fundraiser/add-fundraiser.component';
 import { EditFundraiserComponent } from './fundraisers/edit-fundraiser/edit-fundraiser.component';
@@ -66,6 +67,7 @@ const routes: Routes = [
       { path: 'messages', component:MessageComponent },
       { path: 'add-ad', component: AddAdComponent, canDeactivate: [PreventUnsavedChangesForAddAdGuard] },
       { path: 'add-fundraiser', component: AddFundraiserComponent },
+      { path: 'favourite-list', component: FavouriteListComponent },
       { path: 'view-demands/:id', component: ViewDemandsComponent, canActivate: [PreventEditAdByOtherUsersGuard] },
       { path: 'edit-ad/:id', component: EditAdComponent, canDeactivate: [PreventUnsavedChangesForEditAdGuard], canActivate: [PreventEditAdByOtherUsersGuard] },
       { path: 'edit-fundraiser/:id', component: EditFundraiserComponent, canDeactivate: [PreventUnsavedChangesForEditFundraiserGuard], canActivate: [PreventEditFundraiserByOtherUsersGuard] },

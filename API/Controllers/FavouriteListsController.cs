@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using API.Extensions;
 using API.Helpers;
 using API.Repositories.FavouriteListRepository;
 using Microsoft.AspNetCore.Mvc;
@@ -52,6 +53,18 @@ namespace API.Controllers
             var favouriteList = await _favouriteListRepository.GetFavouriteListsDtoByUserIdAsync(id);
             return Ok(favouriteList);
         }
+
+
+        [HttpGet("list/{id}")]
+        public async Task<ActionResult<IEnumerable<FavouriteListDto>>> GetFavouriteListPagedByUserId([FromQuery]AppParams appParams, int id)
+        {
+            var favouriteList = await _favouriteListRepository.GetFavouriteListsByUserIdAsync(appParams, id);
+            Response.AddPaginationHeader(favouriteList.CurrentPage, favouriteList.PageSize, favouriteList.TotalCount,favouriteList.TotalPages);
+            return Ok(favouriteList);
+        }
+
+
+
 
         [HttpGet("get-ad/{userId}/{adId}")]
         public async Task<ActionResult<FavouriteListDto>> GetFavouriteAd(int userId, int adId)

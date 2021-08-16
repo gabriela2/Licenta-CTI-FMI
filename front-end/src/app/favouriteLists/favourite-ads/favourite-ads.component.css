@@ -1,0 +1,13 @@
+img{
+    width: 9vw;
+    height: 9vw;
+}
+.card-horizontal {
+    display: flex;
+    flex: 1 1 auto;
+  }
+
+
+.red{
+    color: red;
+  }

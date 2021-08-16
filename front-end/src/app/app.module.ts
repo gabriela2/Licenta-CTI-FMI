@@ -76,6 +76,9 @@ import { MyDonationsComponent } from './donations/my-donations/my-donations.comp
 import { DonationCardComponent } from './donations/donation-card/donation-card.component';
 import { MessageComponent } from './messages/message/message.component';
 import { ChatComponent } from './messages/chat/chat.component';
+import { FavouriteListComponent } from './favouriteLists/favourite-list/favourite-list.component';
+import { FavouriteAdsComponent } from './favouriteLists/favourite-ads/favourite-ads.component';
+import { FavouriteFundraisersComponent } from './favouriteLists/favourite-fundraisers/favourite-fundraisers.component';
 
 
 
@@ -139,6 +142,9 @@ import { ChatComponent } from './messages/chat/chat.component';
     DonationCardComponent,
     MessageComponent,
     ChatComponent,
+    FavouriteListComponent,
+    FavouriteAdsComponent,
+    FavouriteFundraisersComponent,
 
 
 

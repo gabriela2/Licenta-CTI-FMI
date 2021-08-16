@@ -30,6 +30,7 @@
         </ul>
 
         <div class="dropdown" *ngIf="(authService.currentUser$ | async) as user" dropdown>
+            <a class="text-light mr-3" style=" text-decoration:none" routerLink="/favourite-list" routerLinkActive='active'><i class="fa fa-heart" aria-hidden="true"></i> Favorite</a>
             <img class="userImage" *ngIf="member" src="{{user.photoUrl||member.photoUrl|| './assets/user.png'}}" alt="{{user.username}}">
             <a class="dropdown-toggle text-light ml-2" dropdownToggle>Bine ai venit {{user.username | titlecase}}</a>
             <div class="dropdown-menu mt-3" *dropdownMenu>
