@@ -46,11 +46,11 @@ export class EditRatingComponent implements OnInit {
     })
   }
   cancel(){
-    this.router.navigateByUrl('/member-profile/'+this.rating.receiverId);
+    this.router.navigateByUrl('/member-profile/'+this.rating.receiverId+'?tab=2');
   }
   update(){
     this.userRatingService.put(this.rating.id, this.rating).subscribe();
-    this.router.navigateByUrl('/member-profile/'+this.rating.receiverId);
+    this.router.navigateByUrl('/member-profile/'+this.rating.receiverId+'?tab=2');
     this.editRating.reset(this.rating);
   }
 

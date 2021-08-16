@@ -34,10 +34,12 @@ import { LoginComponent } from './login/login.component';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
 import { MemberProfileComponent } from './members/member-profile/member-profile.component';
 import { MembersListComponent } from './members/members-list/members-list.component';
+import { MessageComponent } from './messages/message/message.component';
 import { AddRatingComponent } from './ratings/add-rating/add-rating.component';
 import { EditRatingComponent } from './ratings/edit-rating/edit-rating.component';
 import { RatingUserComponent } from './ratings/rating-user/rating-user.component';
 import { RegisterComponent } from './register/register.component';
+import { MemberProfileResolver } from './routeResolvers/member-profile.resolver';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -53,7 +55,7 @@ const routes: Routes = [
       { path: 'edit-rating/:id', component: EditRatingComponent, canDeactivate: [PreventUnsavedChangesForEditRatingGuard], canActivate: [PreventEditReviewByOtherUsersGuard] },
       { path: 'add-rating/:id', component: AddRatingComponent, canDeactivate: [PreventUnsavedChangesForAddRatingGuard] },
       { path: 'member/edit', component: MemberEditComponent, canDeactivate: [PreventUnsavedChangesForProfileGuard] },
-      { path: 'member-profile/:id', component: MemberProfileComponent },
+      { path: 'member-profile/:id', component: MemberProfileComponent, resolve:{member:MemberProfileResolver} },
       { path: 'ads-list/:id', component: AdDetailComponent },
       { path: 'fundraisers-list/:id', component: FundraiserDetailComponent },
       { path: 'my-ads', component: MyAdsComponent },
@@ -61,6 +63,7 @@ const routes: Routes = [
       { path: 'my-demands', component: MyDemandsComponent },
       { path: 'my-donations', component: MyDonationsComponent },
       { path: 'edit-demand/:id', component: EditDemandComponent },
+      { path: 'messages', component:MessageComponent },
       { path: 'add-ad', component: AddAdComponent, canDeactivate: [PreventUnsavedChangesForAddAdGuard] },
       { path: 'add-fundraiser', component: AddFundraiserComponent },
       { path: 'view-demands/:id', component: ViewDemandsComponent, canActivate: [PreventEditAdByOtherUsersGuard] },

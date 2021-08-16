@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TabDirective, TabsetComponent } from 'ngx-bootstrap/tabs';
 import { ToastrService } from 'ngx-toastr';
 import { Ad } from 'src/app/models/ad';
 import { Address } from 'src/app/models/address';
@@ -39,8 +40,10 @@ export class MemberProfileComponent implements OnInit {
   categoryId:number;
   categoryList:Category[];
   ratingList:number[]=[1,2,3,4,5];
-  rating=0;
+  rating=0; @ViewChild('memberTabs', {static:true}) memberTabs: TabsetComponent;
+  activeTab: TabDirective;
 
+ 
   
 
 
@@ -61,8 +64,16 @@ export class MemberProfileComponent implements OnInit {
     this.route.params.subscribe((params) => {
       this.userId = params['id'];
     })
-    this.loadMember();
+    this.route.data.subscribe(data=>{
+      this.member = data.member;
+    })
+    this.loadAddress();
+    this.loadFundraisers();
+    this.loadRatings();
     this.getCategories();
+    this.route.queryParams.subscribe(params=>{
+      params.tab? this.selectTab(params.tab):this.selectTab(0);
+    })
   }
 
   getCategories(){
@@ -138,16 +149,6 @@ export class MemberProfileComponent implements OnInit {
     })
   }
 
-  loadMember() {
-    this.memberService.getMember(this.userId).subscribe(response => {
-      this.member = response;
-    })
-    this.loadAddress();
-    this.loadFundraisers();
-    this.loadRatings();
-  }
-
-
 
   loadFundraisers() {
     this.fundraisersService.getApprovedFundraiserByUserId(this.userId,this.pageNumberFundraisers,this.pageSize, this.orderBy).subscribe(response => {
@@ -183,6 +184,14 @@ export class MemberProfileComponent implements OnInit {
         this.router.navigateByUrl('/add-rating/' + this.userId);
       }
     }
+  }
+
+  selectTab(tabId:number){
+    this.memberTabs.tabs[tabId].active = true;
+  }
+
+  onTabActivated(data: TabDirective) {
+    this.activeTab = data;
   }
 
 }

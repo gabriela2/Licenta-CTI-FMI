@@ -1,0 +1,151 @@
+<tabset class="member-tabset">
+    <tab heading='Mesaje trimise'>
+        <div class="row mt-3">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <h2 class="text-center text-primary">Mesaje trimise</h2>
+            </div>
+        </div>
+
+        <div class="row mt-4" *ngIf="messagesSent">
+            <div class="col-2"></div>
+            <div class="col-8" *ngIf="paginationSent?.totalItems!=0">
+                <table class="table table-striped ">
+                    <thead>
+                      <tr>
+                        <th scope="col" style="width:50%">Mesaj</th>
+                        <th scope="col" style="width:25%">Destinatar</th>
+                        <th scope="col" style="width:25%">Data</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let message of messagesSent">
+                        <td >{{message.text}}</td>
+                            <td ><span routerLink="/member-profile/{{message.receiverId}}" [queryParams]='{tab:3}'>{{message.receiverLastName}} {{message.receiverFirstName}}</span></td>
+                            <td >{{message.createdAt | date:'short'}}</td>               
+                      </tr>
+                    </tbody>
+                  </table>
+               
+
+                <div class="d-flex justify-content-center" *ngIf="paginationSent">
+                    <pagination [boundaryLinks]="true" [totalItems]="paginationSent.totalItems"
+                        [itemsPerPage]="paginationSent.itemsPerPage" [(ngModel)]="paginationSent.currentPage"
+                        (pageChanged)="pageChangedSent($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;">
+                    </pagination>
+                </div>
+            </div>
+            <div class="col-2"></div>
+
+
+            <div class="col-12" *ngIf="paginationSent?.totalItems==0">
+                <h2 class="text-center"><strong>Nu aveti niciun mesaj trimis.</strong></h2>
+            </div>
+
+
+        </div>
+
+    </tab>
+
+    <tab heading='Mesaje primite'>
+        <div class="row mt-3">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <h2 class="text-center text-primary">Mesaje primite</h2>
+            </div>
+        </div>
+
+        <div class="row mt-4" *ngIf="messagesReceived">
+            <div class="col-2"></div>
+            <div class="col-8" *ngIf="paginationReceived?.totalItems!=0">
+                <table class="table table-striped ">
+                    <thead>
+                      <tr>
+                        <th scope="col" style="width:50%">Mesaj</th>
+                        <th scope="col" style="width:25%">Expeditor</th>
+                        <th scope="col" style="width:25%">Data</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let message of messagesReceived">
+                        <td >{{message.text}}</td>
+                            <td ><span routerLink="/member-profile/{{message.senderId}}" [queryParams]='{tab:3}'>{{message.senderLastName}} {{message.senderFirstName}}</span></td>
+                            <td >{{message.createdAt | date:'short'}}</td>               
+                      </tr>
+                    </tbody>
+                  </table>
+               
+
+                <div class="d-flex justify-content-center" *ngIf="paginationReceived">
+                    <pagination [boundaryLinks]="true" [totalItems]="paginationReceived.totalItems"
+                        [itemsPerPage]="paginationReceived.itemsPerPage" [(ngModel)]="paginationReceived.currentPage"
+                        (pageChanged)="pageChangedReceived($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;">
+                    </pagination>
+                </div>
+            </div>
+            <div class="col-2"></div>
+
+
+            <div class="col-12" *ngIf="paginationReceived?.totalItems==0">
+                <h2 class="text-center"><strong>Nu aveti niciun mesaj primit.</strong></h2>
+            </div>
+
+
+        </div>
+
+    </tab>
+
+    <tab heading='Mesaje necitite'>
+        <div class="row mt-3">
+            <div class="col-2"></div>
+            <div class="col-8">
+                <h2 class="text-center text-primary">Mesaje necitite</h2>
+            </div>
+        </div>
+
+        <div class="row mt-4" *ngIf="messagesUnread">
+            <div class="col-2"></div>
+            <div class="col-8" *ngIf="paginationUnread?.totalItems!=0">
+                <table class="table table-striped ">
+                    <thead>
+                      <tr>
+                        <th scope="col" style="width:50%">Mesaj</th>
+                        <th scope="col" style="width:25%">Expeditor</th>
+                        <th scope="col" style="width:25%">Data</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let message of messagesUnread">
+                        <td >{{message.text}}</td>
+                            <td ><span routerLink="/member-profile/{{message.senderId}}" [queryParams]='{tab:3}'>{{message.senderLastName}} {{message.senderFirstName}}</span></td>
+                            <td >{{message.createdAt | date:'short'}}</td>               
+                      </tr>
+                    </tbody>
+                  </table>
+               
+
+                <div class="d-flex justify-content-center" *ngIf="paginationUnread">
+                    <pagination [boundaryLinks]="true" [totalItems]="paginationUnread.totalItems"
+                        [itemsPerPage]="paginationUnread.itemsPerPage" [(ngModel)]="paginationUnread.currentPage"
+                        (pageChanged)="pageChangedUnread($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;">
+                    </pagination>
+                </div>
+            </div>
+            <div class="col-2"></div>
+
+
+            <div class="col-12" *ngIf="paginationUnread?.totalItems==0">
+                <h2 class="text-center"><strong>Nu aveti niciun mesaj necitit.</strong></h2>
+            </div>
+
+
+        </div>
+
+    </tab>
+
+
+
+</tabset>

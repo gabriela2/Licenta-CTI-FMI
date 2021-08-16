@@ -57,11 +57,11 @@ beforeUnloadHandler(event: any) {
     console.log("this var user = ", userRating);
     this.userRatingService.post(userRating).subscribe();
 
-    this.router.navigateByUrl('/member-profile/'+this.receiverUserId);
+    this.router.navigateByUrl('/member-profile/'+this.receiverUserId+'?tab=2');
     
   }
   cancel(){
-    this.router.navigateByUrl('/member-profile/'+this.receiverUserId);
+    this.router.navigateByUrl('/member-profile/'+this.receiverUserId+'?tab=2');
   }
 
 }

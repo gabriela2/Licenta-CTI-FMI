@@ -74,6 +74,8 @@ import { DemandCardApprovedForMyDemandsComponent } from './demands/demand-card-a
 import { DemandCardNotApprovedForMyDemandsComponent } from './demands/demand-card-not-approved-for-my-demands/demand-card-not-approved-for-my-demands.component';
 import { MyDonationsComponent } from './donations/my-donations/my-donations.component';
 import { DonationCardComponent } from './donations/donation-card/donation-card.component';
+import { MessageComponent } from './messages/message/message.component';
+import { ChatComponent } from './messages/chat/chat.component';
 
 
 
@@ -135,6 +137,9 @@ import { DonationCardComponent } from './donations/donation-card/donation-card.c
     DemandCardNotApprovedForMyDemandsComponent,
     MyDonationsComponent,
     DonationCardComponent,
+    MessageComponent,
+    ChatComponent,
+
 
 
   ],

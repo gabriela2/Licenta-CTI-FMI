@@ -28,6 +28,7 @@ namespace HelpAFamilyOfferAChance.API.Data
         public DbSet<UserPhoto> UserPhotos { get; set; }
         public DbSet<RoleType> RoleTypes { get; set; }
         public DbSet<User_x_RoleType> Users_X_RoleTypes { get; set; }
+        public DbSet<Message> Messages{get;set;}
         public DbSet<ChangePasswordToken> ChangePasswordTokens { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -95,8 +96,15 @@ namespace HelpAFamilyOfferAChance.API.Data
                 .WithOne(rt => rt.RoleType)
                 .HasForeignKey(urt => urt.RoleTypeId)
                 .IsRequired();
-
-
+            
+            builder.Entity<Message>()
+                .HasOne(user => user.Receiver)
+                .WithMany(message => message.MessagesReceived)
+                .OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<Message>()
+                .HasOne(user => user.Sender)
+                .WithMany(message => message.MessagesGiven)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
 

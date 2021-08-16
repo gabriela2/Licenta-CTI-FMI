@@ -1,0 +1,74 @@
+<h2 class="d-flex align-items-center justify-content-center"><strong>Chat</strong></h2>
+<div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+        <div class="card" *ngIf="messages && member">
+            <div class="card-body">
+                <div *ngIf="messages.length<1">
+                    <h2 class="d-flex align-items-center justify-content-center"><strong>Nu exista mesaje!</strong></h2>
+                    <p class="d-flex align-items-center justify-content-center">Puteti incepe conversatia cu
+                        {{member.lastName|titlecase}} {{member.firstName|titlecase}} folosind acest chat! </p>
+                </div>
+                <ul *ngIf="messages.length>0" class="chat" >
+                    <li *ngFor="let item of messages" class="mt-3">
+                        <div *ngIf="item.senderId===currentUserId && item.readAt" class="bg-primary rounded-pill" tooltip="Trimis la {{item.createdAt|date:'short'}} Citit la {{item.readAt|date:'short' || null}}" placement="right"  >
+                            <span>
+                                <p class="d-flex justify-content-end mr-5 text-light"><strong>{{item.senderLastName}} {{item.senderFirstName}}</strong></p>
+                            </span>
+                            <div class="chat-body">
+                                <p class="d-flex justify-content-end mr-5 text-light">{{item.text}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf="item.senderId===currentUserId && item.readAt===null" class="bg-primary rounded-pill" tooltip="Trimis la {{item.createdAt|date:'short'}} Necitit" placement="right"  >
+                            <span>
+                                <p class="d-flex justify-content-end mr-5 text-light"><strong>{{item.senderLastName}} {{item.senderFirstName}}</strong></p>
+                            </span>
+                            <div class="chat-body">
+                                <p class="d-flex justify-content-end mr-5 text-light">{{item.text}}</p>
+                            </div>
+                        </div>
+
+
+                        <div *ngIf="item.senderId!=currentUserId && item.readAt" class="bg-secondary rounded-pill" tooltip="Trimis la {{item.createdAt|date:'short'}} Citit la {{item.readAt|date:'short' || null}}" placement="left"  >
+                            <span>
+                                <p class="d-flex justify-content-start ml-5 text-dark"><strong>{{item.senderLastName}} {{item.senderFirstName}}</strong></p>
+                            </span>
+                            <div class="chat-body">
+                                <p class="d-flex justify-content-start ml-5 text-dark">{{item.text}}</p>
+                            </div>
+                        </div>
+                        <div *ngIf="item.senderId!=currentUserId && item.readAt===null" class="bg-primary rounded-pill" tooltip="Trimis la {{item.createdAt|date:'short'}} Necitit" placement="left"  >
+                            <span>
+                                <p class="d-flex justify-content-end ml-5 text-dark"><strong>{{item.senderLastName}} {{item.senderFirstName}}</strong></p>
+                            </span>
+                            <div class="chat-body">
+                                <p class="d-flex justify-content-end ml-5 text-dark">{{item.text}}</p>
+                            </div>
+                        </div>
+
+                        
+                    </li>
+
+                </ul>
+            </div>
+            <form #messageForm="ngForm" (ngSubmit)="sendMessage()" autocomplete="off">
+                <div class="row ml-2">
+                    <div class="col-10">
+                    <input 
+                        name="messageContent"
+                        required
+                        [(ngModel)]="messageContent"
+                        type="text" 
+                        class="form-control input-sm" 
+                        placeholder="Trimite un mesaj">
+                    </div>
+                    <div class="col-2">
+                    
+                        <button [disabled]="!messageForm.valid" class="btn btn-primary" type="submit"> <i class="fa fa-paper-plane" aria-hidden="true"></i> Trimite</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-2"></div>
+</div>

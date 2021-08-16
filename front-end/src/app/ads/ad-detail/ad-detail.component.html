@@ -104,7 +104,11 @@
                 
                 <aside class="col-sm-7 d-flex align-items-center justify-content-center">
                     <div>
-                        <button class="btn btn-info mr-3 my-auto"><i class="fa fa-comments" aria-hidden="true"></i> Trimite Mesaj</button>
+                        <button 
+                            class="btn btn-info mr-3 my-auto" 
+                            routerLink="/member-profile/{{userOwner.id}}"
+                            [queryParams]='{tab:3}'
+                            ><i class="fa fa-comments" aria-hidden="true"></i> Trimite Mesaj</button>
 
                         <ng-template #tolTemplate>{{content}}</ng-template>
                         <button class="btn btn-info my-auto mr-3" (click)="toggleFavourite()" [tooltip]="tolTemplate" placement="bottom"> 

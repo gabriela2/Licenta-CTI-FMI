@@ -1,4 +1,4 @@
-<div class="container" *ngIf="member">
+<div class="container">
     <div class="card">
         <div class="row ml-3 mt-3 mb-3">
             <aside class="col-sm-5 border-right">
@@ -24,7 +24,7 @@
             </aside>
             <aside class="col-sm-7 d-flex align-items-center justify-content-center">
                 <div>
-                    <button class="btn btn-info mr-3 my-auto"><i class="fa fa-comments" aria-hidden="true"></i> Trimite
+                    <button class="btn btn-info mr-3 my-auto" (click)="selectTab(3)"><i class="fa fa-comments" aria-hidden="true"></i> Trimite
                         Mesaj</button>
                     <button class="btn btn-info my-auto mr-3" (click)="showPhoneNumber()"> <i class="fa fa-phone"
                             aria-hidden="true"></i> {{phoneNumber}}</button>
@@ -39,8 +39,8 @@
     </div>
 
     <div class="row mt-3">
-        <tabset class="member-tabset">
-            <tab heading='Anunturi'>
+        <tabset class="member-tabset" #memberTabs>
+            <tab heading='Anunturi' (selectTab)="onTabActivated($event)">
                 <div class="container mt-3">
                     <form #selectCategoryform="ngForm" class="form-inline mb-3" (ngSubmit)="applyAd()" autocomplete="off">
                         <div class="form-group">
@@ -93,7 +93,7 @@
             </tab>
 
 
-            <tab heading='Strangeri de fonduri'>
+            <tab heading='Strangeri de fonduri' (selectTab)="onTabActivated($event)">
                 <div class="container mt-3 ml-3">
                     <form #selectCategoryform="ngForm" class="form-inline" (ngSubmit)="applyFundraisers()" autocomplete="off">
                         <div>
@@ -130,7 +130,7 @@
             </tab>
 
 
-            <tab heading='Review-uri'>
+            <tab heading='Review-uri' (selectTab)="onTabActivated($event)">
                 <div class="container mt-3">
                     <form #selectCategoryform="ngForm" class="form-inline mb-3" (ngSubmit)="applyUserRating()" autocomplete="off">
                         <div class="form-group">
@@ -182,6 +182,10 @@
                     </span></p>
                 </div>
 
+            </tab>
+
+            <tab heading='Chat' (selectTab)="onTabActivated($event)">
+                <app-chat [userId]="userId"></app-chat>
             </tab>
         </tabset>
     </div>

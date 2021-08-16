@@ -32,6 +32,7 @@ using API.Repositories.FavouriteListRepository;
 using API.Services.CloudinaryPhotoService;
 using API.Repositories.UserPhotoRepository;
 using API.Repositories.PhotoRepository;
+using API.Repositories.MessageRepository;
 
 namespace API
 {
@@ -56,6 +57,7 @@ namespace API
             services.AddScoped<ModifyLastActivityForUser>();
 
             services.AddScoped<IAdRepository, AdRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
             services.AddScoped<IUserPhotoRepository, UserPhotoRepository>();
             services.AddScoped<IPhotoRepository, PhotoRepository>();
             services.AddScoped<IUserRepository, UserRepository>();

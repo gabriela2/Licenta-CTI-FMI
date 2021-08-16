@@ -35,6 +35,8 @@ namespace HelpAFamilyOfferAChance.API.Entities
         public ICollection<UserRating> RatingGiven { get; set; }
         public ICollection<FavouriteList> FavouriteList { get; set; }
         public ICollection<User_x_RoleType> Users_x_RoleTypes { get; set; }
+        public ICollection<Message> MessagesReceived { get; set; }
+        public ICollection<Message> MessagesGiven{get;set;}
         
         
 

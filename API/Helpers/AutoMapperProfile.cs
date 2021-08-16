@@ -17,6 +17,7 @@ namespace API.Helpers
             CreateMap<MemberUpdateStripeDetailsDto,User>();
             CreateMap<Photo, PhotoDto>();
             CreateMap<UserPhoto, UserPhotoDto>();
+            CreateMap<Message, MessageDto>();
 
             CreateMap<Ad, AdDto>()
                 .ForMember(destination => destination.Url, options => options.MapFrom(source => source.Photos.FirstOrDefault(photo => photo.IsMain).Url))
