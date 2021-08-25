@@ -46,6 +46,11 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             {
                 Email = registerDto.Email.ToLower(),
                 UserName = registerDto.Username.ToLower(),
+                LastName = registerDto.LastName.ToLower(),
+                FirstName = registerDto.FirstName.ToLower(),
+                PhoneNumber = registerDto.PhoneNumber,
+                IsOrganisation = registerDto.IsOrganisation,
+                OrganizationIdentificationNumber= registerDto.OrganizationIdentificationNumber,
                 PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password)),
                 PasswordSalt = hmac.Key
             };
@@ -56,6 +61,12 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             await _context.SaveChangesAsync();
             var address = new Address
             {
+                HouseNumber= registerDto.HouseNumber,
+                Street = registerDto.Street,
+                City = registerDto.City,
+                District = registerDto.District,
+                Country = registerDto.Country,
+                ZipCode=  registerDto.ZipCode,
                 UserId = user.Id
             };
             _context.Addresses.Add(address);

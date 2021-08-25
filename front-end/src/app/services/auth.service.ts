@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { map} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { HelperRegister } from '../models/HelperRegister';
 import Member from '../models/member';
 import { User } from '../models/user';
 
@@ -46,7 +47,7 @@ export class AuthService {
           Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
   }
 
-  register(model:any){
+  register(model:HelperRegister){
     return this.http.post(this.baseUrl+'auth/register', model);
   }
 

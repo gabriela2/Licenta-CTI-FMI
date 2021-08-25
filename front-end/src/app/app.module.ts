@@ -81,6 +81,7 @@ import { FavouriteAdsComponent } from './favouriteLists/favourite-ads/favourite-
 import { FavouriteFundraisersComponent } from './favouriteLists/favourite-fundraisers/favourite-fundraisers.component';
 import { NotConfirmedEmailComponent } from './not-confirmed-email/not-confirmed-email.component';
 import { AboutUsComponent } from './about-us/about-us.component';
+import { CarouselModule } from 'ngx-bootstrap/carousel';
 
 
 
@@ -171,7 +172,8 @@ import { AboutUsComponent } from './about-us/about-us.component';
     NgxSpinnerModule,
     FileUploadModule,
     PaginationModule.forRoot(),
-    ButtonsModule
+    ButtonsModule,
+    CarouselModule.forRoot(),
 
 
 
