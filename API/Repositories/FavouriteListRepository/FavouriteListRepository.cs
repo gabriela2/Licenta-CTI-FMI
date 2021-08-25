@@ -23,32 +23,32 @@ namespace API.Repositories.FavouriteListRepository
 
         public void AdToFavouriteList(FavouriteList favouriteList)
         {
-            _context.FavouriteList.Add(favouriteList);
+            _context.FavouriteLists.Add(favouriteList);
         }
 
         public void DeleteFromFavouriteList(FavouriteList favouriteList)
         {
-            _context.FavouriteList.Remove(favouriteList);
+            _context.FavouriteLists.Remove(favouriteList);
         }
 
         public async Task<FavouriteListDto> GetFavouriteAdAsync(int userId, int adId)
         {
-            return await _context.FavouriteList.Where(favouriteList => favouriteList.AdId == adId).Where(favouriteList => favouriteList.UserId == userId).ProjectTo<FavouriteListDto>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();
+            return await _context.FavouriteLists.Where(favouriteList => favouriteList.AdId == adId).Where(favouriteList => favouriteList.UserId == userId).ProjectTo<FavouriteListDto>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();
         }
 
         public async Task<FavouriteListDto> GetFavouriteFundraiserAsync(int userId, int fundraiserId)
         {
-            return await _context.FavouriteList.Where(favouriteList => favouriteList.FundraiserId == fundraiserId).Where(favouriteList => favouriteList.UserId == userId).ProjectTo<FavouriteListDto>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();
+            return await _context.FavouriteLists.Where(favouriteList => favouriteList.FundraiserId == fundraiserId).Where(favouriteList => favouriteList.UserId == userId).ProjectTo<FavouriteListDto>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();
         }
 
         public async Task<FavouriteList> GetFavouriteListByIdAsync(int id)
         {
-            return await _context.FavouriteList.Where(favouriteList => favouriteList.Id == id).SingleOrDefaultAsync();
+            return await _context.FavouriteLists.Where(favouriteList => favouriteList.Id == id).SingleOrDefaultAsync();
         }
 
         public async Task<PagedList<FavouriteListDto>> GetFavouriteListsByUserIdAsync(AppParams appParams, int id)
         {
-            var query = _context.FavouriteList.AsQueryable();
+            var query = _context.FavouriteLists.AsQueryable();
             query = query.Where(donation => donation.UserId == id);
 
             return await PagedList<FavouriteListDto>.CreateAsync(query.ProjectTo<FavouriteListDto>(_mapper.ConfigurationProvider).AsNoTracking(), appParams.PageNumber, appParams.PageSize);
@@ -57,7 +57,7 @@ namespace API.Repositories.FavouriteListRepository
 
         public async Task<IEnumerable<FavouriteListDto>> GetFavouriteListsDtoByUserIdAsync(int id)
         {
-            return await _context.FavouriteList.Where(favouriteList => favouriteList.UserId == id).ProjectTo<FavouriteListDto>(_mapper.ConfigurationProvider).ToListAsync();
+            return await _context.FavouriteLists.Where(favouriteList => favouriteList.UserId == id).ProjectTo<FavouriteListDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
         public async Task<bool> SaveAllAsync()

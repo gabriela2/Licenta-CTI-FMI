@@ -5,19 +5,29 @@
             <div class="col-8">
                 <h2 class="text-center text-primary">Strangeri de fonduri active active</h2>
             </div>
-            <div class="col-2">
+            <div class="col-2" *ngIf="currentUser">
                 <div class="col-1 d-flex flex-row-reverse bd-highlight" style="margin-left:150px">
-                    <ng-template #tolTemplate>Adauga o strangere de fonduri</ng-template>
+                    <span
+                        *ngIf="currentUser.iban===null ||currentUser.bank===null || currentUser.owner===null || currentUser.stripeAccount===null">
+                        <ng-template #tolTemplate>Pentru a adauga o strangere de fonduri este nevoie ca informatiile
+                            bancare sa fie actualizate</ng-template>
+                        <i class="fa fa-plus-circle fa-2x" aria-hidden="true" routerLink='/member/edit'
+                            [tooltip]="tolTemplate" placement="bottom"></i>
+                    </span>
+                    <span
+                    *ngIf="currentUser.iban && currentUser.bank && currentUser.owner && currentUser.stripeAccount">
+                    <ng-template #tolTemplate>Adauga o strangere de fonduri noua</ng-template>
                     <i class="fa fa-plus-circle fa-2x" aria-hidden="true" routerLink='/add-fundraiser'
                         [tooltip]="tolTemplate" placement="bottom"></i>
+                </span>
                 </div>
             </div>
         </div>
 
         <div class="container">
 
-            <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="orderBy"
-                (click)="applyActive()" btnRadio='oldest'>Cele mai recente</button>
+            <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="orderBy" (click)="applyActive()"
+                btnRadio='oldest'>Cele mai recente</button>
             <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
                 (click)="applyActive()" btnRadio='newest'>Cele mai vechi</button>
 
@@ -88,7 +98,8 @@
                 </span>
                 <div class="d-flex justify-content-center" *ngIf="paginationNotApprovedYet">
                     <pagination [boundaryLinks]="true" [totalItems]="paginationNotApprovedYet.totalItems"
-                        [itemsPerPage]="paginationNotApprovedYet.itemsPerPage" [(ngModel)]="paginationNotApprovedYet.currentPage"
+                        [itemsPerPage]="paginationNotApprovedYet.itemsPerPage"
+                        [(ngModel)]="paginationNotApprovedYet.currentPage"
                         (pageChanged)="changePageNotApprovedYet($event)" previousText="&lsaquo;" nextText="&rsaquo;"
                         firstText="&laquo;" lastText="&raquo;">
 
@@ -119,8 +130,8 @@
 
         <div class="container">
 
-            <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="orderBy"
-                (click)="applyRejected()" btnRadio='oldest'>Cele mai recente</button>
+            <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="orderBy" (click)="applyRejected()"
+                btnRadio='oldest'>Cele mai recente</button>
             <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
                 (click)="applyRejected()" btnRadio='newest'>Cele mai vechi</button>
 

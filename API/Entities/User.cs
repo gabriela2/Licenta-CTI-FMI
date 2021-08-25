@@ -15,7 +15,6 @@ namespace HelpAFamilyOfferAChance.API.Entities
         public string FirstName { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public DateTime LastActivity { get; set; } = DateTime.Now;
         public string StripeAccount { get; set; }
         public string StripeConfigurationLink { get; set; }
         public bool EmailConfirmed { get; set; }

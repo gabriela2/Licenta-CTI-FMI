@@ -36,10 +36,6 @@ namespace API.Repositories.AdRepository
             return await _context.Ads.Where(ad => ad.Id == id).SingleOrDefaultAsync();
         }
 
-        public async Task<AdDto> GetAdByNameAsync(string name)
-        {
-            return await _context.Ads.Where(ad => ad.Name == name).ProjectTo<AdDto>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();
-        }
 
         public async Task<PagedList<AdDto>> GetAdsAsync(AdsParams adsParams)
         {

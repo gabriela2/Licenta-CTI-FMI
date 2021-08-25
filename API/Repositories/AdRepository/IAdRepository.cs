@@ -17,7 +17,6 @@ namespace API.Repositories.AdRepository
         Task<PagedList<AdDto>> GetActiveAdsByUserIdAsync(AdsParams adsParams, int id);
         Task<AdDto> GetAdDtoByIdAsync(int id);
         Task<Ad> GetAdByIdAsync(int id);
-        Task<AdDto> GetAdByNameAsync(string name);
         Task<IEnumerable<AdDto>> GetAdsByUserId(int id);
         
 

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [ServiceFilter(typeof(ModifyLastActivityForUser))]
+    
     [ApiController]
     [Route("api/[controller]")]
     public class FavouriteListsController : ControllerBase

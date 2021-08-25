@@ -1,6 +1,6 @@
 <div class="row mt-4">
     <div class="col-2"></div>
-    <div class="col-8">
+    <div class="col-8" *ngIf="pagination?.totalItems>0">
         <h2 class="d-flex align-items-center justify-content-center"><strong>Favorite</strong></h2>
         <p><small>{{pagination?.totalItems}} rezultate gasite</small></p>
         <span *ngFor="let item of favouriteList">
@@ -28,6 +28,9 @@
         
             </pagination>
         </div>
+    </div>
+    <div class="col-8" *ngIf="pagination?.totalItems<1">
+        <h2 class="text-center"><strong>Nu aveti nimic salvat in lista de favorite.</strong></h2>
     </div>
     <div class="col-2"></div>
 </div>

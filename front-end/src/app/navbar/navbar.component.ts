@@ -15,9 +15,11 @@ export class NavbarComponent implements OnInit {
   constructor(public authService:AuthService,private router: Router, private memberService:MembersService) { }
 
   ngOnInit(): void {
+    if(parseInt(localStorage.getItem('userId'))){
     this.memberService.getMember(parseInt(localStorage.getItem('userId'))).subscribe(response=>{
       this.member=response;
     })
+  }
     
   }
 

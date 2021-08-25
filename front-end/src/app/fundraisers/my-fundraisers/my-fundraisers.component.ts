@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 import { Fundraiser } from 'src/app/models/fundraiser';
+import Member from 'src/app/models/member';
 import { Pagination } from 'src/app/models/pagination';
 import { FundraisersService } from 'src/app/services/fundraisers.service';
+import { MembersService } from 'src/app/services/members.service';
 
 @Component({
   selector: 'app-my-fundraisers',
@@ -13,6 +15,7 @@ import { FundraisersService } from 'src/app/services/fundraisers.service';
 export class MyFundraisersComponent implements OnInit {
 
   currentUserId:number;
+  currentUser:Member;
   activeFundraisers:Fundraiser[]=[];
   rejectedFundraisers:Fundraiser[]=[];
   notApprovedYetFundraisers:Fundraiser[]=[];
@@ -26,8 +29,11 @@ export class MyFundraisersComponent implements OnInit {
   orderBy = 'createdAt';
 
 
-  constructor(private router:Router, private fundraisersService: FundraisersService) { 
+  constructor(private router:Router, private fundraisersService: FundraisersService,private memberService:MembersService) { 
     this.currentUserId = parseInt(localStorage.getItem('userId'));
+    this.memberService.getMember(this.currentUserId).subscribe(response=>{
+      this.currentUser=response;
+    })
     console.log(this.currentUserId);
   }
 

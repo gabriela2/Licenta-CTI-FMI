@@ -12,24 +12,21 @@ namespace HelpAFamilyOfferAChance.API.Data
         }
         public DbSet<User> Users { get; set; }
         public DbSet<Ad> Ads { get; set; }
-
         public DbSet<Fundraiser> Fundraisers { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<UnitOfMeasure> UnitsOfMeasure { get; set; }
-        public DbSet<Category> Category { get; set; }
-
+        public DbSet<Category> Categories { get; set; }
         public DbSet<DeliveryType> DeliveryTypes { get; set; }
         public DbSet<Ad_x_DeliveryType> Ads_X_DeliveryTypes { get; set; }
         public DbSet<Demand> Demands { get; set; }
         public DbSet<Donation> Donations { get; set; }
         public DbSet<Address> Addresses { get; set; }
-        public DbSet<FavouriteList> FavouriteList { get; set; }
+        public DbSet<FavouriteList> FavouriteLists { get; set; }
         public DbSet<UserRating> UserRatings { get; set; }
         public DbSet<UserPhoto> UserPhotos { get; set; }
         public DbSet<RoleType> RoleTypes { get; set; }
         public DbSet<User_x_RoleType> Users_X_RoleTypes { get; set; }
         public DbSet<Message> Messages{get;set;}
-        public DbSet<ChangePasswordToken> ChangePasswordTokens { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
@@ -85,7 +82,7 @@ namespace HelpAFamilyOfferAChance.API.Data
                 .HasForeignKey(user => user.SenderId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            builder.Entity<User_x_RoleType>().HasKey(key => new { key.UserId, key.RoleTypeId });
+            // builder.Entity<User_x_RoleType>().HasKey(key => new { key.UserId, key.RoleTypeId });
             builder.Entity<User>()
                 .HasMany(urt => urt.Users_x_RoleTypes)
                 .WithOne(u => u.User)

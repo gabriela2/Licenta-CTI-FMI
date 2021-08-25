@@ -1,1 +1,7 @@
-<p>email-confirmation works!</p>
+<div class="mt-4">
+    <h2 class="d-flex align-items-center justify-content-center"><strong>Contul a fost activat cu success! </strong></h2>
+    <span class="d-flex align-items-center justify-content-center" *ngIf="!user">
+        <button class="btn btn-primary" (click)="changePage()"> Mergi la pagina de login</button>
+    </span>
+ </div>
+ 

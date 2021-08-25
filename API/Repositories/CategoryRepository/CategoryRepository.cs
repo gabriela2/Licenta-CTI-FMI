@@ -24,22 +24,22 @@ namespace API.Repositories.CategoryRepository
 
         public void AddCategory(Category category)
         {
-            _context.Category.Add(category);
+            _context.Categories.Add(category);
         }
 
         public void Delete(Category category)
         {
-            _context.Category.Remove(category);
+            _context.Categories.Remove(category);
         }
 
         public async Task<IEnumerable<CategoryDto>> GetCategoriesAsync()
         {
-           return await _context.Category.ProjectTo<CategoryDto>(_mapper.ConfigurationProvider).ToListAsync();
+           return await _context.Categories.ProjectTo<CategoryDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
         public async Task<CategoryDto> GetCategoryByIdAsync(int id)
         {
-            return await _context.Category.Where(category => category.Id ==id).ProjectTo<CategoryDto>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();
+            return await _context.Categories.Where(category => category.Id ==id).ProjectTo<CategoryDto>(_mapper.ConfigurationProvider).SingleOrDefaultAsync();
         }
 
         public void Update(Category category)
@@ -53,7 +53,7 @@ namespace API.Repositories.CategoryRepository
 
         public async Task<Category> GetCategoryDtoByIdAsync(int id)
         {
-            return await _context.Category.Where(category => category.Id == id).SingleOrDefaultAsync();
+            return await _context.Categories.Where(category => category.Id == id).SingleOrDefaultAsync();
         }
     }
 }

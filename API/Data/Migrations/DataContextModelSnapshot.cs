@@ -140,33 +140,7 @@ namespace API.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
-                });
-
-            modelBuilder.Entity("API.Entities.ChangePasswordToken", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Token")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Used")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("ChangePasswordTokens");
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("API.Entities.DeliveryType", b =>
@@ -282,7 +256,7 @@ namespace API.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("FavouriteList");
+                    b.ToTable("FavouriteLists");
                 });
 
             modelBuilder.Entity("API.Entities.Fundraiser", b =>
@@ -333,32 +307,14 @@ namespace API.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<bool>("DeletedByReceiver")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("DeletedBySender")
-                        .HasColumnType("bit");
-
                     b.Property<DateTime?>("ReadAt")
                         .HasColumnType("datetime2");
-
-                    b.Property<string>("ReceiverFirstName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ReceiverId")
                         .HasColumnType("int");
 
-                    b.Property<string>("ReceiverLastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SenderFirstName")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("SenderId")
                         .HasColumnType("int");
-
-                    b.Property<string>("SenderLastName")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Text")
                         .HasColumnType("nvarchar(max)");
@@ -502,15 +458,22 @@ namespace API.Data.Migrations
 
             modelBuilder.Entity("API.Entities.User_x_RoleType", b =>
                 {
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("RoleTypeId")
                         .HasColumnType("int");
 
-                    b.HasKey("UserId", "RoleTypeId");
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("RoleTypeId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Users_X_RoleTypes");
                 });
@@ -542,9 +505,6 @@ namespace API.Data.Migrations
 
                     b.Property<bool>("IsOrganisation")
                         .HasColumnType("bit");
-
-                    b.Property<DateTime>("LastActivity")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
@@ -636,17 +596,6 @@ namespace API.Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("API.Entities.ChangePasswordToken", b =>
-                {
-                    b.HasOne("HelpAFamilyOfferAChance.API.Entities.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("API.Entities.Demand", b =>

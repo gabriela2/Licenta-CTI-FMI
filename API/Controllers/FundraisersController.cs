@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [ServiceFilter(typeof(ModifyLastActivityForUser))]
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]
@@ -106,7 +105,6 @@ namespace API.Controllers
             {
                 Name = fundraiserAdDto.Name,
                 Description = fundraiserAdDto.Description,
-                CreatedAt = fundraiserAdDto.CreatedAt,
                 CurrentAmount = 0,
                 TargetAmount = fundraiserAdDto.TargetAmount,
                 IsValidated = false,

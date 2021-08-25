@@ -18,7 +18,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HelpAFamilyOfferAChance.API.Controllers
 {
-    [ServiceFilter(typeof(ModifyLastActivityForUser))]
+   
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]
@@ -118,6 +118,8 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             if (await _userRepository.SaveAllAsync()) return NoContent();
             return BadRequest("Userul nu a putut fi actualizat");
         }
+
+        
 
         [HttpPost("add-photo")]
         public async Task<ActionResult<PhotoDto>> AddPhoto(IFormFile file)

@@ -85,7 +85,8 @@ namespace API.Controllers
                 {
                     if (item == item2.Name)
                     {
-                        _context.Users_X_RoleTypes.Remove(new Entities.User_x_RoleType { UserId = id, RoleTypeId = item2.Id });
+                        Entities.User_x_RoleType user_X_RoleType_to_remove= _context.Users_X_RoleTypes.Where(urt => urt.UserId==id && urt.RoleTypeId==item2.Id).SingleOrDefault();
+                        _context.Users_X_RoleTypes.Remove(user_X_RoleType_to_remove);
                     }
                 }
 

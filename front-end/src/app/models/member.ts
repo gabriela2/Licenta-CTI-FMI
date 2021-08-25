@@ -8,7 +8,6 @@ export default interface Member{
     firstName:string;
     phoneNumber:string;
     createdAt:Date;
-    lastActivity:Date;
     isOrganisation:boolean;
     emailConfirmed:boolean;
     stripeAccount:string;

@@ -5,7 +5,6 @@ using System.Text;
 using API.Middleware;
 using API.Repositories.UserRepository;
 using API.Services;
-using API.Services.MailService;
 using HelpAFamilyOfferAChance.API.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -33,6 +32,7 @@ using API.Services.CloudinaryPhotoService;
 using API.Repositories.UserPhotoRepository;
 using API.Repositories.PhotoRepository;
 using API.Repositories.MessageRepository;
+using API.Services.MailService;
 
 namespace API
 {
@@ -50,11 +50,12 @@ namespace API
         {
             services.Configure<StripeKeys>(_config.GetSection("StripePayment"));
             services.Configure<CloudinaryKeys>(_config.GetSection("Cloudinary"));
-            services.Configure<EmailSettings>(_config.GetSection("EmailSettings"));
-            services.AddTransient<IEmailService, EmailService>();
             services.AddScoped<ICloudinaryPhotoService, CloudinaryPhotoService>();
             services.AddScoped<ITokenService, TokenService>();
-            services.AddScoped<ModifyLastActivityForUser>();
+
+            
+			services.Configure<EmailSettings>(_config.GetSection("EmailSettings"));
+			services.AddTransient<IMailService, MailService>();
 
             services.AddScoped<IAdRepository, AdRepository>();
             services.AddScoped<IMessageRepository, MessageRepository>();

@@ -115,7 +115,6 @@ namespace API.Controllers
             {
                 Name = adAddDto.Name,
                 Description = adAddDto.Description,
-                CreatedAt = adAddDto.CreatedAt,
                 Quantity = adAddDto.Quantity,
                 ExistsLimit = adAddDto.ExistsLimit,
                 IsActive = true,

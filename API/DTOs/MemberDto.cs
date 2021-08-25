@@ -13,7 +13,6 @@ namespace API.DTOs
         public string FirstName { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime CreatedAt { get; set; } 
-        public DateTime LastActivity { get; set; } 
         public string StripeAccount { get; set; }
         public string StripeConfigurationLink { get; set; }
         public bool EmailConfirmed { get; set; }
@@ -24,7 +23,6 @@ namespace API.DTOs
         public string Bank{get;set;}
         public string Owner{get;set;}
         public bool StripeLinkWasAccessed{get;set;}
-        // public ICollection<PhotoDto> Photos{get;set;}
         public UserPhotoDto Photo{get;set;}
        
 

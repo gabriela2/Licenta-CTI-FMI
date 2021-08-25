@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [ServiceFilter(typeof(ModifyLastActivityForUser))]
+    
     [ApiController]
     [Route("api/[controller]")]
     public class DonationsController : ControllerBase
@@ -40,7 +40,6 @@ namespace API.Controllers
         {
             Donation model = new Donation()
             {
-                CreatedAt = donationDto.CreatedAt,
                 Amount = donationDto.Amount,
                 Description= donationDto.Description,
                 UserId = donationDto.UserId,

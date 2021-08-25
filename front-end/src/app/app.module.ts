@@ -79,6 +79,8 @@ import { ChatComponent } from './messages/chat/chat.component';
 import { FavouriteListComponent } from './favouriteLists/favourite-list/favourite-list.component';
 import { FavouriteAdsComponent } from './favouriteLists/favourite-ads/favourite-ads.component';
 import { FavouriteFundraisersComponent } from './favouriteLists/favourite-fundraisers/favourite-fundraisers.component';
+import { NotConfirmedEmailComponent } from './not-confirmed-email/not-confirmed-email.component';
+import { AboutUsComponent } from './about-us/about-us.component';
 
 
 
@@ -145,6 +147,8 @@ import { FavouriteFundraisersComponent } from './favouriteLists/favourite-fundra
     FavouriteListComponent,
     FavouriteAdsComponent,
     FavouriteFundraisersComponent,
+    NotConfirmedEmailComponent,
+    AboutUsComponent,
 
 
 

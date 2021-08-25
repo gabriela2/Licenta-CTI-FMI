@@ -3,8 +3,6 @@ export interface Message{
     text:string;
     createdAt:Date;
     readAt:Date;
-    deletedBySender:boolean;
-    deletedByReceiver:boolean;
     senderId:number;
     receiverId:number;
     senderLastName:string;

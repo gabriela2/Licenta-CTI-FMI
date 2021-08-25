@@ -16,10 +16,6 @@
         "DeliveryTypeId":7
     },
     {
-        "AdId":1,
-        "DeliveryTypeId":1
-    },
-    {
         "AdId":2,
         "DeliveryTypeId":3
     },

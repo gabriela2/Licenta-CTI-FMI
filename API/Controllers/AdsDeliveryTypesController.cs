@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [ServiceFilter(typeof(ModifyLastActivityForUser))]
+   
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]

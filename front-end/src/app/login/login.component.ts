@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
   login(){
     this.authService.login(this.model).subscribe(response =>{
       console.log(response);
-      this.router.navigateByUrl('/ads-list')
+      this.router.navigateByUrl('/ads-list');
     }, error=>{
       console.log(error);
       this.toatrService.error("Credentialele nu sunt corecte! Te rugam sa incerci din nou. ");

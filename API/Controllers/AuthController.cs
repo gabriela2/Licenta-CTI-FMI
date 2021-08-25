@@ -8,30 +8,30 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 using API.Services;
-using API.Services.MailService;
-using API.Services.MailService.Template;
 using API.Repositories.UserRepository;
 using API.Helpers;
 using API.Entities;
 using System.Linq;
+using API.Services.MailService;
+using API.Services.MailService.Templates;
 
 namespace HelpAFamilyOfferAChance.API.Controllers
 {
-    [ServiceFilter(typeof(ModifyLastActivityForUser))]
+    
     [ApiController]
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
-        private readonly IEmailService _emailService;
         private readonly IUserRepository _userRepository;
-        public AuthController(DataContext context, ITokenService tokenService, IEmailService emailService, IUserRepository userRepository)
+        private readonly IMailService _mailService;
+        public AuthController(DataContext context, ITokenService tokenService, IUserRepository userRepository, IMailService mailService)
         {
+            _mailService = mailService;
             _userRepository = userRepository;
             _tokenService = tokenService;
             _context = context;
-            _emailService = emailService;
         }
 
         [HttpPost("register")]
@@ -51,22 +51,22 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             };
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
-            var memberRole= _context.RoleTypes.Where(role => role.Name=="Member").SingleOrDefault();
-            _context.Users_X_RoleTypes.Add(new User_x_RoleType{UserId=user.Id,RoleTypeId=memberRole.Id});
+            var memberRole = _context.RoleTypes.Where(role => role.Name == "Member").SingleOrDefault();
+            _context.Users_X_RoleTypes.Add(new User_x_RoleType { UserId = user.Id, RoleTypeId = memberRole.Id });
             await _context.SaveChangesAsync();
-            var address = new Address{
-                UserId= user.Id
+            var address = new Address
+            {
+                UserId = user.Id
             };
             _context.Addresses.Add(address);
             await _context.SaveChangesAsync();
 
 
-            ConfirmationEmailTemplate emailTemplate = new ConfirmationEmailTemplate();
-            emailTemplate.url = "http://localhost:4200/#/verify-email/" + user.Id;
+            EmailConfirmationTemplate emailTemplate = new EmailConfirmationTemplate();
+            emailTemplate.url = "https://localhost:4200/emailConfirmation/" + user.Id.ToString();
             emailTemplate.username = user.UserName;
-            await _emailService.SendConfirmationEmailAsync(user.Email, "Validare cont", emailTemplate);
-
-
+            await _mailService.SendEmailConfirmationAsync(user.Email, "Validare cont", emailTemplate);
+            
             return new UserDto
             {
                 Username = user.UserName,
@@ -76,6 +76,16 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             };
 
 
+        }
+
+        [HttpPut("activate-account/{id}")]
+        public async Task<ActionResult> ActivateAccount(int id)
+        {
+            User user = await _userRepository.GetUserByIdAsync(id);
+           user.EmailConfirmed=true;
+            _userRepository.Update(user);
+            if(await _userRepository.SaveAllAsync())return NoContent();
+            return BadRequest("Contul nu a putut fi activat");
         }
 
         [HttpPost("login")]
@@ -99,8 +109,10 @@ namespace HelpAFamilyOfferAChance.API.Controllers
 
         }
 
-
         
+
+
+
 
         private async Task<bool> UserNameExists(string username)
         {
@@ -117,7 +129,7 @@ namespace HelpAFamilyOfferAChance.API.Controllers
             return result;
 
         }
-         
+
 
 
     }

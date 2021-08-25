@@ -39,7 +39,7 @@ namespace API.Repositories.MessageRepository
 
         public async Task<IEnumerable<MessageDto>> GetMessagesBetweenCurrentUserAndReceiver(int currentUserLogged, int participantUserId)
         {
-            var messages = await _context.Messages.Where(message => message.ReceiverId == currentUserLogged && message.SenderId == participantUserId ||
+            var messages = await _context.Messages. Include(p=>p.Sender).Include(p => p.Receiver).Where(message => message.ReceiverId == currentUserLogged && message.SenderId == participantUserId ||
             message.ReceiverId == participantUserId && message.SenderId == currentUserLogged).OrderBy(message => message.CreatedAt).ToListAsync();
 
             var unreadMessages = messages.Where(message => message.ReadAt==null && message.ReceiverId ==currentUserLogged).ToList();

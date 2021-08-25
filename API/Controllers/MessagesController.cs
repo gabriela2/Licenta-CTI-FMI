@@ -41,15 +41,24 @@ namespace API.Controllers
                 Text = messageDto.Text,
                 SenderId = messageDto.SenderId,
                 ReceiverId = messageDto.ReceiverId,
-                SenderLastName = sender.LastName,
-                SenderFirstName=sender.FirstName,
-                ReceiverLastName=receiver.LastName,
-                ReceiverFirstName=receiver.FirstName
             };
             _messageRepository.AdMessage(model);
             if (await _messageRepository.SaveAllAsync())
             {
-                return Ok(_mapper.Map<MessageDto>(model));
+                MessageDto modelDto = new MessageDto()
+                {
+                    Id = model.Id,
+                    Text = model.Text,
+                    CreatedAt = model.CreatedAt,
+                    ReadAt = model.ReadAt,
+                    SenderId = model.SenderId,
+                    ReceiverId = model.ReceiverId,
+                    SenderLastName = sender.LastName,
+                    SenderFirstName = sender.FirstName,
+                    ReceiverLastName = receiver.LastName,
+                    ReceiverFirstName = receiver.FirstName
+                };
+                return Ok(modelDto);
             }
             return BadRequest("Mesajul nu a putut fi adaugat");
         }

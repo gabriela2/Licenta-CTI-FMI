@@ -6,7 +6,6 @@
         "FirstName": "Valeria Gabriela",
         "PhoneNumber": "0720017947",
         "CreatedAt": "2021-07-25",
-        "LastActivity": "2021-07-25",
         "IsOrganisation":false,
         "EmailConfirmed":true,
         "Address":{
@@ -82,7 +81,6 @@
         "FirstName": "Gabrielle",
         "PhoneNumber": "0720017947",
         "CreatedAt": "2021-07-19",
-        "LastActivity": "2021-07-24",
         "IsOrganisation":false,
         "EmailConfirmed":true,
         "Address":{
@@ -130,7 +128,6 @@
         "LastName": "gradina",
         "FirstName": "bunicii",
         "CreatedAt": "2021-07-26",
-        "LastActivity": "2021-07-26",
         "IsOrganisation":true,
         "OrgOrganizationIdentificationNumber":"123abc",
         "EmailConfirmed":false,
@@ -153,7 +150,6 @@
         "LastName": "mega",
         "FirstName": "image",
         "CreatedAt": "2021-07-26",
-        "LastActivity": "2021-07-26",
         "IsOrganisation":true,
         "OrgOrganizationIdentificationNumber":"abc123",
         "EmailConfirmed":false,
@@ -176,7 +172,6 @@
         "LastName": "ionescu",
         "FirstName": "maria",
         "CreatedAt": "2021-07-26",
-        "LastActivity": "2021-07-26",
         "IsOrganisation":false,
         "EmailConfirmed":true,
         "Address":{
@@ -199,7 +194,6 @@
         "LastName": "popescu",
         "FirstName": "teodor",
         "CreatedAt": "2021-07-26",
-        "LastActivity": "2021-07-26",
         "IsOrganisation":false,
         "EmailConfirmed":true,
         "Address":{
@@ -221,7 +215,6 @@
         "LastName": "popescu",
         "FirstName": "andreea",
         "CreatedAt": "2021-07-26",
-        "LastActivity": "2021-07-26",
         "IsOrganisation":false,
         "EmailConfirmed":true,
         "Address":{

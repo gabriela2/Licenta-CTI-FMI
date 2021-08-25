@@ -29,7 +29,8 @@ export class EditUserRolesModuleComponent implements OnInit {
     if(finalRoles.roles.length!==0){
     this.adminService.editUserRoles(this.user.id, finalRoles.roles).subscribe();
     this.bsModalRef.hide();
-    window.location.reload();}
+    window.location.reload();
+    }
     else{
       this.toastr.error("Fiecare user trebuie sa aiba cel putin un rol");
     }

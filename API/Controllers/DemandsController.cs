@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [ServiceFilter(typeof(ModifyLastActivityForUser))]
+   
     [ApiController]
     [Route("api/[controller]")]
     public class DemandsController : ControllerBase
@@ -110,7 +110,6 @@ namespace API.Controllers
         {
             Demand model = new Demand()
             {
-                CreatedAt = demandDto.CreatedAt,
                 QuantityRequested = demandDto.QuantityRequested,
                 IsApproved = false,
                 IsDeclined = false,

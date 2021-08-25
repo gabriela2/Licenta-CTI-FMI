@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [ServiceFilter(typeof(ModifyLastActivityForUser))]
+    
     [Authorize]
     [ApiController]
     [Route("api/[controller]")]
@@ -79,7 +79,6 @@ namespace API.Controllers
             UserRating model = new UserRating()
             {
                 Rating = userRatingDto.Rating,
-                CreatedAt = userRatingDto.CreatedAt,
                 Title=userRatingDto.Title,
                 Comment=userRatingDto.Comment,
                 ReceiverId = userRatingDto.ReceiverId,

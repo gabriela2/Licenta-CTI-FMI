@@ -17,7 +17,11 @@ namespace API.Helpers
             CreateMap<MemberUpdateStripeDetailsDto,User>();
             CreateMap<Photo, PhotoDto>();
             CreateMap<UserPhoto, UserPhotoDto>();
-            CreateMap<Message, MessageDto>();
+            CreateMap<Message, MessageDto>()
+                .ForMember(destination => destination.SenderFirstName, options=> options.MapFrom(source => source.Sender.FirstName))
+                .ForMember(destination => destination.SenderLastName, options=> options.MapFrom(source => source.Sender.LastName))
+                .ForMember(destination => destination.ReceiverFirstName, options=> options.MapFrom(source => source.Receiver.FirstName))
+                .ForMember(destination => destination.ReceiverLastName, options=> options.MapFrom(source => source.Receiver.LastName));
 
             CreateMap<Ad, AdDto>()
                 .ForMember(destination => destination.Url, options => options.MapFrom(source => source.Photos.FirstOrDefault(photo => photo.IsMain).Url))

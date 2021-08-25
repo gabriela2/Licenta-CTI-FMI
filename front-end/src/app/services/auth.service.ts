@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { ReplaySubject } from 'rxjs';
 import { map} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import Member from '../models/member';
 import { User } from '../models/user';
 
 @Injectable({
@@ -15,6 +16,10 @@ export class AuthService {
   currentUser$ = this.currentUserSource.asObservable();
 
   constructor(private http: HttpClient) { }
+
+  activateAccount(id:number){
+    return this.http.put(this.baseUrl+'auth/activate-account/'+id, {});
+  }
 
 
 

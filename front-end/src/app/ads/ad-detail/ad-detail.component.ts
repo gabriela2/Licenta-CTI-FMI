@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { __core_private_testing_placeholder__ } from '@angular/core/testing';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Ad } from 'src/app/models/ad';
 import { Address } from 'src/app/models/address';
@@ -35,6 +35,7 @@ export class AdDetailComponent implements OnInit {
   userId: number;
   userOwner: Member;
   address: Address;
+  addressCurrentUser:Address;
   phoneNumber: string = "Suna utilizatorul";
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
@@ -42,6 +43,7 @@ export class AdDetailComponent implements OnInit {
   favorite: FavouriteList;
   favouriteList: FavouriteList[];
   currentUserLogged: number;
+  currentUser:Member;
   content :string;
 
 
@@ -53,7 +55,8 @@ export class AdDetailComponent implements OnInit {
     private demandService: DemandsService,
     private toastr: ToastrService,
     private addressService: AddressesService,
-    private favouriteListService: FavouriteListService
+    private favouriteListService: FavouriteListService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -179,35 +182,48 @@ export class AdDetailComponent implements OnInit {
 
 
   apply() {
-    var demand = {
-      createdAt: new Date(),
-      quantityRequested: this.quantityRequested,
-      isApproved: false,
-      isDeclined:false,
-      deliveryTypeSelected: this.deliveryTypeSelected,
-      adId: this.ad.id,
-      userId: this.currentUserLogged
-    };
-
-    if (this.deliveryTypeSelected && this.quantityRequested) {
-      if (this.ad.userId == this.currentUserLogged) {
-        this.toastr.error("Nu va este permisa efectuarea acestei cereri.In cazul in care doriti sa modificati acest anunt, va rugam sa accesati pagina dedicata!");
-      } else {
-        this.demandService.post(demand).subscribe();
-        this.ad.quantity = this.ad.quantity - this.quantityRequested;
-
-        if (this.ad.quantity == 0) {
-          this.ad.isActive = false;
+    this.memberService.getMember(this.currentUserLogged).subscribe(response=>{
+      this.currentUser=response;
+      this.addressService.getAddressByUserId(this.currentUserLogged).subscribe(response=>{
+        this.addressCurrentUser=response;
+        if(this.currentUser.lastName===null|| this.currentUser.firstName===null || this.currentUser.phoneNumber===null || this.addressCurrentUser.city===null||this.addressCurrentUser.district===null||this.addressCurrentUser.zipCode===null){
+          this.toastr.info("Pentru a crea o cerere este nevoie ca datele personale si adresa sa fie completate corespunzator. Va rugam sa mergeti pe profilul dumneavoastra");
         }
+        else{
+          var demand = {
+            createdAt: new Date(),
+            quantityRequested: this.quantityRequested,
+            isApproved: false,
+            isDeclined:false,
+            deliveryTypeSelected: this.deliveryTypeSelected,
+            adId: this.ad.id,
+            userId: this.currentUserLogged
+          };
+      
+          if (this.deliveryTypeSelected && this.quantityRequested) {
+            if (this.ad.userId == this.currentUserLogged) {
+              this.toastr.error("Nu va este permisa efectuarea acestei cereri.In cazul in care doriti sa modificati acest anunt, va rugam sa accesati pagina dedicata!");
+            } else {
+              this.demandService.post(demand).subscribe();
+              this.ad.quantity = this.ad.quantity - this.quantityRequested;
+      
+              if (this.ad.quantity == 0) {
+                this.ad.isActive = false;
+              }
+      
+              this.adService.put(this.ad.id, this.ad).subscribe();
+              this.toastr.info("Cererea dvs. a fost inregistrata!");
+              window.location.reload();
+            }
+          }
+          else {
+            this.toastr.warning("Toate campurile trebuie completate");
+          }
 
-        this.adService.put(this.ad.id, this.ad).subscribe();
-        this.toastr.info("Cererea dvs. a fost inregistrata!");
-        window.location.reload();
-      }
-    }
-    else {
-      this.toastr.warning("Toate campurile trebuie completate");
-    }
+        }
+      })
+    })
+    
 
   }
 

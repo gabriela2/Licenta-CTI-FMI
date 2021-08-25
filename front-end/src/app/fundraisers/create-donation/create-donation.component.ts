@@ -88,7 +88,7 @@ export class CreateDonationComponent implements OnInit {
         this.fundraiser.currentAmount = this.fundraiser.currentAmount + this.transfer.amount;
         this.fundraiserService.put(this.fundraiser.id, this.fundraiser).subscribe();
         this.bsModalRef.hide();
-        // window.location.reload();
+        window.location.reload();
 
       }
     })
