@@ -22,6 +22,9 @@
             
             <ng-container *ngIf="(authService.currentUser$ | async)===null">
                 <li class="nav-item">
+                    <a routerLink="/" class="nav-link" routerLinkActive='active'>Despre noi <i class="fa fa-building" aria-hidden="true"></i></a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" routerLink="/login" routerLinkActive='active'>Login <i class="fa fa-sign-in" aria-hidden="true"></i></a>
                 </li>
             </ng-container>

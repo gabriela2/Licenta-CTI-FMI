@@ -222,9 +222,6 @@
                                             <div *ngIf="registerForm.get('password').hasError('required')"
                                                 class="invalid-feedback text-primary">
                                                 Acest camp trebuie sa fie completat</div>
-                                            <div *ngIf="registerForm.get('password').hasError('minlength')"
-                                                class="invalid-feedback text-primary">
-                                                Parola trebuie sa aiba minim 8 caractere</div>
                                             <div *ngIf="registerForm.get('password').errors?.pattern"
                                                 class="invalid-feedback text-primary">
                                                 Parola trebuie sa aiba minimum 8 caractere, dintre care cifre,

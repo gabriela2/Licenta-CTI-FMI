@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [Authorize]
+    
     [ApiController]
     [Route("api/[controller]")]
     public class DeliveryTypesController : ControllerBase
@@ -30,6 +30,7 @@ namespace API.Controllers
             return Ok(deliveryTypes);
         }
 
+        [Authorize] 
         [HttpGet("{id}")]
         public async Task<ActionResult<DeliveryTypeDto>> GetDeliveryType(int id)
         {

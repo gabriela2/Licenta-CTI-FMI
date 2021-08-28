@@ -37,7 +37,7 @@ namespace API.Data.Seed
             foreach (var user in users)
             {
                 user.UserName = user.UserName.ToLower();
-                user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("Pa$$w0rd"));
+                user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("Lic3nt@ct1"));
                 user.PasswordSalt = hmac.Key;
                 context.Users.Add(user);
             }
@@ -54,7 +54,7 @@ namespace API.Data.Seed
             {
                 Email = "ownerhelpafamilyofferachance@gmail.com",
                 UserName = "Admin",
-                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("Pa$$w0rd")),
+                PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes("Lic3nt@ct1")),
                 PasswordSalt = hmac.Key,
                 EmailConfirmed = true,
             };

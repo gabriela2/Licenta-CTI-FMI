@@ -11,7 +11,6 @@ using Microsoft.AspNetCore.Mvc;
 namespace API.Controllers
 {
     
-    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class CategoriesController : ControllerBase
@@ -32,6 +31,8 @@ namespace API.Controllers
             return Ok(categories);
         }
 
+
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<CategoryDto>> GetCategory(int id)
         {

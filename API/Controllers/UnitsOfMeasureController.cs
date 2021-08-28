@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
-    [Authorize]
+    
     [ApiController]
     [Route("api/[controller]")]
     public class UnitsOfMeasureController : ControllerBase
@@ -29,7 +29,8 @@ namespace API.Controllers
             var unitsOfMeasure = await _unitOfMeasureRepository.GetUnitsOfMeasureAsync();
             return Ok(unitsOfMeasure);
         }
-
+        
+        [Authorize]
         [HttpGet("{id}")]
         public async Task<ActionResult<UnitOfMeasureDto>> GetUnitOfMeasure(int id)
         {
