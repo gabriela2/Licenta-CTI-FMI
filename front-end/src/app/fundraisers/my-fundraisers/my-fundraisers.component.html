@@ -8,14 +8,14 @@
             <div class="col-2" *ngIf="currentUser">
                 <div class="col-1 d-flex flex-row-reverse bd-highlight" style="margin-left:150px">
                     <span
-                        *ngIf="currentUser.iban===null ||currentUser.bank===null || currentUser.owner===null || currentUser.stripeAccount===null">
+                        *ngIf="currentUser.iban===null ||currentUser.bank===null || currentUser.owner===null || currentUser.stripeAccount===null ||currentUser.stripeLinkWasAccessed=== false">
                         <ng-template #tolTemplate>Pentru a adauga o strangere de fonduri este nevoie ca informatiile
                             bancare sa fie actualizate</ng-template>
                         <i class="fa fa-plus-circle fa-2x" aria-hidden="true" routerLink='/member/edit'
                             [tooltip]="tolTemplate" placement="bottom"></i>
                     </span>
                     <span
-                    *ngIf="currentUser.iban && currentUser.bank && currentUser.owner && currentUser.stripeAccount">
+                    *ngIf="currentUser.iban && currentUser.bank && currentUser.owner && currentUser.stripeAccount && currentUser.stripeLinkWasAccessed=== true">
                     <ng-template #tolTemplate>Adauga o strangere de fonduri noua</ng-template>
                     <i class="fa fa-plus-circle fa-2x" aria-hidden="true" routerLink='/add-fundraiser'
                         [tooltip]="tolTemplate" placement="bottom"></i>

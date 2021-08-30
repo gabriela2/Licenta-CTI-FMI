@@ -66,8 +66,8 @@ namespace Help.Controllers
             var accountLinkCreateOptions = new AccountLinkCreateOptions
             {
                 Account = account.Id,
-                RefreshUrl = "https://example.com/reauth",
-                ReturnUrl = "https://example.com/return",
+                RefreshUrl = "https://stripe.com/en-ro",
+                ReturnUrl = "https://stripe.com/en-ro",
                 Type = "account_onboarding",
             };
             var accountLinkService = new AccountLinkService();
@@ -90,7 +90,9 @@ namespace Help.Controllers
             {
                 Amount = (int)(transfer.Amount * 100),
                 Currency = "ron",
-                Destination = transfer.StripeAccount
+                Destination = transfer.StripeAccount,
+                Description = transfer.Description,
+                
             };
 
             var transferService = new TransferService();

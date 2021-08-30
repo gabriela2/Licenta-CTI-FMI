@@ -59,7 +59,7 @@ export class EditPhotoFundraisersComponent implements OnInit {
       allowedFileType: ['image'],
       removeAfterUpload: true,
       autoUpload: false,
-      maxFileSize: 10 * 1024 * 1024
+      maxFileSize: 20 * 1024 * 1024
     });
 
     this.uploader.onAfterAddingFile = (file) => {

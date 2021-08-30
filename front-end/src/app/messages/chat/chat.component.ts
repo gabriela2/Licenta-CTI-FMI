@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import Member from 'src/app/models/member';
 import { Message } from 'src/app/models/message';
 import { MembersService } from 'src/app/services/members.service';
@@ -19,8 +20,9 @@ export class ChatComponent implements OnInit {
   member: Member;
   currentUser: Member;
   messageContent: string;
+  sameUser=false;
 
-  constructor(private messageService: MessageService, private memberService: MembersService) {
+  constructor(private messageService: MessageService, private memberService: MembersService, private toastrService:ToastrService) {
     this.currentUserId = parseInt(localStorage.getItem('userId'));
   }
 
@@ -43,11 +45,18 @@ export class ChatComponent implements OnInit {
       receiverLastName: this.member.lastName,
       receiverFirstName: this.member.firstName
     };
+    if(this.currentUserId != this.userId){
 
     this.messageService.addMessage(message).subscribe(message=>{
       this.messages.push(message);
       this.messageForm.reset();
     })
+  }
+  else{
+    this.toastrService.warning("Nu se poate trimite mesaj catre propriul profil");
+    this.messageForm.reset();
+
+  }
 
 
   }
@@ -59,6 +68,7 @@ export class ChatComponent implements OnInit {
     this.memberService.getMember(this.currentUserId).subscribe(response => {
       this.currentUser = response;
     })
+    
 
   }
   getMessages() {

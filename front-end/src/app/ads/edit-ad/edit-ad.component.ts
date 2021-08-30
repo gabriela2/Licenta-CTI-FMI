@@ -102,7 +102,7 @@ export class EditAdComponent implements OnInit {
     }
     this.ad.unitOfMeasureId = this.unitOfMeasureId;
     this.adService.put(this.ad.id, this.ad).subscribe();
-    this.toastr.success('Anuntul a fost actualizat cu success!');
+    this.toastr.info('Anuntul a fost actualizat cu success!');
     this.editAdForm.reset(this.ad)
   }
 
@@ -169,7 +169,7 @@ export class EditAdComponent implements OnInit {
         }
       }
 
-      this.toastr.success('Anuntul a fost actualizat cu success!');
+      this.toastr.info('Anuntul a fost actualizat cu success!');
       window.location.reload();
      
     }

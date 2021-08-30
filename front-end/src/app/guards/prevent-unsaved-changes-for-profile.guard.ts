@@ -11,8 +11,7 @@ export class PreventUnsavedChangesForProfileGuard implements CanDeactivate<unkno
     component: MemberEditComponent):boolean  {
     if(component.editMemberForm.dirty ||
       component.editAddressForm.dirty || 
-      component.editBankDetailsForm.dirty ||
-      component.editStripeDetailsForm.dirty){
+      component.editBankDetailsForm.dirty ){
       return confirm('Continui? Modificarile facute vor fi pierdute');
     }
     else{

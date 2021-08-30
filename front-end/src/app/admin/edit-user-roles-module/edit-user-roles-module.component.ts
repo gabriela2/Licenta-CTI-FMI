@@ -32,7 +32,7 @@ export class EditUserRolesModuleComponent implements OnInit {
     window.location.reload();
     }
     else{
-      this.toastr.error("Fiecare user trebuie sa aiba cel putin un rol");
+      this.toastr.warning("Fiecare user trebuie sa aiba cel putin un rol");
     }
   }
 

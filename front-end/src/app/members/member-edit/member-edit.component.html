@@ -5,8 +5,7 @@
             <div class="col-2"></div>
             <div class="col-8" *ngIf="member">
 
-                <form #editMemberForm='ngForm' id="editMemberForm" (ngSubmit)='updateMember()'
-                    autocomplete="off">
+                <form #editMemberForm='ngForm' id="editMemberForm" (ngSubmit)='updateMember()' autocomplete="off">
                     <h2 class="text-center text-primary">Editeaza datele personale</h2>
                     <hr>
 
@@ -105,11 +104,11 @@
                             <div class="col-11" style="margin-left: 150px;margin-top: -40px;">
 
                                 <label class="form-check-inline">
-                                    <input class="form-check-input" type="radio" name="isOrganisation" [value]="true"  
+                                    <input class="form-check-input" type="radio" name="isOrganisation" [value]="true"
                                         [(ngModel)]="member.isOrganisation">Da
                                 </label>
                                 <label class="form-check-inline">
-                                    <input class="form-check-input" type="radio" name="isOrganisation" [value]="false" 
+                                    <input class="form-check-input" type="radio" name="isOrganisation" [value]="false"
                                         [(ngModel)]="member.isOrganisation">Nu
                                 </label>
 
@@ -124,8 +123,8 @@
                                 <label for='organizationIdentificationNumber'><strong>Cod Identificare</strong></label>
                             </div>
                             <div class="col-10">
-                                <input [(ngModel)]="member.organizationIdentificationNumber" placeholder="Ex: RO987654" required
-                                    name="organizationIdentificationNumber" type="text"
+                                <input [(ngModel)]="member.organizationIdentificationNumber" placeholder="Ex: RO987654"
+                                    required name="organizationIdentificationNumber" type="text"
                                     #organizationIdentificationNumber="ngModel" class="form-control"
                                     id="organizationIdentificationNumber">
                             </div>
@@ -134,8 +133,10 @@
                             <div class="col-2">
                             </div>
                             <div class="col-10">
-                                <div class="alert alert-primary" *ngIf="organizationIdentificationNumber.touched && !organizationIdentificationNumber.valid">
-                                    <div *ngIf="organizationIdentificationNumber.errors.required">Acest camp trebuie completat.</div>
+                                <div class="alert alert-primary"
+                                    *ngIf="organizationIdentificationNumber.touched && !organizationIdentificationNumber.valid">
+                                    <div *ngIf="organizationIdentificationNumber.errors.required">Acest camp trebuie
+                                        completat.</div>
                                 </div>
                             </div>
                         </div>
@@ -160,8 +161,7 @@
             <div class="col-2"></div>
             <div class="col-8" *ngIf="address">
 
-                <form #editAddressForm='ngForm' id="editAddressForm" (ngSubmit)='updateAddress()'
-                    autocomplete="off">
+                <form #editAddressForm='ngForm' id="editAddressForm" (ngSubmit)='updateAddress()' autocomplete="off">
                     <h2 class="text-center text-primary">Editeaza adresa</h2>
                     <hr>
 
@@ -323,8 +323,8 @@
             <div class="col-2"></div>
             <div class="col-8" *ngIf="member">
 
-                <form #editBankDetailsForm='ngForm' id="editBankDetailsForm"
-                    (ngSubmit)='updateBankDetails()' autocomplete="off">
+                <form #editBankDetailsForm='ngForm' id="editBankDetailsForm" (ngSubmit)='updateBankDetails()'
+                    autocomplete="off">
                     <h2 class="text-center text-primary">Editeaza detaliile bancare</h2>
                     <hr>
 
@@ -417,65 +417,40 @@
             </div>
             <div class="col-2"></div>
         </div>
-        
+
 
         <div class="row mt-3">
             <div class="col-2"></div>
             <div class="col-8" *ngIf="member">
-
-                <form #editStripeDetailsForm='ngForm' id="editStripeDetailsForm"
-                    (ngSubmit)='updateStripeDetails(editStripeDetailsForm.value)' autocomplete="off">
-                    <h2 class="text-center text-primary">Editeaza detaliile contului Stripe</h2>
-
-                    <div class="text-center">
-                        <div class="alert alert-primary" *ngIf="editStripeDetailsForm.dirty">
-                            <strong>Atentie: </strong> Au fost facute modificari asupra datelor. Te rugam sa salvezi
-                            inainte sa iesi!
+                <h2 class="text-center text-primary">Editeaza detaliile contului Stripe</h2>
+                <div class="text-center">
+                    <div class="alert alert-primary" *ngIf="member.stripeAccount==null">
+                        <strong>Atentie: </strong> Pentru acest user nu este asociat niciun cont Stripe. Va puteti
+                        adauga un cont apasand <strong (click)="StripeAccount()">aici </strong> .
+                    </div>
+                </div>
+                <div class="text-center">
+                    <div class="row">
+                        <div class="col-2">
+                            <strong>Cont Stripe</strong>
+                        </div>
+                        <div class="col-10 alert alert-secondary">
+                            {{member.stripeAccount}}
                         </div>
                     </div>
+                </div>
 
-                    <div class="text-center">
-                        <div class="alert alert-primary" *ngIf="member.stripeAccount==null">
-                            <strong>Atentie: </strong> Pentru acest user nu este asociat niciun cont Stripe. Va puteti
-                            adauga un cont apasand <strong (click)="StripeAccount()">aici </strong> .
-                        </div>
-                        Sau completand campul de mai jos...
-                    </div>
+                <div class="d-flex align-items-center justify-content-center">
 
+                    <button class='btn btn-primary'
+                        *ngIf="member.stripeLinkWasAccessed==false && member.stripeAccount!=null"
+                        (click)="goToWebsite(this.member.stripeConfigurationLink)">Configureaza contul
+                        Stripe</button>
+                    <button class='btn btn-primary'
+                        *ngIf="member.stripeLinkWasAccessed==true && member.stripeAccount!=null"
+                        (click)="deleteStripeAccount()">Sterge contul Stripe</button>
 
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-2 d-flex align-items-center">
-                                <label for='stripeAccount'><strong>Cont Stripe</strong></label>
-                            </div>
-                            <div class="col-10">
-                                <input required [(ngModel)]="member.stripeAccount" name="stripeAccount" type="text" placeholder="Ex: acct_1JKTSKPK64KdoCnq"
-                                    #stripeAccount="ngModel" class="form-control" id="stripeAccount">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-2">
-                            </div>
-                            <div class="col-10">
-                                <div class="alert alert-primary" *ngIf="stripeAccount.touched && !stripeAccount.valid">
-                                    <div *ngIf="stripeAccount.errors.required">Acest camp trebuie completat!</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="d-flex align-items-center justify-content-center">
-                        <button class="btn btn-primary" type="submit" 
-                            [class.disabled]="!editStripeDetailsForm.valid || !editStripeDetailsForm.dirty">Salveaza
-                            modificarile!</button>
-                            <button class='btn btn-primary'
-                            *ngIf="member.stripeLinkWasAccessed==false && member.stripeAccount!=null"
-                            (click)="goToWebsite(this.member.stripeConfigurationLink)">Configureaza contul
-                            Stripe</button>
-
-                    </div>
-
-                </form>
+                </div>
             </div>
             <div class="col-2"></div>
         </div>

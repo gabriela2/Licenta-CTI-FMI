@@ -47,7 +47,7 @@ export class CreateDonationComponent implements OnInit {
     this.card.mount('#card-element');
     this.card.addEventListener('change', event => {
       if (event.error) {
-        this.toastr.error("Te rugam sa introduci corect elementele de identificare de pe card");
+        this.toastr.warning("Te rugam sa introduci corect elementele de identificare de pe card");
       }
     })
   }
@@ -67,7 +67,7 @@ export class CreateDonationComponent implements OnInit {
         this.payment.token = result.token.id;
         this.payment.description = this.donator.description;
         this.stripeService.postCharge(this.payment).subscribe(() => {
-          this.toastr.success("Plata a fost realizata cu success");
+          this.toastr.info("Plata a fost realizata cu success");
         })
         console.log(this.payment.amount);
         var fees= (this.payment.amount * 0.029)+1;
@@ -75,6 +75,7 @@ export class CreateDonationComponent implements OnInit {
         this.transfer.amount = this.payment.amount- fees ;
         console.log(this.transfer.amount);
         this.transfer.stripeAccount = this.owner.stripeAccount;
+        this.transfer.description = this.donator.description;
         this.stripeService.postTransfer(this.transfer).subscribe(response => console.log(response));
         var donation ={
           id:0,

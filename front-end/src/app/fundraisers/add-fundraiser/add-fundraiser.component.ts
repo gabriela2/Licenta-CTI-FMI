@@ -67,7 +67,7 @@ export class AddFundraiserComponent implements OnInit {
       this.fundraiserService.getFundraiser(this.fundraiserId).subscribe(response=>{
         this.fundraiser=response;
       });
-      this.toastr.success('Strangerea de fonduri a fost adaugata cu succes');
+      this.toastr.info('Strangerea de fonduri a fost adaugata cu succes');
       this.flag=true;
     });
   }

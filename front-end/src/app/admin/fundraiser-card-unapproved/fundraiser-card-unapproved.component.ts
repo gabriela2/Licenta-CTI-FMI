@@ -56,7 +56,7 @@ export class FundraiserCardUnapprovedComponent implements OnInit {
     this.fundraiser.isValidated=true;
     this.fundraiser.isRejected=false;
     this.fundraiserService.put(this.fundraiser.id, this.fundraiser).subscribe();
-    this.toastr.info("Strangerea de fonduri a fost acceotata!")
+    this.toastr.info("Strangerea de fonduri a fost acceptata!")
     window.location.reload();
 
   }

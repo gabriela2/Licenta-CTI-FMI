@@ -21,6 +21,7 @@ export class EditCategoriesModalComponent implements OnInit {
 
   updateCategory() {
     this.adminService.putCategory(this.category.id, this.category).subscribe();
+    this.toastr.info("Categoria a fost actualizata");
     this.bsModalRef.hide();
    
   }

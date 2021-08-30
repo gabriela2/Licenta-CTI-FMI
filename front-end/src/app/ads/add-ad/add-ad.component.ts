@@ -114,7 +114,7 @@ export class AddAdComponent implements OnInit {
       this.adService.getAd(this.adId).subscribe(response=>{
         this.ad=response;
       });
-      this.toastr.success('Anuntul a fost adaugat cu succes');
+      this.toastr.info('Anuntul a fost adaugat cu succes');
       this.flag=true;
     });
   
@@ -158,7 +158,7 @@ export class AddAdComponent implements OnInit {
         }
       
 
-      this.toastr.success('Modalitatile de livrare au fost actualizate cu success!');
+      this.toastr.info('Modalitatile de livrare au fost actualizate cu success!');
       this.flag2=true;
       this.flag3=true;
      

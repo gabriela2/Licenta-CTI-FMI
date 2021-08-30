@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Ad } from 'src/app/models/ad';
 import { Demand } from 'src/app/models/demand';
+import { AdsService } from 'src/app/services/ads.service';
 import { DemandsService } from 'src/app/services/demands.service';
 
 @Component({
@@ -14,7 +15,7 @@ export class AdCardForMyAdsComponent implements OnInit {
   @Input() ad:Ad;
   demandsNr: number=0;
 
-  constructor() { }
+  constructor(private adService:AdsService) { }
 
   ngOnInit(): void {
     this.computeDemandsNr();
@@ -31,6 +32,11 @@ export class AdCardForMyAdsComponent implements OnInit {
         }
       }
     }
+  }
+
+  deleteAd(){
+    this.adService.deleteAd(this.ad.id).subscribe();
+    window.location.reload();
   }
   }
 

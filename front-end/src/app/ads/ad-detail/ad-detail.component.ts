@@ -187,7 +187,7 @@ export class AdDetailComponent implements OnInit {
       this.addressService.getAddressByUserId(this.currentUserLogged).subscribe(response=>{
         this.addressCurrentUser=response;
         if(this.currentUser.lastName===null|| this.currentUser.firstName===null || this.currentUser.phoneNumber===null || this.addressCurrentUser.city===null||this.addressCurrentUser.district===null||this.addressCurrentUser.zipCode===null){
-          this.toastr.info("Pentru a crea o cerere este nevoie ca datele personale si adresa sa fie completate corespunzator. Va rugam sa mergeti pe profilul dumneavoastra");
+          this.toastr.warning("Pentru a crea o cerere este nevoie ca datele personale si adresa sa fie completate corespunzator. Va rugam sa mergeti pe profilul dumneavoastra");
         }
         else{
           var demand = {

@@ -1,7 +1,7 @@
 <div class="row mt-2">
     <div class="col-2"></div>
     <div class="col-8">
-        <form [formGroup]='addFundraiserForm' (ngSubmit)="addFundraiser()" autocomplete="off">
+        <form [formGroup]='addFundraiserForm' (ngSubmit)="addFundraiser()" autocomplete="off" *ngIf="flag===false">
             <h2 class="text-center text-primary">Adauga o strangere de fonduri noua</h2>
 
             <div class="form-group">

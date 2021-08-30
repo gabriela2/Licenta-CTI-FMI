@@ -120,4 +120,8 @@ export class AdsService {
   deletePhoto(adId: number, photoId: number) {
     return this.http.delete(this.baseUrl + 'ads/delete-photo/' + adId + '/' + photoId);
   }
+
+  deleteAd(adId:number){
+    return this.http.delete(this.baseUrl+'ads/'+adId);
+  }
 }

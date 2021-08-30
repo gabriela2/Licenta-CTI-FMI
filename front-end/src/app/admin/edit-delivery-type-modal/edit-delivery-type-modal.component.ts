@@ -18,6 +18,7 @@ export class EditDeliveryTypeModalComponent implements OnInit {
   }
   updateDeliveryType(){
     this.adminService.putDeliveryType(this.deliveryType.id, this.deliveryType).subscribe();
+    this.toastr.info("Metoda de livrare a fost actualizata");
     this.bsModalRef.hide();
   }
 

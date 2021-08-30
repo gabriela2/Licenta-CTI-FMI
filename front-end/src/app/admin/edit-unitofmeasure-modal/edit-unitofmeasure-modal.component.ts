@@ -19,6 +19,7 @@ export class EditUnitofmeasureModalComponent implements OnInit {
   updateUnitOfMeasure(){
     console.log(this.unitOfMeasure);
     this.adminService.putUnitOfMeasure(this.unitOfMeasure.id, this.unitOfMeasure).subscribe();
+    this.toastr.info("Unitatea de masura a fost actualizata");
     this.bsModalRef.hide();
   }
 

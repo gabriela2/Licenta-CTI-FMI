@@ -45,7 +45,7 @@ export class EditFundraiserComponent implements OnInit {
     this.fundraiser.isValidated=false;
     this.fundraiser.isRejected = false;
     this.fundraiserService.put(this.fundraiser.id, this.fundraiser).subscribe();
-    this.toastr.success('Strangerea de fonduri a fost actualizata cu success!');
+    this.toastr.info('Strangerea de fonduri a fost actualizata cu success!');
     this.editFundraiserForm.reset(this.fundraiser)
   }
 

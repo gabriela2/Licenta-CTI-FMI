@@ -1,7 +1,7 @@
 <div class="row mt-2">
     <div class="col-2"></div>
     <div class="col-8">
-        <form [formGroup]='addAdForm' (ngSubmit)="addAd()" autocomplete="off">
+        <form [formGroup]='addAdForm' (ngSubmit)="addAd()" autocomplete="off" *ngIf="flag===false">
             <h2 class="text-center text-primary">Adauga un anunt nou</h2>
 
             <div class="form-group">
@@ -145,7 +145,7 @@
 
 </div>
 
-<div class="row mt-4" *ngIf="flag===true ">
+<div class="row mt-4" *ngIf="flag===true && flag2===false ">
     <div class="col-2"></div>
     <div class="col-8">
         <h2 class="text-center text-primary">Adauga modalitatile de livrare</h2>
