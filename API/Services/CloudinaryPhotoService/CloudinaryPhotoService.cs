@@ -25,8 +25,7 @@ namespace API.Services.CloudinaryPhotoService
                 using var openReadStream = formFile.OpenReadStream();
                 var imageUploadParams = new ImageUploadParams
                 {
-                    File = new FileDescription(formFile.FileName, openReadStream),
-                    Transformation = new Transformation().Width(500).Height(500)
+                    File = new FileDescription(formFile.FileName, openReadStream)
                 };
                 imageUploadResult = await _cloudinary.UploadAsync(imageUploadParams);
             }
@@ -36,10 +35,8 @@ namespace API.Services.CloudinaryPhotoService
 
         public async Task<DeletionResult> DeleteCloudinaryPhotoAsync(string publicId)
         {
-            var deletionParams = new DeletionParams(publicId);
-
-            var result = await _cloudinary.DestroyAsync(deletionParams);
-
+            var image = new DeletionParams(publicId);
+            var result = await _cloudinary.DestroyAsync(image);
             return result;
         }
     }
