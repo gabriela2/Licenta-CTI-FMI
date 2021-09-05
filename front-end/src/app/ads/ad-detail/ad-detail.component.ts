@@ -35,7 +35,7 @@ export class AdDetailComponent implements OnInit {
   userId: number;
   userOwner: Member;
   address: Address;
-  addressCurrentUser:Address;
+  addressCurrentUser: Address;
   phoneNumber: string = "Suna utilizatorul";
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
@@ -43,8 +43,8 @@ export class AdDetailComponent implements OnInit {
   favorite: FavouriteList;
   favouriteList: FavouriteList[];
   currentUserLogged: number;
-  currentUser:Member;
-  content :string;
+  currentUser: Member;
+  content: string;
 
 
 
@@ -56,7 +56,7 @@ export class AdDetailComponent implements OnInit {
     private toastr: ToastrService,
     private addressService: AddressesService,
     private favouriteListService: FavouriteListService,
-    private router:Router
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -166,9 +166,9 @@ export class AdDetailComponent implements OnInit {
           this.flag = false;
           this.content = 'Adauga in lista de favorite.';
         }
-        else { 
+        else {
           this.flag = true;
-          this.content = 'Elimina din lista de favorite.'; 
+          this.content = 'Elimina din lista de favorite.';
         }
       })
     })
@@ -182,29 +182,48 @@ export class AdDetailComponent implements OnInit {
 
 
   apply() {
-    this.memberService.getMember(this.currentUserLogged).subscribe(response=>{
-      this.currentUser=response;
-      this.addressService.getAddressByUserId(this.currentUserLogged).subscribe(response=>{
-        this.addressCurrentUser=response;
-        if(this.currentUser.lastName===null|| this.currentUser.firstName===null || this.currentUser.phoneNumber===null || this.addressCurrentUser.city===null||this.addressCurrentUser.district===null||this.addressCurrentUser.zipCode===null){
+    this.memberService.getMember(this.currentUserLogged).subscribe(response => {
+      this.currentUser = response;
+      this.addressService.getAddressByUserId(this.currentUserLogged).subscribe(response => {
+        this.addressCurrentUser = response;
+        if (this.currentUser.lastName === null || this.currentUser.firstName === null || this.currentUser.phoneNumber === null || this.addressCurrentUser.city === null || this.addressCurrentUser.district === null || this.addressCurrentUser.zipCode === null) {
           this.toastr.warning("Pentru a crea o cerere este nevoie ca datele personale si adresa sa fie completate corespunzator. Va rugam sa mergeti pe profilul dumneavoastra");
         }
-        else{
+        else {
           var demand = {
             createdAt: new Date(),
             quantityRequested: this.quantityRequested,
             isApproved: false,
-            isDeclined:false,
+            isDeclined: false,
             deliveryTypeSelected: this.deliveryTypeSelected,
             adId: this.ad.id,
             userId: this.currentUserLogged
           };
-      
+
           if (this.deliveryTypeSelected && this.quantityRequested) {
             if (this.ad.userId == this.currentUserLogged) {
               this.toastr.error("Nu va este permisa efectuarea acestei cereri.In cazul in care doriti sa modificati acest anunt, va rugam sa accesati pagina dedicata!");
             } else {
-              this.demandService.post(demand).subscribe();
+              if (this.ad.existsLimit === true) {
+                if (this.quantityRequested > this.ad.limit) {
+                  this.toastr.error("Nu va este permisa efectuarea acestei cereri!");
+                } else {
+                  this.demandService.post(demand).subscribe();
+                  this.ad.quantity = this.ad.quantity - this.quantityRequested;
+
+                  if (this.ad.quantity == 0) {
+                    this.ad.isActive = false;
+                  }
+
+                  this.adService.put(this.ad.id, this.ad).subscribe();
+                  this.toastr.info("Cererea dvs. a fost inregistrata!");
+                  window.location.reload();
+                }
+              } else if (this.quantityRequested > this.ad.quantity){
+                this.toastr.error("Nu va este permisa efectuarea acestei cereri!");
+              }
+              else{
+                this.demandService.post(demand).subscribe();
               this.ad.quantity = this.ad.quantity - this.quantityRequested;
       
               if (this.ad.quantity == 0) {
@@ -214,6 +233,9 @@ export class AdDetailComponent implements OnInit {
               this.adService.put(this.ad.id, this.ad).subscribe();
               this.toastr.info("Cererea dvs. a fost inregistrata!");
               window.location.reload();
+              }
+            
+              
             }
           }
           else {
@@ -223,7 +245,7 @@ export class AdDetailComponent implements OnInit {
         }
       })
     })
-    
+
 
   }
 

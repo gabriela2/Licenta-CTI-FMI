@@ -2,7 +2,7 @@
     {
         "Name":"Impreuna pentru Scoala Nr.1",
         "Description":"Avem nevoie de ajutorul vostru pentru a reconstrui acoperisul scolii Nr.1. Din pacate, din cauza ploilor acoperisul scolii a avut de suferit iar acum, acesta are nevoie urgenta de reparatii. Consiliul local nu ne poate ajuta din lipta fondurilor si de accea apelam la bunavointa dumneavoastra, pentru a le putea oferi copiilor conditii decente de studiu. ",
-        "CreatedAt":"2021-06-27",
+        "CreatedAt":"2021-06-22",
         "CurrentAmount":0,
         "TargetAmount":200000,
         "IsValidated":true,
@@ -10,11 +10,11 @@
         "Photos": [
             {
                 "Url": "https://epitesti.ro/wp-content/uploads/2020/02/VANT-ACOPERIS-SMULS-SCOALA-ALBESTII-DE-MUSCEL-1.jpeg",
-                "IsMain": true
+                "IsMain": false
             },
             {
                 "Url": "https://www.portalinvatamant.ro/dbimg/articole/7347_600x315_2.jpg",
-                "IsMain": false
+                "IsMain": true
             }
         ]
     },
@@ -41,7 +41,7 @@
         "CurrentAmount":0,
         "TargetAmount":10000.0,
         "IsValidated":false,
-        "UserId":3
+        "UserId":5
         
     },
 
@@ -51,11 +51,11 @@
         "CreatedAt":"2021-08-01",
         "CurrentAmount":0,
         "TargetAmount":250000,
-        "IsValidated":false,
+        "IsValidated":true,
         "UserId":2,
         "Photos":[
             {
-                "Url": "http://canceruldecolon.ro/wp-content/uploads/2016/10/Raport-Medical-biopsie.jpg",
+                "Url": "https://res.cloudinary.com/helpafamilyofferachance/image/upload/v1630852867/Raport-Medical-biopsie_x91tkq.jpg",
                 "IsMain": true
             }
         ]
@@ -68,10 +68,10 @@
         "CurrentAmount":0,
         "TargetAmount":123000,
         "IsValidated":false,
-        "UserId":3,
+        "UserId":1,
         "Photos":[
             {
-                "Url": "http://canceruldecolon.ro/wp-content/uploads/2016/10/Raport-Medical-biopsie.jpg",
+                "Url": "https://res.cloudinary.com/helpafamilyofferachance/image/upload/v1630852867/Raport-Medical-biopsie_x91tkq.jpg",
                 "IsMain": true
             }
         ]
@@ -87,28 +87,13 @@
         "UserId":2,
         "Photos":[
             {
-                "Url": "http://canceruldecolon.ro/wp-content/uploads/2016/10/Raport-Medical-biopsie.jpg",
+                "Url": "https://res.cloudinary.com/helpafamilyofferachance/image/upload/v1630852867/Raport-Medical-biopsie_x91tkq.jpg",
                 "IsMain": true
             }
         ]
         
     },
-    {
-        "Name":"Impreuna pentru Lili",
-        "Description":"Lili are 12 ani si de curand a aflta ca sufera de o boala cumplita. Exista o sansa pentru a se vindeca, insa costurile necesare operatiei si perioadei de dupa depasesc cu mult posibilitatile financiare ale familiei. Orice suma este binevenita! Va multumim anticipat! ",
-        "CreatedAt":"2021-08-01",
-        "CurrentAmount":0,
-        "TargetAmount":50000,
-        "IsValidated":false,
-        "UserId":1,
-        "Photos":[
-            {
-                "Url": "http://canceruldecolon.ro/wp-content/uploads/2016/10/Raport-Medical-biopsie.jpg",
-                "IsMain": true
-            }
-        ]
-        
-    },
+   
     {
         "Name":"Construim un spital",
         "Description":"Construim un spital in orasul Resita pentru pacientii cu grave probleme cardiace. Orice ajutor este bine venit astfel incat cazurile grave sa poata fi tratate local, fara a se pierde timp pretios cu transportul pacientilor. ",
@@ -116,7 +101,7 @@
         "CurrentAmount":0,
         "TargetAmount":980500,
         "IsValidated":false,
-        "UserId":1,
+        "UserId":4,
         "Photos":[
             {
                 "Url": "https://www.desteptarea.ro/wp-content/uploads/2019/07/POZA-SCHITA-SPITAL.jpg",
@@ -140,21 +125,7 @@
             }
         ]
     },
-    {
-        "Name":"Impreuna pentru familia Ionescu",
-        "Description":"Avem nevoie de ajutorul vostru pentru a reconstrui acoperisul familiei Ionescu. Din pacate, din cauza ploilor acoperisul a avut de suferit iar acum, acesta are nevoie urgenta de reparatii. Familia este formata din 2 parinti si 8 copii.",
-        "CreatedAt":"2021-06-17",
-        "CurrentAmount":0,
-        "TargetAmount":50000,
-        "IsValidated":true,
-        "UserId":1,
-        "Photos": [
-            {
-                "Url": "https://epitesti.ro/wp-content/uploads/2020/02/VANT-ACOPERIS-SMULS-SCOALA-ALBESTII-DE-MUSCEL-1.jpeg",
-                "IsMain": true
-            }
-        ]
-    },
+   
     {
         "Name":"Impreuna pentru familia Dumitrescu",
         "Description":"Avem nevoie de ajutorul vostru pentru a reconstrui acoperisul familiei Dumitrescu. Din pacate, din cauza ploilor acoperisul a avut de suferit iar acum, acesta are nevoie urgenta de reparatii. Familia este formata din 2 parinti si 8 copii.",

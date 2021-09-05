@@ -4,7 +4,7 @@
         "Email": "gabriela.vlr041@yahoo.com",
         "LastName": "Spinu",
         "FirstName": "Valeria Gabriela",
-        "PhoneNumber": "0720017947",
+        "PhoneNumber": "0722334455",
         "CreatedAt": "2021-07-25",
         "IsOrganisation":false,
         "EmailConfirmed":true,
@@ -27,7 +27,9 @@
                 "CreatedAt":"2021-08-01",
                 "Comment":"Produsele acestui user sunt de calitate",
                 "ReceiverId":1,
-                "SenderId":2
+                "SenderId":2,
+                "IsValidated":true,
+                "IsRejected":false
             },
             {
                 "Rating":5,
@@ -35,7 +37,9 @@
                 "CreatedAt":"2021-07-30",
                 "Comment":"Am colaborat foarte bine cu acest user",
                 "ReceiverId":1,
-                "SenderId":3
+                "SenderId":3,
+                "IsValidated":true,
+                "IsRejected":false
             },
             {
                 "Rating":1,
@@ -43,7 +47,9 @@
                 "CreatedAt":"2021-05-10",
                 "Comment":"Nu a raspuns la telefon",
                 "ReceiverId":1,
-                "SenderId":4
+                "SenderId":4,
+                "IsValidated":true,
+                "IsRejected":false
             }
         ],
         "RatingGiven":[
@@ -53,7 +59,9 @@
                 "CreatedAt":"2021-07-01",
                 "Comment":"Produsele foarte calitative",
                 "ReceiverId":2,
-                "SenderId":1
+                "SenderId":1,
+                "IsValidated":true,
+                "IsRejected":false
             },
             {
                 "Rating":5,
@@ -61,7 +69,9 @@
                 "CreatedAt":"2021-06-01",
                 "Comment":"Un om extraordinar",
                 "ReceiverId":3,
-                "SenderId":1
+                "SenderId":1,
+                "IsValidated":true,
+                "IsRejected":false
             },
             {
                 "Rating":5,
@@ -69,7 +79,9 @@
                 "CreatedAt":"2021-06-21",
                 "Comment":"Mi-a placut foarte mult sa colaborez cu dumneavoastra",
                 "ReceiverId":4,
-                "SenderId":1
+                "SenderId":1,
+                "IsValidated":true,
+                "IsRejected":false
             }
         ]
         
@@ -79,15 +91,15 @@
         "Email": "gabriela.gabi842@gmail.com",
         "LastName": "Valerie",
         "FirstName": "Gabrielle",
-        "PhoneNumber": "0720017947",
+        "PhoneNumber": "0766778899",
         "CreatedAt": "2021-07-19",
         "IsOrganisation":false,
         "EmailConfirmed":true,
         "Address":{
-            "HouseNumber":"5B",
-            "Street":"Strada florilor",
-            "City": "Sector 1",
-            "District":"Bucuresti",
+            "HouseNumber":"38",
+            "Street":"Strada zambilelor",
+            "City": "Constanta",
+            "District":"Constanta",
             "Country":"Romania",
             "ZipCode":"12345"
         },
@@ -127,17 +139,18 @@
         "Email": "gradina.bunicii@helpafamily.offerachance.com",
         "LastName": "gradina",
         "FirstName": "bunicii",
+        "PhoneNumber": "0723456789",
         "CreatedAt": "2021-07-26",
         "IsOrganisation":true,
-        "OrgOrganizationIdentificationNumber":"123abc",
-        "EmailConfirmed":false,
+        "OrganizationIdentificationNumber":"RO123456",
+        "EmailConfirmed":true,
         "Address":{
-            "HouseNumber":"5B",
-            "Street":"Strada florilor",
-            "City": "Sector 3",
+            "HouseNumber":"102B",
+            "Street":"Strada iasomiei",
+            "City": "Sector 5",
             "District":"Bucuresti",
             "Country":"Romania",
-            "ZipCode":"12345"
+            "ZipCode":"72553"
         },
         "Photo": {
             "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
@@ -149,21 +162,22 @@
         "Email": "mega.image@helpafamily.offerachance.com",
         "LastName": "mega",
         "FirstName": "image",
+        "PhoneNumber": "0733428583",
         "CreatedAt": "2021-07-26",
         "IsOrganisation":true,
-        "OrgOrganizationIdentificationNumber":"abc123",
-        "EmailConfirmed":false,
+        "OrganizationIdentificationNumber":"abc123",
+        "EmailConfirmed":true,
         "Address":{
-            "HouseNumber":"5B",
-            "Street":"Strada florilor",
-            "City": "Sector 4",
-            "District":"Bucuresti",
+            "HouseNumber":"58",
+            "Street":"Strada trandafirilor",
+            "City": "Iasi",
+            "District":"Iasi",
             "Country":"Romania",
             "ZipCode":"12345"
         },
         "Photo": {
-            "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
-            "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
+            "Url": "https://res.cloudinary.com/helpafamilyofferachance/image/upload/v1630843101/download_gsqd5w.jpg",
+            "PublicId": "https://res.cloudinary.com/helpafamilyofferachance/image/upload/v1630843101/download_gsqd5w.jpg"
         }
     },
     {
@@ -171,6 +185,7 @@
         "Email": "maria.ionescu@helpafamily.offerachance.com",
         "LastName": "ionescu",
         "FirstName": "maria",
+        "PhoneNumber": "0776534872",
         "CreatedAt": "2021-07-26",
         "IsOrganisation":false,
         "EmailConfirmed":true,
@@ -183,8 +198,8 @@
             "ZipCode":"12345"
         },
         "Photo": {
-            "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
-            "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
+            "Url": "https://res.cloudinary.com/helpafamilyofferachance/image/upload/v1630843477/1024px-Crystal_Clear_kdm_user_female.svg_jn24cb.png",
+            "PublicId": "https://res.cloudinary.com/helpafamilyofferachance/image/upload/v1630843477/1024px-Crystal_Clear_kdm_user_female.svg_jn24cb.png"
         }
     },
 
@@ -193,20 +208,21 @@
         "Email": "teodor.popescu@helpafamily.offerachance.com",
         "LastName": "popescu",
         "FirstName": "teodor",
+        "PhoneNumber": "0787983465",
         "CreatedAt": "2021-07-26",
         "IsOrganisation":false,
         "EmailConfirmed":true,
         "Address":{
-            "HouseNumber":"5B",
-            "Street":"Strada florilor",
+            "HouseNumber":"23",
+            "Street":"Strada principala",
             "City": "Sector 6",
             "District":"Bucuresti",
             "Country":"Romania",
             "ZipCode":"12345"
         },
         "Photo": {
-            "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
-            "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
+            "Url": "https://res.cloudinary.com/helpafamilyofferachance/image/upload/v1630843541/Crystal_Clear_kdm_user_male.svg_ku0hzz.png",
+            "PublicId": "https://res.cloudinary.com/helpafamilyofferachance/image/upload/v1630843541/Crystal_Clear_kdm_user_male.svg_ku0hzz.png"
         }
     },
     {
@@ -214,20 +230,21 @@
         "Email": "andreea.popescu@helpafamily.offerachance.com",
         "LastName": "popescu",
         "FirstName": "andreea",
+        "PhoneNumber": "0743322353",
         "CreatedAt": "2021-07-26",
         "IsOrganisation":false,
         "EmailConfirmed":true,
         "Address":{
-            "HouseNumber":"5B",
-            "Street":"Strada florilor",
+            "HouseNumber":"542",
+            "Street":"Strada bujorilor",
             "City": "Sector 3",
             "District":"Bucuresti",
             "Country":"Romania",
             "ZipCode":"12345"
         },
         "Photo": {
-            "Url": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg",
-            "PublicId": "https://res.cloudinary.com/test-datingapp-projectschool06292021/image/upload/v1627215486/WhatsApp_Image_2020-11-09_at_14.50.48_hfbtzq.jpg"
+            "Url": "https://res.cloudinary.com/helpafamilyofferachance/image/upload/v1630843477/1024px-Crystal_Clear_kdm_user_female.svg_jn24cb.png",
+            "PublicId": "https://res.cloudinary.com/helpafamilyofferachance/image/upload/v1630843477/1024px-Crystal_Clear_kdm_user_female.svg_jn24cb.png"
         }
     }
 ]

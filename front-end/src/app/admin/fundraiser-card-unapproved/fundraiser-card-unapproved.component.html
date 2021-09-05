@@ -5,11 +5,11 @@
             <div class="row">
                 <div class="col-5 border-right">
                     <div class="user mt-4 ml-2" *ngIf="member && address">
-                        <img class="img-user" src="{{member.photoUrl || './assets/user.png'}}"
+                        <img class="img-user" routerLink="/member-profile/{{member.id}}" src="{{member.photoUrl || './assets/user.png'}}"
                             alt="{{member.firstName}} {{member.lastName}}">
                         <div class="info">
-                            <span id="name"><i class="fa fa-user" aria-hidden="true"></i>
-                                <Strong>{{member.firstName|titlecase}} {{member.lastName |titlecase}}</Strong>
+                            <span id="name" routerLink="/member-profile/{{member.id}}"><i class="fa fa-user" aria-hidden="true"></i>
+                                <Strong>{{member.lastName|titlecase}} {{member.firstName |titlecase}}</Strong>
                             </span>
                             <span id="info"><i class="fa fa-envelope" aria-hidden="true"></i>{{member.email}}</span>
                             <span id="info"><i class="fa fa-map-marker" aria-hidden="true"></i>

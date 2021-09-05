@@ -23,12 +23,12 @@ namespace API
             try{
                 var context= services.GetRequiredService<DataContext>();
                 await context.Database.MigrateAsync();
-                await Seed.SeedUsers(context);
-                await Seed.SeedUnitsOfMeasure(context);
-                await Seed.SeedCategories(context);
-                await Seed.SeedAds(context);
-                await Seed.SeedDeliveryTypes(context);
-                await Seed.SeedAdsDeliveryTypes(context);
+                // await Seed.SeedUsers(context);
+                // await Seed.SeedUnitsOfMeasure(context);
+                // await Seed.SeedCategories(context);
+                // await Seed.SeedAds(context);
+                // await Seed.SeedDeliveryTypes(context);
+                // await Seed.SeedAdsDeliveryTypes(context);
                 await Seed.SeedFundraisers(context);
                 
             }

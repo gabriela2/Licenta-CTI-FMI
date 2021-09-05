@@ -12,7 +12,7 @@
             <aside class="col-sm-7" *ngIf="fundraiser.isValidated===true && fundraiser.isRejected===false">
                 <article class="card-body p-5">
                     <h2 class="title mb-3">{{fundraiser.name |titlecase}}</h2>
-                <p><small>Adaugat la {{fundraiser.createdAt| date:'dd/MM/yyyy'}}</small></p>
+                <p><small>Adaugat la {{fundraiser.createdAt | date:'dd/MM/yyyy'}}</small></p>
                     <dl class="item-property">
                         <dt>Descriere</dt>
                         <dd>
@@ -78,8 +78,8 @@
                                 src="{{userOwner.photoUrl || './assets/user.png'}}" alt="{{userOwner.firstName}} {{userOwner.lastName}}">
                             <div class="info">
                                 <span id="name" routerLink="/member-profile/{{userOwner.id}}"><i class="fa fa-user"
-                                        aria-hidden="true"></i><Strong>{{userOwner.firstName|titlecase}}
-                                        {{userOwner.lastName |titlecase}}</Strong></span>
+                                        aria-hidden="true"></i><Strong>{{userOwner.lastName|titlecase}}
+                                        {{userOwner.firstName |titlecase}}</Strong></span>
                                 <span id="info"><i class="fa fa-envelope" aria-hidden="true"></i>
                                     {{userOwner.email}}</span>
                                 <span id="info" *ngIf="address"><i class="fa fa-map-marker" aria-hidden="true"></i>

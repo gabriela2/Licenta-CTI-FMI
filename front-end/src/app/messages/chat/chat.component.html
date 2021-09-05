@@ -15,21 +15,21 @@
                             tooltip="Trimis la {{item.createdAt|date:'short'}} Citit la {{item.readAt|date:'short' || null}}"
                             placement="right">
                             <span>
-                                <p class="d-flex justify-content-end mr-5 text-light"><strong>{{item.senderLastName}}
+                                <p class="d-flex justify-content-end mr-5 ml-5 text-light"><strong>{{item.senderLastName}}
                                         {{item.senderFirstName}}</strong></p>
                             </span>
                             <div class="chat-body">
-                                <p class="d-flex justify-content-end mr-5 text-light">{{item.text}}</p>
+                                <p class="d-flex justify-content-end mr-5 ml-5 text-light">{{item.text}}</p>
                             </div>
                         </div>
                         <div *ngIf="item.senderId===currentUserId && item.readAt===null" class="bg-primary rounded-pill"
                             tooltip="Trimis la {{item.createdAt|date:'short'}} Necitit" placement="right">
                             <span>
-                                <p class="d-flex justify-content-end mr-5 text-light"><strong>{{item.senderLastName}}
+                                <p class="d-flex justify-content-end mr-5 ml-5 text-light"><strong>{{item.senderLastName}}
                                         {{item.senderFirstName}}</strong></p>
                             </span>
                             <div class="chat-body">
-                                <p class="d-flex justify-content-end mr-5 text-light">{{item.text}}</p>
+                                <p class="d-flex justify-content-end mr-5 ml-5 text-light">{{item.text}}</p>
                             </div>
                         </div>
 
@@ -38,21 +38,21 @@
                             tooltip="Trimis la {{item.createdAt|date:'short'}} Citit la {{item.readAt|date:'short' || null}}"
                             placement="left">
                             <span>
-                                <p class="d-flex justify-content-start ml-5 text-dark"><strong>{{item.senderLastName}}
+                                <p class="d-flex justify-content-start ml-5 mr-5 text-dark"><strong>{{item.senderLastName}}
                                         {{item.senderFirstName}}</strong></p>
                             </span>
                             <div class="chat-body">
-                                <p class="d-flex justify-content-start ml-5 text-dark">{{item.text}}</p>
+                                <p class="d-flex justify-content-start ml-5 mr-5 text-dark">{{item.text}}</p>
                             </div>
                         </div>
                         <div *ngIf="item.senderId!=currentUserId && item.readAt===null" class="bg-primary rounded-pill"
                             tooltip="Trimis la {{item.createdAt|date:'short'}} Necitit" placement="left">
                             <span>
-                                <p class="d-flex justify-content-end ml-5 text-dark"><strong>{{item.senderLastName}}
+                                <p class="d-flex justify-content-end ml-5 mr-5 text-dark"><strong>{{item.senderLastName}}
                                         {{item.senderFirstName}}</strong></p>
                             </span>
                             <div class="chat-body">
-                                <p class="d-flex justify-content-end ml-5 text-dark">{{item.text}}</p>
+                                <p class="d-flex justify-content-end ml-5 mr-5 text-dark">{{item.text}}</p>
                             </div>
                         </div>
 

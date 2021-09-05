@@ -5,10 +5,10 @@
             <div class="row">
                 <div class="col-5 border-right">
                     <div class="user mt-4 ml-2" *ngIf="sender && addressSender">
-                        <img class="img-user" src="{{sender.photoUrl || './assets/user.png'}}"
+                        <img class="img-user" routerLink="/member-profile/{{sender.id}}" src="{{sender.photoUrl || './assets/user.png'}}"
                             alt="{{sender.firstName}} {{sender.lastName}}">
                         <div class="info">
-                            <span id="name"><i class="fa fa-user" aria-hidden="true"></i>
+                            <span  routerLink="/member-profile/{{sender.id}}" id="name"><i class="fa fa-user" aria-hidden="true"></i>
                                 <Strong>{{sender.firstName|titlecase}} {{sender.lastName |titlecase}}</Strong>
                             </span>
                             <span id="info"><i class="fa fa-envelope" aria-hidden="true"></i>{{sender.email}}</span>
@@ -36,10 +36,10 @@
                     <br>
                     <strong>Utilizatorul pentru care s-a acordat review-ul:</strong>
                     <div class="user mt-4 ml-2" *ngIf="receiver && addressReceiver">
-                        <img class="img-user" src="{{receiver.photoUrl || './assets/user.png'}}"
+                        <img class="img-user" routerLink="/member-profile/{{receiver.id}}" src="{{receiver.photoUrl || './assets/user.png'}}"
                             alt="{{receiver.firstName}} {{receiver.lastName}}">
                         <div class="info">
-                            <span id="name"><i class="fa fa-user" aria-hidden="true"></i>
+                            <span id="name" routerLink="/member-profile/{{receiver.id}}"><i class="fa fa-user" aria-hidden="true"></i>
                                 <Strong>{{receiver.firstName|titlecase}} {{receiver.lastName |titlecase}}</Strong>
                             </span>
                             <span id="info"><i class="fa fa-envelope" aria-hidden="true"></i>{{receiver.email}}</span>
