@@ -66,7 +66,9 @@ namespace API.Controllers
             userRating.Rating =userRatingDto.Rating;
             userRating.Comment=userRatingDto.Comment;
             userRating.Title = userRatingDto.Title;
-            
+            userRating.IsValidated = userRatingDto.IsValidated;
+            userRating.IsRejected = userRatingDto.IsRejected;
+
             _userRatingRepository.UpdateUserRating(userRating);
             if(await _userRatingRepository.SaveAllAsync())return NoContent();
             return BadRequest("UserRating-ul nu a putut fi actualizat");
@@ -82,12 +84,40 @@ namespace API.Controllers
                 Title=userRatingDto.Title,
                 Comment=userRatingDto.Comment,
                 ReceiverId = userRatingDto.ReceiverId,
-                SenderId=userRatingDto.SenderId
+                SenderId=userRatingDto.SenderId,
+                IsRejected= false,
+                IsValidated=false,
+
             };
             _userRatingRepository.AddUserRating(model);
             if(await _userRatingRepository.SaveAllAsync())return NoContent();
             return BadRequest("UserRating-ul nu a putut fi adaugat");
 
+        }
+
+
+        [HttpGet("approved-user-ratings-by-sender-id/{id}")]
+        public async Task<ActionResult<IEnumerable<UserRatingDto>>> GetApprovedUserRatingsBySenderId([FromQuery]AppParams appParams ,int id)
+        {
+            var userRating = await _userRatingRepository.GetApprovedUserRatingsBySenderIdAsync(appParams, id);
+            Response.AddPaginationHeader(userRating.CurrentPage, userRating.PageSize, userRating.TotalCount,userRating.TotalPages);
+            return Ok(userRating);
+        }
+
+        [HttpGet("not-approved-yet-user-ratings-by-sender-id/{id}")]
+        public async Task<ActionResult<IEnumerable<UserRatingDto>>> GetNotApprovedYetUserRatingsBySenderId([FromQuery]AppParams appParams ,int id)
+        {
+            var userRating = await _userRatingRepository.GetNotApprovedYetUserRatingsBySenderIdAsync(appParams, id);
+            Response.AddPaginationHeader(userRating.CurrentPage, userRating.PageSize, userRating.TotalCount,userRating.TotalPages);
+            return Ok(userRating);
+        }
+
+        [HttpGet("rejected-user-ratings-by-sender-id/{id}")]
+        public async Task<ActionResult<IEnumerable<UserRatingDto>>> GetRejectedUserRatingsBySenderId([FromQuery]AppParams appParams ,int id)
+        {
+            var userRating = await _userRatingRepository.GetRejectedUserRatingsBySenderIdAsync(appParams, id);
+            Response.AddPaginationHeader(userRating.CurrentPage, userRating.PageSize, userRating.TotalCount,userRating.TotalPages);
+            return Ok(userRating);
         }
     }
 }

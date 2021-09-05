@@ -12,7 +12,10 @@ import { AdminService } from 'src/app/services/admin.service';
 export class EditUnitofmeasureModalComponent implements OnInit {
 
   unitOfMeasure:UnitOfMeasure;
-  constructor(public bsModalRef: BsModalRef, private adminService:AdminService, private toastr:ToastrService) { }
+  constructor(
+    public bsModalRef: BsModalRef, 
+    private adminService:AdminService, 
+    private toastr:ToastrService) { }
 
   ngOnInit(): void {
   }

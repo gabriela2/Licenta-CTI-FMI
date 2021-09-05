@@ -1,20 +1,16 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
-using API.Helpers;
 using API.Repositories.UserPhotoRepository;
 using API.Repositories.UserRepository;
 using API.Services.CloudinaryPhotoService;
 using AutoMapper;
-using HelpAFamilyOfferAChance.API.Data;
 using HelpAFamilyOfferAChance.API.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace HelpAFamilyOfferAChance.API.Controllers
 {

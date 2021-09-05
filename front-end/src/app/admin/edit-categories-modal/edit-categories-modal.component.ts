@@ -13,7 +13,10 @@ export class EditCategoriesModalComponent implements OnInit {
 
   category:Category;
   
-  constructor(public bsModalRef: BsModalRef, private adminService:AdminService, private toastr:ToastrService) { }
+  constructor(
+    public bsModalRef: BsModalRef, 
+    private adminService:AdminService, 
+    private toastr:ToastrService) { }
 
   ngOnInit(): void {
     console.log(this.category);

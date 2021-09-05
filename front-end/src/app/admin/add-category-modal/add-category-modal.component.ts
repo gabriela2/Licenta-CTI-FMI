@@ -11,7 +11,10 @@ import { AdminService } from 'src/app/services/admin.service';
 export class AddCategoryModalComponent implements OnInit {
 
   addCategoryForm: FormGroup;
-  constructor(public bsModalRef: BsModalRef, private adminService:AdminService, private formBuilder: FormBuilder,) { }
+  constructor(
+    public bsModalRef: BsModalRef, 
+    private adminService:AdminService, 
+    private formBuilder: FormBuilder,) { }
 
   ngOnInit(): void {
     this.addCategoryForm = this.formBuilder.group({

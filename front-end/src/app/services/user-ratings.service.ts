@@ -54,6 +54,71 @@ export class UserRatingsService {
 
 
 
+  getApprovedUserRatingsBySenderId(id: number,page?: number, itemsPerPage?: number, orderBy?:string) {
+    let params = new HttpParams();
+    if (page !== null && itemsPerPage !== null) {
+      params = params.append('pageNumber', page.toString());
+      params = params.append('pageSize', itemsPerPage.toString());
+      params = params.append('orderBy',orderBy);
+    }
+
+    
+    return this.http.get<UserRating[]>(this.baseUrl +'userRatings/approved-user-ratings-by-sender-id/' + id, { observe: 'response', params }).pipe(
+      map(response => {
+        this.paginatedResult.result = response.body;
+        if (response.headers.get('Pagination') !== null) {
+          this.paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+        }
+        return this.paginatedResult;
+
+      }
+      ));
+  }
+
+  getNotApprovedYetUserRatingsBySenderId(id: number,page?: number, itemsPerPage?: number, orderBy?:string) {
+    let params = new HttpParams();
+    if (page !== null && itemsPerPage !== null) {
+      params = params.append('pageNumber', page.toString());
+      params = params.append('pageSize', itemsPerPage.toString());
+      params = params.append('orderBy',orderBy);
+    }
+
+    
+    return this.http.get<UserRating[]>(this.baseUrl +'userRatings/not-approved-yet-user-ratings-by-sender-id/' + id, { observe: 'response', params }).pipe(
+      map(response => {
+        this.paginatedResult.result = response.body;
+        if (response.headers.get('Pagination') !== null) {
+          this.paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+        }
+        return this.paginatedResult;
+
+      }
+      ));
+  }
+
+  getRejectedUserRatingsBySenderId(id: number,page?: number, itemsPerPage?: number, orderBy?:string) {
+    let params = new HttpParams();
+    if (page !== null && itemsPerPage !== null) {
+      params = params.append('pageNumber', page.toString());
+      params = params.append('pageSize', itemsPerPage.toString());
+      params = params.append('orderBy',orderBy);
+    }
+
+    
+    return this.http.get<UserRating[]>(this.baseUrl +'userRatings/rejected-user-ratings-by-sender-id/' + id, { observe: 'response', params }).pipe(
+      map(response => {
+        this.paginatedResult.result = response.body;
+        if (response.headers.get('Pagination') !== null) {
+          this.paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+        }
+        return this.paginatedResult;
+
+      }
+      ));
+  }
+
+
+
   post(userRating: UserRating) {
     return this.http.post(this.baseUrl + 'userRatings/', userRating);
   }

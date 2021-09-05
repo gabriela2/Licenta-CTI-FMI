@@ -1,0 +1,121 @@
+<tabset class="member-tabset">
+    <tab heading='Review-uri in curs de aprobare'>
+        <div class="container">
+
+            <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="orderBy"
+                (click)="applyPageNotApprovedYet()" btnRadio='oldest'>Cele mai recente</button>
+            <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                (click)="applyPageNotApprovedYet()" btnRadio='newest'>Cele mai vechi</button>
+
+            <button class="btn btn primary ml-3" type="button" (click)="resetPageNotApprovedYet()">Reseteaza
+                filtrele</button>
+            <p><small>{{paginationNotApprovedYet?.totalItems}} rezultate gasite</small></p>
+
+        </div>
+
+
+        <div class="row mt-4" *ngIf="notApprovedYetReviews">
+
+            <div class="col-12" *ngIf="paginationNotApprovedYet?.totalItems!=0">
+                <span *ngFor="let notApprovedYetReview of notApprovedYetReviews">
+                    <app-card-for-my-reviews [userRating]="notApprovedYetReview">
+                    </app-card-for-my-reviews>>
+                </span>
+                <div class="d-flex justify-content-center" *ngIf="paginationNotApprovedYet">
+                    <pagination [boundaryLinks]="true" [totalItems]="paginationNotApprovedYet.totalItems"
+                        [itemsPerPage]="paginationNotApprovedYet.itemsPerPage" [(ngModel)]="paginationNotApprovedYet.currentPage"
+                        (pageChanged)="changePageNotApprovedYet($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;">
+
+                    </pagination>
+                </div>
+            </div>
+
+
+            <div class="col-12" *ngIf="paginationNotApprovedYet?.totalItems==0">
+                <h2 class="text-center"><strong>Nu exista niciun review in curs de aprobare.</strong></h2>
+            </div>
+        </div>
+    </tab>
+
+
+    <tab heading='Review-uri aprobate'>
+        <div class="container">
+
+            <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="orderBy"
+                (click)="applyPageApproved()" btnRadio='oldest'>Cele mai recente</button>
+            <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                (click)="applyPageApproved()" btnRadio='newest'>Cele mai vechi</button>
+
+            <button class="btn btn primary ml-3" type="button" (click)="resetPageApproved()">Reseteaza
+                filtrele</button>
+            <p><small>{{paginationApproved?.totalItems}} rezultate gasite</small></p>
+
+        </div>
+
+
+        <div class="row mt-4" *ngIf="approvedReviews">
+
+            <div class="col-12" *ngIf="paginationApproved?.totalItems!=0">
+                <span *ngFor="let approvedReview of approvedReviews">
+                    <app-card-for-my-reviews [userRating]="approvedReview">
+                    </app-card-for-my-reviews>>
+                </span>
+                <div class="d-flex justify-content-center" *ngIf="paginationApproved">
+                    <pagination [boundaryLinks]="true" [totalItems]="paginationApproved.totalItems"
+                        [itemsPerPage]="paginationApproved.itemsPerPage" [(ngModel)]="paginationApproved.currentPage"
+                        (pageChanged)="changePageApproved($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;">
+
+                    </pagination>
+                </div>
+            </div>
+
+
+            <div class="col-12" *ngIf="paginationApproved?.totalItems==0">
+                <h2 class="text-center"><strong>Nu exista niciun review aprobat.</strong></h2>
+            </div>
+        </div>
+    </tab>
+
+
+
+    <tab heading='Review-uri respinse'>
+        <div class="container">
+
+            <button type="button" class="btn btn-primary" name="orderBy" [(ngModel)]="orderBy"
+                (click)="applyPageRejected()" btnRadio='oldest'>Cele mai recente</button>
+            <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                (click)="applyPageRejected()" btnRadio='newest'>Cele mai vechi</button>
+
+            <button class="btn btn primary ml-3" type="button" (click)="resetPageRejected()">Reseteaza
+                filtrele</button>
+            <p><small>{{paginationRejected?.totalItems}} rezultate gasite</small></p>
+
+        </div>
+
+
+        <div class="row mt-4" *ngIf="rejectedReviews">
+
+            <div class="col-12" *ngIf="paginationRejected?.totalItems!=0">
+                <span *ngFor="let rejectedReview of rejectedReviews">
+                    <app-card-for-my-reviews [userRating]="rejectedReview">
+                    </app-card-for-my-reviews>
+                </span>
+                <div class="d-flex justify-content-center" *ngIf="paginationRejected">
+                    <pagination [boundaryLinks]="true" [totalItems]="paginationRejected.totalItems"
+                        [itemsPerPage]="paginationRejected.itemsPerPage" [(ngModel)]="paginationRejected.currentPage"
+                        (pageChanged)="changePageRejected($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;">
+
+                    </pagination>
+                </div>
+            </div>
+
+
+            <div class="col-12" *ngIf="paginationRejected?.totalItems==0">
+                <h2 class="text-center"><strong>Nu exista nicio cerere respinsa.</strong></h2>
+            </div>
+        </div>
+    </tab>
+</tabset>

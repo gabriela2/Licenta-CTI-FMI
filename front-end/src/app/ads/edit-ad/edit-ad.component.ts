@@ -101,6 +101,8 @@ export class EditAdComponent implements OnInit {
       }
     }
     this.ad.unitOfMeasureId = this.unitOfMeasureId;
+    this.ad.isRejected=false;
+    this.ad.isValidated=false;
     this.adService.put(this.ad.id, this.ad).subscribe();
     this.toastr.info('Anuntul a fost actualizat cu success!');
     this.editAdForm.reset(this.ad)

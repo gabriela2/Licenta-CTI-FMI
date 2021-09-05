@@ -125,6 +125,119 @@
 
     </tab>
 
+    <tab heading='Anunturi in curs de aprobare'>
+        <div class="row mt-3">
+            <div class="col-12">
+                <h2 class="text-center text-primary">Anunturi in curs de aprobare</h2>
+            </div>
+            <div class="container mt-4">
+                <form #selectCategoryform="ngForm" class="form-inline mb-3" (ngSubmit)="applyNotApprovedYet()"
+                    autocomplete="off">
+                    <div class="form-group">
+                        <label><strong>Categorie:</strong></label>
+                        <select name="category" class="form-control ml-2" style="height: min-content;"
+                            [(ngModel)]="categoryId">
+                            <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="ml-3">
+                        <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                            (click)="applyNotApprovedYet()" btnRadio='oldest'>Cele mai recente</button>
+                        <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                            (click)="applyNotApprovedYet()" btnRadio='newest'>Cele mai vechi</button>
+                    </div>
+
+                    <button class="btn btn primary ml-3" type="submit">Aplica filtrele</button>
+                    <button class="btn btn primary ml-3" type="submit" (click)="resetNotApprovedYet()">Reseteaza
+                        filtrele</button>
+                </form>
+                <p><small>{{paginationNotApprovedYet?.totalItems}} rezultate gasite</small></p>
+
+            </div>
+        </div>
+
+        <div class="row mt-4" *ngIf="notApprovedYetAds">
+            <div class="col-12" *ngIf="notApprovedYetAds.length>0">
+                <span *ngFor="let notApprovedYetAd of notApprovedYetAds">
+                    <app-ad-card-for-my-ads [ad]="notApprovedYetAd"></app-ad-card-for-my-ads>
+                </span>
+                <div class="d-flex justify-content-center" *ngIf="paginationNotApprovedYet">
+                    <pagination [boundaryLinks]="true" [totalItems]="paginationNotApprovedYet.totalItems"
+                        [itemsPerPage]="paginationNotApprovedYet.itemsPerPage" [(ngModel)]="paginationNotApprovedYet.currentPage"
+                        (pageChanged)="changePageNotApprovedYet($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;">
+
+                    </pagination>
+                </div>
+            </div>
 
 
+            <div class="col-12" *ngIf="notApprovedYetAds.length==0">
+                <h2 class="text-center"><strong>Nu aveti niciun anunt in curs de aprobare.</strong></h2>
+            </div>
+
+
+            <div class="col-2"></div>
+        </div>
+    </tab>
+
+    <tab heading='Anunturi respinse'>
+        <div class="row mt-3">
+            <div class="col-12">
+                <h2 class="text-center text-primary">Anunturi respinse</h2>
+            </div>
+            <div class="container mt-4">
+                <form #selectCategoryform="ngForm" class="form-inline mb-3" (ngSubmit)="applyRejected()"
+                    autocomplete="off">
+                    <div class="form-group">
+                        <label><strong>Categorie:</strong></label>
+                        <select name="category" class="form-control ml-2" style="height: min-content;"
+                            [(ngModel)]="categoryId">
+                            <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="ml-3">
+                        <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                            (click)="applyRejected()" btnRadio='oldest'>Cele mai recente</button>
+                        <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy"
+                            (click)="applyRejected()" btnRadio='newest'>Cele mai vechi</button>
+                    </div>
+
+                    <button class="btn btn primary ml-3" type="submit">Aplica filtrele</button>
+                    <button class="btn btn primary ml-3" type="submit" (click)="resetRejected()">Reseteaza
+                        filtrele</button>
+                </form>
+                <p><small>{{paginationRejected?.totalItems}} rezultate gasite</small></p>
+
+            </div>
+        </div>
+
+        <div class="row mt-4" *ngIf="rejectedAds">
+            <div class="col-12" *ngIf="rejectedAds.length>0">
+                <span *ngFor="let rejectedAd of rejectedAds">
+                    <app-ad-card-for-my-ads [ad]="rejectedAd"></app-ad-card-for-my-ads>
+                </span>
+                <div class="d-flex justify-content-center" *ngIf="paginationRejected">
+                    <pagination [boundaryLinks]="true" [totalItems]="paginationRejected.totalItems"
+                        [itemsPerPage]="paginationRejected.itemsPerPage" [(ngModel)]="paginationRejected.currentPage"
+                        (pageChanged)="changePageRejected($event)" previousText="&lsaquo;" nextText="&rsaquo;"
+                        firstText="&laquo;" lastText="&raquo;">
+
+                    </pagination>
+                </div>
+            </div>
+
+
+            <div class="col-12" *ngIf="rejectedAds.length==0">
+                <h2 class="text-center"><strong>Nu aveti niciun anunt respins.</strong></h2>
+            </div>
+
+
+            <div class="col-2"></div>
+        </div>
+    </tab>
 </tabset>

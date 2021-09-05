@@ -15,6 +15,9 @@ namespace API.Repositories.AdRepository
         Task<PagedList<AdDto>> GetAdsAsync(AdsParams adsParams);
         Task<PagedList<AdDto>> GetInactiveAdsByUserIdAsync(AdsParams adsParams, int id);
         Task<PagedList<AdDto>> GetActiveAdsByUserIdAsync(AdsParams adsParams, int id);
+        Task<PagedList<AdDto>> GetNotApprovedYetAdsByUserIdAsync(AdsParams adsParams, int id);
+        Task<PagedList<AdDto>> GetRejectedAdsByUserIdAsync(AdsParams adsParams, int id);
+        Task<PagedList<AdDto>> GetAllInactiveAdsAsync(AdsParams adsParams);
         Task<AdDto> GetAdDtoByIdAsync(int id);
         Task<Ad> GetAdByIdAsync(int id);
         Task<IEnumerable<AdDto>> GetAdsByUserId(int id);

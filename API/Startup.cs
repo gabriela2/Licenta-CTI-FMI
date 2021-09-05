@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using API.Middleware;
 using API.Repositories.UserRepository;
 using API.Services;
 using HelpAFamilyOfferAChance.API.Data;

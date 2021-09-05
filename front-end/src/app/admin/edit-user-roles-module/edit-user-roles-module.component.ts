@@ -15,7 +15,10 @@ export class EditUserRolesModuleComponent implements OnInit {
   allRoles: any[]; 
   userRoles:any;
 
-  constructor(public bsModalRef: BsModalRef, private adminService:AdminService, private toastr:ToastrService) { }
+  constructor(
+    public bsModalRef: BsModalRef, 
+    private adminService:AdminService, 
+    private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.getRolesArray();

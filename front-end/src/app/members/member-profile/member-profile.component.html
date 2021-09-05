@@ -3,11 +3,11 @@
         <div class="row ml-3 mt-3 mb-3">
             <aside class="col-sm-5 border-right">
                 <article class="mb-3">
-                    <div class="user">
+                    <div class="user" >
                         <img class="img-user" src="{{member.photoUrl || './assets/user.png'}}" alt="{{member.firstName}} {{member.lastName}}">
                         <div class="info">
                             <span id="name"><i class="fa fa-user" aria-hidden="true"></i>
-                                <Strong>{{member.firstName|titlecase}} {{member.lastName |titlecase}}</Strong>
+                                <Strong>{{member.lastName |titlecase}} {{member.firstName|titlecase}} </Strong>
                             </span>
                             <span id="info"><i class="fa fa-envelope" aria-hidden="true"></i>{{member.email}}</span>
                             <span id="info" *ngIf="address"><i class="fa fa-map-marker" aria-hidden="true"></i>

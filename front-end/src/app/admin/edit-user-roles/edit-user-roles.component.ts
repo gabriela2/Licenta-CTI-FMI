@@ -13,7 +13,9 @@ export class EditUserRolesComponent implements OnInit {
 
   users:Partial<User[]>;
   bsModalRef: BsModalRef;
-  constructor(private adminService:AdminService, private modalService:BsModalService) { }
+  constructor(
+    private adminService:AdminService, 
+    private modalService:BsModalService) { }
 
   ngOnInit(): void {
     this.getUsers();

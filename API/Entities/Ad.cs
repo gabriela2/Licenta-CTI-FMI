@@ -14,6 +14,8 @@ namespace API.Entities
         public bool ExistsLimit { get; set; }
         public double ? Limit { get; set; }
         public bool IsActive { get; set; }
+        public bool IsValidated { get; set; }
+        public bool IsRejected { get; set; }
         public User User{get;set;}
         public int UserId{get;set;}
         public UnitOfMeasure UnitOfMeasure{get;set;}

@@ -9,7 +9,6 @@ using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
 using API.Services;
 using API.Repositories.UserRepository;
-using API.Helpers;
 using API.Entities;
 using System.Linq;
 using API.Services.MailService;

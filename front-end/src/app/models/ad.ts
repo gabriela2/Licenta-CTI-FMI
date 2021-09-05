@@ -18,6 +18,8 @@ export interface Ad
     category:string;
     unitOfMeasureId:number;
     categoryId:number;
+    isValidated: boolean;
+    isRejected:boolean;
     photos: Photo[];
     ad_x_DeliveryType: Ad_x_DeliveryType[];
     demands:Demand[];

@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutUsComponent } from './about-us/about-us.component';
 import { AdminDashboardComponent } from './admin/admin-dashboard/admin-dashboard.component';
 import { AdDetailComponent } from './ads/ad-detail/ad-detail.component';
 import { AddAdComponent } from './ads/add-ad/add-ad.component';
@@ -13,7 +12,6 @@ import { MyDemandsComponent } from './demands/my-demands/my-demands.component';
 import { MyDonationsComponent } from './donations/my-donations/my-donations.component';
 import { EmailConfirmationComponent } from './email-confirmation/email-confirmation.component';
 import { FavouriteListComponent } from './favouriteLists/favourite-list/favourite-list.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { AddFundraiserComponent } from './fundraisers/add-fundraiser/add-fundraiser.component';
 import { EditFundraiserComponent } from './fundraisers/edit-fundraiser/edit-fundraiser.component';
 import { FundraiserDetailComponent } from './fundraisers/fundraiser-detail/fundraiser-detail.component';
@@ -42,6 +40,7 @@ import { MessageComponent } from './messages/message/message.component';
 import { NotConfirmedEmailComponent } from './not-confirmed-email/not-confirmed-email.component';
 import { AddRatingComponent } from './ratings/add-rating/add-rating.component';
 import { EditRatingComponent } from './ratings/edit-rating/edit-rating.component';
+import { MyReviewsComponent } from './ratings/my-reviews/my-reviews.component';
 import { RatingUserComponent } from './ratings/rating-user/rating-user.component';
 import { RegisterComponent } from './register/register.component';
 import { MemberProfileResolver } from './routeResolvers/member-profile.resolver';
@@ -65,6 +64,7 @@ const routes: Routes = [
       { path: 'my-ads', component: MyAdsComponent },
       { path: 'my-fundraisers', component: MyFundraisersComponent },
       { path: 'my-demands', component: MyDemandsComponent },
+      { path: 'my-reviews', component: MyReviewsComponent },
       { path: 'my-donations', component: MyDonationsComponent },
       { path: 'edit-demand/:id', component: EditDemandComponent },
       { path: 'messages', component:MessageComponent },
@@ -77,7 +77,6 @@ const routes: Routes = [
       { path: 'admin', component: AdminDashboardComponent, canActivate: [AdminGuard] },
     ]
   },
-  { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'not-confirmed', component: NotConfirmedEmailComponent },
   { path: 'emailConfirmation/:id', component: EmailConfirmationComponent },
   { path: 'login', component: LoginComponent },

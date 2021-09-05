@@ -124,4 +124,60 @@ export class AdsService {
   deleteAd(adId:number){
     return this.http.delete(this.baseUrl+'ads/'+adId);
   }
+
+
+
+  getRejectedAdsByUserId(id:number, page?: number, itemsPerPage?: number, categoryId?: number, orderBy?:string) {
+    let params = new HttpParams();
+    if (page !== null && itemsPerPage !== null && categoryId !== 0) {
+      params = params.append('pageNumber', page.toString());
+      params = params.append('pageSize', itemsPerPage.toString());
+      params = params.append('categoryId', categoryId.toString());
+      params = params.append('orderBy',orderBy);
+    }
+
+    if (page !== null && itemsPerPage !== null && categoryId === 0) {
+      params = params.append('pageNumber', page.toString());
+      params = params.append('pageSize', itemsPerPage.toString());
+      params = params.append('orderBy',orderBy);
+    }
+    
+    return this.http.get<Ad[]>(this.baseUrl + 'ads/rejected-ads/'+id, { observe: 'response', params }).pipe(
+      map(response => {
+        this.paginatedResult.result = response.body;
+        if (response.headers.get('Pagination') !== null) {
+          this.paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+        }
+        return this.paginatedResult;
+
+      }
+      ));
+  }
+
+  getNotApprovedYetAdsByUserId(id:number, page?: number, itemsPerPage?: number, categoryId?: number, orderBy?:string) {
+    let params = new HttpParams();
+    if (page !== null && itemsPerPage !== null && categoryId !== 0) {
+      params = params.append('pageNumber', page.toString());
+      params = params.append('pageSize', itemsPerPage.toString());
+      params = params.append('categoryId', categoryId.toString());
+      params = params.append('orderBy',orderBy);
+    }
+
+    if (page !== null && itemsPerPage !== null && categoryId === 0) {
+      params = params.append('pageNumber', page.toString());
+      params = params.append('pageSize', itemsPerPage.toString());
+      params = params.append('orderBy',orderBy);
+    }
+    
+    return this.http.get<Ad[]>(this.baseUrl + 'ads/not-approved-yet-ads/'+id, { observe: 'response', params }).pipe(
+      map(response => {
+        this.paginatedResult.result = response.body;
+        if (response.headers.get('Pagination') !== null) {
+          this.paginatedResult.pagination = JSON.parse(response.headers.get('Pagination'));
+        }
+        return this.paginatedResult;
+
+      }
+      ));
+  }
 }

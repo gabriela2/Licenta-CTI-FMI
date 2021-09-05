@@ -6,6 +6,12 @@
     <tab heading='Aprobare strangeri de fonduri' *appUserRole='["Admin","Moderator"]'>
         <app-approve-fundraisers></app-approve-fundraisers>
     </tab>
+    <tab heading='Aprobare anunturi' *appUserRole='["Admin","Moderator"]'>
+        <app-approve-ads></app-approve-ads>
+    </tab>
+    <tab heading='Aprobare review-uri' *appUserRole='["Admin","Moderator"]'>
+        <app-approve-user-ratings></app-approve-user-ratings>
+    </tab>
 
     <tab heading='Modificarea valorilor de referinta' *appUserRole='["Admin"]'>
         <app-reference-table-administration></app-reference-table-administration>

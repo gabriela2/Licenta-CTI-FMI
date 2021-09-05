@@ -29,6 +29,7 @@ export class MemberProfileComponent implements OnInit {
   ads: Ad[];
   fundraisers: Fundraiser[];
   ratings: UserRating[];
+  reviews: UserRating[];
   paginationAd:Pagination;
   pageNumberAd=1;
   paginationFundraiser:Pagination;
@@ -58,7 +59,7 @@ export class MemberProfileComponent implements OnInit {
     private toastr: ToastrService,
     private router: Router,
     private categoryService:CategoriesService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -162,14 +163,19 @@ export class MemberProfileComponent implements OnInit {
       this.ratings = response.result;
       this.paginationUserRating = response.pagination;
     }
-    )
+    );
+    this.ratingsService.getUserRatingByReceiverIdWithoutPag(this.userId).subscribe(response=>{
+      this.reviews = response;
+    })
   }
   addReview() {
     var flag = false;
+    var reviewId;
     var currentUser = parseInt(localStorage.getItem('userId'));
-    for (var item of this.ratings) {
+    for (var item of this.reviews) {
       if (item.senderId == currentUser) {
         flag = true;
+        reviewId=item.id;
       }
     }
 
@@ -179,7 +185,7 @@ export class MemberProfileComponent implements OnInit {
 
       console.log(flag);
       if (flag == true) {
-        this.toastr.warning("Ati acordat un review pentru acest utilizator! In cazul in care v-ati schimbat opinia, va rugam sa editati review-ul existent.");
+        this.router.navigateByUrl('edit-rating/'+reviewId);
       } else {
         this.router.navigateByUrl('/add-rating/' + this.userId);
       }
@@ -192,6 +198,10 @@ export class MemberProfileComponent implements OnInit {
 
   onTabActivated(data: TabDirective) {
     this.activeTab = data;
+  }
+
+  redirect(){
+    this.router.navigateByUrl('/add-rating/' + this.userId);
   }
 
 }

@@ -4,10 +4,12 @@ using API.DTOs;
 using API.Entities;
 using API.Extensions;
 using API.Helpers;
+using API.Repositories.AdRepository;
 using API.Repositories.CategoryRepository;
 using API.Repositories.DeliveryTypeRepository;
 using API.Repositories.FundraiserRepository;
 using API.Repositories.UnitOfMeasureRepository;
+using API.Repositories.UserRatingRepository;
 using HelpAFamilyOfferAChance.API.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -24,13 +26,19 @@ namespace API.Controllers
         private readonly IDeliveryTypeRepository _deliveryTypeRepository;
         private readonly IUnitOfMeasureRepository _unitOfMeasureRepository;
         private readonly IFundraiserRepository _fundraiserRepository;
+        private readonly IAdRepository _adRepository;
+        private readonly IUserRatingRepository _userRatingRepository;
         public AdminController(
             DataContext context, 
             ICategoryRepository categoryRepository, 
             IDeliveryTypeRepository deliveryTypeRepository, 
             IUnitOfMeasureRepository unitOfMeasureRepository,
-            IFundraiserRepository fundraiserRepository)
+            IFundraiserRepository fundraiserRepository,
+            IAdRepository adRepository,
+            IUserRatingRepository userRatingRepository)
         {
+            _userRatingRepository = userRatingRepository;
+            _adRepository = adRepository;
             _fundraiserRepository = fundraiserRepository;
             _unitOfMeasureRepository = unitOfMeasureRepository;
             _deliveryTypeRepository = deliveryTypeRepository;
@@ -256,6 +264,24 @@ namespace API.Controllers
             var fundraisers = await _fundraiserRepository.GetAllInactiveFundraisersAsync(appParams);
             Response.AddPaginationHeader(fundraisers.CurrentPage,fundraisers.PageSize,fundraisers.TotalCount, fundraisers.TotalPages);
             return Ok(fundraisers);
+        }
+
+        [Authorize(Policy = "ModeratorRole")]
+        [HttpGet("get-all-inactive-ads")]
+        public async Task<ActionResult> GetAllInactiveAds([FromQuery]AdsParams adsParams)
+        {
+            var ads = await _adRepository.GetAllInactiveAdsAsync(adsParams);
+            Response.AddPaginationHeader(ads.CurrentPage,ads.PageSize,ads.TotalCount, ads.TotalPages);
+            return Ok(ads);
+        }
+
+        [Authorize(Policy = "ModeratorRole")]
+        [HttpGet("get-all-inactive-ratings")]
+        public async Task<ActionResult> GetAllInactiveRatings([FromQuery]AppParams appParams)
+        {
+            var userRatings = await _userRatingRepository.GetAllInactiveUserRatingsAsync(appParams);
+            Response.AddPaginationHeader(userRatings.CurrentPage,userRatings.PageSize,userRatings.TotalCount, userRatings.TotalPages);
+            return Ok(userRatings);
         }
 
 

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
@@ -99,6 +98,8 @@ namespace API.Controllers
             ad.Quantity = adDto.Quantity;
             ad.ExistsLimit = adDto.ExistsLimit;
             ad.Limit = adDto.Limit;
+            ad.IsValidated=adDto.IsValidated;
+            ad.IsRejected=adDto.IsRejected;
             ad.IsActive = adDto.IsActive;
             ad.UnitOfMeasureId = adDto.UnitOfMeasureId;
             ad.CategoryId = adDto.CategoryId;
@@ -118,6 +119,8 @@ namespace API.Controllers
                 Quantity = adAddDto.Quantity,
                 ExistsLimit = adAddDto.ExistsLimit,
                 IsActive = true,
+                IsRejected=false,
+                IsValidated=false,
                 Limit = adAddDto.Limit,
                 UserId = adAddDto.UserId,
                 UnitOfMeasureId = adAddDto.UnitOfMeasureId,
@@ -214,6 +217,21 @@ namespace API.Controllers
 
             if (await _adRepository.SaveAllAsync()) return NoContent();
             return BadRequest("Fotografia nu a putut fi setata ca find principala");
+        }
+
+        [HttpGet("not-approved-yet-ads/{id}")]
+        public async Task<ActionResult<IEnumerable<AdDto>>> GetNotApprovedYetAdsByUserId([FromQuery]AdsParams adsParams, int id)
+        {
+            var ads = await _adRepository.GetNotApprovedYetAdsByUserIdAsync(adsParams, id);
+            Response.AddPaginationHeader(ads.CurrentPage, ads.PageSize, ads.TotalCount,ads.TotalPages);
+            return Ok(ads);
+        }
+        [HttpGet("rejected-ads/{id}")]
+        public async Task<ActionResult<IEnumerable<AdDto>>> GetRejectedAdsByUserId([FromQuery]AdsParams adsParams, int id)
+        {
+            var ads = await _adRepository.GetRejectedAdsByUserIdAsync(adsParams, id);
+            Response.AddPaginationHeader(ads.CurrentPage, ads.PageSize, ads.TotalCount,ads.TotalPages);
+            return Ok(ads);
         }
 
     }

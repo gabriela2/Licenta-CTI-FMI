@@ -13,7 +13,10 @@ export class EditRatingComponent implements OnInit {
   ratingId:number;
   flag=false;
   rating:UserRating;
-  
+  title:string;
+  comment:string;
+  nrstart:number;
+
   @ViewChild('editRating') editRating:NgForm;
   @HostListener("window:beforeunload", ["$event"])
   beforeUnloadHandler(event: any) {
@@ -43,15 +46,25 @@ export class EditRatingComponent implements OnInit {
     console.log("this.ratingId = ", this.ratingId);
     this.userRatingService.getUserRating(this.ratingId).subscribe(result=>{
       this.rating=result;
+      this.title=result.title;
+      this.comment=result.comment;
+      this.nrstart=result.rating;
     })
   }
   cancel(){
     this.router.navigateByUrl('/member-profile/'+this.rating.receiverId+'?tab=2');
   }
   update(){
+    if(this.rating.comment === this.comment && this.rating.title === this.title && this.rating.rating===this.nrstart){
+      this.router.navigateByUrl('/member-profile/'+this.rating.receiverId+'?tab=2');
+    }else{
+
+    
+    this.rating.isRejected=false;
+    this.rating.isValidated=false;
     this.userRatingService.put(this.rating.id, this.rating).subscribe();
     this.router.navigateByUrl('/member-profile/'+this.rating.receiverId+'?tab=2');
-    this.editRating.reset(this.rating);
+    this.editRating.reset(this.rating);}
   }
 
 }

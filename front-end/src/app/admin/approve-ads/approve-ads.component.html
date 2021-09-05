@@ -1,0 +1,37 @@
+<div class="container mt-3">
+    <form #selectCategoryform="ngForm" class="form-inline mb-3" (ngSubmit)="apply()" autocomplete="off">
+        <div class="form-group">
+            <label><strong>Categorie:</strong></label>
+            <select name="category" class="form-control ml-2" style="height: min-content;"  [(ngModel)]="categoryId" >
+                <option *ngFor="let category of categoryList" [value]="category.id">{{category.name}}</option>
+            </select>
+        </div>
+
+        <div class="ml-3">
+            <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy" (click)="apply()" btnRadio='oldest' >Cele mai recente</button>
+            <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy" (click)="apply()" btnRadio='newest' >Cele mai vechi</button>
+        </div>
+
+        <button class="btn btn primary ml-3" type="submit">Aplica filtrele</button>
+        <button class="btn btn primary ml-3" type="submit" (click)="reset()">Reseteaza filtrele</button>
+    </form>
+    <p><small>{{pagination?.totalItems}} rezultate gasite</small></p>
+
+</div>
+
+<div class="col-12" *ngIf="pagination?.totalItems!=0">
+    <div *ngFor="let ad of ads ">
+        <app-ads-card-unapproved [ad]="ad"></app-ads-card-unapproved>>
+    </div>
+    <div class="d-flex justify-content-center" *ngIf="pagination">
+        <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+            [(ngModel)]="pagination.currentPage" (pageChanged)="changePage($event)" previousText="&lsaquo;"
+            nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+
+        </pagination>
+    </div>
+</div>
+
+<div class="col-12 d-flex justify-content-center" *ngIf="pagination?.totalItems==0">
+    <h2>Nu exista strangeri de fonduri nerevizuite!</h2>
+</div>

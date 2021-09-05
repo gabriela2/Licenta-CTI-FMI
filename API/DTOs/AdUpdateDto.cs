@@ -15,6 +15,8 @@ namespace API.DTOs
         public int UnitOfMeasureId { get; set; }
         public string Category { get; set; }
         public int CategoryId { get; set; }
+        public bool IsValidated{get;set;}
+        public bool IsRejected {get;set;}
     
     
     

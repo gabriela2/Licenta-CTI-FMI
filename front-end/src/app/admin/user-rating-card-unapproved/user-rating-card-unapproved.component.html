@@ -1,0 +1,66 @@
+<div class="row mb-3">
+    <div class="col-1"></div>
+    <div class="col-10">
+        <div class="card mb-3">
+            <div class="row">
+                <div class="col-5 border-right">
+                    <div class="user mt-4 ml-2" *ngIf="sender && addressSender">
+                        <img class="img-user" src="{{sender.photoUrl || './assets/user.png'}}"
+                            alt="{{sender.firstName}} {{sender.lastName}}">
+                        <div class="info">
+                            <span id="name"><i class="fa fa-user" aria-hidden="true"></i>
+                                <Strong>{{sender.firstName|titlecase}} {{sender.lastName |titlecase}}</Strong>
+                            </span>
+                            <span id="info"><i class="fa fa-envelope" aria-hidden="true"></i>{{sender.email}}</span>
+                            <span id="info"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                                {{addressSender.city}}, {{addressSender.district}}, {{addressSender.country}}
+                            </span>
+                            <span id="info" *ngIf="sender.isOrganisation"><i class="fa fa-sitemap"
+                                    aria-hidden="true"></i>
+                                Cod CIF: {{sender.organizationIdentificationNumber}}</span>
+                        </div>
+                    </div>
+                   
+
+                </div>
+                <div class="col-5 mt-4 border-right">
+                    <p class="card-text"><strong> {{userRating.title}}</strong></p>
+                    <p class="card-text">{{userRating.comment}}</p>
+                    <ng-template #t let-fill="fill">
+                        <span class="star" [class.full]="fill === 100">
+                            <span class="half" [style.width.%]="fill">&#9733;</span>&#9733;
+                        </span>
+                    </ng-template>
+                    <ngb-rating rate="{{userRating.rating}}" [starTemplate]="t" [readonly]="true" [max]="5"></ngb-rating><strong
+                    style="margin-left: 10px;"></strong>
+                    <br>
+                    <strong>Utilizatorul pentru care s-a acordat review-ul:</strong>
+                    <div class="user mt-4 ml-2" *ngIf="receiver && addressReceiver">
+                        <img class="img-user" src="{{receiver.photoUrl || './assets/user.png'}}"
+                            alt="{{receiver.firstName}} {{receiver.lastName}}">
+                        <div class="info">
+                            <span id="name"><i class="fa fa-user" aria-hidden="true"></i>
+                                <Strong>{{receiver.firstName|titlecase}} {{receiver.lastName |titlecase}}</Strong>
+                            </span>
+                            <span id="info"><i class="fa fa-envelope" aria-hidden="true"></i>{{receiver.email}}</span>
+                            <span id="info"><i class="fa fa-map-marker" aria-hidden="true"></i>
+                                {{addressReceiver.city}}, {{addressReceiver.district}}, {{addressReceiver.country}}
+                            </span>
+                            <span id="info" *ngIf="receiver.isOrganisation"><i class="fa fa-sitemap"
+                                    aria-hidden="true"></i>
+                                Cod CIF: {{receiver.organizationIdentificationNumber}}</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-2 mt-4">
+                    <button class="btn btn-outline-primary mb-2 ml-4" (click)="approve()"> Aproba </button>
+                    <button class="btn btn-outline mb-2 ml-4" (click)="reject()">Respinge</button>
+                </div>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted">Review-ul a fost adaugat pe {{userRating.createdAt| date:'dd/MM/yyyy'}}</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-1"></div>
+</div>

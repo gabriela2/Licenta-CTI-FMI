@@ -12,7 +12,10 @@ import { AdminService } from 'src/app/services/admin.service';
 export class EditDeliveryTypeModalComponent implements OnInit {
 
   deliveryType:DeliveryType;
-  constructor(public bsModalRef: BsModalRef, private adminService:AdminService, private toastr:ToastrService) { }
+  constructor(
+    public bsModalRef: BsModalRef, 
+    private adminService:AdminService, 
+    private toastr:ToastrService) { }
 
   ngOnInit(): void {
   }

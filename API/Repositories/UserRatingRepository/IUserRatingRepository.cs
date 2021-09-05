@@ -15,9 +15,12 @@ namespace API.Repositories.UserRatingRepository
         Task<UserRating> GetUserRatingAsync(int id);
     
         Task<PagedList<UserRatingDto>> GetUserRatingsByReceiverIdAsync(RatingsParams ratingsParams, int id);
+        Task<PagedList<UserRatingDto>> GetAllInactiveUserRatingsAsync(AppParams appParams);
         Task<IEnumerable<UserRatingDto>> GetUserRatingsByReceiverIdWihoutPagAsync(int id);
         Task<bool> SaveAllAsync();
-        
+        Task<PagedList<UserRatingDto>> GetApprovedUserRatingsBySenderIdAsync(AppParams appParams, int id);
+        Task<PagedList<UserRatingDto>> GetNotApprovedYetUserRatingsBySenderIdAsync(AppParams appParams, int id);
+        Task<PagedList<UserRatingDto>> GetRejectedUserRatingsBySenderIdAsync(AppParams appParams, int id);
         
     }
 }

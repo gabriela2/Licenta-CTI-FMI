@@ -11,7 +11,6 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { EmailConfirmationComponent } from './email-confirmation/email-confirmation.component';
-import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ToastrModule } from 'ngx-toastr';
 import { MembersListComponent } from './members/members-list/members-list.component';
 import { MemberCardComponent } from './members/member-card/member-card.component';
@@ -80,8 +79,13 @@ import { FavouriteListComponent } from './favouriteLists/favourite-list/favourit
 import { FavouriteAdsComponent } from './favouriteLists/favourite-ads/favourite-ads.component';
 import { FavouriteFundraisersComponent } from './favouriteLists/favourite-fundraisers/favourite-fundraisers.component';
 import { NotConfirmedEmailComponent } from './not-confirmed-email/not-confirmed-email.component';
-import { AboutUsComponent } from './about-us/about-us.component';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { ApproveAdsComponent } from './admin/approve-ads/approve-ads.component';
+import { AdsCardUnapprovedComponent } from './admin/ads-card-unapproved/ads-card-unapproved.component';
+import { ApproveUserRatingsComponent } from './admin/approve-user-ratings/approve-user-ratings.component';
+import { UserRatingCardUnapprovedComponent } from './admin/user-rating-card-unapproved/user-rating-card-unapproved.component';
+import { MyReviewsComponent } from './ratings/my-reviews/my-reviews.component';
+import { CardForMyReviewsComponent } from './ratings/card-for-my-reviews/card-for-my-reviews.component';
 
 
 
@@ -93,7 +97,6 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     HomeComponent,
     RegisterComponent,
     EmailConfirmationComponent,
-    ForgotPasswordComponent,
     MembersListComponent,
     MemberCardComponent,
     AdsListComponent,
@@ -149,7 +152,12 @@ import { CarouselModule } from 'ngx-bootstrap/carousel';
     FavouriteAdsComponent,
     FavouriteFundraisersComponent,
     NotConfirmedEmailComponent,
-    AboutUsComponent,
+    ApproveAdsComponent,
+    AdsCardUnapprovedComponent,
+    ApproveUserRatingsComponent,
+    UserRatingCardUnapprovedComponent,
+    MyReviewsComponent,
+    CardForMyReviewsComponent,
 
 
 

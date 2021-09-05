@@ -19,8 +19,12 @@ export class MyAdsComponent implements OnInit {
 
   paginationActive: Pagination;
   paginationInactive: Pagination;
+  paginationNotApprovedYet: Pagination;
+  paginationRejected: Pagination;
   pageNumberActive = 1;
   pageNumberInactive = 1;
+  pageNumberNotApprovedYet = 1;
+  pageNumberRejected = 1;
   pageSize = 10;
   orderBy = 'createdAt';
   categoryId: number;
@@ -28,14 +32,18 @@ export class MyAdsComponent implements OnInit {
 
   currentUserId: number;
   member: Member;
-  ad:Ad;
+  ad: Ad;
   activeAds: Ad[];
   inactiveAds: Ad[];
-  localAd:Ad[];
+  notApprovedYetAds: Ad[];
+  rejectedAds: Ad[];
+  localAd: Ad[];
   currentNoOfDemandsForActive: number = 0;
   currentNoOfDemandsForInactive: number = 0;
 
-  constructor(private router: Router, private memberService: MembersService, private adService: AdsService, private categoryService: CategoriesService) {
+  constructor(
+    private adService: AdsService,
+    private categoryService: CategoriesService) {
     this.currentUserId = parseInt(localStorage.getItem('userId'));
   }
 
@@ -43,15 +51,15 @@ export class MyAdsComponent implements OnInit {
     this.getCategories();
     this.computeNoDemands();
   }
-  computeNoDemands(){
-    this.adService.getAdsByUserId(this.currentUserId).subscribe(resposne=>{
-      for(var item of resposne){
-        for (var item2 of item.demands){
-          if(item2.isApproved===false){
-            if(item.isActive===true){
-              this.currentNoOfDemandsForActive +=1;
-            }else{
-              this.currentNoOfDemandsForInactive +=1;
+  computeNoDemands() {
+    this.adService.getAdsByUserId(this.currentUserId).subscribe(resposne => {
+      for (var item of resposne) {
+        for (var item2 of item.demands) {
+          if (item2.isApproved === false) {
+            if (item.isActive === true) {
+              this.currentNoOfDemandsForActive += 1;
+            } else {
+              this.currentNoOfDemandsForInactive += 1;
             }
           }
         }
@@ -65,51 +73,100 @@ export class MyAdsComponent implements OnInit {
       this.categoryId = 0;
       this.loadActiveAds();
       this.loadInactiveAds();
+      this.loadRejectedAds();
+      this.loadNotApprovedYetAds();
     })
   }
 
-  changePageActive(event:any){
+  changePageActive(event: any) {
     this.pageNumberActive = event.page;
     this.loadActiveAds();
   }
-  changePageInactive(event:any){
+  changePageInactive(event: any) {
     this.pageNumberInactive = event.page;
     this.loadInactiveAds();
+  }
+  changePageRejected(event: any) {
+    this.pageNumberRejected = event.page;
+    this.loadRejectedAds();
+  }
+  changePageNotApprovedYet(event: any) {
+    this.pageNumberNotApprovedYet = event.page;
+    this.loadNotApprovedYetAds();
+  }
+
+
+  loadRejectedAds() {
+    this.adService.getRejectedAdsByUserId(this.currentUserId, this.pageNumberRejected, this.pageSize, this.categoryId, this.orderBy).subscribe(response => {
+      this.rejectedAds = response.result;
+      this.paginationRejected = response.pagination;
+    })
+  }
+
+  loadNotApprovedYetAds() {
+    this.adService.getNotApprovedYetAdsByUserId(this.currentUserId, this.pageNumberNotApprovedYet, this.pageSize, this.categoryId, this.orderBy).subscribe(response => {
+      this.notApprovedYetAds = response.result;
+      this.paginationNotApprovedYet = response.pagination;
+      console.log(this.notApprovedYetAds);
+    })
   }
 
   loadActiveAds() {
     this.adService.getActiveAdsByUserId(this.currentUserId, this.pageNumberActive, this.pageSize, this.categoryId, this.orderBy).subscribe(response => {
       this.activeAds = response.result;
       this.paginationActive = response.pagination;
-  })
-}
-loadInactiveAds() {
-  this.adService.getInactiveAdsByUserId(this.currentUserId, this.pageNumberInactive, this.pageSize, this.categoryId, this.orderBy).subscribe(response => {
-    this.inactiveAds = response.result;
-    this.paginationInactive = response.pagination;
-})
-}
+    })
+  }
+
+  loadInactiveAds() {
+    this.adService.getInactiveAdsByUserId(this.currentUserId, this.pageNumberInactive, this.pageSize, this.categoryId, this.orderBy).subscribe(response => {
+      this.inactiveAds = response.result;
+      this.paginationInactive = response.pagination;
+    })
+  }
 
 
-  
-  
-  applyActive(){
+
+
+  applyActive() {
     this.loadActiveAds();
 
   }
-  resetActive(){
-    this.categoryId=0;
-    this.orderBy="createdAt";
+  resetActive() {
+    this.categoryId = 0;
+    this.orderBy = "createdAt";
     this.loadActiveAds();
   }
 
-  applyInactive(){
+  applyInactive() {
     this.loadInactiveAds();
 
   }
-  resetInactive(){
-    this.categoryId=0;
-    this.orderBy="createdAt";
+  resetInactive() {
+    this.categoryId = 0;
+    this.orderBy = "createdAt";
     this.loadInactiveAds();
+  }
+
+
+  applyRejected() {
+    this.loadRejectedAds();
+
+  }
+  resetRejected() {
+    this.categoryId = 0;
+    this.orderBy = "createdAt";
+    this.loadRejectedAds();
+  }
+
+
+  applyNotApprovedYet() {
+    this.loadNotApprovedYetAds();
+
+  }
+  resetNotApprovedYet() {
+    this.categoryId = 0;
+    this.orderBy = "createdAt";
+    this.loadNotApprovedYetAds();
   }
 }

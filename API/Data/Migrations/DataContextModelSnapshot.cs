@@ -41,6 +41,12 @@ namespace API.Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
+                    b.Property<bool>("IsRejected")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsValidated")
+                        .HasColumnType("bit");
+
                     b.Property<double?>("Limit")
                         .HasColumnType("float");
 
@@ -434,6 +440,12 @@ namespace API.Data.Migrations
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRejected")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsValidated")
+                        .HasColumnType("bit");
 
                     b.Property<float>("Rating")
                         .HasColumnType("real");

@@ -48,12 +48,6 @@ namespace HelpAFamilyOfferAChance.API.Data
                 .HasForeignKey(adt => adt.AdId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            // builder.Entity<Ad>()
-            //     .HasMany(adt=>adt.Demands)
-            //     .WithOne(a=>a.Ad)
-            //     .HasForeignKey(adt => adt.AdId)
-            //     .OnDelete(DeleteBehavior.Restrict);
-
             builder.Entity<Ad>()
             .HasMany<Demand>(c => c.Demands)
             .WithOne(ad => ad.Ad)
@@ -82,7 +76,7 @@ namespace HelpAFamilyOfferAChance.API.Data
                 .HasForeignKey(user => user.SenderId)
                 .OnDelete(DeleteBehavior.Restrict);
 
-            // builder.Entity<User_x_RoleType>().HasKey(key => new { key.UserId, key.RoleTypeId });
+
             builder.Entity<User>()
                 .HasMany(urt => urt.Users_x_RoleTypes)
                 .WithOne(u => u.User)

@@ -6,4 +6,6 @@ export interface UserRating{
     createdAt:Date;
     receiverId:number;
     senderId:number;
+    isValidated:boolean;
+    isRejected:boolean;
 }

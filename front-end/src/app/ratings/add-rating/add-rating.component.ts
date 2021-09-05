@@ -52,7 +52,9 @@ beforeUnloadHandler(event: any) {
       title:this.title,
       createdAt: new Date(),
       receiverId:this.receiverUserId,
-      senderId:this.currentUserLogged
+      senderId:this.currentUserLogged,
+      isValidated:false,
+      isRejected:false,
     };
     console.log("this var user = ", userRating);
     this.userRatingService.post(userRating).subscribe();

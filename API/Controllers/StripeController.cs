@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using API.Helpers;
 using API.Repositories.UserRepository;
 using HelpAFamilyOfferAChance.API.Entities;

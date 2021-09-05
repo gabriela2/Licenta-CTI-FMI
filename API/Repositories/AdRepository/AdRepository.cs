@@ -40,7 +40,9 @@ namespace API.Repositories.AdRepository
         public async Task<PagedList<AdDto>> GetAdsAsync(AdsParams adsParams)
         {
             var query =  _context.Ads.AsQueryable();
-            query = query.Where(ad => ad.IsActive == true);
+            query = query.Where(ad => ad.IsActive == true );
+            query = query.Where(ad => ad.IsValidated==true );
+            query = query.Where(ad => ad.IsRejected==false);
             if(adsParams.CategoryId!=null){
             query = query.Where(ad => ad.CategoryId == adsParams.CategoryId);
             }
@@ -58,6 +60,8 @@ namespace API.Repositories.AdRepository
             var query =  _context.Ads.AsQueryable();
             query = query.Where(ad => ad.IsActive == true);
             query = query.Where(ad => ad.UserId == id );
+            query = query.Where(ad => ad.IsValidated == true );
+            query = query.Where(ad => ad.IsRejected ==false );
 
             if(adsParams.CategoryId!=null){
             query = query.Where(ad => ad.CategoryId == adsParams.CategoryId);
@@ -76,6 +80,8 @@ namespace API.Repositories.AdRepository
             var query =  _context.Ads.AsQueryable();
             query = query.Where(ad => ad.IsActive == false);
             query = query.Where(ad => ad.UserId == id );
+            query = query.Where(ad => ad.IsValidated == true );
+            query = query.Where(ad => ad.IsRejected ==false );
 
             if(adsParams.CategoryId!=null){
             query = query.Where(ad => ad.CategoryId == adsParams.CategoryId);
@@ -107,6 +113,67 @@ namespace API.Repositories.AdRepository
         public async Task<IEnumerable<AdDto>> GetAdsByUserId(int id)
         {
             return await _context.Ads.Where(ad => ad.UserId==id).ProjectTo<AdDto>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
+        public async Task<PagedList<AdDto>> GetAllInactiveAdsAsync(AdsParams adsParams)
+        {
+            var query =  _context.Ads.AsQueryable();
+            query = query.Where(ad => ad.IsActive == true);
+            query = query.Where(ad => ad.IsValidated == false );
+            query = query.Where(ad => ad.IsRejected ==false );
+
+            if(adsParams.CategoryId!=null){
+            query = query.Where(ad => ad.CategoryId == adsParams.CategoryId);
+            }
+            query = adsParams.OrderBy switch {
+                "newest" => query.OrderBy(ad =>ad.CreatedAt),
+                "oldest" => query.OrderByDescending(ad=>ad.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<AdDto>.CreateAsync(query.ProjectTo<AdDto>(_mapper.ConfigurationProvider).AsNoTracking(), adsParams.PageNumber,adsParams.PageSize);
+        }
+
+        public async Task<PagedList<AdDto>> GetNotApprovedYetAdsByUserIdAsync(AdsParams adsParams, int id)
+        {
+           var query =  _context.Ads.AsQueryable();
+            query = query.Where(ad => ad.IsActive == true);
+            query = query.Where(ad => ad.UserId == id );
+            query = query.Where(ad => ad.IsValidated == false );
+            query = query.Where(ad => ad.IsRejected ==false );
+
+            if(adsParams.CategoryId!=null){
+            query = query.Where(ad => ad.CategoryId == adsParams.CategoryId);
+            }
+            query = adsParams.OrderBy switch {
+                "newest" => query.OrderBy(ad =>ad.CreatedAt),
+                "oldest" => query.OrderByDescending(ad=>ad.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<AdDto>.CreateAsync(query.ProjectTo<AdDto>(_mapper.ConfigurationProvider).AsNoTracking(), adsParams.PageNumber,adsParams.PageSize);
+        
+        }
+
+        public async Task<PagedList<AdDto>> GetRejectedAdsByUserIdAsync(AdsParams adsParams, int id)
+        {
+            var query =  _context.Ads.AsQueryable();
+            query = query.Where(ad => ad.IsActive == true);
+            query = query.Where(ad => ad.UserId == id );
+            query = query.Where(ad => ad.IsValidated == true );
+            query = query.Where(ad => ad.IsRejected ==true );
+
+            if(adsParams.CategoryId!=null){
+            query = query.Where(ad => ad.CategoryId == adsParams.CategoryId);
+            }
+            query = adsParams.OrderBy switch {
+                "newest" => query.OrderBy(ad =>ad.CreatedAt),
+                "oldest" => query.OrderByDescending(ad=>ad.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<AdDto>.CreateAsync(query.ProjectTo<AdDto>(_mapper.ConfigurationProvider).AsNoTracking(), adsParams.PageNumber,adsParams.PageSize);
+        
         }
     }
 }

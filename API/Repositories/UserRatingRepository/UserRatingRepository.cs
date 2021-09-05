@@ -26,7 +26,69 @@ namespace API.Repositories.UserRatingRepository
             _context.UserRatings.Add(userRating);
         }
 
+        public async Task<PagedList<UserRatingDto>> GetAllInactiveUserRatingsAsync(AppParams appParams)
+        {
+            var query =  _context.UserRatings.AsQueryable();
+            query = query.Where(userRating => userRating.IsRejected== false);
+            query = query.Where(UserRating => UserRating.IsValidated==false);
+            query = appParams.OrderBy switch {
+                "newest" => query.OrderBy(ad =>ad.CreatedAt),
+                "oldest" => query.OrderByDescending(ad=>ad.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<UserRatingDto>.CreateAsync(query.ProjectTo<UserRatingDto>(_mapper.ConfigurationProvider).AsNoTracking(), appParams.PageNumber,appParams.PageSize);
         
+        
+        }
+
+        public async Task<PagedList<UserRatingDto>> GetApprovedUserRatingsBySenderIdAsync(AppParams appParams, int id)
+        {
+            var query =  _context.UserRatings.AsQueryable();
+            query = query.Where(userRating => userRating.SenderId==id);
+            query = query.Where(userRating => userRating.IsRejected== false);
+            query = query.Where(UserRating => UserRating.IsValidated==true);
+            query = appParams.OrderBy switch {
+                "newest" => query.OrderBy(ad =>ad.CreatedAt),
+                "oldest" => query.OrderByDescending(ad=>ad.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<UserRatingDto>.CreateAsync(query.ProjectTo<UserRatingDto>(_mapper.ConfigurationProvider).AsNoTracking(), appParams.PageNumber,appParams.PageSize);
+        
+        }
+
+        public async Task<PagedList<UserRatingDto>> GetNotApprovedYetUserRatingsBySenderIdAsync(AppParams appParams, int id)
+        {
+             var query =  _context.UserRatings.AsQueryable();
+            query = query.Where(userRating => userRating.SenderId==id);
+            query = query.Where(userRating => userRating.IsRejected== false);
+            query = query.Where(UserRating => UserRating.IsValidated==false);
+            query = appParams.OrderBy switch {
+                "newest" => query.OrderBy(ad =>ad.CreatedAt),
+                "oldest" => query.OrderByDescending(ad=>ad.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<UserRatingDto>.CreateAsync(query.ProjectTo<UserRatingDto>(_mapper.ConfigurationProvider).AsNoTracking(), appParams.PageNumber,appParams.PageSize);
+        
+        }
+
+        public async Task<PagedList<UserRatingDto>> GetRejectedUserRatingsBySenderIdAsync(AppParams appParams, int id)
+        {
+             var query =  _context.UserRatings.AsQueryable();
+            query = query.Where(userRating => userRating.SenderId==id);
+            query = query.Where(userRating => userRating.IsRejected== true);
+            query = query.Where(UserRating => UserRating.IsValidated==true);
+            query = appParams.OrderBy switch {
+                "newest" => query.OrderBy(ad =>ad.CreatedAt),
+                "oldest" => query.OrderByDescending(ad=>ad.CreatedAt),
+                _ => query
+            };
+
+            return await PagedList<UserRatingDto>.CreateAsync(query.ProjectTo<UserRatingDto>(_mapper.ConfigurationProvider).AsNoTracking(), appParams.PageNumber,appParams.PageSize);
+        
+        }
 
         public async Task<UserRating> GetUserRatingAsync(int id)
         {
@@ -48,6 +110,8 @@ namespace API.Repositories.UserRatingRepository
         {
             var query =  _context.UserRatings.AsQueryable();
             query = query.Where(userRating => userRating.ReceiverId == id);
+            query = query.Where(userRating => userRating.IsRejected== false);
+            query = query.Where(UserRating => UserRating.IsValidated==true);
             if(ratingsParams.Rating>0 && ratingsParams.Rating<6 ){
             query = query.Where(userRating => userRating.Rating == ratingsParams.Rating);
             }

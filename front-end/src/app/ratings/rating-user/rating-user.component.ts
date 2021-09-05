@@ -31,8 +31,10 @@ export class RatingUserComponent implements OnInit {
     this.userRatingService.getUserRatingByReceiverIdWithoutPag(this.member.id).subscribe(result =>{
       this.userRating=result;
       for(var item of result){
+        if(item.isValidated===true && item.isRejected===false){
         this.sum=this.sum+item.rating;
         this.i=this.i+1;
+      }
       }
       this.currentRate=this.sum/this.i;
     })

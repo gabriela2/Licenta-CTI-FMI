@@ -11,5 +11,7 @@ namespace API.DTOs
         public string Comment { get; set; }
         public int ReceiverId { get; set; }
         public int SenderId{get;set;}
+        public bool IsValidated { get; set; }
+        public bool IsRejected { get; set; }
     }
 }

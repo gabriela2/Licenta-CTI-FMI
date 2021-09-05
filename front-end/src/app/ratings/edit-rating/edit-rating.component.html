@@ -3,6 +3,17 @@
 
     <div class="card-header">
         <h3><strong>Editeaza review:</strong></h3>
+        <h4><strong>Status:</strong>
+        <span *ngIf="rating.isValidated==true && rating.isRejected==true"> Respins</span>
+        <span *ngIf="rating.isValidated==false && rating.isRejected==false"> In curs de aprobare</span>
+        <span *ngIf="rating.isValidated==true && rating.isRejected==false"> Aprobat</span>
+        </h4>
+        <span *ngIf="rating.isValidated==true && rating.isRejected==true">
+            <div class="alert alert-primary text-center">
+                <strong>Pentru ca review-ul acordat de dumneavoastra sa fie aprobat, acesta nu trebuie sa contina injurii sau cuvinte obscene! </strong>
+            </div>
+        </span>
+        
     </div>
 
     <div class="card-body">
@@ -33,7 +44,7 @@
 
     <div class="card-footer">
         <button type="button" form="editRating" class="btn btn-default" (click)="cancel()">Cancel</button>
-        <button type="submit" form="editRating" class="btn btn-primary">Submit</button>
+        <button type="submit" form="editRating" class="btn btn-primary" [disabled]="rating.comment===comment && rating.title===title && rating.rating===nrstar">Submit</button>
     </div>
 
 </div>

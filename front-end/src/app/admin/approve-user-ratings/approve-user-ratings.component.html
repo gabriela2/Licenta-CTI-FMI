@@ -1,0 +1,27 @@
+<div class="container mt-3">
+    <div class="ml-3">
+        <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy" (click)="apply()"
+            btnRadio='oldest'>Cele mai recente</button>
+        <button type="button" class="btn btn-primary ml-3" name="orderBy" [(ngModel)]="orderBy" (click)="apply()"
+            btnRadio='newest'>Cele mai vechi</button>
+            <button class="btn btn primary ml-3" type="submit" (click)="reset()">Reseteaza filtrele</button>
+            <p class="ml-3"><small>{{pagination?.totalItems}} rezultate gasite</small></p>
+    </div>
+</div>
+
+<div class="col-12" *ngIf="pagination?.totalItems!=0">
+    <div *ngFor="let userRating of userRatings">
+        <app-user-rating-card-unapproved [userRating]="userRating"></app-user-rating-card-unapproved>
+    </div>
+    <div class="d-flex justify-content-center" *ngIf="pagination">
+        <pagination [boundaryLinks]="true" [totalItems]="pagination.totalItems" [itemsPerPage]="pagination.itemsPerPage"
+            [(ngModel)]="pagination.currentPage" (pageChanged)="changePage($event)" previousText="&lsaquo;"
+            nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;">
+
+        </pagination>
+    </div>
+</div>
+
+<div class="col-12 d-flex justify-content-center" *ngIf="pagination?.totalItems==0">
+    <h2>Nu exista review-uri nerevizuite!</h2>
+</div>
